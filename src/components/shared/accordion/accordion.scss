@@ -1,0 +1,17 @@
+.accordion {
+    &__head {
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__title {
+            font-size: 25px;
+        }
+    }
+
+    &__content {
+        padding: 8px 12px;
+    }
+}
