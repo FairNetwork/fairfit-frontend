@@ -1,0 +1,32 @@
+.summary {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    &__data {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+
+        &__address {
+        }
+
+        &__info {
+        }
+
+        &__payment {
+        }
+    }
+
+    &__agbs {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    &__button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+}

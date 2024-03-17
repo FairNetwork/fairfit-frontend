@@ -1,0 +1,22 @@
+.carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__wrapper {
+        width: calc(100% + 16px);
+        overflow: hidden;
+        height: 400px;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-around;
+        gap: 24px;
+    }
+}
+
+.use-spring-carousel-main-wrapper {
+    height: calc(100% - 5px) !important;
+    left: 5px;
+}
