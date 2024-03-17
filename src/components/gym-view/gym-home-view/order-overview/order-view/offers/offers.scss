@@ -1,0 +1,17 @@
+.offers {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    &__button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+}

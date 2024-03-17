@@ -1,0 +1,28 @@
+.infinite-looper {
+    width: 100%;
+    overflow: hidden;
+    background-color: #52ab98;
+    cursor: pointer;
+
+    &__inner-list {
+        display: flex;
+        justify-content: center;
+        width: fit-content;
+
+        &__list-instance {
+            display: flex;
+            width: max-content;
+
+            animation: slideAnimation linear infinite;
+        }
+    }
+}
+
+@keyframes slideAnimation {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
