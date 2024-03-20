@@ -26,6 +26,7 @@ const Card = ({
         <div
             className="card"
             style={{
+                ...style,
                 backgroundColor: color,
                 border: isSelected ? '#52ab98 2px solid' : 'none'
             }}>
@@ -35,6 +36,7 @@ const Card = ({
                 <div className="card__head__title">{title}</div>
                 <div className="card__head__price">{price}€</div>
                 <div className="card__head__duration">{convertMonth(duration)}</div>
+                <div className="card__head__duration">{additionalPrices}</div>
             </div>
             <Accordion id={1} title="Details">
                 <div className="card__details">{details}</div>

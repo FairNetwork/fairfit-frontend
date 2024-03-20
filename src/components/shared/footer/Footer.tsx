@@ -6,4 +6,4 @@ const Footer = () => {
 
 Footer.displayName = 'Footer';
 
-export default Footer;
+// export default Footer;
