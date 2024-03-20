@@ -13,7 +13,7 @@ const OpeningTimes = () => {
         [gymId]
     );
 
-    const openingTimes = useAppSelector(openingTimesSelector);
+    // const openingTimes = useAppSelector(openingTimesSelector);
 
     /*
     const content = useMemo(() => {

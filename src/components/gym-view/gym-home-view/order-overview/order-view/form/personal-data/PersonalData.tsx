@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import './personalData.scss';
 import { useAppDispatch, useAppSelector } from '../../../../../../../hooks/redux';
@@ -15,8 +15,6 @@ const PersonalData = () => {
     const dispatch = useAppDispatch();
 
     const { email, birthday, firstName, lastName, gender } = useAppSelector(selectUser);
-
-    const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
     const handleGenderChange = (event: ChangeEvent<HTMLInputElement>, value: string) => {
         dispatch(setGender(value));

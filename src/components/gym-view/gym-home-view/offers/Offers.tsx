@@ -1,17 +1,13 @@
 import Carousel from '../../../shared/carousel/Carousel';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { useAppSelector } from '../../../../hooks/redux';
 import { selectAbonnementsById, selectOffersById } from '../../../../redux/gym/selectors';
-import React, { ReactElement, useCallback, useContext, useMemo } from 'react';
-import Card from '../../../shared/card/Card';
-import { Offer } from '../../../../types/offer';
-import { setSelectedOffer } from '../../../../redux/user/slice';
-import { useNavigate } from 'react-router-dom';
+import React, { useCallback, useContext, useMemo } from 'react';
 import './offers.scss';
 import { RootState } from '../../../../redux/store';
 import { GymContext } from '../../../App';
 
 const Offers = () => {
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
 
     const { gymId } = useContext(GymContext);
 
@@ -27,8 +23,9 @@ const Offers = () => {
     const offers = useAppSelector(offersSelector);
     const abonnements = useAppSelector(abonnementsSelector);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
+    /*
     const handleCardClick = useCallback(
         (id: Offer['id']) => {
             let selectedOffer;
@@ -45,6 +42,8 @@ const Offers = () => {
         },
         [dispatch, gymId, navigate, offers]
     );
+
+     */
 
     const combinedOffers = useMemo(() => {
         return [...(offers ?? []), ...(abonnements ?? [])];

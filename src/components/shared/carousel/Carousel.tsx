@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Offer } from '../../../types/offer';
 import Card from '../card/Card';
 import { useSpringCarousel } from 'react-spring-carousel';
@@ -18,39 +18,30 @@ const Carousel = ({ items }: CarouselProps) => {
 
     const navigate = useNavigate();
 
-    const [currentSlide, setCurrentSlide] = useState(`carousel-item__${items[0].id}`);
-
-    const { carouselFragment, useListenToCustomEvent, slideToPrevItem, slideToNextItem } =
-        useSpringCarousel({
-            itemsPerSlide: 3,
-            withLoop: true,
-            initialStartingPosition: 'center',
-            gutter: 24,
-            items: items.map(({ id, details, color, title, price, additionalPrices, duration }) => {
-                return {
-                    id: `carousel-item__${id}`,
-                    renderItem: (
-                        <Card
-                            onClick={() => navigate(`/${gymId}/offers?id=${id}`)}
-                            isSelected={false}
-                            key={id}
-                            id={id}
-                            color={color}
-                            title={title}
-                            duration={duration}
-                            details={details}
-                            additionalPrices={additionalPrices}
-                            price={price}
-                        />
-                    )
-                };
-            })
-        });
-
-    useListenToCustomEvent((event) => {
-        if (event.eventName === 'onSlideStartChange') {
-            setCurrentSlide(event?.nextItem?.id);
-        }
+    const { carouselFragment, slideToPrevItem, slideToNextItem } = useSpringCarousel({
+        itemsPerSlide: 3,
+        withLoop: true,
+        initialStartingPosition: 'center',
+        gutter: 24,
+        items: items.map(({ id, details, color, title, price, additionalPrices, duration }) => {
+            return {
+                id: `carousel-item__${id}`,
+                renderItem: (
+                    <Card
+                        onClick={() => navigate(`/${gymId}/offers?id=${id}`)}
+                        isSelected={false}
+                        key={id}
+                        id={id}
+                        color={color}
+                        title={title}
+                        duration={duration}
+                        details={details}
+                        additionalPrices={additionalPrices}
+                        price={price}
+                    />
+                )
+            };
+        })
     });
 
     return (
