@@ -62,9 +62,9 @@ const Header = ({ children, onHeightChange }: HeaderProps) => {
 
     useEffect(() => {
         if (isScrolled) {
-            controls.start({ height: 50 });
+            void controls.start({ height: 50 });
         } else {
-            controls.start({ height: 100 });
+            void controls.start({ height: 100 });
         }
     }, [isScrolled, controls]);
 

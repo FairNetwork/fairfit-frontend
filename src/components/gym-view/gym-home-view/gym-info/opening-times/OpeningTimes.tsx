@@ -1,17 +1,15 @@
 import './openingTimes.scss';
-import { useCallback, useContext } from 'react';
-import { GymContext } from '../../../../App';
-import { RootState } from '../../../../../redux/store';
-import { selectLocationById } from '../../../../../redux/gym/selectors';
-import { useAppSelector } from '../../../../../hooks/redux';
 
 const OpeningTimes = () => {
-    const { gymId } = useContext(GymContext);
+    // const { gymId } = useContext(GymContext);
 
+    /*
     const openingTimesSelector = useCallback(
         (state: RootState) => selectLocationById(state, gymId),
         [gymId]
     );
+
+     */
 
     // const openingTimes = useAppSelector(openingTimesSelector);
 
