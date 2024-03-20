@@ -56,8 +56,8 @@
         "@types/jest": "^27.5.2",
         "@types/node": "^16.18.86",
         "@types/react": "^18.2.63",
-        "prettier": "^3.2.5",
+        "@types/react-dom": "^18.2.22",
         "eslint": "^8.0.1",
-        "@types/react-dom": "^18.2.20"
+        "prettier": "^3.2.5"
     }
 }
