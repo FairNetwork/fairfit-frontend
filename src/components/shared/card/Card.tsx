@@ -36,7 +36,10 @@ const Card = ({
                 <div className="card__head__title">{title}</div>
                 <div className="card__head__price">{price}€</div>
                 <div className="card__head__duration">{convertMonth(duration)}</div>
-                <div className="card__head__duration">{additionalPrices}</div>
+                <div className="card__head__duration">
+                    {additionalPrices?.startUp}
+                    {additionalPrices?.trainer}
+                </div>
             </div>
             <Accordion id={1} title="Details">
                 <div className="card__details">{details}</div>
