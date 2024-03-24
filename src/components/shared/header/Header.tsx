@@ -1,6 +1,6 @@
 import { motion, useAnimation } from 'framer-motion';
 import './header.scss';
-import { ReactNode, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useAppSelector } from '../../../hooks/redux';
@@ -16,6 +16,8 @@ interface HeaderProps {
 const Header = ({ children, onHeightChange }: HeaderProps) => {
     const { gymId } = useContext(GymContext);
 
+    const [position, setPosition] = useState(0);
+
     const gymSelector = useCallback((state: RootState) => selectLogoById(state, gymId), [gymId]);
 
     const logo = useAppSelector(gymSelector);
@@ -25,6 +27,7 @@ const Header = ({ children, onHeightChange }: HeaderProps) => {
     const controls = useAnimation();
 
     const childrenRef = useRef<HTMLDivElement>(null);
+    const logoRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
         if (childrenRef.current) {
@@ -68,10 +71,33 @@ const Header = ({ children, onHeightChange }: HeaderProps) => {
         }
     }, [isScrolled, controls]);
 
-    const logoVariants = {
-        small: { scale: 0.6, x: '-160%', y: '-50%' },
-        large: { scale: 1, x: '-50%', y: '-50%' }
-    };
+    useEffect(() => {
+        const { innerWidth } = window;
+
+        if (logoRef.current) {
+            const resizeObserver = new ResizeObserver((entries) => {
+                if (entries && entries[0]) {
+                    const observedWidth = entries[0].contentRect.width;
+                    setPosition(innerWidth / 2 - observedWidth / 2);
+                }
+            });
+
+            resizeObserver.observe(logoRef.current);
+
+            return () => {
+                resizeObserver.disconnect();
+            };
+        }
+
+        return () => {};
+    }, []);
+
+    const logoVariants = useMemo(() => {
+        return {
+            small: { scale: 0.6, x: 0, y: 0 },
+            large: { scale: 1, x: `${position}px`, y: 0 }
+        };
+    }, [position]);
 
     const handleMenuClick = () => {};
 
@@ -82,16 +108,18 @@ const Header = ({ children, onHeightChange }: HeaderProps) => {
                 animate={controls}
                 initial={{ height: isScrolled ? 50 : 100 }}
                 transition={{ type: 'tween' }}>
-                <div className="header__header__menu">
-                    <FontAwesomeIcon icon={faBars} size="2x" onClick={handleMenuClick} />
-                </div>
+                {/*
+                    <div className="header__header__menu">
+                    <FontAwesomeIcon icon={faBars} size="2x" onClick={handleMenuClick}/>
+        </div>
+*/}
                 <motion.div
                     className="header__header__logo"
                     variants={logoVariants}
                     initial="large"
                     animate={isScrolled ? 'small' : 'large'}
                     transition={{ type: 'tween' }}>
-                    <img src={logo} alt="Logo" />
+                    <img src={logo} alt="Logo" ref={logoRef} />
                 </motion.div>
             </motion.div>
             <div ref={childrenRef}>{children}</div>
