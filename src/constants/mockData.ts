@@ -4,7 +4,7 @@ import { Offer } from '../types/offer';
 const TESTABONNEMENTS2: Offer[] = [
     {
         id: '243244132412412',
-        color: 'rgb(217, 140, 139)',
+        color: '#d9ef97',
         title: 'Easy12',
         details: [
             '12 Monate Mindestvertragslaufzeit',
@@ -19,7 +19,7 @@ const TESTABONNEMENTS2: Offer[] = [
     },
     {
         id: '4636252545',
-        color: 'rgb(217, 140, 139)',
+        color: '#d9ef97',
         title: 'Easy24',
         details: [
             '24 Monate Mindestvertragslaufzeit',
@@ -34,7 +34,7 @@ const TESTABONNEMENTS2: Offer[] = [
     },
     {
         id: '36363352533',
-        color: 'rgb(217, 140, 139)',
+        color: '#d9ef97',
         title: 'Easy Flex',
         details: [
             '1 Monat Mindestvertragslaufzeit',

@@ -15,7 +15,7 @@ const Card = ({ title, details, price, isOffer, isSelected, color, id, onClick }
 
         details.forEach((detail) => {
             items.push(
-                <div className="card__content__wrapper">
+                <div className="card__content__wrapper" key={`detail__${detail}`}>
                     <div className="card__content__wrapper__icon">
                         <FontAwesomeIcon icon={faCheck} />
                     </div>
