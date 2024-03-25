@@ -21,8 +21,6 @@ const Contact = () => {
     const [value, setValue] = useState('');
 
     const handlePhoneClick = () => {
-        console.log('hallo');
-        console.log(`tel:+${contact?.phone.replace('/', '')}`);
         window.open(`tel:+${contact?.phone.replace('/', '')}`);
     };
 
@@ -30,7 +28,7 @@ const Contact = () => {
         <div className="contact">
             <div className="contact__title">Kontakt</div>
             {contact?.phone && (
-                <div className="contact__phone" onClick={() => handlePhoneClick}>
+                <div className="contact__phone" onClick={() => handlePhoneClick()}>
                     <FontAwesomeIcon icon={faPhone} />
                     <div className="contact__phone__text">{contact?.phone}</div>
                 </div>
