@@ -167,7 +167,7 @@ const Summary = () => {
                         </div>
                     </div>
                     <div className="summary__data__info">
-                        <div>{birthday?.toISOString()}</div>
+                        <div>{birthday}</div>
                         <div>{email}</div>
                     </div>
                     <div className="summary__data__payment">

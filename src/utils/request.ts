@@ -42,8 +42,6 @@ export interface RequestResult<Data = unknown> {
 }
 
 export const request = async <Data = null, Body = null>({
-    accessToken,
-    auth = true,
     backendVersion,
     body,
     contentType = 'application/json',

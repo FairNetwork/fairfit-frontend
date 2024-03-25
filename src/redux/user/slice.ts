@@ -11,7 +11,7 @@ export interface UserState {
     number?: number;
     place: string;
     postcode: string;
-    birthday?: Date;
+    birthday: string;
     email: string;
     iban: string;
     owner: string;
@@ -23,6 +23,7 @@ export interface UserState {
 
 const initialState: UserState = {
     email: '',
+    birthday: '',
     firstName: '',
     gender: '',
     iban: '',

@@ -1,8 +1,6 @@
 import { motion, useAnimation } from 'framer-motion';
 import './header.scss';
 import { ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useAppSelector } from '../../../hooks/redux';
 import { RootState } from '../../../redux/store';
 import { selectLogoById } from '../../../redux/gym/selectors';
@@ -98,8 +96,6 @@ const Header = ({ children, onHeightChange }: HeaderProps) => {
             large: { scale: 1, x: `${position}px`, y: 0 }
         };
     }, [position]);
-
-    const handleMenuClick = () => {};
 
     return (
         <div className="header">

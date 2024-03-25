@@ -81,7 +81,7 @@ export const updateSubscription =
 
         await patchSubscription(
             {
-                birthday,
+                birthday: new Date(birthday),
                 gender,
                 iban,
                 email,
