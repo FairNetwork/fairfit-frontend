@@ -65,7 +65,7 @@ const Summary = () => {
         iban,
         street,
         place,
-        plz,
+        postcode,
         number,
         lastName,
         email,
@@ -100,7 +100,7 @@ const Summary = () => {
     };
 
     const handleClick = () => {
-        void dispatch(finishOrder());
+        void dispatch(finishOrder(gymId));
     };
 
     const handleCloseDialog = useCallback(() => {
@@ -163,11 +163,11 @@ const Summary = () => {
                             {street} {number}
                         </div>
                         <div>
-                            {plz} {place}
+                            {postcode} {place}
                         </div>
                     </div>
                     <div className="summary__data__info">
-                        <div>{birthday.replaceAll('-', '.')}</div>
+                        <div>{birthday?.toISOString()}</div>
                         <div>{email}</div>
                     </div>
                     <div className="summary__data__payment">
