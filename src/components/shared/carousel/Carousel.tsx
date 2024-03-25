@@ -23,7 +23,7 @@ const Carousel = ({ items }: CarouselProps) => {
         withLoop: true,
         initialStartingPosition: 'center',
         gutter: 24,
-        items: items.map(({ id, details, color, title, price, additionalPrices, duration }) => {
+        items: items.map(({ id, details, color, title, price, isOffer }) => {
             return {
                 id: `carousel-item__${id}`,
                 renderItem: (
@@ -34,10 +34,9 @@ const Carousel = ({ items }: CarouselProps) => {
                         id={id}
                         color={color}
                         title={title}
-                        duration={duration}
                         details={details}
-                        additionalPrices={additionalPrices}
                         price={price}
+                        isOffer={isOffer}
                     />
                 )
             };

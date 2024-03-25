@@ -2,7 +2,11 @@ import { Button, Tooltip } from '@mui/material';
 import './offers.scss';
 import Accordion from '../../../../../shared/accordion/Accordion';
 import { useAppDispatch, useAppSelector } from '../../../../../../hooks/redux';
-import { selectAbonnementsById, selectOffersById } from '../../../../../../redux/gym/selectors';
+import {
+    selectAbonnementsById,
+    selectHasOffers,
+    selectOffersById
+} from '../../../../../../redux/gym/selectors';
 import React, { ReactElement, useCallback, useContext, useMemo, useState } from 'react';
 import Card from '../../../../../shared/card/Card';
 import { Offer } from '../../../../../../types/offer';
@@ -31,6 +35,9 @@ const Offers = ({ onClick }: OffersProps) => {
         [gymId]
     );
 
+    const gymSelector = useCallback((state: RootState) => selectHasOffers(state, gymId), [gymId]);
+
+    const hasOffers = useAppSelector(gymSelector);
     const offers = useAppSelector(offersSelector);
     const abonnements = useAppSelector(abonnementsSelector);
 
@@ -64,7 +71,7 @@ const Offers = ({ onClick }: OffersProps) => {
     const renderedOffers = useMemo(() => {
         const items: ReactElement[] = [];
 
-        offers?.forEach(({ title, color, id, details, price, additionalPrices, duration }) => {
+        offers?.forEach(({ title, color, id, details, price, isOffer }) => {
             items.push(
                 <Card
                     onClick={handleCardClick}
@@ -73,10 +80,9 @@ const Offers = ({ onClick }: OffersProps) => {
                     id={id}
                     color={color}
                     title={title}
-                    duration={duration}
                     details={details}
-                    additionalPrices={additionalPrices}
                     price={price}
+                    isOffer={isOffer}
                 />
             );
         });
@@ -87,7 +93,7 @@ const Offers = ({ onClick }: OffersProps) => {
     const renderedAbonnements = useMemo(() => {
         const items: ReactElement[] = [];
 
-        abonnements?.forEach(({ title, color, details, price, additionalPrices, duration, id }) => {
+        abonnements?.forEach(({ title, color, details, price, isOffer, id }) => {
             items.push(
                 <Card
                     onClick={handleCardClick}
@@ -96,10 +102,9 @@ const Offers = ({ onClick }: OffersProps) => {
                     id={id}
                     color={color}
                     title={title}
-                    duration={duration}
                     details={details}
-                    additionalPrices={additionalPrices}
                     price={price}
+                    isOffer={isOffer}
                 />
             );
         });
@@ -109,10 +114,12 @@ const Offers = ({ onClick }: OffersProps) => {
 
     return (
         <div className="offers">
-            <Accordion id={1} isDefaultOpen title="Aktuelle Angebote">
-                <div className="offers__content">{renderedOffers}</div>
-            </Accordion>
-            <Accordion id={2} title="Standart Abonnements">
+            {hasOffers && (
+                <Accordion id={1} isDefaultOpen title="Aktuelle Angebote">
+                    <div className="offers__content">{renderedOffers}</div>
+                </Accordion>
+            )}
+            <Accordion id={2} isDefaultOpen={!hasOffers} title="Standart Abonnements">
                 <div className="offers__content">{renderedAbonnements}</div>
             </Accordion>
             <div className="offers__button">

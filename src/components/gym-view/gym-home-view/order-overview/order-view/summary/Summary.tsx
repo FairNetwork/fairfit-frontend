@@ -184,8 +184,7 @@ const Summary = () => {
                         color={selectedOffer.color}
                         details={selectedOffer.details}
                         price={selectedOffer.price}
-                        duration={selectedOffer.duration}
-                        additionalPrices={selectedOffer.additionalPrices}
+                        isOffer={selectedOffer.isOffer}
                     />
                 </Accordion>
             )}
