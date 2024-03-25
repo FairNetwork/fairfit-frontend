@@ -47,6 +47,24 @@ export const selectLogoById = (state: RootState, gymId: string): Gym['logo'] | u
     return selectGymById(state, gymId)?.logo;
 };
 
+export const selectOfferById = (
+    state: RootState,
+    gymId: string,
+    offerId: Offer['id']
+): Offer | undefined => {
+    const selectedGym = selectGymById(state, gymId);
+
+    if (!selectedGym) {
+        return undefined;
+    }
+
+    const { offers, abonnements } = selectedGym;
+
+    const combinedOffers = [...offers, ...abonnements];
+
+    return combinedOffers.find(({ id }) => id === offerId);
+};
+
 export const selectAgbsById = (state: RootState, gymId: string): Gym['agbs'] | undefined => {
     return selectGymById(state, gymId)?.agbs;
 };

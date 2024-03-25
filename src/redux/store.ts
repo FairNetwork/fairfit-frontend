@@ -34,4 +34,4 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>;
-// export type GetAppState = () => RootState;
+export type GetAppState = () => RootState;

@@ -33,7 +33,7 @@ const PersonalData = () => {
     };
 
     const handleBirthdayChange = (event: ChangeEvent<HTMLInputElement>) => {
-        dispatch(setBirthday(event.target.value));
+        dispatch(setBirthday(new Date(event.target.value)));
     };
 
     return (

@@ -8,30 +8,29 @@ export interface UserState {
     firstName: string;
     lastName: string;
     street: string;
-    number: string;
+    number?: number;
     place: string;
-    plz: string;
-    birthday: string;
+    postcode: string;
+    birthday?: Date;
     email: string;
     iban: string;
     owner: string;
-    selectedOfferId: Offer['id'] | undefined;
+    selectedOfferId?: Offer['id'];
     areAgbsAccepted: boolean;
     sendOrderLoadingState: LoadingState;
+    subscriptionId?: string;
 }
 
 const initialState: UserState = {
-    birthday: '',
     email: '',
     firstName: '',
     gender: '',
     iban: '',
     lastName: '',
     owner: '',
-    plz: '',
+    postcode: '',
     place: '',
     street: '',
-    number: '',
     selectedOfferId: undefined,
     areAgbsAccepted: false,
     sendOrderLoadingState: 'none'
@@ -44,8 +43,8 @@ const slice = createSlice({
         setGender(state, { payload }: PayloadAction<UserState['gender']>) {
             state.gender = payload;
         },
-        setPlz(state, { payload }: PayloadAction<UserState['plz']>) {
-            state.plz = payload;
+        setPostcode(state, { payload }: PayloadAction<UserState['postcode']>) {
+            state.postcode = payload;
         },
         setIban(state, { payload }: PayloadAction<UserState['iban']>) {
             state.iban = payload;
@@ -80,6 +79,9 @@ const slice = createSlice({
         setAreAgbsAccepted(state, { payload }: PayloadAction<UserState['areAgbsAccepted']>) {
             state.areAgbsAccepted = payload;
         },
+        setSubscriptionId(state, { payload }: PayloadAction<UserState['subscriptionId']>) {
+            state.subscriptionId = payload;
+        },
         setSendOrderLoadingState(
             state,
             { payload }: PayloadAction<UserState['sendOrderLoadingState']>
@@ -91,6 +93,7 @@ const slice = createSlice({
 
 export const {
     setSendOrderLoadingState,
+    setSubscriptionId,
     setEmail,
     setGender,
     setBirthday,
@@ -101,8 +104,8 @@ export const {
     setPlace,
     setNumber,
     setStreet,
-    setPlz,
     setSelectedOffer,
+    setPostcode,
     setAreAgbsAccepted
 } = slice.actions;
 
