@@ -31,6 +31,10 @@ export const loadGym =
 
             return;
         }
+
+        dispatch(setGymLoadingState('rejected'));
+
+        return;
     };
 
 export const sendEmail =
