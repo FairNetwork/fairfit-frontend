@@ -24,7 +24,7 @@ const Contact = () => {
     const [value, setValue] = useState('');
 
     const handlePhoneClick = () => {
-        window.open(`tel:+${contact?.phone.replace('/', '')}`);
+        window.open(`tel:${contact?.phone.replace('/', '')}`);
     };
 
     const handleSendEmail = async () => {
