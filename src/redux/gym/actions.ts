@@ -35,20 +35,18 @@ export const loadGym =
 
 export const sendEmail =
     (gymName: string, message: string) =>
-    async (_: AppDispatch, getState: GetAppState): Promise<void> => {
+    async (_: AppDispatch, getState: GetAppState): Promise<boolean> => {
         const state = getState();
 
         const gymId = SelectGymIdByInternalId(state, gymName);
 
         if (!gymId) {
-            return;
+            return false;
         }
 
         const { status } = await postSendMail(message, gymId);
 
-        if (status === 201) {
-            return;
-        }
+        return status === 201;
     };
 
 /*

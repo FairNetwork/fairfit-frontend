@@ -6,9 +6,12 @@ import { useCallback, useContext, useState } from 'react';
 import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectContactById } from '../../../../../redux/gym/selectors';
-import { useAppSelector } from '../../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
+import { sendEmail } from '../../../../../redux/gym/actions';
 
 const Contact = () => {
+    const dispatch = useAppDispatch();
+
     const { gymInternalId } = useContext(GymContext);
 
     const contactSelector = useCallback(
@@ -22,6 +25,14 @@ const Contact = () => {
 
     const handlePhoneClick = () => {
         window.open(`tel:+${contact?.phone.replace('/', '')}`);
+    };
+
+    const handleSendEmail = async () => {
+        const hasSend = await dispatch(sendEmail(gymInternalId, value));
+
+        if (hasSend) {
+            setValue('');
+        }
     };
 
     return (
@@ -49,7 +60,10 @@ const Contact = () => {
                         />
                     </div>
                     <div className="contact__button">
-                        <Button variant={'contained'} disabled={value.length === 0}>
+                        <Button
+                            variant={'contained'}
+                            disabled={value.length === 0}
+                            onClick={() => handleSendEmail()}>
                             Senden
                         </Button>
                     </div>
