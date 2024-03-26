@@ -1,10 +1,10 @@
 import { AppDispatch, GetAppState } from '../store';
 import { addGym, setGymLoadingState } from './slice';
 import { EASYFITNESS } from '../../constants/mockData';
-import { getGym } from '../../api/gym/get';
 import { Gym } from '../../types/gym';
-import { postSendMail } from '../../api/gym/post';
 import { SelectGymIdByInternalId } from './selectors';
+import { getGym } from '../../api/gym/get';
+import { postSendMail } from '../../api/gym/post';
 
 export const loadGym =
     (gymName: string) =>
@@ -31,6 +31,10 @@ export const loadGym =
 
             return;
         }
+
+        dispatch(setGymLoadingState('rejected'));
+
+        return;
     };
 
 export const sendEmail =

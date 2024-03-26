@@ -49,12 +49,27 @@ const Carousel = ({ items }: CarouselProps) => {
 
     return (
         <div className="carousel">
-            <div className="carousel__wrapper">{carouselFragment}</div>
+            <div
+                className="carousel__wrapper"
+                style={{ width: isMobile() ? 'calc(100% + 16px)' : '100%' }}>
+                {carouselFragment}
+            </div>
             {!isMobile() && (
                 <div className="carousel__buttons">
-                    <FontAwesomeIcon icon={faChevronLeft} size={'2x'} onClick={slideToPrevItem} />
-
-                    <FontAwesomeIcon icon={faChevronRight} size={'2x'} onClick={slideToNextItem} />
+                    <div className="carousel__buttons__button">
+                        <FontAwesomeIcon
+                            icon={faChevronLeft}
+                            size={'2x'}
+                            onClick={slideToPrevItem}
+                        />
+                    </div>
+                    <div className="carousel__buttons__button">
+                        <FontAwesomeIcon
+                            icon={faChevronRight}
+                            size={'2x'}
+                            onClick={slideToNextItem}
+                        />
+                    </div>
                 </div>
             )}
         </div>

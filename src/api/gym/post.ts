@@ -5,6 +5,7 @@ export const postSendMail = async (mail: string, gymId: string): Promise<ApiFunc
     const response = await request({
         method: 'POST',
         body: mail,
+        contentType: 'text/plain',
         route: `tenants/${gymId}/email`
     });
 
