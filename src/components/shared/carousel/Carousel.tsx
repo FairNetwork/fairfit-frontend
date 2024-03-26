@@ -56,9 +56,20 @@ const Carousel = ({ items }: CarouselProps) => {
             </div>
             {!isMobile() && (
                 <div className="carousel__buttons">
-                    <FontAwesomeIcon icon={faChevronLeft} size={'2x'} onClick={slideToPrevItem} />
-
-                    <FontAwesomeIcon icon={faChevronRight} size={'2x'} onClick={slideToNextItem} />
+                    <div className="carousel__buttons__button">
+                        <FontAwesomeIcon
+                            icon={faChevronLeft}
+                            size={'2x'}
+                            onClick={slideToPrevItem}
+                        />
+                    </div>
+                    <div className="carousel__buttons__button">
+                        <FontAwesomeIcon
+                            icon={faChevronRight}
+                            size={'2x'}
+                            onClick={slideToNextItem}
+                        />
+                    </div>
                 </div>
             )}
         </div>

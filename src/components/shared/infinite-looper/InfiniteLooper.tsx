@@ -10,8 +10,17 @@ interface InfiniteLooperProps {
 
 const InfiniteLooper = ({ children, direction, speed, onClick }: InfiniteLooperProps) => {
     const [looperInstances, setLooperInstances] = useState(1);
+    const [shouldPlay, setShouldPlay] = useState(false);
     const outerRef = useRef<HTMLDivElement>(null);
     const innerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        let timer1 = setTimeout(() => setShouldPlay(true), 100);
+
+        return () => {
+            clearTimeout(timer1);
+        };
+    }, []);
 
     const setupInstances = useCallback(() => {
         if (!innerRef?.current || !outerRef?.current) return;
@@ -40,7 +49,8 @@ const InfiniteLooper = ({ children, direction, speed, onClick }: InfiniteLooperP
                         className="infinite-looper__inner-list__list-instance"
                         style={{
                             animationDuration: `${speed}s`,
-                            animationDirection: direction === 'right' ? 'reverse' : 'normal'
+                            animationDirection: direction === 'right' ? 'reverse' : 'normal',
+                            animationPlayState: shouldPlay ? 'running' : 'paused'
                         }}>
                         {children}
                     </div>
