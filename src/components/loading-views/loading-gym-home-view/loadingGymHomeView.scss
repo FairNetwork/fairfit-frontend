@@ -1,0 +1,35 @@
+.loading-gym-home-view {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 680px;
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    &__header {
+        display: flex;
+        justify-content: center;
+        margin: 8px 0;
+    }
+
+    &__offers {
+        &__text {
+            margin-bottom: 12px;
+        }
+
+        &__offers {
+            display: flex;
+            gap: 24px;
+        }
+    }
+
+    &__map {
+        &__text {
+            margin-bottom: 12px;
+        }
+
+        &__map {
+        }
+    }
+}
