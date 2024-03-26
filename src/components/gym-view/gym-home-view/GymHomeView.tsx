@@ -13,9 +13,12 @@ import { selectHasOffers } from '../../../redux/gym/selectors';
 import { useAppSelector } from '../../../hooks/redux';
 
 const GymHomeView = () => {
-    const { gymId } = useContext(GymContext);
+    const { gymInternalId } = useContext(GymContext);
 
-    const gymSelector = useCallback((state: RootState) => selectHasOffers(state, gymId), [gymId]);
+    const gymSelector = useCallback(
+        (state: RootState) => selectHasOffers(state, gymInternalId),
+        [gymInternalId]
+    );
 
     const hasOffers = useAppSelector(gymSelector);
 
@@ -34,7 +37,7 @@ const GymHomeView = () => {
                     <InfiniteLooper
                         direction="left"
                         speed={1}
-                        onClick={() => navigate(`/${gymId}/offers`)}>
+                        onClick={() => navigate(`/${gymInternalId}/offers`)}>
                         <OfferSlider />
                     </InfiniteLooper>
                 )}

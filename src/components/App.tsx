@@ -8,19 +8,19 @@ import { createContext, useCallback, useMemo, useState } from 'react';
 import { Gym } from '../types/gym';
 
 interface IGymContext {
-    gymId: Gym['id'];
-    updateGymId?: (id: Gym['id']) => void;
+    gymInternalId: Gym['id'];
+    updateGymInternalId?: (id: Gym['id']) => void;
 }
 
 export const GymContext = createContext<IGymContext>({
-    gymId: '',
-    updateGymId: undefined
+    gymInternalId: '',
+    updateGymInternalId: undefined
 });
 
 GymContext.displayName = 'GymContext';
 
 const App = () => {
-    const [gymId, setGymId] = useState<IGymContext['gymId']>('');
+    const [gymId, setGymId] = useState<IGymContext['gymInternalId']>('');
 
     const updateGymId = useCallback<(id: Gym['id']) => void>((id) => {
         setGymId(id);
@@ -28,8 +28,8 @@ const App = () => {
 
     const providerValue = useMemo<IGymContext>(
         () => ({
-            updateGymId,
-            gymId
+            updateGymInternalId: updateGymId,
+            gymInternalId: gymId
         }),
         [gymId, updateGymId]
     );

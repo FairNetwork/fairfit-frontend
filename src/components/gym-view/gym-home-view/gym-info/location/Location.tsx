@@ -8,11 +8,11 @@ import { selectLocationById } from '../../../../../redux/gym/selectors';
 import { useAppSelector } from '../../../../../hooks/redux';
 
 const Location = () => {
-    const { gymId } = useContext(GymContext);
+    const { gymInternalId } = useContext(GymContext);
 
     const addressSelector = useCallback(
-        (state: RootState) => selectLocationById(state, gymId),
-        [gymId]
+        (state: RootState) => selectLocationById(state, gymInternalId),
+        [gymInternalId]
     );
 
     const address = useAppSelector(addressSelector);

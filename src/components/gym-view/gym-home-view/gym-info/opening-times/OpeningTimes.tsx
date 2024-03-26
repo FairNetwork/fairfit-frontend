@@ -41,31 +41,31 @@ const OpeningTimes = () => {
             <div className="opening-times__title">Öffnungszeiten</div>
             <div className="opening-times__day">
                 <div className="opening-times__day__weekday">Montag</div>
-                <div className="opening-times__day__time">12.00 - 14.00</div>
+                <div className="opening-times__day__time">09.00 - 22.00</div>
             </div>
             <div className="opening-times__day">
                 <div className="opening-times__day__weekday">Dienstag</div>
-                <div className="opening-times__day__time">12.00 - 14.00</div>
+                <div className="opening-times__day__time">09.00 - 22.00</div>
             </div>
             <div className="opening-times__day">
                 <div className="opening-times__day__weekday">Mittwoch</div>
-                <div className="opening-times__day__time">12.00 - 14.00</div>
+                <div className="opening-times__day__time">09.00 - 22.00</div>
             </div>
             <div className="opening-times__day">
                 <div className="opening-times__day__weekday">Donnerstag</div>
-                <div className="opening-times__day__time">12.00 - 14.00</div>
+                <div className="opening-times__day__time">09.00 - 22.00</div>
             </div>
             <div className="opening-times__day">
                 <div className="opening-times__day__weekday">Freitag</div>
-                <div className="opening-times__day__time">12.00 - 14.00</div>
+                <div className="opening-times__day__time">09.00 - 22.00</div>
             </div>
             <div className="opening-times__day">
                 <div className="opening-times__day__weekday">Samstag</div>
-                <div className="opening-times__day__time">12.00 - 14.00</div>
+                <div className="opening-times__day__time">10.00 - 16.30</div>
             </div>
             <div className="opening-times__day">
                 <div className="opening-times__day__weekday">Sonntag</div>
-                <div className="opening-times__day__time">12.00 - 14.00</div>
+                <div className="opening-times__day__time">10.00 - 15.00</div>
             </div>
         </div>
     );

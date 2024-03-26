@@ -8,11 +8,11 @@ import { selectContactById } from '../../../../../redux/gym/selectors';
 import { useAppSelector } from '../../../../../hooks/redux';
 
 const SocialMedia = () => {
-    const { gymId } = useContext(GymContext);
+    const { gymInternalId } = useContext(GymContext);
 
     const contactSelector = useCallback(
-        (state: RootState) => selectContactById(state, gymId),
-        [gymId]
+        (state: RootState) => selectContactById(state, gymInternalId),
+        [gymInternalId]
     );
 
     const contact = useAppSelector(contactSelector);

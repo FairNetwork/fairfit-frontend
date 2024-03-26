@@ -13,9 +13,12 @@ import { RootState } from '../../redux/store';
 const GymView = () => {
     const dispatch = useAppDispatch();
 
-    const { updateGymId, gymId } = useContext(GymContext);
+    const { updateGymInternalId, gymInternalId } = useContext(GymContext);
 
-    const gymSelector = useCallback((state: RootState) => selectContactById(state, gymId), [gymId]);
+    const gymSelector = useCallback(
+        (state: RootState) => selectContactById(state, gymInternalId),
+        [gymInternalId]
+    );
 
     const gym = useAppSelector(gymSelector);
 
@@ -28,10 +31,10 @@ const GymView = () => {
             void dispatch(loadGym(getGymFromRoute(location.pathname)));
         }
 
-        if (typeof updateGymId === 'function') {
-            updateGymId(getGymFromRoute(location.pathname));
+        if (typeof updateGymInternalId === 'function') {
+            updateGymInternalId(getGymFromRoute(location.pathname));
         }
-    });
+    }, [dispatch, gym, location.pathname, updateGymInternalId]);
 
     const content = useMemo(() => {
         switch (loadingState) {

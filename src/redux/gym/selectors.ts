@@ -6,8 +6,15 @@ const selectGymState = (state: RootState) => state.gym;
 
 export const selectGyms = (state: RootState) => selectGymState(state).gyms;
 
-export const selectGymById = (state: RootState, gymId: string): Gym | undefined => {
-    return selectGyms(state).find(({ id }) => id === gymId);
+export const selectGymById = (state: RootState, gymInternalId: string): Gym | undefined => {
+    return selectGyms(state).find(({ internalId }) => internalId === gymInternalId);
+};
+
+export const SelectGymIdByInternalId = (
+    state: RootState,
+    gymInternalId: string
+): string | undefined => {
+    return selectGyms(state).find(({ internalId }) => internalId === gymInternalId)?.id;
 };
 
 export const selectAbonnementsById = (state: RootState, gymId: string): Offer[] | undefined => {
@@ -45,6 +52,24 @@ export const selectOpeningTimesById = (
 
 export const selectLogoById = (state: RootState, gymId: string): Gym['logo'] | undefined => {
     return selectGymById(state, gymId)?.logo;
+};
+
+export const selectOfferById = (
+    state: RootState,
+    gymId: string,
+    offerId: Offer['id']
+): Offer | undefined => {
+    const selectedGym = selectGymById(state, gymId);
+
+    if (!selectedGym) {
+        return undefined;
+    }
+
+    const { offers, abonnements } = selectedGym;
+
+    const combinedOffers = [...offers, ...abonnements];
+
+    return combinedOffers.find(({ id }) => id === offerId);
 };
 
 export const selectAgbsById = (state: RootState, gymId: string): Gym['agbs'] | undefined => {

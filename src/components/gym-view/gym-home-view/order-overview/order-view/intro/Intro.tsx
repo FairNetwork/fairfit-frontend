@@ -6,11 +6,11 @@ import { GymContext } from '../../../../../App';
 import { RootState } from '../../../../../../redux/store';
 
 const Intro = () => {
-    const { gymId } = useContext(GymContext);
+    const { gymInternalId } = useContext(GymContext);
 
     const nameSelector = useCallback(
-        (state: RootState) => selectGymNameById(state, gymId),
-        [gymId]
+        (state: RootState) => selectGymNameById(state, gymInternalId),
+        [gymInternalId]
     );
 
     const gymName = useAppSelector(nameSelector);

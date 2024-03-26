@@ -6,14 +6,17 @@ import { useCallback, useContext, useState } from 'react';
 import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectContactById } from '../../../../../redux/gym/selectors';
-import { useAppSelector } from '../../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
+import { sendEmail } from '../../../../../redux/gym/actions';
 
 const Contact = () => {
-    const { gymId } = useContext(GymContext);
+    const dispatch = useAppDispatch();
+
+    const { gymInternalId } = useContext(GymContext);
 
     const contactSelector = useCallback(
-        (state: RootState) => selectContactById(state, gymId),
-        [gymId]
+        (state: RootState) => selectContactById(state, gymInternalId),
+        [gymInternalId]
     );
 
     const contact = useAppSelector(contactSelector);
@@ -21,16 +24,22 @@ const Contact = () => {
     const [value, setValue] = useState('');
 
     const handlePhoneClick = () => {
-        console.log('hallo');
-        console.log(`tel:+${contact?.phone.replace('/', '')}`);
         window.open(`tel:+${contact?.phone.replace('/', '')}`);
+    };
+
+    const handleSendEmail = async () => {
+        const hasSend = await dispatch(sendEmail(gymInternalId, value));
+
+        if (hasSend) {
+            setValue('');
+        }
     };
 
     return (
         <div className="contact">
             <div className="contact__title">Kontakt</div>
             {contact?.phone && (
-                <div className="contact__phone" onClick={() => handlePhoneClick}>
+                <div className="contact__phone" onClick={() => handlePhoneClick()}>
                     <FontAwesomeIcon icon={faPhone} />
                     <div className="contact__phone__text">{contact?.phone}</div>
                 </div>
@@ -51,7 +60,10 @@ const Contact = () => {
                         />
                     </div>
                     <div className="contact__button">
-                        <Button variant={'contained'} disabled={value.length === 0}>
+                        <Button
+                            variant={'contained'}
+                            disabled={value.length === 0}
+                            onClick={() => handleSendEmail()}>
                             Senden
                         </Button>
                     </div>

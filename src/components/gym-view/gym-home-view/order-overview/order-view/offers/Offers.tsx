@@ -2,7 +2,11 @@ import { Button, Tooltip } from '@mui/material';
 import './offers.scss';
 import Accordion from '../../../../../shared/accordion/Accordion';
 import { useAppDispatch, useAppSelector } from '../../../../../../hooks/redux';
-import { selectAbonnementsById, selectOffersById } from '../../../../../../redux/gym/selectors';
+import {
+    selectAbonnementsById,
+    selectHasOffers,
+    selectOffersById
+} from '../../../../../../redux/gym/selectors';
 import React, { ReactElement, useCallback, useContext, useMemo, useState } from 'react';
 import Card from '../../../../../shared/card/Card';
 import { Offer } from '../../../../../../types/offer';
@@ -19,18 +23,24 @@ interface OffersProps {
 const Offers = ({ onClick }: OffersProps) => {
     const dispatch = useAppDispatch();
 
-    const { gymId } = useContext(GymContext);
+    const { gymInternalId } = useContext(GymContext);
 
     const offersSelector = useCallback(
-        (state: RootState) => selectOffersById(state, gymId),
-        [gymId]
+        (state: RootState) => selectOffersById(state, gymInternalId),
+        [gymInternalId]
     );
 
     const abonnementsSelector = useCallback(
-        (state: RootState) => selectAbonnementsById(state, gymId),
-        [gymId]
+        (state: RootState) => selectAbonnementsById(state, gymInternalId),
+        [gymInternalId]
     );
 
+    const gymSelector = useCallback(
+        (state: RootState) => selectHasOffers(state, gymInternalId),
+        [gymInternalId]
+    );
+
+    const hasOffers = useAppSelector(gymSelector);
     const offers = useAppSelector(offersSelector);
     const abonnements = useAppSelector(abonnementsSelector);
 
@@ -64,22 +74,25 @@ const Offers = ({ onClick }: OffersProps) => {
     const renderedOffers = useMemo(() => {
         const items: ReactElement[] = [];
 
-        offers?.forEach(({ title, color, id, details, price, additionalPrices, duration }) => {
-            items.push(
-                <Card
-                    onClick={handleCardClick}
-                    isSelected={selectedOfferId === id}
-                    key={id}
-                    id={id}
-                    color={color}
-                    title={title}
-                    duration={duration}
-                    details={details}
-                    additionalPrices={additionalPrices}
-                    price={price}
-                />
-            );
-        });
+        offers?.forEach(
+            ({ title, color, priceAfterDuration, duration, id, details, price, isOffer }) => {
+                items.push(
+                    <Card
+                        onClick={handleCardClick}
+                        isSelected={selectedOfferId === id}
+                        key={id}
+                        id={id}
+                        color={color}
+                        title={title}
+                        details={details}
+                        price={price}
+                        isOffer={isOffer}
+                        priceAfterDuration={priceAfterDuration}
+                        duration={duration}
+                    />
+                );
+            }
+        );
 
         return items;
     }, [handleCardClick, offers, selectedOfferId]);
@@ -87,32 +100,37 @@ const Offers = ({ onClick }: OffersProps) => {
     const renderedAbonnements = useMemo(() => {
         const items: ReactElement[] = [];
 
-        abonnements?.forEach(({ title, color, details, price, additionalPrices, duration, id }) => {
-            items.push(
-                <Card
-                    onClick={handleCardClick}
-                    isSelected={selectedOfferId === id}
-                    key={id}
-                    id={id}
-                    color={color}
-                    title={title}
-                    duration={duration}
-                    details={details}
-                    additionalPrices={additionalPrices}
-                    price={price}
-                />
-            );
-        });
+        abonnements?.forEach(
+            ({ title, priceAfterDuration, duration, color, details, price, isOffer, id }) => {
+                items.push(
+                    <Card
+                        onClick={handleCardClick}
+                        isSelected={selectedOfferId === id}
+                        key={id}
+                        id={id}
+                        color={color}
+                        title={title}
+                        details={details}
+                        price={price}
+                        isOffer={isOffer}
+                        priceAfterDuration={priceAfterDuration}
+                        duration={duration}
+                    />
+                );
+            }
+        );
 
         return items;
     }, [abonnements, handleCardClick, selectedOfferId]);
 
     return (
         <div className="offers">
-            <Accordion id={1} isDefaultOpen title="Aktuelle Angebote">
-                <div className="offers__content">{renderedOffers}</div>
-            </Accordion>
-            <Accordion id={2} title="Standart Abonnements">
+            {hasOffers && (
+                <Accordion id={1} isDefaultOpen title="Aktuelle Angebote">
+                    <div className="offers__content">{renderedOffers}</div>
+                </Accordion>
+            )}
+            <Accordion id={2} isDefaultOpen={!hasOffers} title="Standart Abonnements">
                 <div className="offers__content">{renderedAbonnements}</div>
             </Accordion>
             <div className="offers__button">

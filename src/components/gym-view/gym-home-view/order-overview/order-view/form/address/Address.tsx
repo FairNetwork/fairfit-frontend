@@ -3,12 +3,12 @@ import './address.scss';
 import { TextField } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../../../../../hooks/redux';
 import { selectUser } from '../../../../../../../redux/user/selectors';
-import { setNumber, setPlace, setPlz, setStreet } from '../../../../../../../redux/user/slice';
+import { setNumber, setPlace, setPostcode, setStreet } from '../../../../../../../redux/user/slice';
 
 const Address = () => {
     const dispatch = useAppDispatch();
 
-    const { plz, number, place, street } = useAppSelector(selectUser);
+    const { postcode, number, place, street } = useAppSelector(selectUser);
 
     const handleStreetChange = (event: ChangeEvent<HTMLInputElement>) => {
         dispatch(setStreet(event.target.value));
@@ -23,7 +23,7 @@ const Address = () => {
     };
 
     const handlePLZChange = (event: ChangeEvent<HTMLInputElement>) => {
-        dispatch(setPlz(event.target.value));
+        dispatch(setPostcode(event.target.value));
     };
 
     return (
@@ -45,6 +45,7 @@ const Address = () => {
                         label="Nr."
                         variant="outlined"
                         value={number}
+                        type="number"
                         onChange={handleNumberChange}
                         style={{ width: '100%' }}
                     />
@@ -66,7 +67,7 @@ const Address = () => {
                         id="plz"
                         label="PLZ"
                         variant="outlined"
-                        value={plz}
+                        value={postcode}
                         type="number"
                         onChange={handlePLZChange}
                         style={{ width: '100%' }}

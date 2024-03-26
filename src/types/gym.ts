@@ -3,6 +3,7 @@ import { Offer } from './offer';
 export interface Gym {
     name: string;
     id: string;
+    internalId: string;
     logo: string;
     agbs?: string;
     offers: Offer[];

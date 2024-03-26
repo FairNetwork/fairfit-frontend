@@ -23,7 +23,7 @@ const slice = createSlice({
         addGym(state, { payload }: PayloadAction<Gym>) {
             const { gyms } = state;
 
-            const index = gyms.findIndex(({ id }) => id === payload.id);
+            const index = gyms.findIndex(({ internalId }) => internalId === payload.internalId);
 
             if (index >= 0) {
                 return;
@@ -34,7 +34,7 @@ const slice = createSlice({
         addOffers(state, { payload }: PayloadAction<AddOfferProps>) {
             const { gyms } = state;
 
-            const index = gyms.findIndex(({ id }) => id === payload.id);
+            const index = gyms.findIndex(({ internalId }) => internalId === payload.id);
 
             if (index < 0) {
                 return;
@@ -47,7 +47,7 @@ const slice = createSlice({
         addAbonnements(state, { payload }: PayloadAction<AddOfferProps>) {
             const { gyms } = state;
 
-            const index = gyms.findIndex(({ id }) => id === payload.id);
+            const index = gyms.findIndex(({ internalId }) => internalId === payload.id);
 
             if (index < 0) {
                 return;

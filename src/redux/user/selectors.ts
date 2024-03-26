@@ -4,6 +4,7 @@ import { createSelector } from '@reduxjs/toolkit';
 const selectUserState = (state: RootState) => state.user;
 
 export const selectUser = (state: RootState) => selectUserState(state);
+export const selectSubscriptionId = (state: RootState) => selectUserState(state).subscriptionId;
 
 export const selectSelectedOfferId = (state: RootState) => selectUserState(state).selectedOfferId;
 export const selectSendOrderLoadingState = (state: RootState) =>
@@ -17,7 +18,7 @@ export const selectIsDisabled = createSelector([selectUser], (user) => {
         owner,
         place,
         street,
-        plz,
+        postcode,
         number,
         birthday,
         gender,
@@ -31,7 +32,7 @@ export const selectIsDisabled = createSelector([selectUser], (user) => {
         owner &&
         place &&
         street &&
-        plz &&
+        postcode &&
         number &&
         birthday &&
         gender &&

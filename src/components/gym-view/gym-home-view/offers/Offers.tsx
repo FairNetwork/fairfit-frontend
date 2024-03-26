@@ -9,15 +9,15 @@ import { GymContext } from '../../../App';
 const Offers = () => {
     // const dispatch = useAppDispatch();
 
-    const { gymId } = useContext(GymContext);
+    const { gymInternalId } = useContext(GymContext);
 
     const offersSelector = useCallback(
-        (state: RootState) => selectOffersById(state, gymId),
-        [gymId]
+        (state: RootState) => selectOffersById(state, gymInternalId),
+        [gymInternalId]
     );
     const abonnementsSelector = useCallback(
-        (state: RootState) => selectAbonnementsById(state, gymId),
-        [gymId]
+        (state: RootState) => selectAbonnementsById(state, gymInternalId),
+        [gymInternalId]
     );
 
     const offers = useAppSelector(offersSelector);
