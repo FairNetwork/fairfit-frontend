@@ -14,9 +14,9 @@ export interface Gym {
 }
 
 export interface Contact {
-    phone: string;
-    email: string;
-    socialMedia: ISocialMedia;
+    phone?: string;
+    email?: string;
+    socialMedia?: ISocialMedia;
 }
 
 export interface ISocialMedia {
