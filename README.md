@@ -1,46 +1,20 @@
-# Getting Started with Create React App
+# FairFit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The FairFit website is a React application with TypeScript, developed to help users compare fitness studios and other sports offerings. Internal data processing is done using Redux.
 
-## Available Scripts
+## About FairFit
 
-In the project directory, you can run:
+FairFit allows users to compare the benefits of various providers such as fitness studios and soccer clubs. The website provides landing pages for each sports offering, where users can view and select different tariffs. Additionally, limited-time offers can be created. Users can easily select their desired tariff and contact the relevant sports provider.
 
-### `npm start`
+## Local Development Server
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To work on this project, you can follow these steps:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Make sure Node.js is installed on your system.
+2. Clone this repository to your local machine.
+3. Navigate to the directory of the cloned repository in the terminal.
+4. Run `npm install` to install the necessary dependencies.
+5. Start the development server by running `npm start`.
+6. Open your web browser and visit `http://localhost:3000` to test the website locally.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Thank you for contributing to the FairFit website!
