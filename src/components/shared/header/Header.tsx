@@ -38,7 +38,7 @@ const Header = ({ children, onHeightChange }: HeaderProps) => {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 0) {
+            if (window.scrollY > 150) {
                 setIsScrolled(true);
 
                 if (childrenRef.current) {
