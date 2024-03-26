@@ -65,7 +65,7 @@ const Card = ({
                     {isOffer ? 'Angebotstarif' : 'Standardtarif'}
                 </div>
                 <div className="card__head__price-wrapper">
-                    <div className="card__head__price-wrapper__price">{price}€</div>
+                    <div className="card__head__price-wrapper__price">{price} €</div>
                     <div className="card__head__price-wrapper__duration">
                         {duration && priceAfterDuration
                             ? convertMonth({ priceAfterDuration, duration })
