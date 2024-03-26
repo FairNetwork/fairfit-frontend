@@ -12,11 +12,14 @@ interface HeaderProps {
 }
 
 const Header = ({ children, onHeightChange }: HeaderProps) => {
-    const { gymId } = useContext(GymContext);
+    const { gymInternalId } = useContext(GymContext);
 
     const [position, setPosition] = useState(0);
 
-    const gymSelector = useCallback((state: RootState) => selectLogoById(state, gymId), [gymId]);
+    const gymSelector = useCallback(
+        (state: RootState) => selectLogoById(state, gymInternalId),
+        [gymInternalId]
+    );
 
     const logo = useAppSelector(gymSelector);
 

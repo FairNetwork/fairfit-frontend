@@ -8,7 +8,7 @@ export interface UserState {
     firstName: string;
     lastName: string;
     street: string;
-    number?: number;
+    number: string;
     place: string;
     postcode: string;
     birthday: string;
@@ -23,6 +23,7 @@ export interface UserState {
 
 const initialState: UserState = {
     email: '',
+    number: '',
     birthday: '',
     firstName: '',
     gender: '',

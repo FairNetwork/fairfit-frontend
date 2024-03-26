@@ -1,18 +1,25 @@
 import { AppDispatch, GetAppState } from '../store';
-import { setSendOrderLoadingState, setSubscriptionId } from './slice';
+import {
+    setAreAgbsAccepted,
+    setSelectedOffer,
+    setSendOrderLoadingState,
+    setSubscriptionId
+} from './slice';
 import { postSendSubscription, postSubscription } from '../../api/subscriptions/post';
-import { selectOfferById } from '../gym/selectors';
+import { SelectGymIdByInternalId, selectOfferById } from '../gym/selectors';
 import { selectSubscriptionId, selectUser } from './selectors';
-import { patchSubscription } from '../../api/subscriptions/patch';
+import { putSubscription } from '../../api/subscriptions/put';
 
 export const finishOrder =
-    (gymId: string) =>
+    (gymInternalId: string) =>
     async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
         const state = getState();
 
         const subscriptionId = selectSubscriptionId(state);
 
-        if (!subscriptionId) {
+        const gymId = SelectGymIdByInternalId(state, gymInternalId);
+
+        if (!subscriptionId || !gymId) {
             return;
         }
 
@@ -22,6 +29,11 @@ export const finishOrder =
 
         if (status === 201) {
             dispatch(setSendOrderLoadingState('successful'));
+
+            // Reset user
+            dispatch(setSubscriptionId(undefined));
+            dispatch(setSelectedOffer(undefined));
+            dispatch(setAreAgbsAccepted(false));
 
             return;
         }
@@ -41,21 +53,27 @@ export const createSubscription =
 
         const offer = selectOfferById(state, gymName, offerId);
 
+        const gymId = SelectGymIdByInternalId(state, gymName);
+
+        if (!gymId) {
+            return;
+        }
+
         const { data, status } = await postSubscription(
             {
                 selectedOfferId: offerId,
                 selectedOfferName: offer?.title
             },
-            gymName
+            gymId
         );
 
-        if (status === 200 && data) {
+        if (status === 201 && data) {
             dispatch(setSubscriptionId(data));
         }
     };
 
 export const updateSubscription =
-    (gymId: string) =>
+    (gymName: string) =>
     async (_: AppDispatch, getState: GetAppState): Promise<void> => {
         const state = getState();
 
@@ -75,14 +93,36 @@ export const updateSubscription =
             lastName
         } = selectUser(state);
 
-        if (!subscriptionId) {
+        if (!selectedOfferId) {
             return;
         }
 
-        await patchSubscription(
+        const offer = selectOfferById(state, gymName, selectedOfferId);
+
+        const gymId = SelectGymIdByInternalId(state, gymName);
+
+        if (!subscriptionId || !gymId) {
+            return;
+        }
+
+        let newGender;
+
+        switch (gender) {
+            case 'Männlich':
+                newGender = 'male';
+                break;
+            case 'Weiblich':
+                newGender = 'female';
+                break;
+            default:
+                newGender = 'various';
+                break;
+        }
+
+        await putSubscription(
             {
                 birthday: new Date(birthday),
-                gender,
+                gender: newGender,
                 iban,
                 email,
                 firstName,
@@ -90,8 +130,9 @@ export const updateSubscription =
                 owner,
                 place,
                 street,
-                number,
+                number: Number(number),
                 selectedOfferId,
+                selectedOfferName: offer?.title,
                 postcode
             },
             gymId,

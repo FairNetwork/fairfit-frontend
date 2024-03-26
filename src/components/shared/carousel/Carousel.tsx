@@ -14,7 +14,7 @@ interface CarouselProps {
 }
 
 const Carousel = ({ items }: CarouselProps) => {
-    const { gymId } = useContext(GymContext);
+    const { gymInternalId } = useContext(GymContext);
 
     const navigate = useNavigate();
 
@@ -23,24 +23,28 @@ const Carousel = ({ items }: CarouselProps) => {
         withLoop: true,
         initialStartingPosition: 'center',
         gutter: 24,
-        items: items.map(({ id, details, color, title, price, isOffer }) => {
-            return {
-                id: `carousel-item__${id}`,
-                renderItem: (
-                    <Card
-                        onClick={() => navigate(`/${gymId}/offers?id=${id}`)}
-                        isSelected={false}
-                        key={id}
-                        id={id}
-                        color={color}
-                        title={title}
-                        details={details}
-                        price={price}
-                        isOffer={isOffer}
-                    />
-                )
-            };
-        })
+        items: items.map(
+            ({ id, details, color, title, price, priceAfterDuration, duration, isOffer }) => {
+                return {
+                    id: `carousel-item__${id}`,
+                    renderItem: (
+                        <Card
+                            onClick={() => navigate(`/${gymInternalId}/offers?id=${id}`)}
+                            isSelected={false}
+                            key={id}
+                            id={id}
+                            color={color}
+                            title={title}
+                            details={details}
+                            price={price}
+                            isOffer={isOffer}
+                            priceAfterDuration={priceAfterDuration}
+                            duration={duration}
+                        />
+                    )
+                };
+            }
+        )
     });
 
     return (

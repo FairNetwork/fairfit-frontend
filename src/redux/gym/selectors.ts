@@ -6,8 +6,15 @@ const selectGymState = (state: RootState) => state.gym;
 
 export const selectGyms = (state: RootState) => selectGymState(state).gyms;
 
-export const selectGymById = (state: RootState, gymId: string): Gym | undefined => {
-    return selectGyms(state).find(({ id }) => id === gymId);
+export const selectGymById = (state: RootState, gymInternalId: string): Gym | undefined => {
+    return selectGyms(state).find(({ internalId }) => internalId === gymInternalId);
+};
+
+export const SelectGymIdByInternalId = (
+    state: RootState,
+    gymInternalId: string
+): string | undefined => {
+    return selectGyms(state).find(({ internalId }) => internalId === gymInternalId)?.id;
 };
 
 export const selectAbonnementsById = (state: RootState, gymId: string): Offer[] | undefined => {

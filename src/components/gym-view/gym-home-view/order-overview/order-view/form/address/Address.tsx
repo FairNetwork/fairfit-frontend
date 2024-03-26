@@ -15,7 +15,7 @@ const Address = () => {
     };
 
     const handleNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
-        dispatch(setNumber(Number(event.target.value)));
+        dispatch(setNumber(event.target.value));
     };
 
     const handlePlaceChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +45,7 @@ const Address = () => {
                         label="Nr."
                         variant="outlined"
                         value={number}
+                        type="number"
                         onChange={handleNumberChange}
                         style={{ width: '100%' }}
                     />

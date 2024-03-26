@@ -5,6 +5,8 @@ export interface Offer {
     title: string;
     details: string[];
     price: number;
+    duration?: number;
+    priceAfterDuration?: number;
 }
 
 export interface Gym {

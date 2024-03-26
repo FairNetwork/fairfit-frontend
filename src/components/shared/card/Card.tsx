@@ -3,13 +3,25 @@ import { Offer } from '../../../types/offer';
 import './card.scss';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { convertMonth } from '../../../utils/text';
 
 interface CardProps extends Offer {
     onClick?: (id: Offer['id']) => void;
     isSelected?: boolean;
 }
 
-const Card = ({ title, details, price, isOffer, isSelected, color, id, onClick }: CardProps) => {
+const Card = ({
+    title,
+    details,
+    price,
+    isOffer,
+    isSelected,
+    color,
+    id,
+    onClick,
+    priceAfterDuration,
+    duration
+}: CardProps) => {
     const content = useMemo(() => {
         const items: ReactElement[] = [];
 
@@ -27,13 +39,25 @@ const Card = ({ title, details, price, isOffer, isSelected, color, id, onClick }
         return items;
     }, [details]);
 
+    const borderColor = useMemo(() => {
+        if (!isSelected) {
+            return 'none';
+        }
+
+        if (color === '#222838') {
+            return '#52ab98 2px solid';
+        } else {
+            return '#222838 2px solid';
+        }
+    }, [color, isSelected]);
+
     return (
         <div
             className="card"
             onClick={() => typeof onClick === 'function' && onClick(id)}
             style={{
                 backgroundColor: color,
-                border: isSelected ? '#52ab98 2px solid' : 'none'
+                border: borderColor
             }}>
             <div className="card__head">
                 <div className="card__head__title">{title}</div>
@@ -42,7 +66,11 @@ const Card = ({ title, details, price, isOffer, isSelected, color, id, onClick }
                 </div>
                 <div className="card__head__price-wrapper">
                     <div className="card__head__price-wrapper__price">{price}€</div>
-                    <div className="card__head__price-wrapper__duration">monatlich</div>
+                    <div className="card__head__price-wrapper__duration">
+                        {duration && priceAfterDuration
+                            ? convertMonth({ priceAfterDuration, duration })
+                            : 'monatlich'}
+                    </div>
                 </div>
             </div>
             <div className="card__content">{content}</div>

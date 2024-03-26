@@ -52,10 +52,16 @@ const Transition = forwardRef(function Transition(
 const Summary = () => {
     const dispatch = useAppDispatch();
 
-    const { gymId } = useContext(GymContext);
+    const { gymInternalId } = useContext(GymContext);
 
-    const agbSelector = useCallback((state: RootState) => selectAgbsById(state, gymId), [gymId]);
-    const gymSelector = useCallback((state: RootState) => selectGymById(state, gymId), [gymId]);
+    const agbSelector = useCallback(
+        (state: RootState) => selectAgbsById(state, gymInternalId),
+        [gymInternalId]
+    );
+    const gymSelector = useCallback(
+        (state: RootState) => selectGymById(state, gymInternalId),
+        [gymInternalId]
+    );
 
     const agbs = useAppSelector(agbSelector);
     const gym = useAppSelector(gymSelector);
@@ -100,7 +106,7 @@ const Summary = () => {
     };
 
     const handleClick = () => {
-        void dispatch(finishOrder(gymId));
+        void dispatch(finishOrder(gymInternalId));
     };
 
     const handleCloseDialog = useCallback(() => {
@@ -185,6 +191,8 @@ const Summary = () => {
                         details={selectedOffer.details}
                         price={selectedOffer.price}
                         isOffer={selectedOffer.isOffer}
+                        priceAfterDuration={selectedOffer.priceAfterDuration}
+                        duration={selectedOffer.duration}
                     />
                 </Accordion>
             )}

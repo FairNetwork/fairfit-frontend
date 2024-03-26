@@ -23,8 +23,9 @@ export const postSubscription = async (
 ): Promise<ApiFunctionResult> => {
     const response = await request({
         body,
+        shouldSkipJSON: true,
         method: 'POST',
-        route: `tenants/${'062f64f2-35c7-424b-89bc-8a00f5a8b0c0'}/subscriptions`
+        route: `tenants/${gymId}/subscriptions`
     });
 
     return { status: response.status, data: response.data };
@@ -36,7 +37,7 @@ export const postSendSubscription = async (
 ): Promise<ApiFunctionResult> => {
     const response = await request({
         method: 'POST',
-        route: `tenants/${'062f64f2-35c7-424b-89bc-8a00f5a8b0c0'}/subscriptions/${subscriptionId}`
+        route: `tenants/${gymId}/subscriptions/${subscriptionId}`
     });
 
     return { status: response.status, data: response.data };

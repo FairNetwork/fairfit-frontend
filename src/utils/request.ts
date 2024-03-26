@@ -22,6 +22,7 @@ interface RequestOptions<Body> {
     method: 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
     route?: string;
     url?: string;
+    shouldSkipJSON?: boolean;
 }
 
 interface Meta {
@@ -47,6 +48,7 @@ export const request = async <Data = null, Body = null>({
     contentType = 'application/json',
     method,
     route = '',
+    shouldSkipJSON = false,
     url = `${BASE_REST_PATH}${typeof backendVersion === 'string' ? backendVersion : ''}`
 }: RequestOptions<Body>): Promise<RequestResult<Data>> => {
     const headers: HeadersInit = {};
@@ -93,9 +95,14 @@ export const request = async <Data = null, Body = null>({
         try {
             const dataString = await response.text();
 
-            if (dataString && dataString.length > 0) {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                result.data = JSON.parse(dataString);
+            if (shouldSkipJSON) {
+                // @ts-ignore
+                result.data = dataString;
+            } else {
+                if (dataString && dataString.length > 0) {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                    result.data = JSON.parse(dataString);
+                }
             }
         } catch (error) {
             if (error) {

@@ -12,9 +12,12 @@ import { loadGym } from '../../../../redux/gym/actions';
 import { setSelectedOffer } from '../../../../redux/user/slice';
 
 const OrderOverview = () => {
-    const { updateGymId, gymId } = useContext(GymContext);
+    const { updateGymInternalId, gymInternalId } = useContext(GymContext);
 
-    const gymSelector = useCallback((state: RootState) => selectGymById(state, gymId), [gymId]);
+    const gymSelector = useCallback(
+        (state: RootState) => selectGymById(state, gymInternalId),
+        [gymInternalId]
+    );
 
     const gym = useAppSelector(gymSelector);
 
@@ -31,10 +34,10 @@ const OrderOverview = () => {
             void dispatch(loadGym(getGymFromRoute(location.pathname)));
         }
 
-        if (typeof updateGymId === 'function') {
-            updateGymId(getGymFromRoute(location.pathname));
+        if (typeof updateGymInternalId === 'function') {
+            updateGymInternalId(getGymFromRoute(location.pathname));
         }
-    });
+    }, [dispatch, gym, location.pathname, updateGymInternalId]);
 
     useEffect(() => {
         const combinedOffers = [...(gym?.offers ?? []), ...(gym?.abonnements ?? [])];

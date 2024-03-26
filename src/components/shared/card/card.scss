@@ -4,6 +4,9 @@
     cursor: pointer;
 
     min-width: 300px;
+    color: white;
+
+    font-family: 'Source Sans Pro', sans-serif;
 
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.5);
 
@@ -21,6 +24,7 @@
         &__type {
             text-align: center;
             font-size: 14px;
+            font-weight: lighter;
         }
 
         &__price-wrapper {
@@ -33,6 +37,7 @@
 
             &__duration {
                 font-size: 14px;
+                font-weight: lighter;
             }
         }
     }

@@ -17,15 +17,15 @@ export interface PatchSubscriptionBody {
     selectedOfferName?: string;
 }
 
-export const patchSubscription = async (
+export const putSubscription = async (
     body: PatchSubscriptionBody,
     gymId: string,
     subscriptionId: string
 ): Promise<ApiFunctionResult> => {
     const response = await request({
         body,
-        method: 'PATCH',
-        route: `tenants/${'062f64f2-35c7-424b-89bc-8a00f5a8b0c0'}/subscriptions/${subscriptionId}`
+        method: 'PUT',
+        route: `tenants/${gymId}/subscriptions/${subscriptionId}`
     });
 
     return { status: response.status, data: response.data };

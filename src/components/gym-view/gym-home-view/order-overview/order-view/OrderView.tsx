@@ -14,7 +14,7 @@ import { selectUser } from '../../../../../redux/user/selectors';
 const OrderView = () => {
     const dispatch = useAppDispatch();
 
-    const { gymId } = useContext(GymContext);
+    const { gymInternalId } = useContext(GymContext);
 
     const { selectedOfferId } = useAppSelector(selectUser);
 
@@ -31,9 +31,9 @@ const OrderView = () => {
             // setCurrentStep(1);
             setupRef.current?.complete();
 
-            void dispatch(createSubscription({ offerId, gymName: gymId }));
+            void dispatch(createSubscription({ offerId, gymName: gymInternalId }));
         }
-    }, [dispatch, gymId, location.search]);
+    }, [dispatch, gymInternalId, location.search]);
 
     const handleStepChange = (step: number) => {
         setCurrentStep(step);
@@ -41,17 +41,17 @@ const OrderView = () => {
 
     const handleOffersClick = useCallback(() => {
         if (selectedOfferId) {
-            void dispatch(createSubscription({ offerId: selectedOfferId, gymName: gymId }));
+            void dispatch(createSubscription({ offerId: selectedOfferId, gymName: gymInternalId }));
         }
 
         setupRef.current?.complete();
-    }, [dispatch, gymId, selectedOfferId]);
+    }, [dispatch, gymInternalId, selectedOfferId]);
 
     const handleFormClick = useCallback(() => {
-        void dispatch(updateSubscription(gymId));
+        void dispatch(updateSubscription(gymInternalId));
 
         setupRef.current?.complete();
-    }, [dispatch, gymId]);
+    }, [dispatch, gymInternalId]);
 
     const content = useMemo(() => {
         switch (currentStep) {
