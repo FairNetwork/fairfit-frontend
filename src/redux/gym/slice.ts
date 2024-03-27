@@ -45,6 +45,14 @@ const slice = createSlice({
         updateGym(state, { payload }: PayloadAction<Gym>) {
             const { gyms } = state;
 
+            const index = gyms.findIndex(({ id }) => id === payload.id);
+
+            if (index < 0) {
+                gyms.push(payload);
+
+                return;
+            }
+
             state.gyms = gyms.map((gym) => {
                 if (gym.id === payload.id) {
                     return {

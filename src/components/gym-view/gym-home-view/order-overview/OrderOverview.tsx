@@ -30,14 +30,12 @@ const OrderOverview = () => {
     const location = useLocation();
 
     useEffect(() => {
-        if (!gym) {
-            void dispatch(loadGym(getGymFromRoute(location.pathname)));
-        }
+        void dispatch(loadGym(getGymFromRoute(location.pathname)));
 
         if (typeof updateGymInternalId === 'function') {
             updateGymInternalId(getGymFromRoute(location.pathname));
         }
-    }, [dispatch, gym, location.pathname, updateGymInternalId]);
+    }, [dispatch, location.pathname, updateGymInternalId]);
 
     useEffect(() => {
         const combinedOffers = [...(gym?.offers ?? []), ...(gym?.abonnements ?? [])];
