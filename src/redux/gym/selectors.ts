@@ -21,6 +21,13 @@ export const selectAbonnementsById = (state: RootState, gymId: string): Offer[] 
     return selectGymById(state, gymId)?.abonnements;
 };
 
+export const selectHasGymLoadedById = (
+    state: RootState,
+    gymId: string
+): Gym['hasLoaded'] | undefined => {
+    return selectGymById(state, gymId)?.hasLoaded;
+};
+
 export const selectOffersById = (state: RootState, gymId: string): Offer[] | undefined => {
     return selectGymById(state, gymId)?.offers;
 };

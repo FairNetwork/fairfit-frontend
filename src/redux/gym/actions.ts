@@ -23,7 +23,8 @@ export const loadGym =
                 name: data.name,
                 agbs: EASYFITNESS.agbs,
                 location: EASYFITNESS.location,
-                contact: { ...EASYFITNESS.contact, email: data.email } as Gym['contact']
+                contact: { ...EASYFITNESS.contact, email: data.email } as Gym['contact'],
+                hasLoaded: true
             };
 
             dispatch(updateGym(tmp));

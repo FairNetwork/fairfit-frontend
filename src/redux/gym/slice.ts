@@ -37,7 +37,8 @@ const slice = createSlice({
                         },
                         logo: '',
                         offers: [],
-                        abonnements: []
+                        abonnements: [],
+                        hasLoaded: false
                     });
                 }
             });
