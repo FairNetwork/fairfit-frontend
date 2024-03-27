@@ -1,5 +1,6 @@
 import { Gym } from '../types/gym';
 import { Offer } from '../types/offer';
+import logo from '../assets/EasyLogo.png';
 
 const TESTABONNEMENTS2: Offer[] = [
     {
@@ -82,7 +83,7 @@ export const EASYFITNESS: Gym = {
     },
     offers: TESTOFFERS,
     agbs: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a dapibus turpis, ut consequat magna. Mauris commodo faucibus lacus ut facilisis. Donec feugiat faucibus nibh id porta. Vestibulum lacinia ultricies cursus. Vestibulum ullamcorper tellus quis tristique auctor. Donec dictum laoreet ex in dignissim. Nam imperdiet tempus dapibus. Nam a lacus non ipsum mollis efficitur. Curabitur sed ornare nunc, eget vehicula lectus. Etiam interdum semper urna ut porta. Phasellus vitae ante elit.',
-    logo: 'https://easyfitness.team/wp-content/uploads/2016/10/Easyfitness-logo.png',
+    logo,
     abonnements: TESTABONNEMENTS2,
     location: {
         address: 'EasyFitness Ahaus, Markt 22, 48683 Ahaus',
