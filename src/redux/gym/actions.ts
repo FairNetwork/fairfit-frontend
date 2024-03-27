@@ -1,9 +1,9 @@
 import { AppDispatch, GetAppState } from '../store';
-import { addGym, setGymLoadingState } from './slice';
+import { addGym, setGymLoadingState, updateGym } from './slice';
 import { EASYFITNESS } from '../../constants/mockData';
 import { Gym } from '../../types/gym';
 import { SelectGymIdByInternalId } from './selectors';
-import { getGym } from '../../api/gym/get';
+import { getAllGyms, getGym } from '../../api/gym/get';
 import { postSendMail } from '../../api/gym/post';
 
 export const loadGym =
@@ -23,10 +23,30 @@ export const loadGym =
                 name: data.name,
                 agbs: EASYFITNESS.agbs,
                 location: EASYFITNESS.location,
-                contact: { ...EASYFITNESS.contact, email: data.email } as Gym['contact']
+                contact: { ...EASYFITNESS.contact, email: data.email } as Gym['contact'],
+                hasLoaded: true
             };
 
-            dispatch(addGym(tmp));
+            dispatch(updateGym(tmp));
+            dispatch(setGymLoadingState('successful'));
+
+            return;
+        }
+
+        dispatch(setGymLoadingState('rejected'));
+
+        return;
+    };
+
+export const loadAllGyms =
+    () =>
+    async (dispatch: AppDispatch): Promise<void> => {
+        dispatch(setGymLoadingState('pending'));
+
+        const { status, data } = await getAllGyms();
+
+        if (status === 200 && data) {
+            dispatch(addGym(data));
             dispatch(setGymLoadingState('successful'));
 
             return;

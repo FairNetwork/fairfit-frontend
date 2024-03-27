@@ -11,12 +11,13 @@ export interface Gym {
     contact?: Contact;
     location?: Location;
     openingTimes?: OpeningTime[];
+    hasLoaded?: boolean;
 }
 
 export interface Contact {
-    phone: string;
-    email: string;
-    socialMedia: ISocialMedia;
+    phone?: string;
+    email?: string;
+    socialMedia?: ISocialMedia;
 }
 
 export interface ISocialMedia {

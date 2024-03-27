@@ -5,5 +5,5 @@ export const convertMonth = ({
     duration: number;
     priceAfterDuration: number;
 }) => {
-    return `für ${duration} ${duration === 1 ? 'Monat' : 'Monate'}, danach ${priceAfterDuration}€`;
+    return `für ${duration} ${duration === 1 ? 'Monat' : 'Monate'}, danach ${priceAfterDuration} €`;
 };

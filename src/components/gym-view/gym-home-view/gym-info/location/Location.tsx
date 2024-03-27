@@ -21,7 +21,11 @@ const Location = () => {
         <div className="location">
             {address?.coordinates && (
                 <div className="location__map">
-                    <Map provider={osm} defaultCenter={address?.coordinates} defaultZoom={15}>
+                    <Map
+                        provider={osm}
+                        defaultCenter={address?.coordinates}
+                        defaultZoom={15}
+                        twoFingerDrag>
                         <Marker width={50} anchor={address?.coordinates} color="#38524c" />
                     </Map>
                 </div>

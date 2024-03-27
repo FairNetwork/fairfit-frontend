@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Gym } from '../../types/gym';
 import { Offer } from '../../types/offer';
+import { GetGymResult } from '../../api/gym/get';
 
 type LoadingState = 'none' | 'pending' | 'rejected' | 'successful';
 
@@ -20,16 +21,49 @@ const slice = createSlice({
     initialState,
     name: 'gym',
     reducers: {
-        addGym(state, { payload }: PayloadAction<Gym>) {
+        addGym(state, { payload }: PayloadAction<GetGymResult[]>) {
             const { gyms } = state;
 
-            const index = gyms.findIndex(({ internalId }) => internalId === payload.internalId);
+            payload.forEach(({ id, name, email }) => {
+                const currentGym = gyms.find(({ id: gymId }) => gymId === id);
 
-            if (index >= 0) {
+                if (!currentGym) {
+                    gyms.push({
+                        id,
+                        name,
+                        internalId: name.toLowerCase(),
+                        contact: {
+                            email
+                        },
+                        logo: '',
+                        offers: [],
+                        abonnements: [],
+                        hasLoaded: false
+                    });
+                }
+            });
+        },
+        updateGym(state, { payload }: PayloadAction<Gym>) {
+            const { gyms } = state;
+
+            const index = gyms.findIndex(({ id }) => id === payload.id);
+
+            if (index < 0) {
+                gyms.push(payload);
+
                 return;
             }
 
-            gyms.push(payload);
+            state.gyms = gyms.map((gym) => {
+                if (gym.id === payload.id) {
+                    return {
+                        ...gym,
+                        ...payload
+                    };
+                }
+
+                return gym;
+            });
         },
         addOffers(state, { payload }: PayloadAction<AddOfferProps>) {
             const { gyms } = state;
@@ -66,8 +100,14 @@ const slice = createSlice({
     }
 });
 
-export const { setGymLoadingState, setOffersLoadingState, addAbonnements, addOffers, addGym } =
-    slice.actions;
+export const {
+    setGymLoadingState,
+    setOffersLoadingState,
+    updateGym,
+    addAbonnements,
+    addOffers,
+    addGym
+} = slice.actions;
 
 export const gymReducer = slice.reducer;
 

@@ -1,4 +1,4 @@
-import React, { ReactElement, useMemo } from 'react';
+import React, { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
 import { Offer } from '../../../types/offer';
 import './card.scss';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
@@ -22,6 +22,16 @@ const Card = ({
     priceAfterDuration,
     duration
 }: CardProps) => {
+    const [priceWidth, setPriceWidth] = useState(0);
+
+    const priceRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (priceRef.current) {
+            setPriceWidth(priceRef.current.offsetWidth);
+        }
+    }, []);
+
     const content = useMemo(() => {
         const items: ReactElement[] = [];
 
@@ -65,8 +75,12 @@ const Card = ({
                     {isOffer ? 'Angebotstarif' : 'Standardtarif'}
                 </div>
                 <div className="card__head__price-wrapper">
-                    <div className="card__head__price-wrapper__price">{price}€</div>
-                    <div className="card__head__price-wrapper__duration">
+                    <div className="card__head__price-wrapper__price" ref={priceRef}>
+                        {price} €
+                    </div>
+                    <div
+                        className="card__head__price-wrapper__duration"
+                        style={{ left: `calc(50% + ${priceWidth / 2 + 6}px)` }}>
                         {duration && priceAfterDuration
                             ? convertMonth({ priceAfterDuration, duration })
                             : 'monatlich'}

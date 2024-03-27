@@ -65,7 +65,7 @@ const OrderView = () => {
     }, [currentStep, handleFormClick, handleOffersClick]);
 
     return (
-        <div style={{ maxWidth: '680px' }}>
+        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
             <Intro />
             <SetupWizard ref={setupRef} onChange={handleStepChange} />
             {content}

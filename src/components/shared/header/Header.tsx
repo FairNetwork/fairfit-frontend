@@ -1,17 +1,19 @@
 import { motion, useAnimation } from 'framer-motion';
-import './header.scss';
 import { ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useAppSelector } from '../../../hooks/redux';
 import { RootState } from '../../../redux/store';
 import { selectLogoById } from '../../../redux/gym/selectors';
 import { GymContext } from '../../App';
+import appLogo from '../../../assets/fairfit_logo.png';
+import './header.scss';
 
 interface HeaderProps {
     children?: ReactNode;
     onHeightChange: (height: number) => void;
+    isHomePage?: boolean;
 }
 
-const Header = ({ children, onHeightChange }: HeaderProps) => {
+const Header = ({ children, onHeightChange, isHomePage = false }: HeaderProps) => {
     const { gymInternalId } = useContext(GymContext);
 
     const [position, setPosition] = useState(0);
@@ -21,7 +23,9 @@ const Header = ({ children, onHeightChange }: HeaderProps) => {
         [gymInternalId]
     );
 
-    const logo = useAppSelector(gymSelector);
+    const gymLogo = useAppSelector(gymSelector);
+
+    const logo = isHomePage ? appLogo : gymLogo;
 
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -38,7 +42,7 @@ const Header = ({ children, onHeightChange }: HeaderProps) => {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 0) {
+            if (window.scrollY > 150) {
                 setIsScrolled(true);
 
                 if (childrenRef.current) {
