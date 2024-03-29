@@ -16,8 +16,6 @@ interface HeaderProps {
 const Header = ({ children, onHeightChange, isHomePage = false }: HeaderProps) => {
     const { gymInternalId } = useContext(GymContext);
 
-    const [position, setPosition] = useState(0);
-
     const gymSelector = useCallback(
         (state: RootState) => selectLogoById(state, gymInternalId),
         [gymInternalId]
@@ -32,7 +30,6 @@ const Header = ({ children, onHeightChange, isHomePage = false }: HeaderProps) =
     const controls = useAnimation();
 
     const childrenRef = useRef<HTMLDivElement>(null);
-    const logoRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
         if (childrenRef.current) {
@@ -76,33 +73,12 @@ const Header = ({ children, onHeightChange, isHomePage = false }: HeaderProps) =
         }
     }, [isScrolled, controls]);
 
-    useEffect(() => {
-        const { innerWidth } = window;
-
-        if (logoRef.current) {
-            const resizeObserver = new ResizeObserver((entries) => {
-                if (entries && entries[0]) {
-                    const observedWidth = entries[0].contentRect.width;
-                    setPosition(innerWidth / 2 - observedWidth / 2);
-                }
-            });
-
-            resizeObserver.observe(logoRef.current);
-
-            return () => {
-                resizeObserver.disconnect();
-            };
-        }
-
-        return () => {};
-    }, []);
-
     const logoVariants = useMemo(() => {
         return {
-            small: { scale: 0.6, x: 0, y: 0 },
-            large: { scale: 1, x: `${position}px`, y: 0 }
+            small: { scale: 0.6, left: '0%', translateY: '-50%', translateX: '0%' },
+            large: { scale: 1, left: '50%', translateY: '-50%', translateX: '-50%' }
         };
-    }, [position]);
+    }, []);
 
     return (
         <div className="header">
@@ -116,14 +92,14 @@ const Header = ({ children, onHeightChange, isHomePage = false }: HeaderProps) =
                     <FontAwesomeIcon icon={faBars} size="2x" onClick={handleMenuClick}/>
         </div>
 */}
-                <motion.div
+                <motion.img
+                    src={logo}
+                    alt="Logo"
                     className="header__header__logo"
+                    transition={{ type: 'tween' }}
                     variants={logoVariants}
-                    initial="large"
                     animate={isScrolled ? 'small' : 'large'}
-                    transition={{ type: 'tween' }}>
-                    <img src={logo} alt="Logo" ref={logoRef} />
-                </motion.div>
+                />
             </motion.div>
             <div ref={childrenRef}>{children}</div>
         </div>
