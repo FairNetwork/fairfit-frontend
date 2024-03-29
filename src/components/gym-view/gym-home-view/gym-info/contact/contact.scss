@@ -7,15 +7,32 @@
         font-weight: bold;
     }
 
-    &__phone {
+    &__wrapper {
         display: flex;
-        align-items: center;
-        gap: 8px;
+        justify-content: left;
 
-        cursor: pointer;
+        &__phone {
+            display: flex;
+            align-items: center;
+            gap: 8px;
 
-        &__text {
-            border-bottom: 1px grey dotted;
+            cursor: pointer;
+
+            &__text {
+                border-bottom: 1px grey dotted;
+            }
+        }
+
+        &__mail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            cursor: pointer;
+
+            &__text {
+                border-bottom: 1px grey dotted;
+            }
         }
     }
 
