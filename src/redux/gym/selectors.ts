@@ -1,5 +1,5 @@
 import type { RootState } from '../store';
-import { Gym } from '../../types/gym';
+import { Benefit, Gym } from '../../types/gym';
 import { Offer } from '../../types/offer';
 
 const selectGymState = (state: RootState) => state.gym;
@@ -19,6 +19,10 @@ export const SelectGymIdByInternalId = (
 
 export const selectAbonnementsById = (state: RootState, gymId: string): Offer[] | undefined => {
     return selectGymById(state, gymId)?.abonnements;
+};
+
+export const selectBenefitsById = (state: RootState, gymId: string): Benefit[] | undefined => {
+    return selectGymById(state, gymId)?.benefits;
 };
 
 export const selectHasGymLoadedById = (

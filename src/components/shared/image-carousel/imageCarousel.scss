@@ -1,0 +1,24 @@
+.image-carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+
+    &__indicators {
+        position: absolute;
+        display: flex;
+        gap: 12px;
+
+        z-index: 3;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        bottom: 5%;
+    }
+
+    img {
+        cursor: pointer;
+        position: absolute;
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+}

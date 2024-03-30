@@ -23,6 +23,7 @@ export const loadGym =
                 name: data.name,
                 agbs: EASYFITNESS.agbs,
                 location: EASYFITNESS.location,
+                benefits: EASYFITNESS.benefits,
                 contact: { ...EASYFITNESS.contact, email: data.email } as Gym['contact'],
                 hasLoaded: true
             };

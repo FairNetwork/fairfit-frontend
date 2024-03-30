@@ -1,6 +1,9 @@
-import { Gym } from '../types/gym';
+import { Benefit, BenefitType, Gym } from '../types/gym';
 import { Offer } from '../types/offer';
 import logo from '../assets/EasyLogo.png';
+import kurse from '../assets/CK@4x.png';
+import geraete from '../assets/CG@4x.png';
+import sonstiges from '../assets/CV@4x.png';
 
 const TESTABONNEMENTS2: Offer[] = [
     {
@@ -70,6 +73,24 @@ const TESTOFFERS: Offer[] = [
     }
 ];
 
+const BENEFITS: Benefit[] = [
+    {
+        id: '1',
+        imageUrl: kurse,
+        type: BenefitType.Courses
+    },
+    {
+        id: '2',
+        imageUrl: geraete,
+        type: BenefitType.Equipment
+    },
+    {
+        id: '3',
+        imageUrl: sonstiges,
+        type: BenefitType.Otherwise
+    }
+];
+
 export const EASYFITNESS: Gym = {
     name: 'EasyFitness',
     contact: {
@@ -84,6 +105,7 @@ export const EASYFITNESS: Gym = {
     offers: TESTOFFERS,
     agbs: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a dapibus turpis, ut consequat magna. Mauris commodo faucibus lacus ut facilisis. Donec feugiat faucibus nibh id porta. Vestibulum lacinia ultricies cursus. Vestibulum ullamcorper tellus quis tristique auctor. Donec dictum laoreet ex in dignissim. Nam imperdiet tempus dapibus. Nam a lacus non ipsum mollis efficitur. Curabitur sed ornare nunc, eget vehicula lectus. Etiam interdum semper urna ut porta. Phasellus vitae ante elit.',
     logo,
+    benefits: BENEFITS,
     abonnements: TESTABONNEMENTS2,
     location: {
         address: 'EasyFitness Ahaus, Markt 22, 48683 Ahaus',
