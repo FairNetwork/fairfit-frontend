@@ -23,36 +23,14 @@ const Offers = () => {
     const offers = useAppSelector(offersSelector);
     const abonnements = useAppSelector(abonnementsSelector);
 
-    // const navigate = useNavigate();
-
-    /*
-    const handleCardClick = useCallback(
-        (id: Offer['id']) => {
-            let selectedOffer;
-
-            offers?.forEach((offer) => {
-                if (offer.id === id) {
-                    selectedOffer = offer;
-                }
-            });
-
-            dispatch(setSelectedOffer(selectedOffer));
-
-            navigate(`/${gymId}/offers`);
-        },
-        [dispatch, gymId, navigate, offers]
-    );
-
-     */
-
     const combinedOffers = useMemo(() => {
         return [...(offers ?? []), ...(abonnements ?? [])];
     }, [abonnements, offers]);
 
     return (
-        <div className="offers">
+        <div className="gym-home-offers">
             <h2>Abonnements | Angebote</h2>
-            <div className="offers__content">
+            <div className="gym-home-offers__content">
                 {combinedOffers.length > 0 && <Carousel items={combinedOffers} />}
             </div>
         </div>

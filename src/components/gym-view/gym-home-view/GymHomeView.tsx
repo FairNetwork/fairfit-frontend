@@ -11,6 +11,7 @@ import { GymContext } from '../../App';
 import { RootState } from '../../../redux/store';
 import { selectHasOffers } from '../../../redux/gym/selectors';
 import { useAppSelector } from '../../../hooks/redux';
+import Benefits from './benefits/Benefits';
 
 const GymHomeView = () => {
     const { gymInternalId } = useContext(GymContext);
@@ -45,6 +46,7 @@ const GymHomeView = () => {
             <motion.div animate={{ height: headerHeight }} />
             <div className="gym-home-view__content">
                 <Offers />
+                <Benefits />
                 <GymInfo />
             </div>
         </div>
