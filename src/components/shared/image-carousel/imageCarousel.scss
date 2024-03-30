@@ -4,6 +4,17 @@
     aspect-ratio: 16/9;
     overflow: hidden;
 
+    &__indicators {
+        position: absolute;
+        display: flex;
+        gap: 12px;
+
+        z-index: 3;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 10%;
+    }
+
     img {
         position: absolute;
         width: 100%;

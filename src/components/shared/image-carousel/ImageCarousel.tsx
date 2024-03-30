@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, wrap } from 'framer-motion';
 import './imageCarousel.scss';
+import Indicator from './indicator/Indicator';
 
 interface ImageCarouselProps {
     images: {
@@ -52,6 +53,18 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
         };
     }, [paginate]);
 
+    const indicators = useMemo(() => {
+        const items: ReactElement[] = [];
+
+        images.forEach(({ id }) => {
+            items.push(
+                <Indicator key={`indicator__${id}`} isSelected={id === images[imageIndex].id} />
+            );
+        });
+
+        return items;
+    }, [imageIndex, images]);
+
     return (
         <div className="image-carousel">
             <AnimatePresence initial={false} custom={direction}>
@@ -68,6 +81,7 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
                         opacity: { duration: 0.2 }
                     }}
                 />
+                <div className="image-carousel__indicators">{indicators}</div>
             </AnimatePresence>
         </div>
     );
