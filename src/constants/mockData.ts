@@ -2,7 +2,7 @@ import { Benefit, BenefitType, Gym } from '../types/gym';
 import { Offer } from '../types/offer';
 import logo from '../assets/EasyLogo.png';
 import kurse from '../assets/CK@4x.png';
-import geräte from '../assets/CG@4x.png';
+import geraete from '../assets/CG@4x.png';
 import sonstiges from '../assets/CV@4x.png';
 
 const TESTABONNEMENTS2: Offer[] = [
@@ -81,7 +81,7 @@ const BENEFITS: Benefit[] = [
     },
     {
         id: '2',
-        imageUrl: geräte,
+        imageUrl: geraete,
         type: BenefitType.Equipment
     },
     {
