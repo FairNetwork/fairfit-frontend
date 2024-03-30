@@ -11,11 +11,12 @@
 
         z-index: 3;
         left: 50%;
-        transform: translateX(-50%);
-        bottom: 10%;
+        transform: translateX(-50%) translateY(-50%);
+        bottom: 5%;
     }
 
     img {
+        cursor: pointer;
         position: absolute;
         width: 100%;
         aspect-ratio: 16/9;

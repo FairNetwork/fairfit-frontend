@@ -8,10 +8,23 @@ export interface Gym {
     agbs?: string;
     offers: Offer[];
     abonnements: Offer[];
+    benefits?: Benefit[];
     contact?: Contact;
     location?: Location;
     openingTimes?: OpeningTime[];
     hasLoaded?: boolean;
+}
+
+export interface Benefit {
+    id: string;
+    imageUrl: string;
+    type: BenefitType;
+}
+
+export enum BenefitType {
+    Equipment,
+    Courses,
+    Otherwise
 }
 
 export interface Contact {

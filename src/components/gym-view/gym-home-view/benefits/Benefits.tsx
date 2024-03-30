@@ -1,28 +1,30 @@
-import React from 'react';
+import React, { useCallback, useContext } from 'react';
 import ImageCarousel from '../../../shared/image-carousel/ImageCarousel';
+import { selectBenefitsById } from '../../../../redux/gym/selectors';
+import { RootState } from '../../../../redux/store';
+import { useAppSelector } from '../../../../hooks/redux';
+import { GymContext } from '../../../App';
 
 const Benefits = () => {
-    const images = [
-        {
-            id: '1',
-            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtUZ-vx3rBZ4vmdMmvxo2ZxXdvtooiIGoRvwr030oapw&s'
-        },
-        {
-            id: '2',
-            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_bJ0sKAdMkGwglbZeJVP3sT8-hgEnY8Zr3iChI2fZA&s'
-        },
-        {
-            id: '3',
-            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8P2t8aIZHgoM-LG--JQYWe-_-zfMRTOL1e1VPAQ7zMA&s'
-        }
-    ];
+    const { gymInternalId } = useContext(GymContext);
+
+    const gymSelector = useCallback(
+        (state: RootState) => selectBenefitsById(state, gymInternalId),
+        [gymInternalId]
+    );
+
+    const benefits = useAppSelector(gymSelector);
 
     return (
         <div className="benefits">
-            <h2>Unsere Leistungen</h2>
-            <div className="benefits__content">
-                <ImageCarousel images={images} />
-            </div>
+            {benefits && (
+                <div>
+                    <h2>Unsere Leistungen</h2>
+                    <div className="benefits__content">
+                        <ImageCarousel images={benefits} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
