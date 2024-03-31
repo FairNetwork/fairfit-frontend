@@ -1,17 +1,11 @@
 .social-media {
     display: flex;
+    flex-direction: column;
     gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
 
-    &__wrapper {
+    &__content {
         display: flex;
-        gap: 4px;
-        cursor: pointer;
-
-        &__icon {
-        }
-        &__name {
-        }
+        flex-wrap: wrap;
+        gap: 20px;
     }
 }

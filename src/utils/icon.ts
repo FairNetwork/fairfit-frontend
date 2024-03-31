@@ -54,3 +54,26 @@ export const getProfileUrl = (brand: string, name: string) => {
             return undefined;
     }
 };
+
+export const getTitle = (brand: string) => {
+    switch (brand) {
+        case 'instagram':
+            return `Instagram`;
+        case 'facebook':
+            return `Facebook`;
+        case 'tiktok':
+            return `TikTok`;
+        case 'youtube':
+            return `Youtube`;
+        case 'twitter':
+            return `X`;
+        case 'linkedin':
+            return `LinkedIn`;
+        case 'threads':
+            return `Threads`;
+        case 'telegram':
+            return `Telegram`;
+        default:
+            return undefined;
+    }
+};
