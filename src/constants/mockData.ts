@@ -108,7 +108,7 @@ export const EASYFITNESS: Gym = {
     benefits: BENEFITS,
     abonnements: TESTABONNEMENTS2,
     location: {
-        address: 'EasyFitness Ahaus, Markt 22, 48683 Ahaus',
+        address: 'Markt 22, 48683 Ahaus',
         coordinates: [52.0758695, 7.0073389]
     },
     internalId: 'easyfitness',
