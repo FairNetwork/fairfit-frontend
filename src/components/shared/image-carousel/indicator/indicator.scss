@@ -1,6 +1,6 @@
 .indicator {
-    width: 10vw;
-    height: 1vw;
+    width: calc(100% / 6);
+    height: calc(100% / 40);
 
     border-radius: 50px;
 }
