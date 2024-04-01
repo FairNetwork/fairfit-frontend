@@ -1,13 +1,11 @@
 import { Map, Marker } from 'pigeon-maps';
 import { osm } from 'pigeon-maps/providers';
 import './location.scss';
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectLocationById } from '../../../../../redux/gym/selectors';
 import { useAppSelector } from '../../../../../hooks/redux';
-import { isMobile } from '../../../../../utils/environment';
-import { Button, Tooltip } from '@mui/material';
 
 const Location = () => {
     const { gymInternalId } = useContext(GymContext);
