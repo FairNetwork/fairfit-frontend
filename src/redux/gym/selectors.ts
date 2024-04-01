@@ -51,15 +51,12 @@ export const selectLocationById = (
     return selectGymById(state, gymId)?.location;
 };
 
-/*
 export const selectOpeningTimesById = (
     state: RootState,
     gymId: string
 ): Gym['openingTimes'] | undefined => {
     return selectGymById(state, gymId)?.openingTimes;
 };
-
- */
 
 export const selectLogoById = (state: RootState, gymId: string): Gym['logo'] | undefined => {
     return selectGymById(state, gymId)?.logo;

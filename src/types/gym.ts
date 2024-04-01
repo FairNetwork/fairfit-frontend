@@ -42,9 +42,18 @@ export interface Location {
     coordinates: [number, number];
 }
 
+export enum DayType {
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday
+}
+
 export interface OpeningTime {
-    [key: string]: {
-        start: Date;
-        end: Date;
-    };
+    day: DayType;
+    startTime: string;
+    endTime: string;
 }

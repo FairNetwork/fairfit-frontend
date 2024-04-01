@@ -1,4 +1,4 @@
-import { Benefit, BenefitType, Gym } from '../types/gym';
+import { Benefit, BenefitType, DayType, Gym, OpeningTime } from '../types/gym';
 import { Offer } from '../types/offer';
 import logo from '../assets/EasyLogo.png';
 import kurse from '../assets/CK@4x.png';
@@ -91,6 +91,16 @@ const BENEFITS: Benefit[] = [
     }
 ];
 
+const OPENINGTIMES: OpeningTime[] = [
+    { day: DayType.Monday, startTime: '09:00', endTime: '22:00' },
+    { day: DayType.Tuesday, startTime: '09:00', endTime: '22:00' },
+    { day: DayType.Wednesday, startTime: '09:00', endTime: '22:00' },
+    { day: DayType.Thursday, startTime: '09:00', endTime: '22:00' },
+    { day: DayType.Friday, startTime: '09:00', endTime: '22:00' },
+    { day: DayType.Saturday, startTime: '10:00', endTime: '16:30' },
+    { day: DayType.Sunday, startTime: '10:00', endTime: '15:00' }
+];
+
 export const EASYFITNESS: Gym = {
     name: 'EasyFitness',
     contact: {
@@ -105,6 +115,7 @@ export const EASYFITNESS: Gym = {
     offers: TESTOFFERS,
     agbs: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a dapibus turpis, ut consequat magna. Mauris commodo faucibus lacus ut facilisis. Donec feugiat faucibus nibh id porta. Vestibulum lacinia ultricies cursus. Vestibulum ullamcorper tellus quis tristique auctor. Donec dictum laoreet ex in dignissim. Nam imperdiet tempus dapibus. Nam a lacus non ipsum mollis efficitur. Curabitur sed ornare nunc, eget vehicula lectus. Etiam interdum semper urna ut porta. Phasellus vitae ante elit.',
     logo,
+    openingTimes: OPENINGTIMES,
     benefits: BENEFITS,
     abonnements: TESTABONNEMENTS2,
     location: {
