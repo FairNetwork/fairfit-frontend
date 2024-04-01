@@ -1,6 +1,6 @@
 import './socialMedia.scss';
 import { ReactElement, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { getIcon, getProfileUrl, getTitle } from '../../../../../utils/icon';
+import { getColor, getIcon, getProfileUrl, getTitle } from '../../../../../utils/icon';
 import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectContactById } from '../../../../../redux/gym/selectors';
@@ -60,6 +60,7 @@ const SocialMedia = () => {
             const icon = getIcon(key);
             const url = getProfileUrl(key, value);
             const title = getTitle(key);
+            const color = getColor(key);
 
             if (!icon || !url || !title) {
                 return;
@@ -72,6 +73,7 @@ const SocialMedia = () => {
                     icon={icon}
                     title={title}
                     text={value}
+                    color={color}
                 />
             );
         }

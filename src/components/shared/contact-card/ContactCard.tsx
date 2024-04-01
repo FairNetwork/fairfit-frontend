@@ -1,17 +1,19 @@
 import './contactCard.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
+import { CSSProperties } from 'react';
 
 interface ContactCardProps {
     onClick?: VoidFunction;
     icon: IconDefinition;
     title: string;
     text: string;
+    color?: CSSProperties['backgroundColor'];
 }
 
-const ContactCard = ({ text, title, onClick, icon }: ContactCardProps) => {
+const ContactCard = ({ text, title, onClick, icon, color }: ContactCardProps) => {
     return (
-        <div className="contact-card" onClick={onClick}>
+        <div className="contact-card" onClick={onClick} style={{ backgroundColor: color }}>
             <div className="contact-card__icon">
                 <FontAwesomeIcon icon={icon} size={'2xl'} />
             </div>
