@@ -34,7 +34,7 @@ const OpeningTimes = () => {
             }
 
             items.push(
-                <div className="opening-times__day">
+                <div className="opening-times__day" key={`opening-times__${day}`}>
                     <div className="opening-times__day__weekday">
                         {day === endDay ? convertedDay : `${convertedDay} - ${convertDay(endDay)}`}
                     </div>
