@@ -1,5 +1,4 @@
 import './contact.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAt, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { useCallback, useContext } from 'react';
 import { GymContext } from '../../../../App';
@@ -7,9 +6,11 @@ import { RootState } from '../../../../../redux/store';
 import { selectContactById } from '../../../../../redux/gym/selectors';
 import { useAppSelector } from '../../../../../hooks/redux';
 import ContactCard from '../../../../shared/contact-card/ContactCard';
+import { GymInfoContext } from '../GymInfo';
 
 const Contact = () => {
     const { gymInternalId } = useContext(GymContext);
+    const { contactCardGap } = useContext(GymInfoContext);
 
     const contactSelector = useCallback(
         (state: RootState) => selectContactById(state, gymInternalId),
@@ -29,7 +30,7 @@ const Contact = () => {
     return (
         <div className="contact">
             <div className="contact__title">Kontakt</div>
-            <div className="contact__content">
+            <div className="contact__content" style={{ columnGap: contactCardGap }}>
                 {contact?.phone && (
                     <ContactCard
                         icon={faPhone}
