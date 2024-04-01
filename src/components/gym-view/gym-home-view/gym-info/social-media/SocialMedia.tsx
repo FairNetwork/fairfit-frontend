@@ -1,14 +1,19 @@
 import './socialMedia.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ReactElement, useCallback, useContext, useMemo } from 'react';
-import { getIcon, getProfileUrl } from '../../../../../utils/icon';
+import { ReactElement, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { getColor, getIcon, getProfileUrl, getTitle } from '../../../../../utils/icon';
 import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectContactById } from '../../../../../redux/gym/selectors';
 import { useAppSelector } from '../../../../../hooks/redux';
+import ContactCard from '../../../../shared/contact-card/ContactCard';
+import { GymInfoContext } from '../GymInfo';
 
 const SocialMedia = () => {
     const { gymInternalId } = useContext(GymContext);
+    const { updateContactCardGap } = useContext(GymInfoContext);
+
+    const parentRef = useRef<HTMLDivElement>(null);
+    const [spacing, setSpacing] = useState(0);
 
     const contactSelector = useCallback(
         (state: RootState) => selectContactById(state, gymInternalId),
@@ -21,6 +26,29 @@ const SocialMedia = () => {
         window.open(url, '_blank');
     };
 
+    useEffect(() => {
+        const calculateDimensions = () => {
+            if (parentRef.current) {
+                const parentWidth = parentRef.current.clientWidth;
+                const childWidth = 176;
+                const newNumberOfChildren = Math.floor(parentWidth / childWidth);
+                const newSpacing =
+                    (parentWidth - newNumberOfChildren * childWidth) / (newNumberOfChildren - 1);
+                setSpacing(newSpacing > 50 ? 50 : newSpacing);
+
+                if (typeof updateContactCardGap === 'function') {
+                    updateContactCardGap(newSpacing > 50 ? 50 : newSpacing);
+                }
+            }
+        };
+
+        calculateDimensions();
+        window.addEventListener('resize', calculateDimensions);
+        return () => {
+            window.removeEventListener('resize', calculateDimensions);
+        };
+    }, [spacing, updateContactCardGap]);
+
     const icons = useMemo(() => {
         const items: ReactElement[] = [];
 
@@ -31,25 +59,35 @@ const SocialMedia = () => {
         for (const [key, value] of Object.entries(contact.socialMedia)) {
             const icon = getIcon(key);
             const url = getProfileUrl(key, value);
+            const title = getTitle(key);
+            const color = getColor(key);
 
-            if (!icon || !url) {
+            if (!icon || !url || !title) {
                 return;
             }
 
             items.push(
-                <div key={value} className="social-media__wrapper" onClick={() => handleClick(url)}>
-                    <div className="social-media__wrapper__icon">
-                        <FontAwesomeIcon icon={icon} />
-                    </div>
-                    <div className="social-media__wrapper__name">{value}</div>
-                </div>
+                <ContactCard
+                    key={value}
+                    onClick={() => handleClick(url)}
+                    icon={icon}
+                    title={title}
+                    text={value}
+                    color={color}
+                />
             );
         }
 
         return items;
     }, [contact?.socialMedia]);
 
-    return <div className="social-media">{icons}</div>;
+    return (
+        <div className="social-media">
+            <div className="social-media__content" ref={parentRef} style={{ columnGap: spacing }}>
+                {icons}
+            </div>
+        </div>
+    );
 };
 
 SocialMedia.disolayName = 'SocialMedia';

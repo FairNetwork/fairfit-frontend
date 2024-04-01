@@ -1,4 +1,6 @@
 .location {
+    position: relative;
+
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -9,5 +11,14 @@
     }
 
     &__address {
+        position: absolute;
+        background-color: #f0f0f0cc;
+        bottom: 5px;
+        left: 5px;
+        font-size: small;
+        font-weight: 500;
+        max-width: calc(100% - 250px);
+        border-radius: 6px;
+        padding: 3px;
     }
 }

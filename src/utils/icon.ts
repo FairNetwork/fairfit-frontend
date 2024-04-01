@@ -54,3 +54,49 @@ export const getProfileUrl = (brand: string, name: string) => {
             return undefined;
     }
 };
+
+export const getTitle = (brand: string) => {
+    switch (brand) {
+        case 'instagram':
+            return `Instagram`;
+        case 'facebook':
+            return `Facebook`;
+        case 'tiktok':
+            return `TikTok`;
+        case 'youtube':
+            return `Youtube`;
+        case 'twitter':
+            return `X`;
+        case 'linkedin':
+            return `LinkedIn`;
+        case 'threads':
+            return `Threads`;
+        case 'telegram':
+            return `Telegram`;
+        default:
+            return undefined;
+    }
+};
+
+export const getColor = (brand: string) => {
+    switch (brand) {
+        case 'instagram':
+            return `#E4405F`;
+        case 'facebook':
+            return `#1877F2`;
+        case 'tiktok':
+            return `#69C9D0`;
+        case 'youtube':
+            return `#FF0000`;
+        case 'twitter':
+            return `#1DA1F2`;
+        case 'linkedin':
+            return `#0077B5`;
+        case 'threads':
+            return `#E4405F`;
+        case 'telegram':
+            return `#0088CC`;
+        default:
+            return undefined;
+    }
+};

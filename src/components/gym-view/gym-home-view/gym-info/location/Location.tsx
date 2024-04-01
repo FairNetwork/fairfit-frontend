@@ -1,11 +1,13 @@
 import { Map, Marker } from 'pigeon-maps';
 import { osm } from 'pigeon-maps/providers';
 import './location.scss';
-import { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectLocationById } from '../../../../../redux/gym/selectors';
 import { useAppSelector } from '../../../../../hooks/redux';
+import { isMobile } from '../../../../../utils/environment';
+import { Button, Tooltip } from '@mui/material';
 
 const Location = () => {
     const { gymInternalId } = useContext(GymContext);
@@ -17,6 +19,22 @@ const Location = () => {
 
     const address = useAppSelector(addressSelector);
 
+    const handleMarkerClick = () => {
+        if (
+            navigator.platform.indexOf('iPhone') !== -1 ||
+            navigator.platform.indexOf('iPad') !== -1 ||
+            navigator.platform.indexOf('iPod') !== -1
+        ) {
+            window.open(
+                `maps://maps.google.com/maps?daddr=${address?.coordinates[0]},${address?.coordinates[1]}&amp;ll=`
+            );
+        } else {
+            window.open(
+                `https://maps.google.com/maps?daddr=${address?.coordinates[0]},${address?.coordinates[1]}&amp;ll=`
+            );
+        }
+    };
+
     return (
         <div className="location">
             {address?.coordinates && (
@@ -26,7 +44,12 @@ const Location = () => {
                         defaultCenter={address?.coordinates}
                         defaultZoom={15}
                         twoFingerDrag>
-                        <Marker width={50} anchor={address?.coordinates} color="#38524c" />
+                        <Marker
+                            onClick={handleMarkerClick}
+                            width={50}
+                            anchor={address?.coordinates}
+                            color="#38524c"
+                        />
                     </Map>
                 </div>
             )}
