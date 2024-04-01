@@ -12,9 +12,11 @@
 
     &__address {
         position: absolute;
-        background-color: #f0f0f095;
+        background-color: #f0f0f0cc;
         bottom: 5px;
         left: 5px;
+        font-size: small;
+        max-width: calc(100% - 250px);
         border-radius: 6px;
         padding: 3px;
     }
