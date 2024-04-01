@@ -5,6 +5,7 @@ import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectOpeningTimesById } from '../../../../../redux/gym/selectors';
 import { convertDay } from '../../../../../utils/text';
+import { mergeConsecutiveDays } from '../../../../../utils/time';
 
 const OpeningTimes = () => {
     const { gymInternalId } = useContext(GymContext);
@@ -23,7 +24,9 @@ const OpeningTimes = () => {
             return items;
         }
 
-        openingTimes.forEach(({ day, startTime, endTime }) => {
+        const newTimes = mergeConsecutiveDays(openingTimes);
+
+        newTimes.forEach(({ day, endDay, startTime, endTime }) => {
             const convertedDay = convertDay(day);
 
             if (!convertedDay) {
@@ -32,7 +35,9 @@ const OpeningTimes = () => {
 
             items.push(
                 <div className="opening-times__day">
-                    <div className="opening-times__day__weekday">{convertedDay}</div>
+                    <div className="opening-times__day__weekday">
+                        {day === endDay ? convertedDay : `${convertedDay} - ${convertDay(endDay)}`}
+                    </div>
                     <div className="opening-times__day__time">
                         {startTime} - {endTime}
                     </div>
@@ -46,7 +51,7 @@ const OpeningTimes = () => {
     return (
         <div className="opening-times">
             <div className="opening-times__title">Öffnungszeiten</div>
-            {content}
+            <div className="opening-times__content">{content}</div>
         </div>
     );
 };
