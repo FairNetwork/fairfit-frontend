@@ -58,6 +58,7 @@ const HomeView = () => {
                     Finde das perfekte Studio in deine Nähe!
                 </h3>
                 <Search />
+                <h5 className="home-view__content__headline">Deine Ergebnisse</h5>
                 {content}
             </div>
         </div>
