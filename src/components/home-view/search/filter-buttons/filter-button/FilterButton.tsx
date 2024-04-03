@@ -1,5 +1,6 @@
 import './filterButton.scss';
 import { IFilterButton } from '../../../../../types/filterButton';
+import { useMemo, useState } from 'react';
 
 interface FilterButtonProps extends IFilterButton {
     onSelect: (selectedId: IFilterButton['id']) => void;
@@ -7,11 +8,27 @@ interface FilterButtonProps extends IFilterButton {
 }
 
 const FilterButton = ({ onSelect, isSelected = false, text, color, id }: FilterButtonProps) => {
+    const [isHover, setIsHover] = useState(false);
+
+    const opacity = useMemo(() => {
+        if (isSelected) {
+            return 1;
+        }
+
+        if (isHover) {
+            return 0.8;
+        }
+
+        return 0.6;
+    }, [isHover, isSelected]);
+
     return (
         <div
             className="filter-button"
             onClick={() => onSelect(id)}
-            style={{ backgroundColor: color, opacity: isSelected ? 1 : 0.6 }}>
+            onMouseOver={() => setIsHover(true)}
+            onMouseOut={() => setIsHover(false)}
+            style={{ backgroundColor: color, opacity }}>
             <div className="filter-button__text">{text}</div>
         </div>
     );
