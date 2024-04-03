@@ -1,0 +1,23 @@
+.filter-buttons {
+    &__headline {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+
+        &__left {
+            font-weight: bold;
+        }
+
+        &__right {
+            cursor: pointer;
+            font-size: small;
+            border-bottom: grey 1px dotted;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
