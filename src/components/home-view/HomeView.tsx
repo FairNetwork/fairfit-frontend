@@ -1,12 +1,12 @@
-import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
+import { ReactElement, useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import Header from '../shared/header/Header';
 import './homeView.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { loadAllGyms } from '../../redux/gym/actions';
 import { selectGyms } from '../../redux/gym/selectors';
-import { useNavigate } from 'react-router-dom';
 import Search from './search/Search';
+import GymCard from './gym-card/GymCard';
 
 const HomeView = () => {
     const dispatch = useAppDispatch();
@@ -14,8 +14,6 @@ const HomeView = () => {
     const [headerHeight, setHeaderHeight] = useState(0);
 
     const gyms = useAppSelector(selectGyms);
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         void dispatch(loadAllGyms());
@@ -25,29 +23,23 @@ const HomeView = () => {
         setHeaderHeight(height);
     };
 
-    const handleGymClick = useCallback(
-        (gymName: string) => {
-            navigate(`/${gymName}`);
-        },
-        [navigate]
-    );
-
     const content = useMemo(() => {
         const items: ReactElement[] = [];
 
-        gyms.forEach(({ name }) => {
+        gyms.forEach(({ name, internalId, location }) => {
             items.push(
-                <div
-                    className="home-view__content__item"
-                    key={`gym__${name}`}
-                    onClick={() => handleGymClick(name.toLowerCase())}>
-                    {name}
-                </div>
+                <GymCard
+                    key={`gym-card__${internalId}`}
+                    internalId={internalId}
+                    name={name}
+                    location={location}
+                    picture="https://www.hussle.com/blog/wp-content/uploads/2020/12/Gym-structure-1080x675.png"
+                />
             );
         });
 
         return items;
-    }, [gyms, handleGymClick]);
+    }, [gyms]);
 
     return (
         <div className="home-view">
