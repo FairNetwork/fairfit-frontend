@@ -2,12 +2,14 @@ import './footer.scss';
 import { ReactElement, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FooterItem } from '../../../types/footer';
+import { Gym } from '../../../types/gym';
 
 interface FooterProps {
     items: FooterItem[];
+    gymId?: Gym['internalId'];
 }
 
-const Footer = ({ items }: FooterProps) => {
+const Footer = ({ items, gymId }: FooterProps) => {
     const navigate = useNavigate();
 
     const content = useMemo(() => {
@@ -19,7 +21,7 @@ const Footer = ({ items }: FooterProps) => {
                     className="footer__item"
                     key={`footer-item__${id}`}
                     onClick={() => {
-                        navigate(`/${path}`);
+                        navigate(`/${path}${gymId ? `/${gymId}` : ''}`);
                     }}>
                     {name}
                 </div>
