@@ -1,11 +1,22 @@
 .home-view {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
     &__content {
         max-width: 680px;
-        margin: 32px auto;
+        margin: 12px auto;
 
         display: flex;
         flex-direction: column;
         gap: 16px;
+
+        flex: 1;
+
+        &__headline {
+            margin: 0;
+        }
 
         &__item {
             border-radius: 6px;
