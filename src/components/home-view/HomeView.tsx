@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { loadAllGyms } from '../../redux/gym/actions';
 import { selectGyms } from '../../redux/gym/selectors';
 import { useNavigate } from 'react-router-dom';
+import Search from './search/Search';
 
 const HomeView = () => {
     const dispatch = useAppDispatch();
@@ -52,7 +53,13 @@ const HomeView = () => {
         <div className="home-view">
             <Header isHomePage onHeightChange={handleHeaderHeightChange} />
             <motion.div animate={{ height: headerHeight }} />
-            <div className="home-view__content">{content}</div>
+            <div className="home-view__content">
+                <h3 className="home-view__content__headline">
+                    Finde das perfekte Studio in deine Nähe!
+                </h3>
+                <Search />
+                {content}
+            </div>
         </div>
     );
 };

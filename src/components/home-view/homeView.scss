@@ -1,11 +1,15 @@
 .home-view {
     &__content {
         max-width: 680px;
-        margin: 32px auto;
+        margin: 12px auto;
 
         display: flex;
         flex-direction: column;
         gap: 16px;
+
+        &__headline {
+            margin: 0;
+        }
 
         &__item {
             border-radius: 6px;
