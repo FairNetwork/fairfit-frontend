@@ -29,7 +29,7 @@ const Footer = ({ items, gymId }: FooterProps) => {
         });
 
         return renderedItems;
-    }, [items, navigate]);
+    }, [gymId, items, navigate]);
 
     return <div className="footer">{content}</div>;
 };
