@@ -17,9 +17,9 @@ import { FooterItem } from '../../../types/footer';
 
 const FOOTER_ITEMS: FooterItem[] = [
     { id: '1', name: 'Impressum', path: 'impressum' },
-    { id: '2', name: 'Datenschutz', path: 'datenschutz' },
-    { id: '3', name: 'AGB', path: 'agb' },
-    { id: '4', name: 'Widerruf', path: 'widerruf' }
+    { id: '2', name: 'Datenschutz', path: 'data_protection' },
+    { id: '3', name: 'AGB', path: 'terms-conditions' },
+    { id: '4', name: 'Widerruf', path: 'revocation' }
 ];
 
 const GymHomeView = () => {

@@ -14,9 +14,9 @@ import ErrorMessage from '../shared/error-message/ErrorMessage';
 
 const FOOTER_ITEMS: FooterItem[] = [
     { id: '1', name: 'Impressum', path: 'impressum' },
-    { id: '2', name: 'Datenschutz', path: 'datenschutz' },
-    { id: '3', name: 'Allgemein', path: 'allgemein' },
-    { id: '4', name: 'Studio anmelden', path: 'studio_anmelden' },
+    { id: '2', name: 'Datenschutz', path: 'data_protection' },
+    { id: '3', name: 'Allgemein', path: 'general' },
+    { id: '4', name: 'Studio anmelden', path: 'register_studio' },
     { id: '5', name: 'Q&A', path: 'q_&_a' }
 ];
 
