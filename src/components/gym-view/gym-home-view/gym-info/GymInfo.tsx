@@ -35,7 +35,7 @@ const GymInfo = () => {
     return (
         <GymInfoContext.Provider value={providerValue}>
             <div className="gym-info">
-                <h2>Das sind wir</h2>
+                <h2>Hier findest du uns</h2>
                 <div className="gym-info__content">
                     <Location />
                     <OpeningTimes />

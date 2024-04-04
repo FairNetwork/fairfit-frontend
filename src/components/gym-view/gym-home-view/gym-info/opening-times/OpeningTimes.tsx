@@ -47,7 +47,7 @@ const OpeningTimes = () => {
 
     return (
         <div className="opening-times">
-            <div className="opening-times__title">Öffnungszeiten</div>
+            <h2>Öffnungszeiten</h2>
             <div className="opening-times__content">
                 <FontAwesomeIcon icon={faClock} size={'6x'} />
                 <div className="opening-times__content__wrapper">{content}</div>

@@ -29,7 +29,7 @@ const Contact = () => {
 
     return (
         <div className="contact">
-            <div className="contact__title">Kontakt</div>
+            <h2>Kontakt</h2>
             <div className="contact__content" style={{ columnGap: contactCardGap }}>
                 {contact?.phone && (
                     <ContactCard
