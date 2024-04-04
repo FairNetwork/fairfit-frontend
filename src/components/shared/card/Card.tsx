@@ -1,9 +1,8 @@
 import React, { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
 import { Offer } from '../../../types/offer';
 import './card.scss';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { convertMonth } from '../../../utils/text';
+import Icon from '../icon/Icon';
 
 interface CardProps extends Offer {
     onClick?: (id: Offer['id']) => void;
@@ -39,7 +38,7 @@ const Card = ({
             items.push(
                 <div className="card__content__wrapper" key={`detail__${detail}`}>
                     <div className="card__content__wrapper__icon">
-                        <FontAwesomeIcon icon={faCheck} />
+                        <Icon icon="bi-check2" />
                     </div>
                     <div className="card__content__wrapper__text">{detail}</div>
                 </div>

@@ -2,8 +2,7 @@ import './gymCard.scss';
 import { Gym } from '../../../types/gym';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../../shared/icon/Icon';
 
 interface GymCardProps {
     picture: string;
@@ -27,7 +26,7 @@ const GymCard = ({ name, internalId, picture, location }: GymCardProps) => {
             <div className="gym-card__info">
                 <div className="gym-card__info__name">{name}</div>
                 <div className="gym-card__info__location">
-                    <FontAwesomeIcon icon={faLocationDot} />
+                    <Icon icon="bi-geo" />
                     {location?.address}
                 </div>
             </div>

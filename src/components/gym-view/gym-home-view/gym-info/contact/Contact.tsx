@@ -1,5 +1,4 @@
 import './contact.scss';
-import { faAt, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { useCallback, useContext } from 'react';
 import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
@@ -29,11 +28,11 @@ const Contact = () => {
 
     return (
         <div className="contact">
-            <div className="contact__title">Kontakt</div>
+            <h2>Kontakt</h2>
             <div className="contact__content" style={{ columnGap: contactCardGap }}>
                 {contact?.phone && (
                     <ContactCard
-                        icon={faPhone}
+                        icon="bi-telephone"
                         text={contact?.phone}
                         title="Telefon"
                         onClick={() => handlePhoneClick()}
@@ -41,7 +40,7 @@ const Contact = () => {
                 )}
                 {contact?.email && (
                     <ContactCard
-                        icon={faAt}
+                        icon="bi-at"
                         text={contact?.email}
                         title="E-Mail"
                         onClick={() => handleMailClick()}

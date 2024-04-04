@@ -1,32 +1,21 @@
-import {
-    faLinkedin,
-    faSquareFacebook,
-    faSquareInstagram,
-    faSquareThreads,
-    faSquareXTwitter,
-    faSquareYoutube,
-    faTelegram,
-    faTiktok
-} from '@fortawesome/free-brands-svg-icons';
-
 export const getIcon = (brand: string) => {
     switch (brand) {
         case 'instagram':
-            return faSquareInstagram;
+            return 'bi-instagram';
         case 'facebook':
-            return faSquareFacebook;
+            return 'bi-facebook';
         case 'tiktok':
-            return faTiktok;
+            return 'bi-tiktok';
         case 'youtube':
-            return faSquareYoutube;
+            return 'bi-youtube';
         case 'twitter':
-            return faSquareXTwitter;
+            return 'bi-twitter-x';
         case 'linkedin':
-            return faLinkedin;
+            return 'bi-linkedin';
         case 'threads':
-            return faSquareThreads;
+            return 'bi-threads';
         case 'telegram':
-            return faTelegram;
+            return 'bi-telegram';
         default:
             return undefined;
     }

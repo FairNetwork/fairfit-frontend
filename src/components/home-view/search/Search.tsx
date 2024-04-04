@@ -1,9 +1,8 @@
 import { InputAdornment, TextField } from '@mui/material';
 import './search.scss';
 import React, { ChangeEvent, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import FilterButtons from './filter-buttons/FilterButtons';
+import Icon from '../../shared/icon/Icon';
 
 const Search = () => {
     const [searchValue, setSearchValue] = useState('');
@@ -23,7 +22,7 @@ const Search = () => {
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <Icon icon="bi-search" />
                         </InputAdornment>
                     )
                 }}
