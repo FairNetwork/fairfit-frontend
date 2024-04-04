@@ -5,7 +5,6 @@ import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectOpeningTimesById } from '../../../../../redux/gym/selectors';
 import { convertDay } from '../../../../../utils/text';
-import { mergeConsecutiveDays } from '../../../../../utils/time';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
