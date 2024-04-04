@@ -1,5 +1,5 @@
 import { AppDispatch, GetAppState } from '../store';
-import { addGym, setGymLoadingState, updateGym } from './slice';
+import { addGym, setAllGymsLoadingState, setGymLoadingState, updateGym } from './slice';
 import { EASYFITNESS } from '../../constants/mockData';
 import { Gym } from '../../types/gym';
 import { SelectGymIdByInternalId } from './selectors';
@@ -43,18 +43,18 @@ export const loadGym =
 export const loadAllGyms =
     () =>
     async (dispatch: AppDispatch): Promise<void> => {
-        dispatch(setGymLoadingState('pending'));
+        dispatch(setAllGymsLoadingState('pending'));
 
         const { status, data } = await getAllGyms();
 
         if (status === 200 && data) {
             dispatch(addGym(data));
-            dispatch(setGymLoadingState('successful'));
+            dispatch(setAllGymsLoadingState('successful'));
 
             return;
         }
 
-        dispatch(setGymLoadingState('rejected'));
+        dispatch(setAllGymsLoadingState('rejected'));
 
         return;
     };
