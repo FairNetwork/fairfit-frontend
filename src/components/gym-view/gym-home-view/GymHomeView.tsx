@@ -4,7 +4,7 @@ import OfferSlider from './offer-slider/OfferSlider';
 import GymInfo from './gym-info/GymInfo';
 import './gymHomeView.scss';
 import Header from '../../shared/header/Header';
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Offers from './offers/Offers';
 import { GymContext } from '../../App';
@@ -28,6 +28,10 @@ const GymHomeView = () => {
     const [headerHeight, setHeaderHeight] = useState(100);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleHeaderHeightChange = (height: number) => {
         setHeaderHeight(height);

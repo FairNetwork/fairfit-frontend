@@ -38,6 +38,10 @@ const FooterView = () => {
     const location = useLocation();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
+    useEffect(() => {
         if (location.search) {
             const newGymId = getGymId(location.search);
 
@@ -86,7 +90,7 @@ const FooterView = () => {
             <Header isHomePage={!gymId} onHeightChange={handleHeaderHeightChange} />
             <motion.div animate={{ height: headerHeight }} />
             <div className="footer-view__content">{content}</div>
-            <Footer items={!gymId ? HOME_FOOTER_ITEMS : GYM_FOOTER_ITEMS} />
+            <Footer items={!gymId ? HOME_FOOTER_ITEMS : GYM_FOOTER_ITEMS} gymId={gymId} />
         </div>
     );
 };

@@ -24,6 +24,10 @@ const HomeView = () => {
         void dispatch(loadAllGyms());
     }, [dispatch]);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const handleHeaderHeightChange = (height: number) => {
         setHeaderHeight(height);
     };
