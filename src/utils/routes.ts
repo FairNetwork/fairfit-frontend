@@ -19,3 +19,14 @@ export const getOfferId = (search: string) => {
         return search.substring(startIndex, endIndex).toLowerCase();
     }
 };
+
+export const getGymId = (search: string) => {
+    const startIndex = search.indexOf('gymId=') + 6;
+    const endIndex = search.indexOf('&', startIndex);
+
+    if (endIndex === -1) {
+        return search.substring(startIndex).toLowerCase();
+    } else {
+        return search.substring(startIndex, endIndex).toLowerCase();
+    }
+};

@@ -21,7 +21,7 @@ const Footer = ({ items, gymId }: FooterProps) => {
                     className="footer__item"
                     key={`footer-item__${id}`}
                     onClick={() => {
-                        navigate(`/${path}${gymId ? `/${gymId}` : ''}`);
+                        navigate(`/${path}${gymId ? `?gymId=${gymId}` : ''}`);
                     }}>
                     {name}
                 </div>

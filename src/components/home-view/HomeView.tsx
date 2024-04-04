@@ -8,17 +8,9 @@ import { selectAllGymsLoadingState, selectGyms } from '../../redux/gym/selectors
 import Search from './search/Search';
 import GymCard from './gym-card/GymCard';
 import Footer from '../shared/footer/Footer';
-import { FooterItem } from '../../types/footer';
 import WaitCursor from '../shared/wait-cursor/WaitCursor';
 import ErrorMessage from '../shared/error-message/ErrorMessage';
-
-const FOOTER_ITEMS: FooterItem[] = [
-    { id: '1', name: 'Impressum', path: 'impressum' },
-    { id: '2', name: 'Datenschutz', path: 'data_protection' },
-    { id: '3', name: 'Allgemein', path: 'general' },
-    { id: '4', name: 'Studio anmelden', path: 'register_studio' },
-    { id: '5', name: 'Q&A', path: 'q_&_a' }
-];
+import { HOME_FOOTER_ITEMS } from '../../constants/footer';
 
 const HomeView = () => {
     const dispatch = useAppDispatch();
@@ -70,7 +62,7 @@ const HomeView = () => {
                     <ErrorMessage message="Beim Laden der Studios ist ein Fehler unterlaufen." />
                 )}
             </div>
-            <Footer items={FOOTER_ITEMS} />
+            <Footer items={HOME_FOOTER_ITEMS} />
         </div>
     );
 };

@@ -6,6 +6,7 @@ import OrderOverview from './gym-view/gym-home-view/order-overview/OrderOverview
 import NotAvailable from './shared/not-available/NotAvailable';
 import { createContext, useCallback, useMemo, useState } from 'react';
 import { Gym } from '../types/gym';
+import Impressum from './footer-views/impressum/Impressum';
 
 interface IGymContext {
     gymInternalId: Gym['id'];
@@ -43,6 +44,7 @@ const App = () => {
                 <Route path="/:gym/*" element={<NotAvailable />} />
                 <Route path="/:gym/dashboard" element={<div>Dashboard</div>} />
                 <Route path="/login" element={<LoginView />} />
+                <Route path="/impressum" element={<Impressum />} />
             </Routes>
         </GymContext.Provider>
     );
