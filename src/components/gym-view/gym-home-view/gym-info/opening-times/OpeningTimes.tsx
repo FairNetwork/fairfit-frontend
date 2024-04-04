@@ -5,7 +5,7 @@ import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectOpeningTimesById } from '../../../../../redux/gym/selectors';
 import { convertDay } from '../../../../../utils/text';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const OpeningTimes = () => {
@@ -49,7 +49,7 @@ const OpeningTimes = () => {
         <div className="opening-times">
             <div className="opening-times__title">Öffnungszeiten</div>
             <div className="opening-times__content">
-                <FontAwesomeIcon icon={faClock} size={'8x'} />
+                <FontAwesomeIcon icon={faClock} size={'6x'} />
                 <div className="opening-times__content__wrapper">{content}</div>
             </div>
         </div>
