@@ -1,14 +1,3 @@
-import {
-    faLinkedin,
-    faSquareFacebook,
-    faSquareInstagram,
-    faSquareThreads,
-    faSquareXTwitter,
-    faSquareYoutube,
-    faTelegram,
-    faTiktok
-} from '@fortawesome/free-brands-svg-icons';
-
 export const getIcon = (brand: string) => {
     switch (brand) {
         case 'instagram':

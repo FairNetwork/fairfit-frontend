@@ -48,7 +48,7 @@ const OpeningTimes = () => {
         <div className="opening-times">
             <h2>Öffnungszeiten</h2>
             <div className="opening-times__content">
-                <Icon icon="bi-clock" size="140px" />
+                <Icon icon="bi-clock" size="75px" />
                 <div className="opening-times__content__wrapper">{content}</div>
             </div>
         </div>

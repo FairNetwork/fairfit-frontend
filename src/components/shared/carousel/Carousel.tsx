@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import { Offer } from '../../../types/offer';
 import Card from '../card/Card';
 import { useSpringCarousel } from 'react-spring-carousel';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import './carousel.scss';
 import { useNavigate } from 'react-router-dom';
 import { GymContext } from '../../App';
@@ -57,10 +55,10 @@ const Carousel = ({ items }: CarouselProps) => {
             </div>
             {!isMobile() && (
                 <div className="carousel__buttons">
-                    <div className="carousel__buttons__button">
+                    <div className="carousel__buttons__button" onClick={slideToPrevItem}>
                         <Icon icon="bi-caret-left-fill" size="xxx-large" />
                     </div>
-                    <div className="carousel__buttons__button">
+                    <div className="carousel__buttons__button" onClick={slideToNextItem}>
                         <Icon icon="bi-caret-right-fill" size="xxx-large" />
                     </div>
                 </div>
