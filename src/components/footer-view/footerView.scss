@@ -1,0 +1,18 @@
+.footer-view {
+    display: flex;
+    flex-direction: column;
+
+    &__content {
+        min-height: 100vh;
+
+        width: calc(100vw - 32px);
+        max-width: 680px;
+        margin: 12px auto;
+
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        flex: 1;
+    }
+}

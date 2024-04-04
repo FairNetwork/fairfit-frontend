@@ -1,10 +1,10 @@
 .home-view {
-    min-height: 100vh;
-
     display: flex;
     flex-direction: column;
 
     &__content {
+        min-height: 100vh;
+
         max-width: 680px;
         margin: 12px auto;
 

@@ -111,7 +111,11 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
                         opacity: { duration: 0.2 }
                     }}
                 />
-                <div className="image-carousel__indicators">{indicators}</div>
+                <div
+                    className="image-carousel__indicators"
+                    onClick={() => handleClick(images[imageIndex].type)}>
+                    {indicators}
+                </div>
             </AnimatePresence>
         </div>
     );

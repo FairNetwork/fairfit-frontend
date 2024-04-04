@@ -4,19 +4,13 @@ import Header from '../shared/header/Header';
 import './homeView.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { loadAllGyms } from '../../redux/gym/actions';
-import { selectGyms } from '../../redux/gym/selectors';
+import { selectAllGymsLoadingState, selectGyms } from '../../redux/gym/selectors';
 import Search from './search/Search';
 import GymCard from './gym-card/GymCard';
 import Footer from '../shared/footer/Footer';
-import { FooterItem } from '../../types/footer';
-
-const FOOTER_ITEMS: FooterItem[] = [
-    { id: '1', name: 'Impressum', path: 'impressum' },
-    { id: '2', name: 'Datenschutz', path: 'datenschutz' },
-    { id: '3', name: 'Allgemein', path: 'allgemein' },
-    { id: '4', name: 'Studio anmelden', path: 'studio_anmelden' },
-    { id: '5', name: 'Q&A', path: 'q_&_a' }
-];
+import WaitCursor from '../shared/wait-cursor/WaitCursor';
+import ErrorMessage from '../shared/error-message/ErrorMessage';
+import { HOME_FOOTER_ITEMS } from '../../constants/footer';
 
 const HomeView = () => {
     const dispatch = useAppDispatch();
@@ -24,10 +18,15 @@ const HomeView = () => {
     const [headerHeight, setHeaderHeight] = useState(0);
 
     const gyms = useAppSelector(selectGyms);
+    const gymsLoadingState = useAppSelector(selectAllGymsLoadingState);
 
     useEffect(() => {
         void dispatch(loadAllGyms());
     }, [dispatch]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleHeaderHeightChange = (height: number) => {
         setHeaderHeight(height);
@@ -62,8 +61,12 @@ const HomeView = () => {
                 <Search />
                 <h5 className="home-view__content__headline">Deine Ergebnisse</h5>
                 {content}
+                <WaitCursor shouldShowWaitCursor={gymsLoadingState === 'pending'} />
+                {gymsLoadingState === 'rejected' && (
+                    <ErrorMessage message="Beim Laden der Studios ist ein Fehler unterlaufen." />
+                )}
             </div>
-            <Footer items={FOOTER_ITEMS} />
+            <Footer items={HOME_FOOTER_ITEMS} />
         </div>
     );
 };

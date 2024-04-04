@@ -8,12 +8,14 @@ type LoadingState = 'none' | 'pending' | 'rejected' | 'successful';
 export interface GymState {
     gyms: Gym[];
     gymLoadingState: LoadingState;
+    allGymsLoadingState: LoadingState;
     offersLoadingState: LoadingState;
 }
 
 const initialState: GymState = {
     gymLoadingState: 'none',
     offersLoadingState: 'none',
+    allGymsLoadingState: 'none',
     gyms: []
 };
 
@@ -94,6 +96,9 @@ const slice = createSlice({
         setGymLoadingState(state, { payload }: PayloadAction<GymState['gymLoadingState']>) {
             state.gymLoadingState = payload;
         },
+        setAllGymsLoadingState(state, { payload }: PayloadAction<GymState['allGymsLoadingState']>) {
+            state.allGymsLoadingState = payload;
+        },
         setOffersLoadingState(state, { payload }: PayloadAction<GymState['offersLoadingState']>) {
             state.offersLoadingState = payload;
         }
@@ -106,6 +111,7 @@ export const {
     updateGym,
     addAbonnements,
     addOffers,
+    setAllGymsLoadingState,
     addGym
 } = slice.actions;
 

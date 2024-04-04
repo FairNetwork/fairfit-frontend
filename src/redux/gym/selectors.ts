@@ -90,6 +90,9 @@ export const selectHasOffers = (state: RootState, gymId: string): boolean | unde
 
 export const selectGymLoadingState = (state: RootState) => selectGymState(state).gymLoadingState;
 
+export const selectAllGymsLoadingState = (state: RootState) =>
+    selectGymState(state).allGymsLoadingState;
+
 /*
 export const selectOffersLoadingState = (state: RootState) =>
     selectGymState(state).offersLoadingState;
