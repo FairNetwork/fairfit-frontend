@@ -1,12 +1,11 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTag } from '@fortawesome/free-solid-svg-icons';
 import './offerSlider.scss';
+import Icon from '../../../shared/icon/Icon';
 
 const OfferSlider = () => {
     return (
         <div className="offer-slider">
             <div className="offer-slider__icon">
-                <FontAwesomeIcon icon={faTag} />
+                <Icon icon="bi-percent" />
             </div>
             <div className="offer-slider__text">Angebote</div>
         </div>

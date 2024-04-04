@@ -8,6 +8,7 @@ import './carousel.scss';
 import { useNavigate } from 'react-router-dom';
 import { GymContext } from '../../App';
 import { isMobile } from '../../../utils/environment';
+import Icon from '../icon/Icon';
 
 interface CarouselProps {
     items: Offer[];
@@ -57,18 +58,10 @@ const Carousel = ({ items }: CarouselProps) => {
             {!isMobile() && (
                 <div className="carousel__buttons">
                     <div className="carousel__buttons__button">
-                        <FontAwesomeIcon
-                            icon={faChevronLeft}
-                            size={'2x'}
-                            onClick={slideToPrevItem}
-                        />
+                        <Icon icon="bi-caret-left-fill" size="xxx-large" />
                     </div>
                     <div className="carousel__buttons__button">
-                        <FontAwesomeIcon
-                            icon={faChevronRight}
-                            size={'2x'}
-                            onClick={slideToNextItem}
-                        />
+                        <Icon icon="bi-caret-right-fill" size="xxx-large" />
                     </div>
                 </div>
             )}

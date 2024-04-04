@@ -1,7 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFaceFrown } from '@fortawesome/free-regular-svg-icons';
 import './notAvailable.scss';
 import { useNavigate } from 'react-router-dom';
+import Icon from '../icon/Icon';
 
 const NotAvailable = () => {
     const navigate = useNavigate();
@@ -9,7 +8,7 @@ const NotAvailable = () => {
     return (
         <div className="not-available">
             <div className="not-available__icon">
-                <FontAwesomeIcon icon={faFaceFrown} size="2xl" />
+                <Icon icon="bi-heartbreak" />
             </div>
             <div className="not-available__text">Diese Page ist nicht verfügbar</div>
             <div className="not-available__link" onClick={() => navigate('/')}>
