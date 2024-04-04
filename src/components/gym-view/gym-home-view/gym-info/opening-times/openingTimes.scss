@@ -9,23 +9,29 @@
 
     &__content {
         display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    &__day {
-        display: flex;
-        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
-        padding: 6px;
+        gap: 6px;
+
+        padding: 12px;
         border-radius: 6px;
         background-color: #52ab98;
         color: white;
 
-        font-family: 'Source Sans Pro', sans-serif;
-
         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.5);
+
+        &__wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+    }
+
+    &__day {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
 
         &__weekday {
         }

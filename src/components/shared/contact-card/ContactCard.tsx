@@ -15,7 +15,7 @@ const ContactCard = ({ text, title, onClick, icon, color }: ContactCardProps) =>
     return (
         <div className="contact-card" onClick={onClick} style={{ backgroundColor: color }}>
             <div className="contact-card__icon">
-                <FontAwesomeIcon icon={icon} size={'2xl'} />
+                <FontAwesomeIcon icon={icon} size={'xl'} />
             </div>
             <div className="contact-card__wrapper">
                 <div className="contact-card__wrapper__headline">{title}</div>
