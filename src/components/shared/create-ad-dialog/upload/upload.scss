@@ -1,0 +1,25 @@
+.upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    &__input {
+        width: 100%;
+        aspect-ratio: 16/9;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        cursor: pointer;
+
+        border-radius: 6px;
+        background-color: #dbdbdb;
+
+        &__text {
+            font-size: x-large;
+        }
+    }
+}

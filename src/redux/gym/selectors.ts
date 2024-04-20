@@ -36,6 +36,15 @@ export const selectOffersById = (state: RootState, gymId: string): Offer[] | und
     return selectGymById(state, gymId)?.offers;
 };
 
+export const selectOfferNamesById = (state: RootState, gymId: string): string[] | undefined => {
+    const offers = selectOffersById(state, gymId);
+    const abonnements = selectAbonnementsById(state, gymId);
+
+    const combined = [...(offers ?? []), ...(abonnements ?? [])];
+
+    return combined.map(({ title }) => title);
+};
+
 export const selectGymNameById = (state: RootState, gymId: string): Gym['name'] | undefined => {
     return selectGymById(state, gymId)?.name;
 };
