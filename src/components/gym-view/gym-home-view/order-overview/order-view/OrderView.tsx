@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import SetupWizard, { SetupWizardRef } from './setup-wizard/SetupWizard';
+import SetupWizard, { SetupWizardRef } from '../../../../shared/setup-wizard/SetupWizard';
 import Summary from './summary/Summary';
 import Form from './form/Form';
 import Offers from './offers/Offers';
@@ -67,7 +67,11 @@ const OrderView = () => {
     return (
         <div style={{ maxWidth: '680px', margin: '0 auto' }}>
             <Intro />
-            <SetupWizard ref={setupRef} onChange={handleStepChange} />
+            <SetupWizard
+                ref={setupRef}
+                steps={['Angebote | Abonnements', 'Deine Daten', 'Zusammenfassung']}
+                onChange={handleStepChange}
+            />
             {content}
         </div>
     );

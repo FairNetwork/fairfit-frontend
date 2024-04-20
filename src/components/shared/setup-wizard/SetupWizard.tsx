@@ -2,8 +2,6 @@ import { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
 import { Step, StepButton, Stepper } from '@mui/material';
 import './setupWizard.scss';
 
-const steps = ['Angebote | Abonnements', 'Deine Daten', 'Zusammenfassung'];
-
 export interface SetupWizardRef {
     next: VoidFunction;
     complete: VoidFunction;
@@ -12,9 +10,10 @@ export interface SetupWizardRef {
 
 interface SetupWizardProps {
     onChange: (step: number) => void;
+    steps: string[];
 }
 
-const SetupWizard = forwardRef<SetupWizardRef, SetupWizardProps>(({ onChange }, ref) => {
+const SetupWizard = forwardRef<SetupWizardRef, SetupWizardProps>(({ onChange, steps }, ref) => {
     const [activeStep, setActiveStep] = useState(0);
     const [completed, setCompleted] = useState<{
         [k: number]: boolean;
