@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import HomeView from './home-view/HomeView';
-import LoginView from './login-view/LoginView';
 import GymView from './gym-view/GymView';
 import OrderOverview from './gym-view/gym-home-view/order-overview/OrderOverview';
 import NotAvailable from './shared/not-available/NotAvailable';
 import { createContext, useCallback, useMemo, useState } from 'react';
 import { Gym } from '../types/gym';
 import FooterView from './footer-view/FooterView';
+import Dashboard from './gym-view/gym-home-view/dashboard/Dashboard';
 
 interface IGymContext {
     gymInternalId: Gym['id'];
@@ -42,8 +42,7 @@ const App = () => {
                 <Route path="/:gym" element={<GymView />} />
                 <Route path="/:gym/offers" element={<OrderOverview />} />
                 <Route path="/:gym/*" element={<NotAvailable />} />
-                <Route path="/:gym/dashboard" element={<div>Dashboard</div>} />
-                <Route path="/login" element={<LoginView />} />
+                <Route path="/:gym/dashboard" element={<Dashboard />} />
                 <Route path="/impressum" element={<FooterView />} />
                 <Route path="/data-protection" element={<FooterView />} />
                 <Route path="/general" element={<FooterView />} />
