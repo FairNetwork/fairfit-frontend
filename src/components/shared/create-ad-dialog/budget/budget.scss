@@ -1,4 +1,4 @@
-.target-group {
+.budget {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,30 +27,28 @@
             flex-direction: column;
             gap: 12px;
 
-            &__age {
-                &__headline {
-                    font-weight: bold;
-                }
-
-                &__gender {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                }
+            &__money {
             }
 
-            &__location {
+            &__duration {
                 display: flex;
                 flex-direction: column;
                 gap: 12px;
 
-                &__headline {
-                    font-weight: bold;
-                }
-
-                &__radius {
+                &__infinity {
                     &__text {
                         font-size: small;
+                        width: 70%;
+                    }
+
+                    &__wrapper {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        &__text {
+                            font-weight: bold;
+                        }
                     }
                 }
             }

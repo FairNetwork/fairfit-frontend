@@ -1,13 +1,16 @@
 import './createAdDialog.scss';
 import React, { useMemo, useRef, useState } from 'react';
 import SetupWizard, { SetupWizardRef } from '../setup-wizard/SetupWizard';
-import Summary from '../../gym-view/gym-home-view/order-overview/order-view/summary/Summary';
-import Form from '../../gym-view/gym-home-view/order-overview/order-view/form/Form';
-import Intro from '../../gym-view/gym-home-view/order-overview/order-view/intro/Intro';
 import Upload from './upload/Upload';
 import TargetGroup from './traget-group/TargetGroup';
+import Budget from './budget/Budget';
+import Summary from './summary/Summary';
 
-const CreateAdDialog = () => {
+interface CreateAdDialogProps {
+    onFinish: () => void;
+}
+
+const CreateAdDialog = ({ onFinish }: CreateAdDialogProps) => {
     const [currentStep, setCurrentStep] = useState<number>(0);
 
     const setupRef = useRef<SetupWizardRef>(null);
@@ -19,14 +22,15 @@ const CreateAdDialog = () => {
     const content = useMemo(() => {
         switch (currentStep) {
             case 3:
+                return <Summary onClick={onFinish} />;
             case 2:
-                return <Summary />;
+                return <Budget onClick={() => setupRef.current?.complete()} />;
             case 1:
                 return <TargetGroup onClick={() => setupRef.current?.complete()} />;
             default:
                 return <Upload onClick={() => setupRef.current?.complete()} />;
         }
-    }, [currentStep]);
+    }, [currentStep, onFinish]);
 
     return (
         <div className="create-ad-dialog">
