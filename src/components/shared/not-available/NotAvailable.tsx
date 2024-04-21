@@ -8,7 +8,7 @@ const NotAvailable = () => {
     return (
         <div className="not-available">
             <div className="not-available__icon">
-                <Icon icon="bi-heartbreak" />
+                <Icon icon="bi-heartbreak" size={200} />
             </div>
             <div className="not-available__text">Diese Page ist nicht verfügbar</div>
             <div className="not-available__link" onClick={() => navigate('/')}>
