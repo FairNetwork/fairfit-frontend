@@ -7,7 +7,6 @@ import {
     DialogTitle,
     FormControlLabel,
     Radio,
-    Slide,
     Tooltip
 } from '@mui/material';
 import Accordion from '../../../../../shared/accordion/Accordion';
@@ -21,33 +20,14 @@ import {
 import Card from '../../../../../shared/card/Card';
 import { selectAgbsById, selectGymById } from '../../../../../../redux/gym/selectors';
 import { setAreAgbsAccepted, setSendOrderLoadingState } from '../../../../../../redux/user/slice';
-import {
-    ChangeEvent,
-    forwardRef,
-    ReactElement,
-    Ref,
-    useCallback,
-    useContext,
-    useEffect,
-    useMemo,
-    useState
-} from 'react';
+import { ChangeEvent, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { finishOrder } from '../../../../../../redux/user/actions';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getGymFromRoute } from '../../../../../../utils/routes';
-import { TransitionProps } from '@mui/material/transitions';
 import { isMobile } from '../../../../../../utils/environment';
 import { GymContext } from '../../../../../App';
 import { RootState } from '../../../../../../redux/store';
-
-const Transition = forwardRef(function Transition(
-    props: TransitionProps & {
-        children: ReactElement<any, any>;
-    },
-    ref: Ref<unknown>
-) {
-    return <Slide direction="up" ref={ref} {...props} />;
-});
+import DialogTransition from '../../../../../shared/dialog-transition/DialogTransition';
 
 const Summary = () => {
     const dispatch = useAppDispatch();
@@ -233,7 +213,7 @@ const Summary = () => {
             <Dialog
                 open={isDialogOpen}
                 keepMounted
-                TransitionComponent={Transition}
+                TransitionComponent={DialogTransition}
                 onClose={handleCloseDialog}
                 aria-describedby="alert-dialog-slide-description">
                 {dialogTitle}

@@ -7,6 +7,7 @@ import { GymContext } from '../../App';
 import appLogo from '../../../assets/fairfit_logo.png';
 import './header.scss';
 import Icon from '../icon/Icon';
+import { MenuButton } from '../menu-button/MenuButton';
 
 interface HeaderProps {
     children?: ReactNode;
@@ -17,6 +18,8 @@ interface HeaderProps {
 
 const Header = ({ children, onHeightChange, onMenuOpen, isHomePage = false }: HeaderProps) => {
     const { gymInternalId } = useContext(GymContext);
+
+    const [isOpen, setIsOpen] = useState(false);
 
     const gymSelector = useCallback(
         (state: RootState) => selectLogoById(state, gymInternalId),
@@ -77,7 +80,7 @@ const Header = ({ children, onHeightChange, onMenuOpen, isHomePage = false }: He
 
     const logoVariants = useMemo(() => {
         return {
-            small: { scale: 0.6, left: '0%', translateY: '-50%', translateX: '0%' },
+            small: { scale: 0.6, left: '20px', translateY: '-50%', translateX: '0%' },
             large: { scale: 1, left: '50%', translateY: '-50%', translateX: '-50%' }
         };
     }, []);
@@ -91,7 +94,7 @@ const Header = ({ children, onHeightChange, onMenuOpen, isHomePage = false }: He
                 transition={{ type: 'tween' }}>
                 {!isHomePage && (
                     <div className="header__header__menu">
-                        <Icon icon="bi-list" onClick={onMenuOpen} />
+                        <Icon icon="bi-list" size={25} onClick={onMenuOpen} />
                     </div>
                 )}
                 <motion.img
