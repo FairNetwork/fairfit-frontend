@@ -19,9 +19,9 @@ const SetupWizard = forwardRef<SetupWizardRef, SetupWizardProps>(({ onChange, st
         [k: number]: boolean;
     }>({});
 
-    const totalSteps = () => {
+    const totalSteps = useCallback(() => {
         return steps.length;
-    };
+    },[steps.length]);
 
     const getMaxCompleted = () => {
         let maxKey = -Infinity;
@@ -39,23 +39,23 @@ const SetupWizard = forwardRef<SetupWizardRef, SetupWizardProps>(({ onChange, st
 
     const isLastStep = useCallback(() => {
         return activeStep === totalSteps() - 1;
-    }, [activeStep]);
+    }, [activeStep, totalSteps]);
 
     const allStepsCompleted = useCallback(() => {
         return completedSteps() === totalSteps();
-    }, [completedSteps]);
+    }, [completedSteps, totalSteps]);
 
     const handleNext = useCallback(() => {
         const newActiveStep =
             isLastStep() && !allStepsCompleted()
                 ? // It's the last step, but not all steps have been completed,
                   // find the first step that has been completed
-                  steps.findIndex((step, i) => !(i in completed))
+                  steps.findIndex((_step, i) => !(i in completed))
                 : activeStep + 1;
         setActiveStep(newActiveStep);
 
         onChange(newActiveStep);
-    }, [activeStep, allStepsCompleted, completed, isLastStep, onChange]);
+    }, [activeStep, allStepsCompleted, completed, isLastStep, onChange, steps]);
 
     const handleBack = useCallback(() => {
         setActiveStep((prevActiveStep) => {
