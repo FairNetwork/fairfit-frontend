@@ -6,14 +6,16 @@ import { selectLogoById } from '../../../redux/gym/selectors';
 import { GymContext } from '../../App';
 import appLogo from '../../../assets/fairfit_logo.png';
 import './header.scss';
+import Icon from '../icon/Icon';
 
 interface HeaderProps {
     children?: ReactNode;
     onHeightChange: (height: number) => void;
     isHomePage?: boolean;
+    onMenuOpen?: () => void;
 }
 
-const Header = ({ children, onHeightChange, isHomePage = false }: HeaderProps) => {
+const Header = ({ children, onHeightChange, onMenuOpen, isHomePage = false }: HeaderProps) => {
     const { gymInternalId } = useContext(GymContext);
 
     const gymSelector = useCallback(
@@ -87,11 +89,11 @@ const Header = ({ children, onHeightChange, isHomePage = false }: HeaderProps) =
                 animate={controls}
                 initial={{ height: isScrolled ? 50 : 100 }}
                 transition={{ type: 'tween' }}>
-                {/*
+                {!isHomePage && (
                     <div className="header__header__menu">
-                    <FontAwesomeIcon icon={faBars} size="2x" onClick={handleMenuClick}/>
-        </div>
-*/}
+                        <Icon icon="bi-list" onClick={onMenuOpen} />
+                    </div>
+                )}
                 <motion.img
                     src={logo}
                     alt="Logo"

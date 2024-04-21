@@ -6,4 +6,9 @@
         max-width: 680px;
         margin: 0 auto;
     }
+
+    .ps-sidebar-root {
+        z-index: 102 !important;
+        border-left: none !important;
+    }
 }

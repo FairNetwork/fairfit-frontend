@@ -14,9 +14,12 @@ import { useAppSelector } from '../../../hooks/redux';
 import Benefits from './benefits/Benefits';
 import Footer from '../../shared/footer/Footer';
 import { GYM_FOOTER_ITEMS } from '../../../constants/footer';
+import { Menu, MenuItem, Sidebar, SubMenu } from 'react-pro-sidebar';
 
 const GymHomeView = () => {
     const { gymInternalId } = useContext(GymContext);
+
+    const [toggled, setToggled] = useState(false);
 
     const gymSelector = useCallback(
         (state: RootState) => selectHasOffers(state, gymInternalId),
@@ -39,7 +42,22 @@ const GymHomeView = () => {
 
     return (
         <div className="gym-home-view">
-            <Header onHeightChange={handleHeaderHeightChange}>
+            <Sidebar
+                rootStyles={{ backgroundColor: '#F0F0F0' }}
+                onBackdropClick={() => setToggled(false)}
+                toggled={toggled}
+                breakPoint="always">
+                <Menu>
+                    <MenuItem>Studio Login</MenuItem>
+                    <MenuItem>Dashboard</MenuItem>
+                    <MenuItem>Angebote</MenuItem>
+                    <SubMenu label="Benefits">
+                        <MenuItem> Dark</MenuItem>
+                        <MenuItem> Light</MenuItem>
+                    </SubMenu>
+                </Menu>
+            </Sidebar>
+            <Header onHeightChange={handleHeaderHeightChange} onMenuOpen={() => setToggled(true)}>
                 {hasOffers && (
                     <InfiniteLooper
                         direction="left"
