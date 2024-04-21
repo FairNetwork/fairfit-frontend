@@ -7,7 +7,6 @@ import { GymContext } from '../../App';
 import appLogo from '../../../assets/fairfit_logo.png';
 import './header.scss';
 import Icon from '../icon/Icon';
-import { MenuButton } from '../menu-button/MenuButton';
 
 interface HeaderProps {
     children?: ReactNode;
@@ -18,8 +17,6 @@ interface HeaderProps {
 
 const Header = ({ children, onHeightChange, onMenuOpen, isHomePage = false }: HeaderProps) => {
     const { gymInternalId } = useContext(GymContext);
-
-    const [isOpen, setIsOpen] = useState(false);
 
     const gymSelector = useCallback(
         (state: RootState) => selectLogoById(state, gymInternalId),
