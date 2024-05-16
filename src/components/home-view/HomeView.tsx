@@ -1,6 +1,4 @@
 import { ReactElement, useEffect, useMemo, useState } from 'react';
-import { motion } from 'framer-motion';
-import Header from '../shared/header/Header';
 import './homeView.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { loadAllGyms } from '../../redux/gym/actions';
@@ -11,11 +9,13 @@ import Footer from '../shared/footer/Footer';
 import WaitCursor from '../shared/wait-cursor/WaitCursor';
 import ErrorMessage from '../shared/error-message/ErrorMessage';
 import { HOME_FOOTER_ITEMS } from '../../constants/footer';
+import useWindowDimensions from '../../hooks/windowDimensions';
+import headImage from '../../assets/fairfit-head-image.jpg';
 
 const HomeView = () => {
     const dispatch = useAppDispatch();
 
-    const [headerHeight, setHeaderHeight] = useState(0);
+    const { height } = useWindowDimensions();
 
     const gyms = useAppSelector(selectGyms);
     const gymsLoadingState = useAppSelector(selectAllGymsLoadingState);
@@ -27,10 +27,6 @@ const HomeView = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
-    const handleHeaderHeightChange = (height: number) => {
-        setHeaderHeight(height);
-    };
 
     const content = useMemo(() => {
         const items: ReactElement[] = [];
@@ -52,14 +48,21 @@ const HomeView = () => {
 
     return (
         <div className="home-view">
-            <Header isHomePage onHeightChange={handleHeaderHeightChange} />
-            <motion.div animate={{ height: headerHeight }} />
+            <div className="home-view__head" style={{ height }}>
+                <img src={headImage} alt="head image" />
+                <div className="home-view__head__content">
+                    <h1 className="home-view__head__content__title">FairFit</h1>
+                    <h1 className="home-view__head__content__slogan">
+                        the fair way to fitness, compare and achieve
+                    </h1>
+                    <h2 className="home-view__head__content__headline">
+                        Finde das perfekte Studio in deine Nähe!
+                    </h2>
+                    <Search />
+                </div>
+            </div>
             <div className="home-view__content">
-                <h3 className="home-view__content__headline">
-                    Finde das perfekte Studio in deine Nähe!
-                </h3>
-                <Search />
-                <h5 className="home-view__content__headline">Deine Ergebnisse</h5>
+                <h4 className="home-view__content__headline">Deine Ergebnisse</h4>
                 {content}
                 <WaitCursor shouldShowWaitCursor={gymsLoadingState === 'pending'} />
                 {gymsLoadingState === 'rejected' && (

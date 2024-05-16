@@ -2,8 +2,54 @@
     display: flex;
     flex-direction: column;
 
+    &__head {
+        position: relative;
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+
+            filter: brightness(70%);
+        }
+
+        &__content {
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            position: absolute;
+            top: 50%;
+            width: calc(100% - 32px);
+
+            color: white;
+
+            margin: 12px auto;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+
+            &__title {
+                margin: 0;
+                text-align: center;
+
+                font-size: 100px;
+            }
+
+            &__slogan {
+                margin: 0 0 80px 0;
+                text-align: center;
+            }
+
+            &__headline {
+                text-align: center;
+                margin: 0 0 10px 0;
+            }
+        }
+    }
+
     &__content {
         min-height: 100vh;
+        padding: 0 16px;
 
         max-width: 680px;
         margin: 12px auto;
@@ -13,10 +59,6 @@
         gap: 16px;
 
         flex: 1;
-
-        &__headline {
-            margin: 0;
-        }
 
         &__item {
             border-radius: 6px;

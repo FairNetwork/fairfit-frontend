@@ -2,9 +2,9 @@
     min-height: 100vh;
 
     &__content {
-        padding-bottom: 8px;
         max-width: 680px;
         margin: 0 auto;
+        padding: 0 16px 8px 16px;
     }
 
     .ps-sidebar-root {

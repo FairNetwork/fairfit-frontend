@@ -3,6 +3,8 @@
     flex-direction: column;
 
     &__content {
+        padding: 0 16px;
+
         min-height: 100vh;
 
         width: calc(100vw - 32px);

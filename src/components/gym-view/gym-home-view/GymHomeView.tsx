@@ -19,6 +19,7 @@ import Icon from '../../shared/icon/Icon';
 import { Dialog, DialogContent } from '@mui/material';
 import LoginDialog from '../../shared/login-dialog/LoginDialog';
 import DialogTransition from '../../shared/dialog-transition/DialogTransition';
+import CreateAdDialog from '../../shared/create-ad-dialog/CreateAdDialog';
 
 const GymHomeView = () => {
     const { gymInternalId } = useContext(GymContext);
@@ -84,11 +85,12 @@ const GymHomeView = () => {
             <Dialog
                 open={isLoginDialogOpen}
                 keepMounted
+                fullWidth
                 TransitionComponent={DialogTransition}
                 onClose={() => setIsLoginDialogOpen(false)}
                 aria-describedby="alert-dialog-slide-description">
                 <DialogContent>
-                    <LoginDialog onClose={() => setIsLoginDialogOpen(false)} />
+                    <CreateAdDialog onFinish={() => {}} />
                 </DialogContent>
             </Dialog>
             <Header onHeightChange={handleHeaderHeightChange} onMenuOpen={() => setToggled(true)}>

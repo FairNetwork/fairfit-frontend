@@ -77,7 +77,7 @@ const Header = ({ children, onHeightChange, onMenuOpen, isHomePage = false }: He
 
     const logoVariants = useMemo(() => {
         return {
-            small: { scale: 0.6, left: '20px', translateY: '-50%', translateX: '0%' },
+            small: { scale: 0.6, left: '20px', translateY: '-50%', translateX: '10%' },
             large: { scale: 1, left: '50%', translateY: '-50%', translateX: '-50%' }
         };
     }, []);
