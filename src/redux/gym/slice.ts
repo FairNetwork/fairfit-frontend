@@ -33,6 +33,7 @@ const slice = createSlice({
                     gyms.push({
                         id,
                         name,
+                        image: '',
                         internalId: name.toLowerCase(),
                         contact: {
                             email

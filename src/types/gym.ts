@@ -5,6 +5,7 @@ export interface Gym {
     id: string;
     internalId: string;
     logo: string;
+    image: string;
     agbs?: string;
     offers: Offer[];
     abonnements: Offer[];

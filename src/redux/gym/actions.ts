@@ -19,6 +19,7 @@ export const loadGym =
                 logo: EASYFITNESS.logo,
                 offers: EASYFITNESS.offers,
                 id: data.id,
+                image: EASYFITNESS.image,
                 abonnements: EASYFITNESS.abonnements,
                 name: data.name,
                 agbs: EASYFITNESS.agbs,

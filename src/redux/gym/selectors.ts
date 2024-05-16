@@ -71,6 +71,10 @@ export const selectLogoById = (state: RootState, gymId: string): Gym['logo'] | u
     return selectGymById(state, gymId)?.logo;
 };
 
+export const selectImageById = (state: RootState, gymId: string): Gym['logo'] | undefined => {
+    return selectGymById(state, gymId)?.image;
+};
+
 export const selectOfferById = (
     state: RootState,
     gymId: string,
