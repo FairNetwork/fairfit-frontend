@@ -2,6 +2,8 @@
     border-radius: 6px;
     background-color: #52ab98;
     overflow: hidden;
+    aspect-ratio: 16 / 9;
+    position: relative;
 
     cursor: pointer;
 
@@ -11,19 +13,34 @@
         img {
             aspect-ratio: 16 / 9;
             width: 100%;
+
+            filter: brightness(50%);
         }
     }
 
     &__info {
         display: flex;
+        flex-direction: column;
         padding: 6px 12px;
-        justify-content: space-between;
-        align-items: baseline;
         color: white;
+        position: absolute;
+        bottom: 0;
+        left: 0;
 
         &__name {
-            font-size: larger;
+            font-size: xx-large;
             font-weight: bold;
+        }
+
+        &__rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+            gap: 12px;
+
+            &__text {
+                font-size: smaller;
+            }
         }
 
         &__location {

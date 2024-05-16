@@ -56,13 +56,13 @@ const HomeView = () => {
                         the fair way to fitness, compare and achieve
                     </h1>
                     <h2 className="home-view__head__content__headline">
-                        Finde das perfekte Studio in deine Nähe!
+                        Finde das perfekte Studio in deiner Nähe!
                     </h2>
                     <Search />
                 </div>
             </div>
             <div className="home-view__content">
-                <h4 className="home-view__content__headline">Deine Ergebnisse</h4>
+                <h3 className="home-view__content__headline">Deine Ergebnisse</h3>
                 {content}
                 <WaitCursor shouldShowWaitCursor={gymsLoadingState === 'pending'} />
                 {gymsLoadingState === 'rejected' && (

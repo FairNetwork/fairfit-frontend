@@ -5,10 +5,11 @@ interface IconProps {
     size?: CSSProperties['fontSize'];
     color?: CSSProperties['color'];
     onClick?: MouseEventHandler<HTMLElement>;
+    style?: CSSProperties;
 }
 
-const Icon = ({ icon, color, size, onClick }: IconProps) => {
-    return <i className={icon} style={{ fontSize: size, color }} onClick={onClick}></i>;
+const Icon = ({ icon, color, size, style, onClick }: IconProps) => {
+    return <i className={icon} style={{ ...style, fontSize: size, color }} onClick={onClick}></i>;
 };
 
 Icon.displayName = 'Icon';

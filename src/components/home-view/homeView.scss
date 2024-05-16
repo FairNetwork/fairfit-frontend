@@ -60,6 +60,10 @@
 
         flex: 1;
 
+        &__headline {
+            margin: 0;
+        }
+
         &__item {
             border-radius: 6px;
             padding: 12px;
