@@ -28,7 +28,6 @@ const MENU_ITEMS = [
 const GymHomeView = () => {
     const { gymInternalId } = useContext(GymContext);
 
-    const [toggled, setToggled] = useState(false);
     const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
 
     const gymSelector = useCallback(
@@ -56,10 +55,12 @@ const GymHomeView = () => {
         window.scrollTo(0, 0);
     }, []);
 
+    /*
     const handleOpenLoginDialog = () => {
-        setToggled(false);
         setIsLoginDialogOpen(true);
     };
+
+     */
 
     return (
         <div className="gym-home-view">
