@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import InfiniteLooper from '../../shared/infinite-looper/InfiniteLooper';
 import OfferSlider from './offer-slider/OfferSlider';
 import GymInfo from './gym-info/GymInfo';
@@ -12,18 +12,21 @@ import { useAppSelector } from '../../../hooks/redux';
 import Benefits from './benefits/Benefits';
 import Footer from '../../shared/footer/Footer';
 import { GYM_FOOTER_ITEMS } from '../../../constants/footer';
-import { Menu, MenuItem, Sidebar, SubMenu } from 'react-pro-sidebar';
-import Icon from '../../shared/icon/Icon';
 import { Dialog, DialogContent } from '@mui/material';
 import DialogTransition from '../../shared/dialog-transition/DialogTransition';
 import CreateAdDialog from '../../shared/create-ad-dialog/CreateAdDialog';
-import useWindowDimensions from '../../../hooks/windowDimensions';
-import GymMenu from './menu/Menu';
+import GymMenu from '../../shared/menu/Menu';
+import HeadImage from '../../shared/head-image/HeadImage';
+
+const MENU_ITEMS = [
+    { text: 'Angebote', link: 'offers' },
+    { text: 'Geräte', link: 'geräte' },
+    { text: 'Kurse', link: 'kurse' },
+    { text: 'Sonstige Leistungen', link: 'sonstige_vorteile' }
+];
 
 const GymHomeView = () => {
     const { gymInternalId } = useContext(GymContext);
-
-    const { height } = useWindowDimensions();
 
     const [toggled, setToggled] = useState(false);
     const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
@@ -47,17 +50,11 @@ const GymHomeView = () => {
     const gymName = useAppSelector(gymNameSelector);
     const gymImage = useAppSelector(gymImageSelector);
 
-    const [headerHeight, setHeaderHeight] = useState(100);
-
     const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
-    const handleHeaderHeightChange = (height: number) => {
-        setHeaderHeight(height);
-    };
 
     const handleOpenLoginDialog = () => {
         setToggled(false);
@@ -66,35 +63,6 @@ const GymHomeView = () => {
 
     return (
         <div className="gym-home-view">
-            <Sidebar
-                rootStyles={{ backgroundColor: '#F0F0F0' }}
-                onBackdropClick={() => setToggled(false)}
-                toggled={toggled}
-                breakPoint="all">
-                <Menu>
-                    <div style={{ margin: 10, cursor: 'pointer' }}>
-                        <Icon icon="bi-x-lg" size={25} onClick={() => setToggled(false)} />
-                    </div>
-                    <MenuItem onClick={handleOpenLoginDialog}>Studio Login</MenuItem>
-                    <MenuItem component={<Link to={`/${gymInternalId}/dashboard`} />}>
-                        Dashboard
-                    </MenuItem>
-                    <MenuItem component={<Link to={`/${gymInternalId}/offers`} />}>
-                        Angebote
-                    </MenuItem>
-                    <SubMenu label="Benefits">
-                        <MenuItem component={<Link to={`/${gymInternalId}/geräte`} />}>
-                            Geräte
-                        </MenuItem>
-                        <MenuItem component={<Link to={`/${gymInternalId}/kurse`} />}>
-                            Kurse
-                        </MenuItem>
-                        <MenuItem component={<Link to={`/${gymInternalId}/sonstige_vorteile`} />}>
-                            Sonstige Leistungen
-                        </MenuItem>
-                    </SubMenu>
-                </Menu>
-            </Sidebar>
             <Dialog
                 open={isLoginDialogOpen}
                 keepMounted
@@ -106,21 +74,24 @@ const GymHomeView = () => {
                     <CreateAdDialog onFinish={() => {}} />
                 </DialogContent>
             </Dialog>
-            <div className="gym-home-view__head" style={{ height }}>
-                <img src={gymImage} alt="head image" />
-                <div className="gym-home-view__head__offer-slider">
-                    <InfiniteLooper
-                        direction="left"
-                        speed={1}
-                        onClick={() => navigate(`/${gymInternalId}/offers`)}>
-                        <OfferSlider />
-                    </InfiniteLooper>
+            <HeadImage image={gymImage}>
+                <div className="gym-home-view__head">
+                    {hasOffers && (
+                        <div className="gym-home-view__head__offer-slider">
+                            <InfiniteLooper
+                                direction="left"
+                                speed={1}
+                                onClick={() => navigate(`/${gymInternalId}/offers`)}>
+                                <OfferSlider />
+                            </InfiniteLooper>
+                        </div>
+                    )}
+                    <div className="gym-home-view__head__content">
+                        <h1 className="gym-home-view__head__content__title">{gymName}</h1>
+                        <GymMenu items={MENU_ITEMS} />
+                    </div>
                 </div>
-                <div className="gym-home-view__head__content">
-                    <h1 className="gym-home-view__head__content__title">{gymName}</h1>
-                    <GymMenu />
-                </div>
-            </div>
+            </HeadImage>
             <div className="gym-home-view__content">
                 <Offers />
                 <Benefits />
