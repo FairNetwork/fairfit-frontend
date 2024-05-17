@@ -41,6 +41,7 @@ const FooterView = () => {
     const dispatch = useAppDispatch();
 
     const [gymId, setGymId] = useState<Gym['internalId']>();
+    const [slogan, setSlogan] = useState('');
 
     const gymSelector = useCallback(
         (state: RootState) => selectHasGymLoadedById(state, gymId ?? ''),
@@ -90,19 +91,33 @@ const FooterView = () => {
 
         switch (type) {
             case 'data-protection':
+                setSlogan('Datenschutz liegt uns am Herzen!');
+
                 return <DataProtection />;
             case 'general':
+                setSlogan('');
+
                 return <General />;
             case 'q-and-a':
+                setSlogan('');
+
                 return <QAndA />;
             case 'register-studio':
+                setSlogan('');
+
                 return <RegisterStudio />;
             case 'revocation':
+                setSlogan('');
+
                 return <Revocation />;
             case 'terms-conditions':
+                setSlogan('');
+
                 return <TermsAndConditions />;
             case 'impressum':
             default:
+                setSlogan('');
+
                 return <Impressum />;
         }
     }, [location]);
@@ -111,8 +126,8 @@ const FooterView = () => {
         <div className="footer-view">
             <HeadImage image={gymId ? gymImage : headImage}>
                 <div className="footer-view__head">
-                    <div className="footer-view__head__title">{gymId ? gymName : 'FairFit'}</div>
-                    <div className="footer-view__head__slogan">Slogan</div>
+                    <h1 className="footer-view__head__title">{gymId ? gymName : 'FairFit'}</h1>
+                    <h1 className="footer-view__head__slogan">{slogan}</h1>
                     <GymMenu items={gymId ? GYM_MENU_ITEMS : HOMEPAGE_MENU_ITEMS} />
                 </div>
             </HeadImage>
