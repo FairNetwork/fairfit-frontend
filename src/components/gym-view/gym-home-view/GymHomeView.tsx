@@ -1,24 +1,29 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import InfiniteLooper from '../../shared/infinite-looper/InfiniteLooper';
 import OfferSlider from './offer-slider/OfferSlider';
 import GymInfo from './gym-info/GymInfo';
 import './gymHomeView.scss';
-import Header from '../../shared/header/Header';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import Offers from './offers/Offers';
 import { GymContext } from '../../App';
 import { RootState } from '../../../redux/store';
-import { selectHasOffers } from '../../../redux/gym/selectors';
+import { selectGymNameById, selectHasOffers, selectImageById } from '../../../redux/gym/selectors';
 import { useAppSelector } from '../../../hooks/redux';
 import Benefits from './benefits/Benefits';
 import Footer from '../../shared/footer/Footer';
 import { GYM_FOOTER_ITEMS } from '../../../constants/footer';
-import { Menu, MenuItem, Sidebar, SubMenu } from 'react-pro-sidebar';
-import Icon from '../../shared/icon/Icon';
 import { Dialog, DialogContent } from '@mui/material';
-import LoginDialog from '../../shared/login-dialog/LoginDialog';
 import DialogTransition from '../../shared/dialog-transition/DialogTransition';
+import CreateAdDialog from '../../shared/create-ad-dialog/CreateAdDialog';
+import GymMenu from '../../shared/menu/Menu';
+import HeadImage from '../../shared/head-image/HeadImage';
+
+const MENU_ITEMS = [
+    { text: 'Angebote', link: 'offers' },
+    { text: 'Geräte', link: 'geräte' },
+    { text: 'Kurse', link: 'kurse' },
+    { text: 'Sonstige Leistungen', link: 'sonstige_vorteile' }
+];
 
 const GymHomeView = () => {
     const { gymInternalId } = useContext(GymContext);
@@ -31,19 +36,25 @@ const GymHomeView = () => {
         [gymInternalId]
     );
 
-    const hasOffers = useAppSelector(gymSelector);
+    const gymNameSelector = useCallback(
+        (state: RootState) => selectGymNameById(state, gymInternalId),
+        [gymInternalId]
+    );
 
-    const [headerHeight, setHeaderHeight] = useState(100);
+    const gymImageSelector = useCallback(
+        (state: RootState) => selectImageById(state, gymInternalId),
+        [gymInternalId]
+    );
+
+    const hasOffers = useAppSelector(gymSelector);
+    const gymName = useAppSelector(gymNameSelector);
+    const gymImage = useAppSelector(gymImageSelector);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
-    const handleHeaderHeightChange = (height: number) => {
-        setHeaderHeight(height);
-    };
 
     const handleOpenLoginDialog = () => {
         setToggled(false);
@@ -52,56 +63,35 @@ const GymHomeView = () => {
 
     return (
         <div className="gym-home-view">
-            <Sidebar
-                rootStyles={{ backgroundColor: '#F0F0F0' }}
-                onBackdropClick={() => setToggled(false)}
-                toggled={toggled}
-                breakPoint="all">
-                <Menu>
-                    <div style={{ margin: 10, cursor: 'pointer' }}>
-                        <Icon icon="bi-x-lg" size={25} onClick={() => setToggled(false)} />
-                    </div>
-                    <MenuItem onClick={handleOpenLoginDialog}>Studio Login</MenuItem>
-                    <MenuItem component={<Link to={`/${gymInternalId}/dashboard`} />}>
-                        Dashboard
-                    </MenuItem>
-                    <MenuItem component={<Link to={`/${gymInternalId}/offers`} />}>
-                        Angebote
-                    </MenuItem>
-                    <SubMenu label="Benefits">
-                        <MenuItem component={<Link to={`/${gymInternalId}/geräte`} />}>
-                            Geräte
-                        </MenuItem>
-                        <MenuItem component={<Link to={`/${gymInternalId}/kurse`} />}>
-                            Kurse
-                        </MenuItem>
-                        <MenuItem component={<Link to={`/${gymInternalId}/sonstige_vorteile`} />}>
-                            Sonstige Leistungen
-                        </MenuItem>
-                    </SubMenu>
-                </Menu>
-            </Sidebar>
             <Dialog
                 open={isLoginDialogOpen}
                 keepMounted
+                fullWidth
                 TransitionComponent={DialogTransition}
                 onClose={() => setIsLoginDialogOpen(false)}
                 aria-describedby="alert-dialog-slide-description">
                 <DialogContent>
-                    <LoginDialog onClose={() => setIsLoginDialogOpen(false)} />
+                    <CreateAdDialog onFinish={() => {}} />
                 </DialogContent>
             </Dialog>
-            <Header onHeightChange={handleHeaderHeightChange} onMenuOpen={() => setToggled(true)}>
-                {hasOffers && (
-                    <InfiniteLooper
-                        direction="left"
-                        speed={1}
-                        onClick={() => navigate(`/${gymInternalId}/offers`)}>
-                        <OfferSlider />
-                    </InfiniteLooper>
-                )}
-            </Header>
-            <motion.div animate={{ height: headerHeight }} />
+            <HeadImage image={gymImage}>
+                <div className="gym-home-view__head">
+                    {hasOffers && (
+                        <div className="gym-home-view__head__offer-slider">
+                            <InfiniteLooper
+                                direction="left"
+                                speed={1}
+                                onClick={() => navigate(`/${gymInternalId}/offers`)}>
+                                <OfferSlider />
+                            </InfiniteLooper>
+                        </div>
+                    )}
+                    <div className="gym-home-view__head__content">
+                        <h1 className="gym-home-view__head__content__title">{gymName}</h1>
+                        <GymMenu items={MENU_ITEMS} />
+                    </div>
+                </div>
+            </HeadImage>
             <div className="gym-home-view__content">
                 <Offers />
                 <Benefits />

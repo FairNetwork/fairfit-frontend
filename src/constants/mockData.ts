@@ -115,6 +115,7 @@ export const EASYFITNESS: Gym = {
     offers: TESTOFFERS,
     agbs: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a dapibus turpis, ut consequat magna. Mauris commodo faucibus lacus ut facilisis. Donec feugiat faucibus nibh id porta. Vestibulum lacinia ultricies cursus. Vestibulum ullamcorper tellus quis tristique auctor. Donec dictum laoreet ex in dignissim. Nam imperdiet tempus dapibus. Nam a lacus non ipsum mollis efficitur. Curabitur sed ornare nunc, eget vehicula lectus. Etiam interdum semper urna ut porta. Phasellus vitae ante elit.',
     logo,
+    image: 'https://www.hussle.com/blog/wp-content/uploads/2020/12/Gym-structure-1080x675.png',
     openingTimes: OPENINGTIMES,
     benefits: BENEFITS,
     abonnements: TESTABONNEMENTS2,

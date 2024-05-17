@@ -1,8 +1,7 @@
-import { InputAdornment, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import './search.scss';
 import React, { ChangeEvent, useState } from 'react';
 import FilterButtons from './filter-buttons/FilterButtons';
-import Icon from '../../shared/icon/Icon';
 
 const Search = () => {
     const [searchValue, setSearchValue] = useState('');
@@ -20,13 +19,10 @@ const Search = () => {
                 onChange={handleSearchChange}
                 value={searchValue}
                 InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <Icon icon="bi-search" />
-                        </InputAdornment>
-                    )
+                    disableUnderline: true,
+                    style: { backgroundColor: 'white', borderRadius: 100 }
                 }}
-                variant="outlined"
+                variant="filled"
             />
             <FilterButtons />
         </div>

@@ -68,7 +68,7 @@ const OrderOverview = () => {
         }
     }, [isValidId, loadingState]);
 
-    return <div>{content}</div>;
+    return <div style={{ padding: '0 16px' }}>{content}</div>;
 };
 
 OrderOverview.displayName = 'OrderOverview';
