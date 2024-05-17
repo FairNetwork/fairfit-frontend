@@ -1,7 +1,6 @@
 import './budget.scss';
-import { isMobile } from '../../../../utils/environment';
-import { Button, Radio, Slider, TextField, Tooltip } from '@mui/material';
-import { useMemo, useState } from 'react';
+import { Button, Radio, Slider } from '@mui/material';
+import { useState } from 'react';
 
 const MONEY_MARKS = [
     {
