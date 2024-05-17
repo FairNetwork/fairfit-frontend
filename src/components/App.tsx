@@ -9,8 +9,8 @@ import FooterView from './footer-view/FooterView';
 import Dashboard from './gym-view/gym-home-view/dashboard/Dashboard';
 
 interface IGymContext {
-    gymInternalId: Gym['id'];
-    updateGymInternalId?: (id: Gym['id']) => void;
+    gymInternalId?: Gym['id'];
+    updateGymInternalId?: (id?: Gym['id']) => void;
 }
 
 export const GymContext = createContext<IGymContext>({
@@ -23,7 +23,8 @@ GymContext.displayName = 'GymContext';
 const App = () => {
     const [gymId, setGymId] = useState<IGymContext['gymInternalId']>('');
 
-    const updateGymId = useCallback<(id: Gym['id']) => void>((id) => {
+    const updateGymId = useCallback<(id?: Gym['id']) => void>((id) => {
+        console.log(id);
         setGymId(id);
     }, []);
 

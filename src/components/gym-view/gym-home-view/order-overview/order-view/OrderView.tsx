@@ -27,7 +27,7 @@ const OrderView = () => {
     useEffect(() => {
         const offerId = getOfferId(location.search);
 
-        if (offerId) {
+        if (offerId && gymInternalId) {
             // setCurrentStep(1);
             setupRef.current?.complete();
 
@@ -40,7 +40,7 @@ const OrderView = () => {
     };
 
     const handleOffersClick = useCallback(() => {
-        if (selectedOfferId) {
+        if (selectedOfferId && gymInternalId) {
             void dispatch(createSubscription({ offerId: selectedOfferId, gymName: gymInternalId }));
         }
 

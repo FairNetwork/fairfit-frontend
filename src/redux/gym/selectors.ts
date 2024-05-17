@@ -6,37 +6,37 @@ const selectGymState = (state: RootState) => state.gym;
 
 export const selectGyms = (state: RootState) => selectGymState(state).gyms;
 
-export const selectGymById = (state: RootState, gymInternalId: string): Gym | undefined => {
+export const selectGymById = (state: RootState, gymInternalId?: string): Gym | undefined => {
     return selectGyms(state).find(({ internalId }) => internalId === gymInternalId);
 };
 
 export const SelectGymIdByInternalId = (
     state: RootState,
-    gymInternalId: string
+    gymInternalId?: string
 ): string | undefined => {
     return selectGyms(state).find(({ internalId }) => internalId === gymInternalId)?.id;
 };
 
-export const selectAbonnementsById = (state: RootState, gymId: string): Offer[] | undefined => {
+export const selectAbonnementsById = (state: RootState, gymId?: string): Offer[] | undefined => {
     return selectGymById(state, gymId)?.abonnements;
 };
 
-export const selectBenefitsById = (state: RootState, gymId: string): Benefit[] | undefined => {
+export const selectBenefitsById = (state: RootState, gymId?: string): Benefit[] | undefined => {
     return selectGymById(state, gymId)?.benefits;
 };
 
 export const selectHasGymLoadedById = (
     state: RootState,
-    gymId: string
+    gymId?: string
 ): Gym['hasLoaded'] | undefined => {
     return selectGymById(state, gymId)?.hasLoaded;
 };
 
-export const selectOffersById = (state: RootState, gymId: string): Offer[] | undefined => {
+export const selectOffersById = (state: RootState, gymId?: string): Offer[] | undefined => {
     return selectGymById(state, gymId)?.offers;
 };
 
-export const selectOfferNamesById = (state: RootState, gymId: string): string[] | undefined => {
+export const selectOfferNamesById = (state: RootState, gymId?: string): string[] | undefined => {
     const offers = selectOffersById(state, gymId);
     const abonnements = selectAbonnementsById(state, gymId);
 
@@ -45,40 +45,36 @@ export const selectOfferNamesById = (state: RootState, gymId: string): string[] 
     return combined.map(({ title }) => title);
 };
 
-export const selectGymNameById = (state: RootState, gymId: string): Gym['name'] | undefined => {
+export const selectGymNameById = (state: RootState, gymId?: string): Gym['name'] | undefined => {
     return selectGymById(state, gymId)?.name;
 };
 
-export const selectContactById = (state: RootState, gymId: string): Gym['contact'] | undefined => {
+export const selectContactById = (state: RootState, gymId?: string): Gym['contact'] | undefined => {
     return selectGymById(state, gymId)?.contact;
 };
 
 export const selectLocationById = (
     state: RootState,
-    gymId: string
+    gymId?: string
 ): Gym['location'] | undefined => {
     return selectGymById(state, gymId)?.location;
 };
 
 export const selectOpeningTimesById = (
     state: RootState,
-    gymId: string
+    gymId?: string
 ): Gym['openingTimes'] | undefined => {
     return selectGymById(state, gymId)?.openingTimes;
 };
 
-export const selectLogoById = (state: RootState, gymId: string): Gym['logo'] | undefined => {
+export const selectLogoById = (state: RootState, gymId?: string): Gym['logo'] | undefined => {
     return selectGymById(state, gymId)?.logo;
-};
-
-export const selectImageById = (state: RootState, gymId: string): Gym['logo'] | undefined => {
-    return selectGymById(state, gymId)?.image;
 };
 
 export const selectOfferById = (
     state: RootState,
-    gymId: string,
-    offerId: Offer['id']
+    offerId: Offer['id'],
+    gymId?: string
 ): Offer | undefined => {
     const selectedGym = selectGymById(state, gymId);
 
@@ -93,11 +89,15 @@ export const selectOfferById = (
     return combinedOffers.find(({ id }) => id === offerId);
 };
 
-export const selectAgbsById = (state: RootState, gymId: string): Gym['agbs'] | undefined => {
+export const selectImageById = (state: RootState, gymId?: string): Gym['logo'] | undefined => {
+    return selectGymById(state, gymId)?.image;
+};
+
+export const selectAgbsById = (state: RootState, gymId?: string): Gym['agbs'] | undefined => {
     return selectGymById(state, gymId)?.agbs;
 };
 
-export const selectHasOffers = (state: RootState, gymId: string): boolean | undefined => {
+export const selectHasOffers = (state: RootState, gymId?: string): boolean | undefined => {
     return (selectGymById(state, gymId)?.offers ?? []).length > 0;
 };
 

@@ -11,9 +11,13 @@ import { selectSubscriptionId, selectUser } from './selectors';
 import { putSubscription } from '../../api/subscriptions/put';
 
 export const finishOrder =
-    (gymInternalId: string) =>
+    (gymInternalId?: string) =>
     async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
         const state = getState();
+
+        if (!gymInternalId) {
+            return;
+        }
 
         const subscriptionId = selectSubscriptionId(state);
 
@@ -51,7 +55,7 @@ export const createSubscription =
     async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
         const state = getState();
 
-        const offer = selectOfferById(state, gymName, offerId);
+        const offer = selectOfferById(state, offerId, gymName);
 
         const gymId = SelectGymIdByInternalId(state, gymName);
 
@@ -73,9 +77,13 @@ export const createSubscription =
     };
 
 export const updateSubscription =
-    (gymName: string) =>
+    (gymName?: string) =>
     async (_: AppDispatch, getState: GetAppState): Promise<void> => {
         const state = getState();
+
+        if (!gymName) {
+            return;
+        }
 
         const {
             subscriptionId,
@@ -97,7 +105,7 @@ export const updateSubscription =
             return;
         }
 
-        const offer = selectOfferById(state, gymName, selectedOfferId);
+        const offer = selectOfferById(state, selectedOfferId, gymName);
 
         const gymId = SelectGymIdByInternalId(state, gymName);
 
