@@ -34,7 +34,7 @@ export const getProfileUrl = (brand: string, name: string) => {
         case 'twitter':
             return `https://twitter.com/${name}`;
         case 'linkedin':
-            return `https://linkedin.com/${name}`;
+            return `https://linkedin.com/in/${name}`;
         case 'threads':
             return `https://www.threads.net/@${name}`;
         case 'telegram':
