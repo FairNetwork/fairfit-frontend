@@ -1,5 +1,5 @@
 import { ApiFunctionResult } from '../../types/api';
-import { request } from '../../utils/request';
+import { request } from '../../utils1/request';
 
 export interface GetGymResult {
     id: string;

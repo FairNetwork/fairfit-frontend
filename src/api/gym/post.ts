@@ -1,5 +1,5 @@
 import { ApiFunctionResult } from '../../types/api';
-import { request } from '../../utils/request';
+import { request } from '../../utils1/request';
 
 export const postSendMail = async (mail: string, gymId: string): Promise<ApiFunctionResult> => {
     const response = await request({

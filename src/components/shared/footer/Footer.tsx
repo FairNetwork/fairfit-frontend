@@ -1,8 +1,8 @@
-import './footer.scss';
 import { ReactElement, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FooterItem } from '../../../types/footer';
 import { Gym } from '../../../types/gym';
+import './footer.scss';
 
 interface FooterProps {
     items: FooterItem[];

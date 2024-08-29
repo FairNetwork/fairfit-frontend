@@ -1,6 +1,6 @@
 import { AppDispatch, GetAppState } from '../store';
 import { addGym, setAllGymsLoadingState, setGymLoadingState, updateGym } from './slice';
-import { EASYFITNESS } from '../../constants/mockData';
+import { EASYFITNESS } from '../../constants1/mockData';
 import { Gym } from '../../types/gym';
 import { SelectGymIdByInternalId } from './selectors';
 import { getAllGyms, getGym } from '../../api/gym/get';

@@ -1,12 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import HomeView from './home-view/HomeView';
-import GymView from './gym-view/GymView';
-import OrderOverview from './gym-view/gym-home-view/order-overview/OrderOverview';
-import NotAvailable from './shared/not-available/NotAvailable';
-import { createContext, useCallback, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useMemo, useState } from 'react';
 import { Gym } from '../types/gym';
-import FooterView from './footer-view/FooterView';
-import Dashboard from './gym-view/gym-home-view/dashboard/Dashboard';
+import Home from './home/Home';
 
 interface IGymContext {
     gymInternalId?: Gym['id'];
@@ -39,18 +34,18 @@ const App = () => {
     return (
         <GymContext.Provider value={providerValue}>
             <Routes>
-                <Route path="/" element={<HomeView />} />
-                <Route path="/:gym" element={<GymView />} />
-                <Route path="/:gym/offers" element={<OrderOverview />} />
-                <Route path="/:gym/*" element={<NotAvailable />} />
-                <Route path="/:gym/dashboard" element={<Dashboard />} />
-                <Route path="/impressum" element={<FooterView />} />
-                <Route path="/data-protection" element={<FooterView />} />
-                <Route path="/general" element={<FooterView />} />
-                <Route path="/register-studio" element={<FooterView />} />
-                <Route path="/q-and-a" element={<FooterView />} />
-                <Route path="/terms-conditions" element={<FooterView />} />
-                <Route path="/revocation" element={<FooterView />} />
+                <Route path="/" element={<Home />} />
+                {/*<Route path="/:gym" element={<GymView />} />*/}
+                {/*<Route path="/:gym/offers" element={<OrderOverview />} />*/}
+                {/*<Route path="/:gym/*" element={<NotAvailable />} />*/}
+                {/*<Route path="/:gym/dashboard" element={<Dashboard />} />*/}
+                {/*<Route path="/impressum" element={<FooterView />} />*/}
+                {/*<Route path="/data-protection" element={<FooterView />} />*/}
+                {/*<Route path="/general" element={<FooterView />} />*/}
+                {/*<Route path="/register-studio" element={<FooterView />} />*/}
+                {/*<Route path="/q-and-a" element={<FooterView />} />*/}
+                {/*<Route path="/terms-conditions" element={<FooterView />} />*/}
+                {/*<Route path="/revocation" element={<FooterView />} />*/}
             </Routes>
         </GymContext.Provider>
     );

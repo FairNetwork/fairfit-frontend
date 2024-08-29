@@ -1,4 +1,4 @@
-import { Offer } from './offer';
+import { Offer } from '../types1/offer';
 
 export interface Gym {
     name: string;

@@ -1,6 +1,6 @@
 import type { RootState } from '../store';
 import { Benefit, Gym } from '../../types/gym';
-import { Offer } from '../../types/offer';
+import { Offer } from '../../types1/offer';
 
 const selectGymState = (state: RootState) => state.gym;
 
