@@ -1,11 +1,11 @@
-import { useAppDispatch, useAppSelector } from '../../hooks1/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useLocation } from 'react-router-dom';
 import { useCallback, useContext, useEffect, useMemo } from 'react';
 import { loadGym } from '../../redux/gym/actions';
 import { getGymFromRoute } from '../../utils1/routes';
 import NotAvailable from '../shared/not-available/NotAvailable';
 import GymHomeView from './gym-home-view/GymHomeView';
-import { selectGymLoadingState, selectHasGymLoadedById } from '../../redux/gym/selectors';
+import { selectGymLoadingState } from '../../redux/gym/selectors';
 import LoadingGymHomeView from '../loading-views/loading-gym-home-view/LoadingGymHomeView';
 import { GymContext } from '../App';
 import { RootState } from '../../redux/store';

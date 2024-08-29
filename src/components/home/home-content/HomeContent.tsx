@@ -1,7 +1,7 @@
 import './homeContent.scss';
 import { ReactElement, useMemo } from 'react';
 import GymCard from './gym-card/GymCard';
-import { useAppSelector } from '../../../hooks1/redux';
+import { useAppSelector } from '../../../hooks/redux';
 import { selectGyms } from '../../../redux/gym/selectors';
 
 const HomeContent = () => {
@@ -10,7 +10,7 @@ const HomeContent = () => {
     const content = useMemo(() => {
         const items: ReactElement[] = [];
 
-        gyms.forEach(({ name, internalId, location }) => {
+        Object.values(gyms).forEach(({ name, internalId, location }) => {
             items.push(
                 <GymCard
                     key={`gym-card__${internalId}`}

@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '../../../../hooks1/redux';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import NotAvailable from '../../../shared/not-available/NotAvailable';
 import { selectGymById, selectGymLoadingState } from '../../../../redux/gym/selectors';

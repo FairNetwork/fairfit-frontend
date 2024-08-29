@@ -1,8 +1,8 @@
 import './revocation.scss';
-import { Gym } from '../../../types/gym';
+import { IGym } from '../../../types/gym';
 
 interface RevocationProps {
-    gymId?: Gym['internalId'];
+    gymId?: IGym['internalId'];
 }
 
 const Revocation = ({ gymId }: RevocationProps) => {

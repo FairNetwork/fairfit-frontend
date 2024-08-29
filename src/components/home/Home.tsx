@@ -1,20 +1,28 @@
 import './home.scss';
-import { useContext, useEffect } from 'react';
-import { GymContext } from '../App';
+import { useEffect } from 'react';
 import Footer from '../shared/footer/Footer';
 import { HOME_FOOTER_ITEMS } from '../../constants/footer';
 import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
 import HomeContent from './home-content/HomeContent';
 import HomeHeader from './home-header/HomeHeader';
+import { useAppDispatch } from '../../hooks/redux';
+import { loadAllGyms } from '../../redux/gym/actions';
+import { updateCurrentGymId } from '../../redux/gym/slice';
 
 const Home = () => {
-    const { updateGymInternalId } = useContext(GymContext);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (typeof updateGymInternalId === 'function') {
-            updateGymInternalId(undefined);
-        }
-    }, [updateGymInternalId]);
+        void dispatch(loadAllGyms());
+    }, [dispatch]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
+        dispatch(updateCurrentGymId(undefined));
+    }, [dispatch]);
 
     return (
         <div className="home">

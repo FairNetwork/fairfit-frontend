@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import Accordion from '../../../../../shared/accordion/Accordion';
 import './summary.scss';
-import { useAppDispatch, useAppSelector } from '../../../../../../hooks1/redux';
+import { useAppDispatch, useAppSelector } from '../../../../../../hooks/redux';
 import {
     selectSelectedOfferId,
     selectSendOrderLoadingState,

@@ -1,6 +1,6 @@
 import { Offer } from '../types1/offer';
 
-export interface Gym {
+export interface IGym {
     name: string;
     id: string;
     internalId: string;

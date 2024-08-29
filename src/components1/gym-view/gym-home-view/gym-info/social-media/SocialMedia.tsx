@@ -4,7 +4,7 @@ import { getColor, getIcon, getProfileUrl, getTitle } from '../../../../../utils
 import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectContactById } from '../../../../../redux/gym/selectors';
-import { useAppSelector } from '../../../../../hooks1/redux';
+import { useAppSelector } from '../../../../../hooks/redux';
 import ContactCard from '../../../../shared/contact-card/ContactCard';
 import { GymInfoContext } from '../GymInfo';
 

@@ -5,7 +5,7 @@ import PersonalData from './personal-data/PersonalData';
 import Payment from './payment/Payment';
 import './form.scss';
 import { Button, Tooltip } from '@mui/material';
-import { useAppSelector } from '../../../../../../hooks1/redux';
+import { useAppSelector } from '../../../../../../hooks/redux';
 import { selectIsDisabled } from '../../../../../../redux/user/selectors';
 import { isMobile } from '../../../../../../utils1/environment';
 

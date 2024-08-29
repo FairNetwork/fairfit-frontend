@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import useWindowDimensions from '../../../hooks1/windowDimensions';
+import useWindowDimensions from '../../../hooks/windowDimensions';
 import './headImage.scss';
 
 interface HeadImageProps {

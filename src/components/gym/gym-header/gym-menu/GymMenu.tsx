@@ -1,4 +1,4 @@
-import './menu.scss';
+import './gymMenu.scss';
 import { useContext, useMemo } from 'react';
 import { GymContext } from '../../App';
 import { useNavigate } from 'react-router-dom';

@@ -5,7 +5,7 @@ import React, { useCallback, useContext } from 'react';
 import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectLocationById } from '../../../../../redux/gym/selectors';
-import { useAppSelector } from '../../../../../hooks1/redux';
+import { useAppSelector } from '../../../../../hooks/redux';
 
 const Location = () => {
     const { gymInternalId } = useContext(GymContext);

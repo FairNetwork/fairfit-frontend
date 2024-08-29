@@ -2,7 +2,7 @@ import React, { useCallback, useContext } from 'react';
 import ImageCarousel from '../../../shared/image-carousel/ImageCarousel';
 import { selectBenefitsById } from '../../../../redux/gym/selectors';
 import { RootState } from '../../../../redux/store';
-import { useAppSelector } from '../../../../hooks1/redux';
+import { useAppSelector } from '../../../../hooks/redux';
 import { GymContext } from '../../../App';
 
 const Benefits = () => {

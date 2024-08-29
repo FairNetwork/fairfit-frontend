@@ -1,5 +1,5 @@
 import './intro.scss';
-import { useAppSelector } from '../../../../../../hooks1/redux';
+import { useAppSelector } from '../../../../../../hooks/redux';
 import { selectGymNameById } from '../../../../../../redux/gym/selectors';
 import { useCallback, useContext } from 'react';
 import { GymContext } from '../../../../../App';

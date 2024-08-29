@@ -1,8 +1,8 @@
 import './footerView.scss';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { GymContext } from '../App';
-import { useAppDispatch, useAppSelector } from '../../hooks1/redux';
-import { Gym } from '../../types/gym';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { IGym } from '../../types/gym';
 import { RootState } from '../../redux/store';
 import {
     selectGymNameById,
@@ -40,7 +40,7 @@ const FooterView = () => {
 
     const dispatch = useAppDispatch();
 
-    const [gymId, setGymId] = useState<Gym['internalId']>();
+    const [gymId, setGymId] = useState<IGym['internalId']>();
     const [slogan, setSlogan] = useState('');
 
     const gymSelector = useCallback(

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import InfiniteLooper from '../../shared/infinite-looper/InfiniteLooper';
-import OfferSlider from './offer-slider/OfferSlider';
+import InfiniteLooper from '../../../components/shared/infinite-looper/InfiniteLooper';
+import OfferSlider from '../../../components/gym/gym-header/offer-slider/OfferSlider';
 import GymInfo from './gym-info/GymInfo';
 import './gymHomeView.scss';
 import { useCallback, useContext, useEffect, useState } from 'react';
@@ -8,7 +8,7 @@ import Offers from './offers/Offers';
 import { GymContext } from '../../App';
 import { RootState } from '../../../redux/store';
 import { selectGymNameById, selectHasOffers, selectImageById } from '../../../redux/gym/selectors';
-import { useAppSelector } from '../../../hooks1/redux';
+import { useAppSelector } from '../../../hooks/redux';
 import Benefits from './benefits/Benefits';
 import Footer from '../../shared/footer/Footer';
 import { GYM_FOOTER_ITEMS } from '../../../constants/footer';

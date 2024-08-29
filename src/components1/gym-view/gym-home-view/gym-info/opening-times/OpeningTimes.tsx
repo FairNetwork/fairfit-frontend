@@ -1,5 +1,5 @@
 import './openingTimes.scss';
-import { useAppSelector } from '../../../../../hooks1/redux';
+import { useAppSelector } from '../../../../../hooks/redux';
 import { ReactElement, useCallback, useContext, useMemo } from 'react';
 import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';

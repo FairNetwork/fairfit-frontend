@@ -1,114 +1,90 @@
 import type { RootState } from '../store';
-import { Benefit, Gym } from '../../types/gym';
 import { Offer } from '../../types1/offer';
+import { createSelector } from '@reduxjs/toolkit';
 
 const selectGymState = (state: RootState) => state.gym;
 
 export const selectGyms = (state: RootState) => selectGymState(state).gyms;
 
-export const selectGymById = (state: RootState, gymInternalId?: string): Gym | undefined => {
-    return selectGyms(state).find(({ internalId }) => internalId === gymInternalId);
+export const selectCurrentGymId = (state: RootState): string | undefined => {
+    return selectGymState(state).currentGymId;
 };
 
-export const SelectGymIdByInternalId = (
-    state: RootState,
-    gymInternalId?: string
-): string | undefined => {
-    return selectGyms(state).find(({ internalId }) => internalId === gymInternalId)?.id;
-};
+export const selectCurrentGym = createSelector(
+    [selectGyms, selectCurrentGymId],
+    (gyms, currentGymId) => (currentGymId ? gyms[currentGymId] : undefined)
+);
 
-export const selectAbonnementsById = (state: RootState, gymId?: string): Offer[] | undefined => {
-    return selectGymById(state, gymId)?.abonnements;
-};
+export const selectGymId = createSelector(selectCurrentGym, (currentGym) => currentGym?.id);
 
-export const selectBenefitsById = (state: RootState, gymId?: string): Benefit[] | undefined => {
-    return selectGymById(state, gymId)?.benefits;
-};
+export const selectAbonnements = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.abonnements
+);
 
-export const selectHasGymLoadedById = (
-    state: RootState,
-    gymId?: string
-): Gym['hasLoaded'] | undefined => {
-    return selectGymById(state, gymId)?.hasLoaded;
-};
+export const selectBenefits = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.benefits
+);
 
-export const selectOffersById = (state: RootState, gymId?: string): Offer[] | undefined => {
-    return selectGymById(state, gymId)?.offers;
-};
+export const selectHasGymLoaded = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.hasLoaded
+);
 
-export const selectOfferNamesById = (state: RootState, gymId?: string): string[] | undefined => {
-    const offers = selectOffersById(state, gymId);
-    const abonnements = selectAbonnementsById(state, gymId);
+export const selectOffers = createSelector(selectCurrentGym, (currentGym) => currentGym?.offers);
 
-    const combined = [...(offers ?? []), ...(abonnements ?? [])];
-
-    return combined.map(({ title }) => title);
-};
-
-export const selectGymNameById = (state: RootState, gymId?: string): Gym['name'] | undefined => {
-    return selectGymById(state, gymId)?.name;
-};
-
-export const selectContactById = (state: RootState, gymId?: string): Gym['contact'] | undefined => {
-    return selectGymById(state, gymId)?.contact;
-};
-
-export const selectLocationById = (
-    state: RootState,
-    gymId?: string
-): Gym['location'] | undefined => {
-    return selectGymById(state, gymId)?.location;
-};
-
-export const selectOpeningTimesById = (
-    state: RootState,
-    gymId?: string
-): Gym['openingTimes'] | undefined => {
-    return selectGymById(state, gymId)?.openingTimes;
-};
-
-export const selectLogoById = (state: RootState, gymId?: string): Gym['logo'] | undefined => {
-    return selectGymById(state, gymId)?.logo;
-};
-
-export const selectOfferById = (
-    state: RootState,
-    offerId: Offer['id'],
-    gymId?: string
-): Offer | undefined => {
-    const selectedGym = selectGymById(state, gymId);
-
-    if (!selectedGym) {
-        return undefined;
+export const selectOfferNames = createSelector(
+    [selectOffers, selectAbonnements],
+    (offers, abonnements) => {
+        const combined = [...(offers ?? []), ...(abonnements ?? [])];
+        return combined.map(({ title }) => title);
     }
+);
 
-    const { offers, abonnements } = selectedGym;
+export const selectGymName = createSelector(selectCurrentGym, (currentGym) => currentGym?.name);
 
-    const combinedOffers = [...offers, ...abonnements];
+export const selectContact = createSelector(selectCurrentGym, (currentGym) => currentGym?.contact);
 
-    return combinedOffers.find(({ id }) => id === offerId);
-};
+export const selectLocation = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.location
+);
 
-export const selectImageById = (state: RootState, gymId?: string): Gym['logo'] | undefined => {
-    return selectGymById(state, gymId)?.image;
-};
+export const selectOpeningTimes = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.openingTimes
+);
 
-export const selectAgbsById = (state: RootState, gymId?: string): Gym['agbs'] | undefined => {
-    return selectGymById(state, gymId)?.agbs;
-};
+export const selectLogo = createSelector(selectCurrentGym, (currentGym) => currentGym?.logo);
 
-export const selectHasOffers = (state: RootState, gymId?: string): boolean | undefined => {
-    return (selectGymById(state, gymId)?.offers ?? []).length > 0;
-};
+export const selectOfferById = createSelector(
+    [selectCurrentGym, (_: RootState, offerId: Offer['id']) => offerId],
+    (currentGym, offerId) => {
+        if (!currentGym) return undefined;
+        const { offers, abonnements } = currentGym;
+        const combinedOffers = [...offers, ...abonnements];
+        return combinedOffers.find(({ id }) => id === offerId);
+    }
+);
 
-export const selectGymLoadingState = (state: RootState) => selectGymState(state).gymLoadingState;
+export const selectImage = createSelector(selectCurrentGym, (currentGym) => currentGym?.image);
 
-export const selectAllGymsLoadingState = (state: RootState) =>
-    selectGymState(state).allGymsLoadingState;
+export const selectAgbs = createSelector(selectCurrentGym, (currentGym) => currentGym?.agbs);
 
-/*
-export const selectOffersLoadingState = (state: RootState) =>
-    selectGymState(state).offersLoadingState;
+export const selectHasOffers = createSelector(selectOffers, (offers) => (offers ?? []).length > 0);
 
+export const selectGymLoadingState = createSelector(
+    selectGymState,
+    (gymState) => gymState.gymLoadingState
+);
 
- */
+export const selectAllGymsLoadingState = createSelector(
+    selectGymState,
+    (gymState) => gymState.allGymsLoadingState
+);
+
+// export const selectOffersLoadingState = createSelector(
+//     selectGymState,
+//     (gymState) => gymState.offersLoadingState
+// );

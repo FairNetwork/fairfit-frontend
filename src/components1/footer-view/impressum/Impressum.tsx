@@ -1,8 +1,8 @@
 import './impressum.scss';
-import { Gym } from '../../../types/gym';
+import { IGym } from '../../../types/gym';
 
 interface ImpressumProps {
-    gymId?: Gym['internalId'];
+    gymId?: IGym['internalId'];
 }
 
 const Impressum = ({ gymId }: ImpressumProps) => {

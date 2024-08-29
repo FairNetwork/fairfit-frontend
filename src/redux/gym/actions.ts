@@ -1,7 +1,7 @@
 import { AppDispatch, GetAppState } from '../store';
 import { addGym, setAllGymsLoadingState, setGymLoadingState, updateGym } from './slice';
 import { EASYFITNESS } from '../../constants1/mockData';
-import { Gym } from '../../types/gym';
+import { IGym } from '../../types/gym';
 import { SelectGymIdByInternalId } from './selectors';
 import { getAllGyms, getGym } from '../../api/gym/get';
 import { postSendMail } from '../../api/gym/post';
@@ -14,7 +14,7 @@ export const loadGym =
         const { status, data } = await getGym(gymName);
 
         if (status === 200 && data) {
-            const tmp: Gym = {
+            const tmp: IGym = {
                 internalId: data.name.toLowerCase(),
                 logo: EASYFITNESS.logo,
                 offers: EASYFITNESS.offers,
@@ -26,7 +26,7 @@ export const loadGym =
                 location: EASYFITNESS.location,
                 benefits: EASYFITNESS.benefits,
                 openingTimes: EASYFITNESS.openingTimes,
-                contact: { ...EASYFITNESS.contact, email: data.email } as Gym['contact'],
+                contact: { ...EASYFITNESS.contact, email: data.email } as IGym['contact'],
                 hasLoaded: true
             };
 
@@ -82,7 +82,7 @@ export const loadOffers =
     async (dispatch: AppDispatch): Promise<void> => {
         dispatch(setOffersLoadingState('pending'));
 
-        let data: Gym | undefined;
+        let data: IGym | undefined;
 
         if (gymName === 'easyfitness') {
             data = {

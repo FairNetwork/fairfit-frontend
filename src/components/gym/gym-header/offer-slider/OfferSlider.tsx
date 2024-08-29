@@ -1,5 +1,5 @@
 import './offerSlider.scss';
-import Icon from '../../../shared/icon/Icon';
+import Icon from '../../../../components1/shared/icon/Icon';
 
 const OfferSlider = () => {
     return (

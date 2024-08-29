@@ -1,8 +1,8 @@
 import './dataProtection.scss';
-import { Gym } from '../../../types/gym';
+import { IGym } from '../../../types/gym';
 
 interface DataProtectionProps {
-    gymId?: Gym['internalId'];
+    gymId?: IGym['internalId'];
 }
 
 const DataProtection = ({ gymId }: DataProtectionProps) => {

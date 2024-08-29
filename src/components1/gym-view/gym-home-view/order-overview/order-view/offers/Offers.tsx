@@ -1,7 +1,7 @@
 import { Button, Tooltip } from '@mui/material';
 import './offers.scss';
 import Accordion from '../../../../../shared/accordion/Accordion';
-import { useAppDispatch, useAppSelector } from '../../../../../../hooks1/redux';
+import { useAppDispatch, useAppSelector } from '../../../../../../hooks/redux';
 import {
     selectAbonnementsById,
     selectHasOffers,

@@ -1,8 +1,8 @@
 import './registerStudio.scss';
-import { Gym } from '../../../types/gym';
+import { IGym } from '../../../types/gym';
 
 interface RegisterStudioProps {
-    gymId?: Gym['internalId'];
+    gymId?: IGym['internalId'];
 }
 
 const RegisterStudio = ({ gymId }: RegisterStudioProps) => {

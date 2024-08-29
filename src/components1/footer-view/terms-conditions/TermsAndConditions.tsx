@@ -1,8 +1,8 @@
 import './termsAndConditions.scss';
-import { Gym } from '../../../types/gym';
+import { IGym } from '../../../types/gym';
 
 interface TermsAndConditionsProps {
-    gymId?: Gym['internalId'];
+    gymId?: IGym['internalId'];
 }
 
 const TermsAndConditions = ({ gymId }: TermsAndConditionsProps) => {

@@ -1,5 +1,5 @@
 import './gymCard.scss';
-import { Gym } from '../../../../types/gym';
+import { IGym } from '../../../../types/gym';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import Icon from '../../../../components1/shared/icon/Icon';
@@ -8,9 +8,9 @@ import StarIcon from '@mui/icons-material/Star';
 
 interface GymCardProps {
     picture: string;
-    name: Gym['name'];
-    location: Gym['location'];
-    internalId: Gym['internalId'];
+    name: IGym['name'];
+    location: IGym['location'];
+    internalId: IGym['internalId'];
 }
 
 const GymCard = ({ name, internalId, picture, location }: GymCardProps) => {

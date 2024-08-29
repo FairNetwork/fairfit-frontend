@@ -4,7 +4,7 @@ import { Button, TextField } from '@mui/material';
 import { GymContext } from '../../../App';
 import { RootState } from '../../../../redux/store';
 import { selectGymNameById } from '../../../../redux/gym/selectors';
-import { useAppSelector } from '../../../../hooks1/redux';
+import { useAppSelector } from '../../../../hooks/redux';
 
 interface SummaryProps {
     onClick: () => void;

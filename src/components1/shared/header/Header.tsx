@@ -1,6 +1,6 @@
 import { motion, useAnimation } from 'framer-motion';
 import { ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { useAppSelector } from '../../../hooks1/redux';
+import { useAppSelector } from '../../../hooks/redux';
 import { RootState } from '../../../redux/store';
 import { selectLogoById } from '../../../redux/gym/selectors';
 import { GymContext } from '../../App';

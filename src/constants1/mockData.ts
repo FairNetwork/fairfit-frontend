@@ -1,4 +1,4 @@
-import { Benefit, BenefitType, DayType, Gym, OpeningTime } from '../types/gym';
+import { Benefit, BenefitType, DayType, IGym, OpeningTime } from '../types/gym';
 import { Offer } from '../types1/offer';
 import logo from '../assets/EasyLogo.png';
 import kurse from '../assets/CK@4x.png';
@@ -101,7 +101,7 @@ const OPENINGTIMES: OpeningTime[] = [
     { day: DayType.Sunday, startTime: '10:00', endTime: '15:00' }
 ];
 
-export const EASYFITNESS: Gym = {
+export const EASYFITNESS: IGym = {
     name: 'EasyFitness',
     contact: {
         email: 'ahaus@easyfitness-group.de',

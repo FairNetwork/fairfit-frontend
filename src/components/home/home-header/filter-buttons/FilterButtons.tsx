@@ -26,7 +26,7 @@ const BUTTONS: IFilterButton[] = [
     },
     {
         id: '6',
-        text: 'E-Gym'
+        text: 'E-IGym'
     }
 ];
 

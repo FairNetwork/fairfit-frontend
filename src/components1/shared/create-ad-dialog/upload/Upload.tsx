@@ -13,7 +13,7 @@ import { ChangeEvent, ReactElement, useCallback, useContext, useMemo, useState }
 import { GymContext } from '../../../App';
 import { selectOfferNamesById } from '../../../../redux/gym/selectors';
 import { RootState } from '../../../../redux/store';
-import { useAppSelector } from '../../../../hooks1/redux';
+import { useAppSelector } from '../../../../hooks/redux';
 import { isMobile } from '../../../../utils1/environment';
 import Icon from '../../icon/Icon';
 

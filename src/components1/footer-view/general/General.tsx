@@ -1,8 +1,8 @@
 import './general.scss';
-import { Gym } from '../../../types/gym';
+import { IGym } from '../../../types/gym';
 
 interface GeneralProps {
-    gymId?: Gym['internalId'];
+    gymId?: IGym['internalId'];
 }
 
 const General = ({ gymId }: GeneralProps) => {

@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import { FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import './personalData.scss';
-import { useAppDispatch, useAppSelector } from '../../../../../../../hooks1/redux';
+import { useAppDispatch, useAppSelector } from '../../../../../../../hooks/redux';
 import { selectUser } from '../../../../../../../redux/user/selectors';
 import {
     setBirthday,

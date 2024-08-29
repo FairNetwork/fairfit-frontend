@@ -1,5 +1,5 @@
 import Carousel from '../../../shared/carousel/Carousel';
-import { useAppSelector } from '../../../../hooks1/redux';
+import { useAppSelector } from '../../../../hooks/redux';
 import { selectAbonnementsById, selectOffersById } from '../../../../redux/gym/selectors';
 import React, { useCallback, useContext, useMemo } from 'react';
 import './offers.scss';

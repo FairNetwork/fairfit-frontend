@@ -1,6 +1,6 @@
 import { ReactElement, useContext, useEffect, useMemo } from 'react';
 import './homeView.scss';
-import { useAppDispatch, useAppSelector } from '../../hooks1/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { loadAllGyms } from '../../redux/gym/actions';
 import { selectAllGymsLoadingState, selectGyms } from '../../redux/gym/selectors';
 import Search from '../../components/home/home-header/search/Search';

@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { TextField } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../../../../../../hooks1/redux';
+import { useAppDispatch, useAppSelector } from '../../../../../../../hooks/redux';
 import { selectUser } from '../../../../../../../redux/user/selectors';
 import { setIban, setOwner } from '../../../../../../../redux/user/slice';
 import './payment.scss';

@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import './address.scss';
 import { TextField } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../../../../../../hooks1/redux';
+import { useAppDispatch, useAppSelector } from '../../../../../../../hooks/redux';
 import { selectUser } from '../../../../../../../redux/user/selectors';
 import { setNumber, setPlace, setPostcode, setStreet } from '../../../../../../../redux/user/slice';
 

@@ -1,8 +1,8 @@
 import './qAndA.scss';
-import { Gym } from '../../../types/gym';
+import { IGym } from '../../../types/gym';
 
 interface QAndAProps {
-    gymId?: Gym['internalId'];
+    gymId?: IGym['internalId'];
 }
 
 const QAndA = ({ gymId }: QAndAProps) => {

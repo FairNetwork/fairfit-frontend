@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Gym } from '../../types/gym';
+import { IGym } from '../../types/gym';
 import { Offer } from '../../types1/offer';
 import { GetGymResult } from '../../api/gym/get';
 
 type LoadingState = 'none' | 'pending' | 'rejected' | 'successful';
 
 export interface GymState {
-    gyms: Gym[];
+    currentGymId?: IGym['internalId'];
+    gyms: { [internalGymId: string]: IGym };
     gymLoadingState: LoadingState;
     allGymsLoadingState: LoadingState;
     offersLoadingState: LoadingState;
@@ -16,83 +17,55 @@ const initialState: GymState = {
     gymLoadingState: 'none',
     offersLoadingState: 'none',
     allGymsLoadingState: 'none',
-    gyms: []
+    gyms: {}
 };
 
 const slice = createSlice({
     initialState,
     name: 'gym',
     reducers: {
+        updateCurrentGymId(state, { payload }: PayloadAction<GymState['currentGymId']>) {
+            state.currentGymId = payload;
+        },
         addGym(state, { payload }: PayloadAction<GetGymResult[]>) {
-            const { gyms } = state;
-
-            payload.forEach(({ id, name, email }) => {
-                const currentGym = gyms.find(({ id: gymId }) => gymId === id);
-
-                if (!currentGym) {
-                    gyms.push({
+            payload.forEach(({ id, name, email, location }) => {
+                const internalId = name.toLowerCase();
+                if (!state.gyms[internalId]) {
+                    state.gyms[internalId] = {
                         id,
+                        internalId,
                         name,
+                        location,
                         image: '',
-                        internalId: name.toLowerCase(),
+                        logo: '',
                         contact: {
                             email
                         },
-                        logo: '',
                         offers: [],
                         abonnements: [],
                         hasLoaded: false
-                    });
-                }
-            });
-        },
-        updateGym(state, { payload }: PayloadAction<Gym>) {
-            const { gyms } = state;
-
-            const index = gyms.findIndex(({ id }) => id === payload.id);
-
-            if (index < 0) {
-                gyms.push(payload);
-
-                return;
-            }
-
-            state.gyms = gyms.map((gym) => {
-                if (gym.id === payload.id) {
-                    return {
-                        ...gym,
-                        ...payload
                     };
                 }
-
-                return gym;
             });
         },
+        updateGym(state, { payload }: PayloadAction<IGym>) {
+            const { internalId } = payload;
+            state.gyms[internalId] = {
+                ...state.gyms[internalId],
+                ...payload
+            };
+        },
         addOffers(state, { payload }: PayloadAction<AddOfferProps>) {
-            const { gyms } = state;
-
-            const index = gyms.findIndex(({ internalId }) => internalId === payload.id);
-
-            if (index < 0) {
-                return;
+            const gym = state.gyms[payload.id];
+            if (gym) {
+                gym.offers = [...gym.offers, ...payload.offers];
             }
-
-            const { offers } = gyms[index];
-
-            gyms[index].offers = [...offers, ...payload.offers];
         },
         addAbonnements(state, { payload }: PayloadAction<AddOfferProps>) {
-            const { gyms } = state;
-
-            const index = gyms.findIndex(({ internalId }) => internalId === payload.id);
-
-            if (index < 0) {
-                return;
+            const gym = state.gyms[payload.id];
+            if (gym) {
+                gym.abonnements = [...gym.abonnements, ...payload.offers];
             }
-
-            const { abonnements } = gyms[index];
-
-            gyms[index].abonnements = [...abonnements, ...payload.offers];
         },
         setGymLoadingState(state, { payload }: PayloadAction<GymState['gymLoadingState']>) {
             state.gymLoadingState = payload;
@@ -112,6 +85,7 @@ export const {
     updateGym,
     addAbonnements,
     addOffers,
+    updateCurrentGymId,
     setAllGymsLoadingState,
     addGym
 } = slice.actions;
@@ -119,6 +93,6 @@ export const {
 export const gymReducer = slice.reducer;
 
 interface AddOfferProps {
-    id: Gym['id'];
+    id: IGym['internalId'];
     offers: Offer[];
 }

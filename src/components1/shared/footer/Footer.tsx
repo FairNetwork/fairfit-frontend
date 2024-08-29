@@ -2,11 +2,11 @@ import './footer.scss';
 import { ReactElement, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FooterItem } from '../../../types/footer';
-import { Gym } from '../../../types/gym';
+import { IGym } from '../../../types/gym';
 
 interface FooterProps {
     items: FooterItem[];
-    gymId?: Gym['internalId'];
+    gymId?: IGym['internalId'];
 }
 
 const Footer = ({ items, gymId }: FooterProps) => {
