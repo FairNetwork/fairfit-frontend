@@ -4,12 +4,12 @@ import OfferSlider from '../../../components/gym/gym-header/offer-slider/OfferSl
 import GymInfo from './gym-info/GymInfo';
 import './gymHomeView.scss';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import Offers from './offers/Offers';
+import Offers from '../../../components/gym/gym-content/offers/Offers';
 import { GymContext } from '../../App';
 import { RootState } from '../../../redux/store';
 import { selectGymNameById, selectHasOffers, selectImageById } from '../../../redux/gym/selectors';
 import { useAppSelector } from '../../../hooks/redux';
-import Benefits from './benefits/Benefits';
+import Benefits from '../../../components/gym/gym-content/benefits/Benefits';
 import Footer from '../../shared/footer/Footer';
 import { GYM_FOOTER_ITEMS } from '../../../constants/footer';
 import { Dialog, DialogContent } from '@mui/material';

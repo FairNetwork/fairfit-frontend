@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useLocation } from 'react-router-dom';
 import { useCallback, useContext, useEffect, useMemo } from 'react';
 import { loadGym } from '../../redux/gym/actions';
-import { getGymFromRoute } from '../../utils1/routes';
+import { getGymFromRoute } from '../../utils/routes';
 import NotAvailable from '../shared/not-available/NotAvailable';
 import GymHomeView from './gym-home-view/GymHomeView';
 import { selectGymLoadingState } from '../../redux/gym/selectors';

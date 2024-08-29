@@ -4,7 +4,7 @@ import NotAvailable from '../../../shared/not-available/NotAvailable';
 import { selectGymById, selectGymLoadingState } from '../../../../redux/gym/selectors';
 import LoadingOrderView from '../../../loading-views/loading-order-view/LoadingOrderView';
 import OrderView from './order-view/OrderView';
-import { getGymFromRoute, getOfferId } from '../../../../utils1/routes';
+import { getGymFromRoute, getOfferId } from '../../../../utils/routes';
 import { GymContext } from '../../../App';
 import { useLocation } from 'react-router-dom';
 import { RootState } from '../../../../redux/store';

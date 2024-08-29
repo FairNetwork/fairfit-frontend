@@ -7,7 +7,7 @@ import './form.scss';
 import { Button, Tooltip } from '@mui/material';
 import { useAppSelector } from '../../../../../../hooks/redux';
 import { selectIsDisabled } from '../../../../../../redux/user/selectors';
-import { isMobile } from '../../../../../../utils1/environment';
+import { isMobile } from '../../../../../../utils/environment';
 
 interface FormProps {
     onClick: VoidFunction;

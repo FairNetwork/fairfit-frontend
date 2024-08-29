@@ -1,7 +1,7 @@
 import './targetGroup.scss';
 import { ChangeEvent, useMemo, useState } from 'react';
 import { Button, Radio, Slider, TextField, Tooltip } from '@mui/material';
-import { isMobile } from '../../../../utils1/environment';
+import { isMobile } from '../../../../utils/environment';
 
 const AGE_MARKS = [
     {

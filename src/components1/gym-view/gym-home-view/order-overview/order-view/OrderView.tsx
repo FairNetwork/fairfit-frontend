@@ -4,7 +4,7 @@ import Summary from './summary/Summary';
 import Form from './form/Form';
 import Offers from './offers/Offers';
 import Intro from './intro/Intro';
-import { getOfferId } from '../../../../../utils1/routes';
+import { getOfferId } from '../../../../../utils/routes';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
 import { createSubscription, updateSubscription } from '../../../../../redux/user/actions';

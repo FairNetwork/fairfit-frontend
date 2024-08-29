@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
-import { Offer } from '../../../types1/offer';
+import { Offer } from '../../../types/offer';
 import './card.scss';
 import { convertMonth } from '../../../utils1/text';
 import Icon from '../icon/Icon';

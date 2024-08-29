@@ -14,7 +14,7 @@ import { GymContext } from '../../../App';
 import { selectOfferNamesById } from '../../../../redux/gym/selectors';
 import { RootState } from '../../../../redux/store';
 import { useAppSelector } from '../../../../hooks/redux';
-import { isMobile } from '../../../../utils1/environment';
+import { isMobile } from '../../../../utils/environment';
 import Icon from '../../icon/Icon';
 
 interface UploadProps {

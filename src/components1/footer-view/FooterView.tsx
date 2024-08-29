@@ -10,7 +10,7 @@ import {
     selectImageById
 } from '../../redux/gym/selectors';
 import { useLocation } from 'react-router-dom';
-import { getGymFromRoute, getGymId } from '../../utils1/routes';
+import { getGymFromRoute, getGymId } from '../../utils/routes';
 import { loadGym } from '../../redux/gym/actions';
 import Footer from '../shared/footer/Footer';
 import { GYM_FOOTER_ITEMS, HOME_FOOTER_ITEMS } from '../../constants/footer';

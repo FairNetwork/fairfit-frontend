@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { ChangeEvent, MouseEvent, useMemo, useState } from 'react';
 import Icon from '../icon/Icon';
-import { isMobile } from '../../../utils1/environment';
+import { isMobile } from '../../../utils/environment';
 
 interface LoginDialogProps {
     onClose: () => void;

@@ -1,4 +1,4 @@
-import { Offer } from '../types1/offer';
+import { Offer } from './offer';
 
 export interface IGym {
     name: string;

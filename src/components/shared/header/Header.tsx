@@ -3,7 +3,7 @@ import useWindowDimensions from '../../../hooks/windowDimensions';
 import headImage from '../../../assets/fairfit-head-image.jpg';
 import './header.scss';
 import { useAppSelector } from '../../../hooks/redux';
-import { selectImageByInternalId } from '../../../redux/gym/selectors';
+import { selectImage } from '../../../redux/gym/selectors';
 
 interface HeaderProps {
     children: ReactElement;
@@ -12,7 +12,7 @@ interface HeaderProps {
 const Header = ({ children }: HeaderProps) => {
     const { height } = useWindowDimensions();
 
-    const image = useAppSelector(selectImageByInternalId) ?? headImage;
+    const image = useAppSelector(selectImage) ?? headImage;
 
     return (
         <div className="header" style={{ height }}>

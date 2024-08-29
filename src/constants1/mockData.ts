@@ -1,5 +1,5 @@
 import { Benefit, BenefitType, DayType, IGym, OpeningTime } from '../types/gym';
-import { Offer } from '../types1/offer';
+import { Offer } from '../types/offer';
 import logo from '../assets/EasyLogo.png';
 import kurse from '../assets/CK@4x.png';
 import geraete from '../assets/CG@4x.png';

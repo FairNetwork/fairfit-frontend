@@ -1,5 +1,5 @@
 import { ApiFunctionResult } from '../../types/api';
-import { request } from '../../utils1/request';
+import { request } from '../../utils/request';
 import { GYMS } from '../../_mock-data/gyms';
 import { Location } from '../../types/gym';
 

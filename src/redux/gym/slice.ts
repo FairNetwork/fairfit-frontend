@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IGym } from '../../types/gym';
-import { Offer } from '../../types1/offer';
+import { Offer } from '../../types/offer';
 import { GetGymResult } from '../../api/gym/get';
 
 type LoadingState = 'none' | 'pending' | 'rejected' | 'successful';

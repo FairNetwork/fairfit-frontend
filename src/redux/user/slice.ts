@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Offer } from '../../types1/offer';
+import { Offer } from '../../types/offer';
 
 type LoadingState = 'none' | 'pending' | 'rejected' | 'successful';
 

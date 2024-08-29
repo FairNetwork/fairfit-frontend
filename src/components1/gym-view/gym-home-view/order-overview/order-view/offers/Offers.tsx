@@ -9,10 +9,10 @@ import {
 } from '../../../../../../redux/gym/selectors';
 import React, { ReactElement, useCallback, useContext, useMemo, useState } from 'react';
 import Card from '../../../../../shared/card/Card';
-import { Offer } from '../../../../../../types1/offer';
+import { Offer } from '../../../../../../types/offer';
 import { setSelectedOffer } from '../../../../../../redux/user/slice';
 import { selectSelectedOfferId } from '../../../../../../redux/user/selectors';
-import { isMobile } from '../../../../../../utils1/environment';
+import { isMobile } from '../../../../../../utils/environment';
 import { GymContext } from '../../../../../App';
 import { RootState } from '../../../../../../redux/store';
 

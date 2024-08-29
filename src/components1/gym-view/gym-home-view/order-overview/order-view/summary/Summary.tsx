@@ -23,8 +23,8 @@ import { setAreAgbsAccepted, setSendOrderLoadingState } from '../../../../../../
 import { ChangeEvent, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { finishOrder } from '../../../../../../redux/user/actions';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getGymFromRoute } from '../../../../../../utils1/routes';
-import { isMobile } from '../../../../../../utils1/environment';
+import { getGymFromRoute } from '../../../../../../utils/routes';
+import { isMobile } from '../../../../../../utils/environment';
 import { GymContext } from '../../../../../App';
 import { RootState } from '../../../../../../redux/store';
 import DialogTransition from '../../../../../shared/dialog-transition/DialogTransition';

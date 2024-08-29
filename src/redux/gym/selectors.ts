@@ -1,5 +1,5 @@
 import type { RootState } from '../store';
-import { Offer } from '../../types1/offer';
+import { Offer } from '../../types/offer';
 import { createSelector } from '@reduxjs/toolkit';
 
 const selectGymState = (state: RootState) => state.gym;
