@@ -15,7 +15,7 @@ import { selectOfferNamesById } from '../../../../redux/gym/selectors';
 import { RootState } from '../../../../redux/store';
 import { useAppSelector } from '../../../../hooks/redux';
 import { isMobile } from '../../../../utils/environment';
-import Icon from '../../icon/Icon';
+import Icon from '../../../../components/shared/icon/Icon';
 
 interface UploadProps {
     onClick: () => void;

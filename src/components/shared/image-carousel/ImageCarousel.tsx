@@ -3,7 +3,7 @@ import { AnimatePresence, motion, wrap } from 'framer-motion';
 import './imageCarousel.scss';
 import Indicator from './indicator/Indicator';
 import { Benefit, BenefitType } from '../../../types/gym';
-import { GymContext } from '../../App';
+import { GymContext } from '../../../components1/App';
 import { useNavigate } from 'react-router-dom';
 
 interface ImageCarouselProps {

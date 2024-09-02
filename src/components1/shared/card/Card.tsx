@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useMemo, useRef, useState } from 'react
 import { Offer } from '../../../types/offer';
 import './card.scss';
 import { convertMonth } from '../../../utils1/text';
-import Icon from '../icon/Icon';
+import Icon from '../../../components/shared/icon/Icon';
 
 interface CardProps extends Offer {
     onClick?: (id: Offer['id']) => void;

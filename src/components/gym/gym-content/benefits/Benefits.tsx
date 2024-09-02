@@ -1,4 +1,4 @@
-import ImageCarousel from '../../../../components1/shared/image-carousel/ImageCarousel';
+import ImageCarousel from '../../../shared/image-carousel/ImageCarousel';
 import { selectBenefits } from '../../../../redux/gym/selectors';
 import { useAppSelector } from '../../../../hooks/redux';
 

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react';
 import './accordion.scss';
-import Icon from '../icon/Icon';
+import Icon from '../../../components/shared/icon/Icon';
 
 interface AccordionProps {
     children: ReactElement;

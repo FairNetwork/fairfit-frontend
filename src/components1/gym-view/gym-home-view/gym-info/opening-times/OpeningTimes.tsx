@@ -5,7 +5,7 @@ import { GymContext } from '../../../../App';
 import { RootState } from '../../../../../redux/store';
 import { selectOpeningTimesById } from '../../../../../redux/gym/selectors';
 import { convertDay } from '../../../../../utils1/text';
-import Icon from '../../../../shared/icon/Icon';
+import Icon from '../../../../../components/shared/icon/Icon';
 
 const OpeningTimes = () => {
     const { gymInternalId } = useContext(GymContext);

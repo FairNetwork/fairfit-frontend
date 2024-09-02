@@ -29,7 +29,8 @@ const slice = createSlice({
         },
         addGym(state, { payload }: PayloadAction<GetGymResult[]>) {
             payload.forEach(({ id, name, email, location }) => {
-                const internalId = name.toLowerCase();
+                const internalId = name.toLowerCase().replaceAll(' ', '_');
+
                 if (!state.gyms[internalId]) {
                     state.gyms[internalId] = {
                         id,

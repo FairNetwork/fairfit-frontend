@@ -2,7 +2,7 @@ import './gymCard.scss';
 import { IGym } from '../../../../types/gym';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import Icon from '../../../../components1/shared/icon/Icon';
+import Icon from '../../../shared/icon/Icon';
 import { Rating } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 

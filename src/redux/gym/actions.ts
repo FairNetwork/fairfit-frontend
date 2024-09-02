@@ -1,36 +1,41 @@
 import { AppDispatch, GetAppState } from '../store';
 import { addGym, setAllGymsLoadingState, setGymLoadingState, updateGym } from './slice';
-import { EASYFITNESS } from '../../constants1/mockData';
-import { IGym } from '../../types/gym';
-import { SelectGymIdByInternalId } from './selectors';
 import { getAllGyms, getGym } from '../../api/gym/get';
-import { postSendMail } from '../../api/gym/post';
+import { selectCurrentGymId } from './selectors';
 
 export const loadGym =
-    (gymName: string) =>
-    async (dispatch: AppDispatch): Promise<void> => {
+    () =>
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
         dispatch(setGymLoadingState('pending'));
 
-        const { status, data } = await getGym(gymName);
+        const state = getState();
+
+        const currentGymId = selectCurrentGymId(state);
+
+        if (!currentGymId) {
+            return;
+        }
+
+        const { status, data } = await getGym(currentGymId);
 
         if (status === 200 && data) {
-            const tmp: IGym = {
-                internalId: data.name.toLowerCase(),
-                logo: EASYFITNESS.logo,
-                offers: EASYFITNESS.offers,
-                id: data.id,
-                image: EASYFITNESS.image,
-                abonnements: EASYFITNESS.abonnements,
-                name: data.name,
-                agbs: EASYFITNESS.agbs,
-                location: EASYFITNESS.location,
-                benefits: EASYFITNESS.benefits,
-                openingTimes: EASYFITNESS.openingTimes,
-                contact: { ...EASYFITNESS.contact, email: data.email } as IGym['contact'],
-                hasLoaded: true
-            };
+            // const tmp: IGym = {
+            //     internalId: data.name.toLowerCase(),
+            //     logo: EASYFITNESS.logo,
+            //     offers: EASYFITNESS.offers,
+            //     id: data.id,
+            //     image: EASYFITNESS.image,
+            //     abonnements: EASYFITNESS.abonnements,
+            //     name: data.name,
+            //     agbs: EASYFITNESS.agbs,
+            //     location: EASYFITNESS.location,
+            //     benefits: EASYFITNESS.benefits,
+            //     openingTimes: EASYFITNESS.openingTimes,
+            //     contact: { ...EASYFITNESS.contact, email: data.email } as IGym['contact'],
+            //     hasLoaded: true
+            // };
 
-            dispatch(updateGym(tmp));
+            dispatch(updateGym(data));
             dispatch(setGymLoadingState('successful'));
 
             return;
@@ -60,21 +65,21 @@ export const loadAllGyms =
         return;
     };
 
-export const sendEmail =
-    (gymName: string, message: string) =>
-    async (_: AppDispatch, getState: GetAppState): Promise<boolean> => {
-        const state = getState();
-
-        const gymId = SelectGymIdByInternalId(state, gymName);
-
-        if (!gymId) {
-            return false;
-        }
-
-        const { status } = await postSendMail(message, gymId);
-
-        return status === 201;
-    };
+// export const sendEmail =
+//     (gymName: string, message: string) =>
+//     async (_: AppDispatch, getState: GetAppState): Promise<boolean> => {
+//         const state = getState();
+//
+//         const gymId = SelectGymIdByInternalId(state, gymName);
+//
+//         if (!gymId) {
+//             return false;
+//         }
+//
+//         const { status } = await postSendMail(message, gymId);
+//
+//         return status === 201;
+//     };
 
 /*
 export const loadOffers =

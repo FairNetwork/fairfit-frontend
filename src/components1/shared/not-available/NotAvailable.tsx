@@ -1,6 +1,6 @@
 import './notAvailable.scss';
 import { useNavigate } from 'react-router-dom';
-import Icon from '../icon/Icon';
+import Icon from '../../../components/shared/icon/Icon';
 
 const NotAvailable = () => {
     const navigate = useNavigate();

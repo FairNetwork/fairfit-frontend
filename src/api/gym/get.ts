@@ -1,7 +1,7 @@
 import { ApiFunctionResult } from '../../types/api';
 import { request } from '../../utils/request';
-import { GYMS } from '../../_mock-data/gyms';
-import { Location } from '../../types/gym';
+import { GYMS, GYMS_EXTENDED } from '../../_mock-data/gyms';
+import { IGym, Location } from '../../types/gym';
 
 export interface GetGymResult {
     id: string;
@@ -10,17 +10,25 @@ export interface GetGymResult {
     location: Location;
 }
 
-export const getGym = async (name: string): Promise<ApiFunctionResult<GetGymResult>> => {
-    const response = await request<GetGymResult>({
-        method: 'GET',
-        route: `tenants/${name}`
-    });
+export const getGym = async (id: string): Promise<ApiFunctionResult<IGym>> => {
+    // const response = await request<GetGymResult>({
+    //     method: 'GET',
+    //     route: `tenants/${name}`
+    // });
+    //
+    // if (response.status === 200) {
+    //     return { data: response.data, status: 200 };
+    // }
+    //
+    // return { status: response.status };
 
-    if (response.status === 200) {
-        return { data: response.data, status: 200 };
+    const gym = GYMS_EXTENDED.find(({ internalId }) => internalId === id);
+
+    if (gym) {
+        return { status: 200, data: gym };
     }
 
-    return { status: response.status };
+    return { status: 404 };
 };
 
 export const getAllGyms = async (): Promise<ApiFunctionResult<GetGymResult[]>> => {

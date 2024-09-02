@@ -6,7 +6,7 @@ import { selectLogoById } from '../../../redux/gym/selectors';
 import { GymContext } from '../../App';
 import appLogo from '../../../assets/fairfit_logo.png';
 import './header.scss';
-import Icon from '../icon/Icon';
+import Icon from '../../../components/shared/icon/Icon';
 
 interface HeaderProps {
     children?: ReactNode;

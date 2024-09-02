@@ -13,7 +13,7 @@ import {
     Tooltip
 } from '@mui/material';
 import { ChangeEvent, MouseEvent, useMemo, useState } from 'react';
-import Icon from '../icon/Icon';
+import Icon from '../../../components/shared/icon/Icon';
 import { isMobile } from '../../../utils/environment';
 
 interface LoginDialogProps {

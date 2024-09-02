@@ -1,18 +1,16 @@
-import './gym.scss';
-import { useEffect } from 'react';
+import './utility.scss';
+import Header from '../shared/header/Header';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { updateCurrentGymId } from '../../redux/gym/slice';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { selectGymLoadingState } from '../../redux/gym/selectors';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
+import { updateCurrentGymId } from '../../redux/gym/slice';
 import { getGymFromRoute } from '../../utils/routes';
-import GymHeader from './gym-header/GymHeader';
-import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
-import Footer from '../shared/footer/Footer';
-import { GYM_FOOTER_ITEMS } from '../../constants/footer';
-import GymContent from './gym-content/GymContent';
 import { loadGym } from '../../redux/gym/actions';
+import { GYM_FOOTER_ITEMS, HOME_FOOTER_ITEMS } from '../../constants/footer';
+import Footer from '../shared/footer/Footer';
 
-const Gym = () => {
+const Utility = () => {
     const dispatch = useAppDispatch();
 
     const loadingState = useAppSelector(selectGymLoadingState);
@@ -36,17 +34,18 @@ const Gym = () => {
         }
     }, [loadingState, navigate]);
 
+    const isGymPage = useMemo(() => {
+        return getGymFromRoute(location.pathname) !== 'fairfit';
+    }, [location.pathname]);
+
     return (
-        <div className="gym">
-            <GymHeader />
-            <ContentWrapper>
-                <GymContent />
-            </ContentWrapper>
-            <Footer items={GYM_FOOTER_ITEMS} />
+        <div className="utility">
+            <Header></Header>
+            <Footer items={isGymPage ? GYM_FOOTER_ITEMS : HOME_FOOTER_ITEMS} />
         </div>
     );
 };
 
-Gym.displayName = 'Gym';
+Utility.displayName = 'Utility';
 
-export default Gym;
+export default Utility;

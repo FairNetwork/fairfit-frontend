@@ -1,6 +1,6 @@
 import './contactCard.scss';
 import { CSSProperties } from 'react';
-import Icon from '../icon/Icon';
+import Icon from '../../../components/shared/icon/Icon';
 
 interface ContactCardProps {
     onClick?: VoidFunction;

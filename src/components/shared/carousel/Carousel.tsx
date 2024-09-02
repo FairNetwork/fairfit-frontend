@@ -6,7 +6,7 @@ import './carousel.scss';
 import { useNavigate } from 'react-router-dom';
 import { GymContext } from '../../../components1/App';
 import { isMobile } from '../../../utils/environment';
-import Icon from '../../../components1/shared/icon/Icon';
+import Icon from '../icon/Icon';
 
 interface CarouselProps {
     items: Offer[];
