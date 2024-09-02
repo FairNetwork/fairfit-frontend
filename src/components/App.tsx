@@ -1,13 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from './home/Home';
 import Gym from './gym/Gym';
+import Utility from './utility/Utility';
 
 const App = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/:gym" element={<Gym />} />
-            <Route path="/:gym/*" element={<Gym />} />
+            <Route path="/utility/*" element={<Utility />} />
 
             {/*<Route path="/:gym/offers" element={<OrderOverview />} />*/}
             {/*<Route path="/:gym/*" element={<NotAvailable />} />*/}

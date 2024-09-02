@@ -15,7 +15,7 @@ import { GYM_FOOTER_ITEMS } from '../../../constants/footer';
 import { Dialog, DialogContent } from '@mui/material';
 import DialogTransition from '../../shared/dialog-transition/DialogTransition';
 import CreateAdDialog from '../../shared/create-ad-dialog/CreateAdDialog';
-import GymMenu from '../../shared/menu/Menu';
+import GymMenu from '../../../components/shared/gym-menu/GymMenu';
 import HeadImage from '../../shared/head-image/HeadImage';
 
 const MENU_ITEMS = [

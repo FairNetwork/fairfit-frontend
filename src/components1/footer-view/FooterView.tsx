@@ -23,7 +23,7 @@ import TermsAndConditions from './terms-conditions/TermsAndConditions';
 import Impressum from './impressum/Impressum';
 import HeadImage from '../shared/head-image/HeadImage';
 import headImage from '../../assets/fairfit-head-image.jpg';
-import GymMenu from '../shared/menu/Menu';
+import GymMenu from '../../components/shared/gym-menu/GymMenu';
 
 const HOMEPAGE_MENU_ITEMS = [{ text: 'HomePage', link: '' }];
 

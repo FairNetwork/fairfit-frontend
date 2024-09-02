@@ -9,6 +9,9 @@ import { getGymFromRoute } from '../../utils/routes';
 import { loadGym } from '../../redux/gym/actions';
 import { GYM_FOOTER_ITEMS, HOME_FOOTER_ITEMS } from '../../constants/footer';
 import Footer from '../shared/footer/Footer';
+import UtilityHeader from "./utility-header/UtilityHeader";
+import ContentWrapper from "../shared/content-wrapper/ContentWrapper";
+import UtilityContent from "./utility-content/UtilityContent";
 
 const Utility = () => {
     const dispatch = useAppDispatch();
@@ -29,7 +32,7 @@ const Utility = () => {
     }, [dispatch, location.pathname]);
 
     useEffect(() => {
-        if (loadingState === 'rejected') {
+        if (loadingState === 'rejected' || ![].includes() location.pathname === HOME_FOOTER_ITEMS) {
             navigate('/no_content');
         }
     }, [loadingState, navigate]);
@@ -40,7 +43,10 @@ const Utility = () => {
 
     return (
         <div className="utility">
-            <Header></Header>
+            <Header><UtilityHeader/></Header>
+            <ContentWrapper>
+                <UtilityContent/>
+            </ContentWrapper>
             <Footer items={isGymPage ? GYM_FOOTER_ITEMS : HOME_FOOTER_ITEMS} />
         </div>
     );

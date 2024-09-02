@@ -2,10 +2,17 @@ import './gym.scss';
 import Header from '../../shared/header/Header';
 import InfiniteLooper from '../../shared/infinite-looper/InfiniteLooper';
 import OfferSlider from './offer-slider/OfferSlider';
-import GymMenu from '../../../components1/shared/menu/Menu';
+import GymMenu, { GymMenuItem } from '../../shared/gym-menu/GymMenu';
 import { useAppSelector } from '../../../hooks/redux';
 import { selectCurrentGymId, selectGymName, selectHasOffers } from '../../../redux/gym/selectors';
 import { useNavigate } from 'react-router-dom';
+
+const MENU_ITEMS: GymMenuItem[] = [
+    { text: 'Angebote', link: 'offers' },
+    { text: 'Geräte', link: 'geräte' },
+    { text: 'Kurse', link: 'kurse' },
+    { text: 'Sonstige Leistungen', link: 'sonstige_vorteile' }
+];
 
 const GymHeader = () => {
     const hasOffers = useAppSelector(selectHasOffers);
@@ -30,7 +37,7 @@ const GymHeader = () => {
                     )}
                     <div className="gym-header__content">
                         <h1 className="gym-header__content__title">{gymName}</h1>
-                        <GymMenu />
+                        <GymMenu items={MENU_ITEMS} />
                     </div>
                 </>
             </Header>

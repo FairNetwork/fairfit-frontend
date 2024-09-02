@@ -1,6 +1,6 @@
-import './menu.scss';
+import './gymMenu.scss';
 import { useContext, useMemo } from 'react';
-import { GymContext } from '../../App';
+import { GymContext } from '../../../components1/App';
 import { useNavigate } from 'react-router-dom';
 
 export interface GymMenuItem {
@@ -8,29 +8,26 @@ export interface GymMenuItem {
     link: string;
 }
 
-const MENU_ITEMS: GymMenuItem[] = [
-    { text: 'Angebote', link: 'offers' },
-    { text: 'Geräte', link: 'geräte' },
-    { text: 'Kurse', link: 'kurse' },
-    { text: 'Sonstige Leistungen', link: 'sonstige_vorteile' }
-];
+interface GymMenuProps {
+    items: GymMenuItem[];
+}
 
-const GymMenu = () => {
+const GymMenu = ({ items }: GymMenuProps) => {
     const { gymInternalId } = useContext(GymContext);
 
     const navigate = useNavigate();
 
     const content = useMemo(() => {
-        return MENU_ITEMS.map(({ text, link }) => (
+        return items.map(({ text, link }) => (
             <div
-                className="menu__item"
+                className="gym-menu__item"
                 onClick={() => navigate(gymInternalId ? `/${gymInternalId}/${link}` : `/${link}`)}>
                 {text}
             </div>
         ));
-    }, [gymInternalId, navigate]);
+    }, [gymInternalId, items, navigate]);
 
-    return <div className="menu">{content}</div>;
+    return <div className="gym-menu">{content}</div>;
 };
 
 GymMenu.displayName = 'GymMenu';
