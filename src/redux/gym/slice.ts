@@ -28,7 +28,7 @@ const slice = createSlice({
             state.currentGymId = payload;
         },
         addGym(state, { payload }: PayloadAction<GetGymResult[]>) {
-            payload.forEach(({ id, name, email, location }) => {
+            payload.forEach(({ id, name, address }) => {
                 const internalId = name.toLowerCase().replaceAll(' ', '_');
 
                 if (!state.gyms[internalId]) {
@@ -36,12 +36,11 @@ const slice = createSlice({
                         id,
                         internalId,
                         name,
-                        location,
+                        location: {
+                            address
+                        },
                         image: '',
                         logo: '',
-                        contact: {
-                            email
-                        },
                         offers: [],
                         abonnements: [],
                         hasLoaded: false

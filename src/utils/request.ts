@@ -2,8 +2,8 @@ import { IS_DEVELOPMENT, IS_QA } from '../constants/environment';
 
 let BASE_REST_PATH =
     IS_DEVELOPMENT || IS_QA
-        ? 'https://fairfit-backend-ltot5.ondigitalocean.app/'
-        : 'https://fairfit-backend-ltot5.ondigitalocean.app/';
+        ? 'https://fairfit-backend-qa.onrender.com/'
+        : 'https://fairfit-backend-qa.onrender.com/';
 
 const searchParams = new URLSearchParams(window.location.search);
 

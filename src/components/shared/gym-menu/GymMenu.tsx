@@ -1,7 +1,8 @@
 import './gymMenu.scss';
-import { useContext, useMemo } from 'react';
-import { GymContext } from '../../../components1/App';
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../../hooks/redux';
+import { selectCurrentGymId } from '../../../redux/gym/selectors';
 
 export interface GymMenuItem {
     text: string;
@@ -13,7 +14,7 @@ interface GymMenuProps {
 }
 
 const GymMenu = ({ items }: GymMenuProps) => {
-    const { gymInternalId } = useContext(GymContext);
+    const gymInternalId = useAppSelector(selectCurrentGymId);
 
     const navigate = useNavigate();
 

@@ -1,10 +1,11 @@
-import { ReactElement, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, wrap } from 'framer-motion';
 import './imageCarousel.scss';
 import Indicator from './indicator/Indicator';
 import { Benefit, BenefitType } from '../../../types/gym';
-import { GymContext } from '../../../components1/App';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../../hooks/redux';
+import { selectCurrentGymId } from '../../../redux/gym/selectors';
 
 interface ImageCarouselProps {
     images: Benefit[];
@@ -32,7 +33,7 @@ const variants = {
 };
 
 const ImageCarousel = ({ images }: ImageCarouselProps) => {
-    const { gymInternalId } = useContext(GymContext);
+    const gymInternalId = useAppSelector(selectCurrentGymId);
 
     const [[page, direction], setPage] = useState([0, 0]);
 

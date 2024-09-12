@@ -1,19 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Offer } from '../../../types/offer';
 import Card from '../../../components1/shared/card/Card';
 import { useSpringCarousel } from 'react-spring-carousel';
 import './carousel.scss';
 import { useNavigate } from 'react-router-dom';
-import { GymContext } from '../../../components1/App';
 import { isMobile } from '../../../utils/environment';
 import Icon from '../icon/Icon';
+import { useAppSelector } from '../../../hooks/redux';
+import { selectCurrentGymId } from '../../../redux/gym/selectors';
 
 interface CarouselProps {
     items: Offer[];
 }
 
 const Carousel = ({ items }: CarouselProps) => {
-    const { gymInternalId } = useContext(GymContext);
+    const gymInternalId = useAppSelector(selectCurrentGymId);
 
     const navigate = useNavigate();
 

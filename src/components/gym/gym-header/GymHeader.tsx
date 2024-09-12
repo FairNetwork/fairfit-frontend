@@ -1,4 +1,4 @@
-import './gym.scss';
+import './gymHeader.scss';
 import Header from '../../shared/header/Header';
 import InfiniteLooper from '../../shared/infinite-looper/InfiniteLooper';
 import OfferSlider from './offer-slider/OfferSlider';

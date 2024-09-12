@@ -40,7 +40,7 @@ export interface ISocialMedia {
 
 export interface Location {
     address: string;
-    coordinates: [number, number];
+    coordinates?: [number, number];
 }
 
 export enum DayType {
