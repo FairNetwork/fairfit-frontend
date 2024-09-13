@@ -1,20 +1,10 @@
 import './utilityHeader.scss';
-import { useLocation } from 'react-router-dom';
 import { useMemo } from 'react';
 import GymMenu from '../../shared/gym-menu/GymMenu';
 import { useAppSelector } from '../../../hooks/redux';
 import { getGymId, getPathFromUrl } from '../../../utils/routes';
 import { selectGymName } from '../../../redux/gym/selectors';
-
-const HOMEPAGE_MENU_ITEMS = [{ text: 'HomePage', link: '' }];
-
-const GYM_MENU_ITEMS = [
-    { text: 'HomePage', link: '' },
-    { text: 'Angebote', link: 'offers' },
-    { text: 'Geräte', link: 'geräte' },
-    { text: 'Kurse', link: 'kurse' },
-    { text: 'Sonstige Leistungen', link: 'sonstige_vorteile' }
-];
+import { GYM_MENU_ITEMS, HOMEPAGE_MENU_ITEMS } from '../../../constants/menu';
 
 const UtilityHeader = () => {
     const gymName = useAppSelector(selectGymName);
