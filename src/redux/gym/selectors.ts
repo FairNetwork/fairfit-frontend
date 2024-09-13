@@ -72,7 +72,9 @@ export const selectImage = createSelector(selectCurrentGym, (currentGym) => curr
 
 export const selectAgbs = createSelector(selectCurrentGym, (currentGym) => currentGym?.agbs);
 
-export const selectHasOffers = createSelector(selectOffers, (offers) => (offers ?? []).length > 0);
+export const selectHasOffers = createSelector(selectAbonnements, (abonnements) =>
+    abonnements?.some(({ isOffer }) => isOffer)
+);
 
 export const selectGymLoadingState = createSelector(
     selectGymState,
