@@ -13,7 +13,7 @@ const SocialMediaWrapper = () => {
         });
     }, [socialMedia]);
 
-    return <div className="social_media-wrapper">{content}</div>;
+    return <div className="social-media-wrapper">{content}</div>;
 };
 
 SocialMediaWrapper.displayName = 'SocialMediaWrapper';

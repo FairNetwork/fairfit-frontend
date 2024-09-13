@@ -1,45 +1,14 @@
 import { Offer } from './offer';
+import { ISocialMedia } from './socialMedia';
+import { IBenefit } from './benefit';
 
 export interface IGym {
     name: string;
     id: string;
     internalId: string;
-    logo: string;
-    image: string;
-    agbs?: string;
-    offers: Offer[];
     abonnements: Offer[];
-    benefits?: Benefit[];
+    benefits?: IBenefit[];
     socialMedia?: ISocialMedia[];
-    contact?: Contact;
-    location?: Location;
-    openingTimes?: OpeningTime[];
-    hasLoaded?: boolean;
-}
-
-export interface Benefit {
-    id: string;
-    imageUrl: string;
-}
-
-export enum SocialMediaType {
-    INSTAGRAM,
-    FACEBOOK,
-    YOUTUBE,
-    TIKTOK,
-    TWITTER
-}
-
-export interface ISocialMedia {
-    id: string;
-    type: SocialMediaType;
-    userName: string;
-}
-
-export enum BenefitType {
-    Equipment,
-    Courses,
-    Otherwise
 }
 
 export interface Contact {

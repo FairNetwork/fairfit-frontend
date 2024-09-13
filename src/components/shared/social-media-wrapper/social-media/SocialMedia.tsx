@@ -1,7 +1,7 @@
 import './socialMedia.scss';
 import Icon from '../../icon/Icon';
-import { getIcon, getProfileUrl } from '../../../../types/socialMedia';
-import { ISocialMedia } from '../../../../types/gym';
+import { getIcon, getProfileUrl } from '../../../../utils/socialMedia';
+import { ISocialMedia } from '../../../../types/socialMedia';
 
 interface SocialMediaProps {
     userName: ISocialMedia['userName'];
