@@ -1,6 +1,7 @@
 import { ApiFunctionResult } from '../../types/api';
 import { request } from '../../utils/request';
 import { IGym } from '../../types/gym';
+import { ITag } from '../../types/tag';
 
 export interface GetGymResult {
     id: IGym['id'];
@@ -24,14 +25,13 @@ export const getGym = async (id: string): Promise<ApiFunctionResult<IGym>> => {
 };
 
 export const getAllGyms = async (
-    searchString: string
+    searchString: string,
+    tags: ITag['name'][]
 ): Promise<ApiFunctionResult<GetGymResult[]>> => {
     const response = await request<GetGymResult[]>({
         method: 'GET',
-        route: `gyms?searchString=${searchString}`
+        route: `gyms?searchString=${searchString}&tags=${tags.join(',')}`
     });
-
-    console.log(response);
 
     if (response.status === 200) {
         return { data: response.data, status: 200 };

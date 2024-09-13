@@ -1,37 +1,16 @@
 import './filterButtons.scss';
-import { ReactElement, useCallback, useMemo, useState } from 'react';
-import { IFilterButton } from '../../../../types/filterButton';
+import { ReactElement, useCallback, useMemo } from 'react';
 import FilterButton from './filter-button/FilterButton';
-
-const BUTTONS: IFilterButton[] = [
-    {
-        id: '1',
-        text: 'Kurse'
-    },
-    {
-        id: '2',
-        text: '24/7'
-    },
-    {
-        id: '3',
-        text: 'Solarium'
-    },
-    {
-        id: '4',
-        text: 'Trainingsapp'
-    },
-    {
-        id: '5',
-        text: 'Calisthenics'
-    },
-    {
-        id: '6',
-        text: 'E-IGym'
-    }
-];
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { selectSelectedTagIds, selectTags } from '../../../../redux/gym/selectors';
+import { loadAllGyms } from '../../../../redux/gym/actions';
+import { setSelectedTags } from '../../../../redux/gym/slice';
 
 const FilterButtons = () => {
-    const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    const dispatch = useAppDispatch();
+
+    const filterbuttons = useAppSelector(selectTags);
+    const selectedIds = useAppSelector(selectSelectedTagIds);
 
     /**
      * Function to update the selected items
@@ -49,26 +28,25 @@ const FilterButtons = () => {
             }
 
             if (newIds.length === 0) {
-                newIds = ['all'];
+                newIds = [];
             }
 
-            setSelectedIds(newIds);
+            dispatch(setSelectedTags(newIds));
 
-            // ToDo call request with filter
+            void dispatch(loadAllGyms());
         },
-        [selectedIds]
+        [dispatch, selectedIds]
     );
 
     const buttons = useMemo(() => {
         const items: ReactElement[] = [];
 
-        BUTTONS.forEach(({ text, id, color }) => {
+        filterbuttons.forEach(({ name, id }) => {
             items.push(
                 <FilterButton
                     key={`filter-button__${id}`}
-                    text={text}
+                    name={name}
                     id={id}
-                    color={color}
                     onSelect={handleSelect}
                     isSelected={selectedIds.includes(id)}
                 />
@@ -76,7 +54,7 @@ const FilterButtons = () => {
         });
 
         return items;
-    }, [handleSelect, selectedIds]);
+    }, [filterbuttons, handleSelect, selectedIds]);
 
     return (
         <div className="filter-buttons">

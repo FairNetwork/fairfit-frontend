@@ -1,4 +1,4 @@
-export interface IFilterButton {
+export interface ITag {
     id: string;
     name: string;
 }

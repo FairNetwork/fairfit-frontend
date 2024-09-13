@@ -18,9 +18,22 @@ export const selectSearchResultIds = (state: RootState) => {
     return selectGymState(state).searchResultIds;
 };
 
+export const selectTags = (state: RootState) => {
+    return selectGymState(state).tags;
+};
+
+export const selectSelectedTagIds = (state: RootState) => {
+    return selectGymState(state).selectedTags;
+};
+
 export const selectCurrentGym = createSelector(
     [selectGyms, selectCurrentGymId],
     (gyms, currentGymId) => (currentGymId ? gyms[currentGymId] : undefined)
+);
+export const selectSelectedTags = createSelector(
+    [selectTags, selectSelectedTagIds],
+    (tags, selectedTagIds) =>
+        tags.filter(({ id }) => selectedTagIds.includes(id)).map(({ name }) => name)
 );
 
 export const selectFilteredGyms = createSelector(

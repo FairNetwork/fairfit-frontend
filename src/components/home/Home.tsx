@@ -6,7 +6,7 @@ import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
 import HomeContent from './home-content/HomeContent';
 import HomeHeader from './home-header/HomeHeader';
 import { useAppDispatch } from '../../hooks/redux';
-import { loadAllGyms } from '../../redux/gym/actions';
+import { loadAllGyms, loadTags } from '../../redux/gym/actions';
 import { updateCurrentGymId } from '../../redux/gym/slice';
 
 const Home = () => {
@@ -14,6 +14,7 @@ const Home = () => {
 
     useEffect(() => {
         void dispatch(loadAllGyms());
+        void dispatch(loadTags());
     }, [dispatch]);
 
     useEffect(() => {

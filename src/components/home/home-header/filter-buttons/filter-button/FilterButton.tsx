@@ -7,7 +7,7 @@ interface FilterButtonProps extends IFilterButton {
     isSelected?: boolean;
 }
 
-const FilterButton = ({ onSelect, isSelected = false, text, color, id }: FilterButtonProps) => {
+const FilterButton = ({ onSelect, isSelected = false, name, id }: FilterButtonProps) => {
     const [isHover, setIsHover] = useState(false);
 
     const opacity = useMemo(() => {
@@ -28,8 +28,8 @@ const FilterButton = ({ onSelect, isSelected = false, text, color, id }: FilterB
             onClick={() => onSelect(id)}
             onMouseOver={() => setIsHover(true)}
             onMouseOut={() => setIsHover(false)}
-            style={{ backgroundColor: color, opacity }}>
-            <div className="filter-button__text">{text}</div>
+            style={{ opacity }}>
+            <div className="filter-button__text">{name}</div>
         </div>
     );
 };

@@ -4,10 +4,12 @@ import {
     setAllGymsLoadingState,
     setGymLoadingState,
     setSearchResultIds,
+    setTags,
     updateGym
 } from './slice';
 import { getAllGyms, getGym } from '../../api/gym/get';
-import { selectCurrentGymId, selectSearchString } from './selectors';
+import { selectCurrentGymId, selectSearchString, selectSelectedTags } from './selectors';
+import { getTags } from '../../api/tags/get';
 
 export const loadGym =
     () =>
@@ -44,8 +46,9 @@ export const loadAllGyms =
         const state = getState();
 
         const searchString = selectSearchString(state);
+        const tags = selectSelectedTags(state);
 
-        const { status, data } = await getAllGyms(searchString);
+        const { status, data } = await getAllGyms(searchString, tags);
 
         if (status === 200 && data) {
             dispatch(addGym(data));
@@ -63,6 +66,16 @@ export const loadAllGyms =
         dispatch(setAllGymsLoadingState('rejected'));
 
         return;
+    };
+
+export const loadTags =
+    () =>
+    async (dispatch: AppDispatch): Promise<void> => {
+        const { status, data } = await getTags();
+
+        if (status === 200 && data) {
+            dispatch(setTags(data));
+        }
     };
 
 // export const sendEmail =

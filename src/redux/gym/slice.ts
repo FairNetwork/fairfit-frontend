@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IGym } from '../../types/gym';
 import { Offer } from '../../types/offer';
 import { GetGymResult } from '../../api/gym/get';
+import { ITag } from '../../types/tag';
 
 type LoadingState = 'none' | 'pending' | 'rejected' | 'successful';
 
@@ -13,6 +14,8 @@ export interface GymState {
     offersLoadingState: LoadingState;
     searchString: string;
     searchResultIds: string[];
+    tags: ITag[];
+    selectedTags: ITag['id'][];
 }
 
 const initialState: GymState = {
@@ -21,7 +24,9 @@ const initialState: GymState = {
     allGymsLoadingState: 'none',
     gyms: {},
     searchString: '',
-    searchResultIds: []
+    searchResultIds: [],
+    tags: [],
+    selectedTags: []
 };
 
 const slice = createSlice({
@@ -74,6 +79,12 @@ const slice = createSlice({
         setSearchString(state, { payload }: PayloadAction<GymState['searchString']>) {
             state.searchString = payload;
         },
+        setTags(state, { payload }: PayloadAction<GymState['tags']>) {
+            state.tags = payload;
+        },
+        setSelectedTags(state, { payload }: PayloadAction<GymState['selectedTags']>) {
+            state.selectedTags = payload;
+        },
         setSearchResultIds(state, { payload }: PayloadAction<GymState['searchResultIds']>) {
             state.searchResultIds = payload;
         }
@@ -89,6 +100,8 @@ export const {
     setAllGymsLoadingState,
     addGym,
     setSearchString,
+    setTags,
+    setSelectedTags,
     setSearchResultIds
 } = slice.actions;
 
