@@ -2,10 +2,7 @@ import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, wrap } from 'framer-motion';
 import './imageCarousel.scss';
 import Indicator from './indicator/Indicator';
-import { Benefit, BenefitType } from '../../../types/gym';
-import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../../hooks/redux';
-import { selectCurrentGymId } from '../../../redux/gym/selectors';
+import { Benefit } from '../../../types/gym';
 
 interface ImageCarouselProps {
     images: Benefit[];
@@ -33,11 +30,7 @@ const variants = {
 };
 
 const ImageCarousel = ({ images }: ImageCarouselProps) => {
-    const gymInternalId = useAppSelector(selectCurrentGymId);
-
     const [[page, direction], setPage] = useState([0, 0]);
-
-    const navigate = useNavigate();
 
     const imageIndex = wrap(0, images.length, page);
 
@@ -70,38 +63,12 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
         return items;
     }, [imageIndex, images]);
 
-    const handleClick = (type: BenefitType) => {
-        let path;
-
-        switch (type) {
-            case BenefitType.Equipment:
-                path = 'geräte';
-                break;
-            case BenefitType.Courses:
-                path = 'kurse';
-                break;
-            case BenefitType.Otherwise:
-                path = 'sonstige_vorteile';
-                break;
-            default:
-                path = undefined;
-                break;
-        }
-
-        if (!path) {
-            return;
-        }
-
-        navigate(`/${gymInternalId}/${path}`);
-    };
-
     return (
         <div className="image-carousel">
             <AnimatePresence initial={false} custom={direction}>
                 <motion.img
                     key={page}
                     src={images[imageIndex].imageUrl}
-                    onClick={() => handleClick(images[imageIndex].type)}
                     custom={direction}
                     variants={variants}
                     initial="enter"
@@ -112,11 +79,7 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
                         opacity: { duration: 0.2 }
                     }}
                 />
-                <div
-                    className="image-carousel__indicators"
-                    onClick={() => handleClick(images[imageIndex].type)}>
-                    {indicators}
-                </div>
+                <div className="image-carousel__indicators">{indicators}</div>
             </AnimatePresence>
         </div>
     );

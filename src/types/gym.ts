@@ -19,7 +19,6 @@ export interface IGym {
 export interface Benefit {
     id: string;
     imageUrl: string;
-    type: BenefitType;
 }
 
 export enum BenefitType {
