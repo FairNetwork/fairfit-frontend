@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import { Offer } from '../../../types/offer';
-import Card from '../../../components1/shared/card/Card';
 import './cardSlider.scss';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../hooks/redux';
 import { selectCurrentGymId } from '../../../redux/gym/selectors';
+import Card from './card/Card';
 
 interface CardSliderProps {
     items?: Offer[];

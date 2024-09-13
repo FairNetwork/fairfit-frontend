@@ -3,9 +3,11 @@ import { request } from '../../utils/request';
 import { IGym } from '../../types/gym';
 
 export interface GetGymResult {
-    id: string;
-    name: string;
-    address: string;
+    id: IGym['id'];
+    name: IGym['name'];
+    address: IGym['address'];
+    gymImage: IGym['gymImage'];
+    rating: IGym['rating'];
 }
 
 export const getGym = async (id: string): Promise<ApiFunctionResult<IGym>> => {

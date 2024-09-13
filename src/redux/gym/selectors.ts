@@ -22,60 +22,35 @@ export const selectAbonnements = createSelector(
     (currentGym) => currentGym?.abonnements
 );
 
+export const selectAllGymsLoadingState = (state: RootState) =>
+    selectGymState(state).allGymsLoadingState;
+
 export const selectBenefits = createSelector(
     selectCurrentGym,
     (currentGym) => currentGym?.benefits
 );
 
-export const selectHasGymLoaded = createSelector(
-    selectCurrentGym,
-    (currentGym) => currentGym?.hasLoaded
-);
+export const selectImage = createSelector(selectCurrentGym, (currentGym) => currentGym?.gymImage);
 
-export const selectOffers = createSelector(selectCurrentGym, (currentGym) => currentGym?.offers);
-
-export const selectOfferNames = createSelector(
-    [selectOffers, selectAbonnements],
-    (offers, abonnements) => {
-        const combined = [...(offers ?? []), ...(abonnements ?? [])];
-        return combined.map(({ title }) => title);
-    }
-);
+export const selectOfferNames = createSelector([selectAbonnements], (abonnements) => {
+    return abonnements?.map(({ title }) => title);
+});
 
 export const selectGymName = createSelector(selectCurrentGym, (currentGym) => currentGym?.name);
-
-export const selectContact = createSelector(selectCurrentGym, (currentGym) => currentGym?.contact);
-
-export const selectLocation = createSelector(
-    selectCurrentGym,
-    (currentGym) => currentGym?.location
-);
-
-export const selectOpeningTimes = createSelector(
-    selectCurrentGym,
-    (currentGym) => currentGym?.openingTimes
-);
 
 export const selectSocialMedia = createSelector(
     selectCurrentGym,
     (currentGym) => currentGym?.socialMedia
 );
 
-export const selectLogo = createSelector(selectCurrentGym, (currentGym) => currentGym?.logo);
-
 export const selectOfferById = createSelector(
     [selectCurrentGym, (_: RootState, offerId: Offer['id']) => offerId],
     (currentGym, offerId) => {
         if (!currentGym) return undefined;
-        const { offers, abonnements } = currentGym;
-        const combinedOffers = [...offers, ...abonnements];
-        return combinedOffers.find(({ id }) => id === offerId);
+        const { abonnements } = currentGym;
+        return abonnements.find(({ id }) => id === offerId);
     }
 );
-
-export const selectImage = createSelector(selectCurrentGym, (currentGym) => currentGym?.image);
-
-export const selectAgbs = createSelector(selectCurrentGym, (currentGym) => currentGym?.agbs);
 
 export const selectHasOffers = createSelector(selectAbonnements, (abonnements) =>
     abonnements?.some(({ isOffer }) => isOffer)
@@ -85,13 +60,3 @@ export const selectGymLoadingState = createSelector(
     selectGymState,
     (gymState) => gymState.gymLoadingState
 );
-
-export const selectAllGymsLoadingState = createSelector(
-    selectGymState,
-    (gymState) => gymState.allGymsLoadingState
-);
-
-// export const selectOffersLoadingState = createSelector(
-//     selectGymState,
-//     (gymState) => gymState.offersLoadingState
-// );

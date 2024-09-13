@@ -28,7 +28,7 @@ const slice = createSlice({
             state.currentGymId = payload;
         },
         addGym(state, { payload }: PayloadAction<GetGymResult[]>) {
-            payload.forEach(({ id, name, address }) => {
+            payload.forEach(({ id, name, address, gymImage, rating }) => {
                 const internalId = name.toLowerCase().replaceAll(' ', '_');
 
                 if (!state.gyms[internalId]) {
@@ -36,14 +36,10 @@ const slice = createSlice({
                         id,
                         internalId,
                         name,
-                        location: {
-                            address
-                        },
-                        image: '',
-                        logo: '',
-                        offers: [],
+                        address,
+                        gymImage,
                         abonnements: [],
-                        hasLoaded: false
+                        rating
                     };
                 }
             });
@@ -56,16 +52,10 @@ const slice = createSlice({
                 ...payload
             };
         },
-        addOffers(state, { payload }: PayloadAction<AddOfferProps>) {
+        addAbonnements(state, { payload }: PayloadAction<AddAbonnementsProps>) {
             const gym = state.gyms[payload.id];
             if (gym) {
-                gym.offers = [...gym.offers, ...payload.offers];
-            }
-        },
-        addAbonnements(state, { payload }: PayloadAction<AddOfferProps>) {
-            const gym = state.gyms[payload.id];
-            if (gym) {
-                gym.abonnements = [...gym.abonnements, ...payload.offers];
+                gym.abonnements = [...gym.abonnements, ...payload.abonnements];
             }
         },
         setGymLoadingState(state, { payload }: PayloadAction<GymState['gymLoadingState']>) {
@@ -85,7 +75,6 @@ export const {
     setOffersLoadingState,
     updateGym,
     addAbonnements,
-    addOffers,
     updateCurrentGymId,
     setAllGymsLoadingState,
     addGym
@@ -93,7 +82,7 @@ export const {
 
 export const gymReducer = slice.reducer;
 
-interface AddOfferProps {
+interface AddAbonnementsProps {
     id: IGym['internalId'];
-    offers: Offer[];
+    abonnements: Offer[];
 }

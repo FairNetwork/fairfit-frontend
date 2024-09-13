@@ -6,6 +6,9 @@ export interface IGym {
     name: string;
     id: string;
     internalId: string;
+    address: string;
+    gymImage: string;
+    rating: number;
     abonnements: Offer[];
     benefits?: IBenefit[];
     socialMedia?: ISocialMedia[];

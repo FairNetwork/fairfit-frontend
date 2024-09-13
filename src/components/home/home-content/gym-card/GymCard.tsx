@@ -7,13 +7,14 @@ import { Rating } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 
 interface GymCardProps {
-    picture: string;
+    gymImage: IGym['gymImage'];
     name: IGym['name'];
-    location: IGym['location'];
+    address: IGym['address'];
     internalId: IGym['internalId'];
+    rating: IGym['rating'];
 }
 
-const GymCard = ({ name, internalId, picture, location }: GymCardProps) => {
+const GymCard = ({ name, internalId, gymImage, address, rating }: GymCardProps) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -23,7 +24,7 @@ const GymCard = ({ name, internalId, picture, location }: GymCardProps) => {
     return (
         <div className="gym-card" onClick={handleClick}>
             <div className="gym-card__picture">
-                <img src={picture} alt={name} />
+                <img src={gymImage} alt={name} />
             </div>
             <div className="gym-card__info">
                 <div className="gym-card__info__name">{name}</div>
@@ -32,17 +33,17 @@ const GymCard = ({ name, internalId, picture, location }: GymCardProps) => {
                         name="rating"
                         readOnly
                         size="small"
-                        value={3.2}
+                        value={rating}
                         precision={0.1}
                         emptyIcon={
                             <StarIcon style={{ opacity: 0.55, color: 'grey' }} fontSize="inherit" />
                         }
                     />
-                    <div className="gym-card__info__rating__text">3.2 / 5</div>
+                    <div className="gym-card__info__rating__text">{rating} / 5</div>
                 </div>
                 <div className="gym-card__info__location">
                     <Icon icon="bi-geo" />
-                    {location?.address}
+                    {address}
                 </div>
             </div>
         </div>

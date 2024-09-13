@@ -2,10 +2,10 @@ import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, wrap } from 'framer-motion';
 import './imageCarousel.scss';
 import Indicator from './indicator/Indicator';
-import { Benefit } from '../../../types/gym';
+import { IBenefit } from '../../../types/benefit';
 
 interface ImageCarouselProps {
-    images: Benefit[];
+    images: IBenefit[];
 }
 
 const variants = {
