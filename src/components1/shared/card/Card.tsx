@@ -48,25 +48,16 @@ const Card = ({
         return items;
     }, [details]);
 
-    const borderColor = useMemo(() => {
-        if (!isSelected) {
-            return 'none';
-        }
-
-        if (color === '#222838') {
-            return '#52ab98 2px solid';
-        } else {
-            return '#222838 2px solid';
-        }
-    }, [color, isSelected]);
+    const backgroundColor = useMemo(() => {
+        return isOffer ? '#F3A3B1' : '#A3C4F3';
+    }, [isOffer]);
 
     return (
         <div
             className="card"
             onClick={() => typeof onClick === 'function' && onClick(id)}
             style={{
-                backgroundColor: color,
-                border: borderColor
+                backgroundColor
             }}>
             <div className="card__head">
                 <div className="card__head__title">{title}</div>
