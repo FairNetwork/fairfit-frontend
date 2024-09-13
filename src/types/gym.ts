@@ -10,6 +10,7 @@ export interface IGym {
     offers: Offer[];
     abonnements: Offer[];
     benefits?: Benefit[];
+    socialMedia?: ISocialMedia[];
     contact?: Contact;
     location?: Location;
     openingTimes?: OpeningTime[];
@@ -19,6 +20,20 @@ export interface IGym {
 export interface Benefit {
     id: string;
     imageUrl: string;
+}
+
+export enum SocialMediaType {
+    INSTAGRAM,
+    FACEBOOK,
+    YOUTUBE,
+    TIKTOK,
+    TWITTER
+}
+
+export interface ISocialMedia {
+    id: string;
+    type: SocialMediaType;
+    userName: string;
 }
 
 export enum BenefitType {
@@ -31,10 +46,6 @@ export interface Contact {
     phone?: string;
     email?: string;
     socialMedia?: ISocialMedia;
-}
-
-export interface ISocialMedia {
-    [key: string]: string;
 }
 
 export interface Location {

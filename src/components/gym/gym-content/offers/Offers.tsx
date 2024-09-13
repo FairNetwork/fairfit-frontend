@@ -7,9 +7,11 @@ const Offers = () => {
     const abonnements = useAppSelector(selectAbonnements);
 
     return (
-        <div className="gym-home-offers">
+        <div className="offers">
             <h2>Abonnements | Angebote</h2>
-            <div className="gym-home-offers__content">{<CardSlider items={abonnements} />}</div>
+            <div className="offers__content">
+                <CardSlider items={abonnements} />
+            </div>
         </div>
     );
 };

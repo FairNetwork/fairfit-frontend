@@ -56,6 +56,11 @@ export const selectOpeningTimes = createSelector(
     (currentGym) => currentGym?.openingTimes
 );
 
+export const selectSocialMedia = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.socialMedia
+);
+
 export const selectLogo = createSelector(selectCurrentGym, (currentGym) => currentGym?.logo);
 
 export const selectOfferById = createSelector(
