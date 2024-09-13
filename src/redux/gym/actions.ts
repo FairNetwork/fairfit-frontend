@@ -1,7 +1,13 @@
 import { AppDispatch, GetAppState } from '../store';
-import { addGym, setAllGymsLoadingState, setGymLoadingState, updateGym } from './slice';
+import {
+    addGym,
+    setAllGymsLoadingState,
+    setGymLoadingState,
+    setSearchResultIds,
+    updateGym
+} from './slice';
 import { getAllGyms, getGym } from '../../api/gym/get';
-import { selectCurrentGymId } from './selectors';
+import { selectCurrentGymId, selectSearchString } from './selectors';
 
 export const loadGym =
     () =>
@@ -32,14 +38,24 @@ export const loadGym =
 
 export const loadAllGyms =
     () =>
-    async (dispatch: AppDispatch): Promise<void> => {
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
         dispatch(setAllGymsLoadingState('pending'));
 
-        const { status, data } = await getAllGyms();
+        const state = getState();
+
+        const searchString = selectSearchString(state);
+
+        const { status, data } = await getAllGyms(searchString);
 
         if (status === 200 && data) {
             dispatch(addGym(data));
             dispatch(setAllGymsLoadingState('successful'));
+
+            if (searchString) {
+                dispatch(setSearchResultIds(data.map(({ id }) => id)));
+            } else {
+                dispatch(setSearchResultIds([]));
+            }
 
             return;
         }

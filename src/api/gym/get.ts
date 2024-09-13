@@ -23,10 +23,12 @@ export const getGym = async (id: string): Promise<ApiFunctionResult<IGym>> => {
     return { status: response.status };
 };
 
-export const getAllGyms = async (): Promise<ApiFunctionResult<GetGymResult[]>> => {
+export const getAllGyms = async (
+    searchString: string
+): Promise<ApiFunctionResult<GetGymResult[]>> => {
     const response = await request<GetGymResult[]>({
         method: 'GET',
-        route: `gyms`
+        route: `gyms?searchString=${searchString}`
     });
 
     console.log(response);

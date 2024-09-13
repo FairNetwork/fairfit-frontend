@@ -10,9 +10,25 @@ export const selectCurrentGymId = (state: RootState): string | undefined => {
     return selectGymState(state).currentGymId;
 };
 
+export const selectSearchString = (state: RootState): string => {
+    return selectGymState(state).searchString;
+};
+
+export const selectSearchResultIds = (state: RootState) => {
+    return selectGymState(state).searchResultIds;
+};
+
 export const selectCurrentGym = createSelector(
     [selectGyms, selectCurrentGymId],
     (gyms, currentGymId) => (currentGymId ? gyms[currentGymId] : undefined)
+);
+
+export const selectFilteredGyms = createSelector(
+    [selectGyms, selectSearchResultIds],
+    (gyms, searchResultIds) =>
+        searchResultIds.length > 0
+            ? Object.values(gyms).filter(({ id }) => searchResultIds.includes(id))
+            : Object.values(gyms)
 );
 
 export const selectGymId = createSelector(selectCurrentGym, (currentGym) => currentGym?.id);

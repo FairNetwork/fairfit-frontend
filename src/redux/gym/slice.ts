@@ -11,13 +11,17 @@ export interface GymState {
     gymLoadingState: LoadingState;
     allGymsLoadingState: LoadingState;
     offersLoadingState: LoadingState;
+    searchString: string;
+    searchResultIds: string[];
 }
 
 const initialState: GymState = {
     gymLoadingState: 'none',
     offersLoadingState: 'none',
     allGymsLoadingState: 'none',
-    gyms: {}
+    gyms: {},
+    searchString: '',
+    searchResultIds: []
 };
 
 const slice = createSlice({
@@ -66,6 +70,12 @@ const slice = createSlice({
         },
         setOffersLoadingState(state, { payload }: PayloadAction<GymState['offersLoadingState']>) {
             state.offersLoadingState = payload;
+        },
+        setSearchString(state, { payload }: PayloadAction<GymState['searchString']>) {
+            state.searchString = payload;
+        },
+        setSearchResultIds(state, { payload }: PayloadAction<GymState['searchResultIds']>) {
+            state.searchResultIds = payload;
         }
     }
 });
@@ -77,7 +87,9 @@ export const {
     addAbonnements,
     updateCurrentGymId,
     setAllGymsLoadingState,
-    addGym
+    addGym,
+    setSearchString,
+    setSearchResultIds
 } = slice.actions;
 
 export const gymReducer = slice.reducer;
