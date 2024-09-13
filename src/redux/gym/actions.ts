@@ -19,22 +19,6 @@ export const loadGym =
         const { status, data } = await getGym(currentGymId);
 
         if (status === 200 && data) {
-            // const tmp: IGym = {
-            //     internalId: data.name.toLowerCase(),
-            //     logo: EASYFITNESS.logo,
-            //     offers: EASYFITNESS.offers,
-            //     id: data.id,
-            //     image: EASYFITNESS.image,
-            //     abonnements: EASYFITNESS.abonnements,
-            //     name: data.name,
-            //     agbs: EASYFITNESS.agbs,
-            //     location: EASYFITNESS.location,
-            //     benefits: EASYFITNESS.benefits,
-            //     openingTimes: EASYFITNESS.openingTimes,
-            //     contact: { ...EASYFITNESS.contact, email: data.email } as IGym['contact'],
-            //     hasLoaded: true
-            // };
-
             dispatch(updateGym(data));
             dispatch(setGymLoadingState('successful'));
 

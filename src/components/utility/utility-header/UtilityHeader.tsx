@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useMemo } from 'react';
 import GymMenu from '../../shared/gym-menu/GymMenu';
 import { useAppSelector } from '../../../hooks/redux';
-import { getGymFromRoute } from '../../../utils/routes';
+import { getGymId, getPathFromUrl } from '../../../utils/routes';
 import { selectGymName } from '../../../redux/gym/selectors';
 
 const HOMEPAGE_MENU_ITEMS = [{ text: 'HomePage', link: '' }];
@@ -19,17 +19,13 @@ const GYM_MENU_ITEMS = [
 const UtilityHeader = () => {
     const gymName = useAppSelector(selectGymName);
 
-    const location = useLocation();
-
     const isGymPage = useMemo(() => {
-        return getGymFromRoute(location.pathname) !== 'fairfit';
-    }, [location.pathname]);
+        return getGymId() !== 'fairfit';
+    }, []);
+
+    const type = getPathFromUrl();
 
     const slogan = useMemo(() => {
-        const { pathname } = location;
-
-        const type = getGymFromRoute(pathname);
-
         switch (type) {
             case 'data-protection':
                 return 'Datenschutz liegt uns am Herzen!';
@@ -42,7 +38,7 @@ const UtilityHeader = () => {
             default:
                 return '';
         }
-    }, [location]);
+    }, [type]);
 
     return (
         <div className="utility-header">

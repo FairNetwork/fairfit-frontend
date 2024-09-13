@@ -50,6 +50,7 @@ const slice = createSlice({
         },
         updateGym(state, { payload }: PayloadAction<IGym>) {
             const { internalId } = payload;
+
             state.gyms[internalId] = {
                 ...state.gyms[internalId],
                 ...payload

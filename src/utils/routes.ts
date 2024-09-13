@@ -20,13 +20,17 @@ export const getOfferId = (search: string) => {
     }
 };
 
-export const getGymId = (search: string) => {
-    const startIndex = search.indexOf('gymId=') + 6;
-    const endIndex = search.indexOf('&', startIndex);
+export const getGymId = () => {
+    const urlParams = new URLSearchParams(window.location.href.split('?')[1]); // Nimmt den Teil der URL nach dem "?"
+    const gymId = urlParams.get('gymId');
 
-    if (endIndex === -1) {
-        return search.substring(startIndex).toLowerCase();
-    } else {
-        return search.substring(startIndex, endIndex).toLowerCase();
-    }
+    return gymId ?? 'fairfit';
+};
+
+export const getPathFromUrl = () => {
+    const parsedUrl = new URL(window.location.href);
+
+    const pathMatch = parsedUrl.pathname.match(/\/utility\/([^/?#]+)/);
+
+    return pathMatch ? pathMatch[1] : 'impressum';
 };

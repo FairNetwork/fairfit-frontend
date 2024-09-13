@@ -1,16 +1,11 @@
 import './utilityContent.scss';
-import { useLocation } from 'react-router-dom';
 import { useMemo } from 'react';
-import { getGymFromRoute } from '../../../utils/routes';
+import { getPathFromUrl } from '../../../utils/routes';
 
 const UtilityContent = () => {
-    const location = useLocation();
+    const type = getPathFromUrl();
 
     const heading = useMemo(() => {
-        const { pathname } = location;
-
-        const type = getGymFromRoute(pathname);
-
         switch (type) {
             case 'data-protection':
                 return 'Datenschutz';
@@ -29,7 +24,7 @@ const UtilityContent = () => {
             default:
                 return '';
         }
-    }, [location]);
+    }, [type]);
 
     return (
         <div className="utility-content">

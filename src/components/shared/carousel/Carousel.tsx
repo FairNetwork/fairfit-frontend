@@ -19,7 +19,7 @@ const Carousel = ({ items }: CarouselProps) => {
     const navigate = useNavigate();
 
     const { carouselFragment, slideToPrevItem, slideToNextItem } = useSpringCarousel({
-        itemsPerSlide: 3,
+        itemsPerSlide: 1,
         withLoop: true,
         initialStartingPosition: 'center',
         gutter: 24,
