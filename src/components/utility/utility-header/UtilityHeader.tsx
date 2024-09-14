@@ -20,11 +20,17 @@ const UtilityHeader = () => {
             case 'data-protection':
                 return 'Datenschutz liegt uns am Herzen!';
             case 'general':
+                return 'Vertrauen und Transparenz – für eine klare Kommunikation.';
             case 'q-and-a':
+                return 'Ihre Fragen, unsere Antworten!';
             case 'register-studio':
+                return 'Melden Sie sich jetzt an und starten Sie durch!';
             case 'revocation':
+                return 'Widerruf leicht gemacht – Ihr Recht auf Rücktritt.';
             case 'terms-conditions':
+                return 'Unsere AGB – fair und verständlich.';
             case 'impressum':
+                return 'Impressum – Klarheit, die zählt.';
             default:
                 return '';
         }

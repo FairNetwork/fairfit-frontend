@@ -4,7 +4,7 @@ export interface IUtility {
     html: string;
 }
 
-enum UtilityType {
+export enum UtilityType {
     IMPRINT,
     DATA_PROTECTION,
     TERMS,

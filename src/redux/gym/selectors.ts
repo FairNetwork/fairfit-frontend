@@ -1,6 +1,7 @@
 import type { RootState } from '../store';
 import { Offer } from '../../types/offer';
 import { createSelector } from '@reduxjs/toolkit';
+import { UtilityType } from '../../types/utility';
 
 const selectGymState = (state: RootState) => state.gym;
 
@@ -76,6 +77,15 @@ export const selectOpeningTimes = createSelector(
     selectCurrentGym,
     (currentGym) => currentGym?.openingTimes
 );
+
+export const selectUtilitys = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.utilitys
+);
+
+export const selectUtilityByType = (state: RootState, type?: UtilityType) => {
+    return selectUtilitys(state)?.find(({ type: utilityType }) => type === utilityType)?.html;
+};
 
 export const selectOfferById = createSelector(
     [selectCurrentGym, (_: RootState, offerId: Offer['id']) => offerId],
