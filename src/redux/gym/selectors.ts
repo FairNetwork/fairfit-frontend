@@ -38,11 +38,18 @@ export const selectSelectedTags = createSelector(
 );
 
 export const selectFilteredGyms = createSelector(
-    [selectGyms, selectSearchResultIds],
-    (gyms, searchResultIds) =>
-        searchResultIds.length > 0
-            ? Object.values(gyms).filter(({ id }) => searchResultIds.includes(id))
-            : Object.values(gyms)
+    [selectGyms, selectSearchResultIds, selectSearchString, selectSelectedTags],
+    (gyms, searchResultIds, searchString, tags) => {
+        if (searchResultIds.length > 0) {
+            return Object.values(gyms).filter(({ id }) => searchResultIds.includes(id));
+        }
+
+        if ((searchString.length > 0 || tags.length > 0) && searchResultIds.length === 0) {
+            return undefined;
+        }
+
+        return Object.values(gyms);
+    }
 );
 
 export const selectGymId = createSelector(selectCurrentGym, (currentGym) => currentGym?.id);

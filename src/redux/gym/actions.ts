@@ -54,7 +54,7 @@ export const loadAllGyms =
             dispatch(addGym(data));
             dispatch(setAllGymsLoadingState('successful'));
 
-            if (searchString) {
+            if (searchString || tags) {
                 dispatch(setSearchResultIds(data.map(({ id }) => id)));
             } else {
                 dispatch(setSearchResultIds([]));

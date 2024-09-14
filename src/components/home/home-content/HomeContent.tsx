@@ -12,7 +12,7 @@ const HomeContent = () => {
     const content = useMemo(() => {
         const items: ReactElement[] = [];
 
-        gyms.forEach(({ name, internalId, address, rating, gymImage }) => {
+        gyms?.forEach(({ name, internalId, address, rating, gymImage }) => {
             items.push(
                 <GymCard
                     key={`gym-card__${internalId}`}
@@ -32,6 +32,11 @@ const HomeContent = () => {
         <div className="home-content">
             <h3>Deine Ergebnisse</h3>
             {content}
+            {!gyms && (
+                <div className="home-content__error-message">
+                    Es konnten keine Ergebnisse geladen werden.
+                </div>
+            )}
             {loadingState === 'pending' && <WaitCursor />}
         </div>
     );
