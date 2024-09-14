@@ -1,6 +1,11 @@
 .social-media-wrapper {
     display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+
+    &__content {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
