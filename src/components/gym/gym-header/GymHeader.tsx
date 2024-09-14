@@ -2,7 +2,7 @@ import './gymHeader.scss';
 import Header from '../../shared/header/Header';
 import InfiniteLooper from '../../shared/infinite-looper/InfiniteLooper';
 import OfferSlider from './offer-slider/OfferSlider';
-import GymMenu, { GymMenuItem } from '../../shared/gym-menu/GymMenu';
+import GymMenu from '../../shared/gym-menu/GymMenu';
 import { useAppSelector } from '../../../hooks/redux';
 import { selectCurrentGymId, selectGymName, selectHasOffers } from '../../../redux/gym/selectors';
 import { useNavigate } from 'react-router-dom';
