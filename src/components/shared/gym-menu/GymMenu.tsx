@@ -7,6 +7,7 @@ import { selectCurrentGymId } from '../../../redux/gym/selectors';
 export interface GymMenuItem {
     text: string;
     link: string;
+    home?: boolean;
 }
 
 interface GymMenuProps {
@@ -19,10 +20,10 @@ const GymMenu = ({ items }: GymMenuProps) => {
     const navigate = useNavigate();
 
     const content = useMemo(() => {
-        return items.map(({ text, link }) => (
+        return items.map(({ text, link, home }) => (
             <div
                 className="gym-menu__item"
-                onClick={() => navigate(gymInternalId ? `/${gymInternalId}/${link}` : `/${link}`)}>
+                onClick={() => navigate(home ? `/${link}` : `/${gymInternalId}/${link}`)}>
                 {text}
             </div>
         ));

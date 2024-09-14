@@ -8,10 +8,14 @@ const Offers = () => {
 
     return (
         <div className="offers">
-            <h2>Abonnements | Angebote</h2>
-            <div className="offers__content">
-                <CardSlider items={abonnements} />
-            </div>
+            {(abonnements ?? []).length > 0 && (
+                <>
+                    <h2>Abonnements | Angebote</h2>
+                    <div className="offers__content">
+                        <CardSlider items={abonnements} />
+                    </div>
+                </>
+            )}
         </div>
     );
 };

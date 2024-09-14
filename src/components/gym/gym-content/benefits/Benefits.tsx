@@ -8,12 +8,12 @@ const Benefits = () => {
     return (
         <div className="benefits">
             {benefits && (
-                <div>
+                <>
                     <h2>Unsere Leistungen</h2>
                     <div className="benefits__content">
                         <ImageCarousel images={benefits} />
                     </div>
-                </div>
+                </>
             )}
         </div>
     );

@@ -15,8 +15,12 @@ const OpeningTimes = () => {
 
     return (
         <div className="opening-times">
-            <h2>Öffnungszeiten</h2>
-            <div className="opening-times__content">{content}</div>
+            {openingTimes && (
+                <>
+                    <h2>Öffnungszeiten</h2>
+                    <div className="opening-times__content">{content}</div>
+                </>
+            )}
         </div>
     );
 };

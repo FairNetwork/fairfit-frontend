@@ -13,7 +13,16 @@ const SocialMediaWrapper = () => {
         });
     }, [socialMedia]);
 
-    return <div className="social-media-wrapper">{content}</div>;
+    return (
+        <div className="social-media-wrapper">
+            {socialMedia && (
+                <>
+                    <h2>Kontakt</h2>
+                    <div className="social-media-wrapper__content">{content}</div>
+                </>
+            )}
+        </div>
+    );
 };
 
 SocialMediaWrapper.displayName = 'SocialMediaWrapper';
