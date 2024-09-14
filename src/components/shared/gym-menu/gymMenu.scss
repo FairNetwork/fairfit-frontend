@@ -1,0 +1,15 @@
+.gym-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+
+    &__item {
+        cursor: pointer;
+        font-weight: bold;
+        border-radius: 100px;
+        background-color: white;
+        color: #222838;
+        padding: 6px 12px;
+    }
+}

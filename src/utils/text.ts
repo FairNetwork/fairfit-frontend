@@ -1,4 +1,4 @@
-import { DayType } from '../types/gym';
+import { OpeningTimeType } from '../types/openingTimes';
 
 export const convertMonth = ({
     duration,
@@ -10,21 +10,21 @@ export const convertMonth = ({
     return `für ${duration} ${duration === 1 ? 'Monat' : 'Monate'}, danach ${priceAfterDuration} €`;
 };
 
-export const convertDay = (day: DayType) => {
+export const convertDay = (day: OpeningTimeType) => {
     switch (day) {
-        case DayType.Monday:
+        case OpeningTimeType.MONDAY:
             return 'Montag';
-        case DayType.Tuesday:
+        case OpeningTimeType.TUESDAY:
             return 'Dienstag';
-        case DayType.Wednesday:
+        case OpeningTimeType.WEDNESDAY:
             return 'Mittwoch';
-        case DayType.Thursday:
+        case OpeningTimeType.THURSDAY:
             return 'Donnerstag';
-        case DayType.Friday:
+        case OpeningTimeType.FRIDAY:
             return 'Freitag';
-        case DayType.Saturday:
+        case OpeningTimeType.SATURDAY:
             return 'Samstag';
-        case DayType.Sunday:
+        case OpeningTimeType.SUNDAY:
             return 'Sonntag';
         default:
             return undefined;

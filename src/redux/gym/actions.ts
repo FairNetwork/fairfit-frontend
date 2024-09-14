@@ -1,36 +1,33 @@
 import { AppDispatch, GetAppState } from '../store';
-import { addGym, setAllGymsLoadingState, setGymLoadingState, updateGym } from './slice';
-import { EASYFITNESS } from '../../constants/mockData';
-import { Gym } from '../../types/gym';
-import { SelectGymIdByInternalId } from './selectors';
+import {
+    addGym,
+    setAllGymsLoadingState,
+    setGymLoadingState,
+    setSearchResultIds,
+    setTags,
+    updateGym
+} from './slice';
 import { getAllGyms, getGym } from '../../api/gym/get';
-import { postSendMail } from '../../api/gym/post';
+import { selectCurrentGymId, selectSearchString, selectSelectedTags } from './selectors';
+import { getTags } from '../../api/tags/get';
 
 export const loadGym =
-    (gymName: string) =>
-    async (dispatch: AppDispatch): Promise<void> => {
+    () =>
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
         dispatch(setGymLoadingState('pending'));
 
-        const { status, data } = await getGym(gymName);
+        const state = getState();
+
+        const currentGymId = selectCurrentGymId(state);
+
+        if (!currentGymId) {
+            return;
+        }
+
+        const { status, data } = await getGym(currentGymId);
 
         if (status === 200 && data) {
-            const tmp: Gym = {
-                internalId: data.name.toLowerCase(),
-                logo: EASYFITNESS.logo,
-                offers: EASYFITNESS.offers,
-                id: data.id,
-                image: EASYFITNESS.image,
-                abonnements: EASYFITNESS.abonnements,
-                name: data.name,
-                agbs: EASYFITNESS.agbs,
-                location: EASYFITNESS.location,
-                benefits: EASYFITNESS.benefits,
-                openingTimes: EASYFITNESS.openingTimes,
-                contact: { ...EASYFITNESS.contact, email: data.email } as Gym['contact'],
-                hasLoaded: true
-            };
-
-            dispatch(updateGym(tmp));
+            dispatch(updateGym(data));
             dispatch(setGymLoadingState('successful'));
 
             return;
@@ -43,14 +40,25 @@ export const loadGym =
 
 export const loadAllGyms =
     () =>
-    async (dispatch: AppDispatch): Promise<void> => {
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
         dispatch(setAllGymsLoadingState('pending'));
 
-        const { status, data } = await getAllGyms();
+        const state = getState();
+
+        const searchString = selectSearchString(state);
+        const tags = selectSelectedTags(state);
+
+        const { status, data } = await getAllGyms(searchString, tags);
 
         if (status === 200 && data) {
             dispatch(addGym(data));
             dispatch(setAllGymsLoadingState('successful'));
+
+            if (searchString || tags) {
+                dispatch(setSearchResultIds(data.map(({ id }) => id)));
+            } else {
+                dispatch(setSearchResultIds([]));
+            }
 
             return;
         }
@@ -60,21 +68,31 @@ export const loadAllGyms =
         return;
     };
 
-export const sendEmail =
-    (gymName: string, message: string) =>
-    async (_: AppDispatch, getState: GetAppState): Promise<boolean> => {
-        const state = getState();
+export const loadTags =
+    () =>
+    async (dispatch: AppDispatch): Promise<void> => {
+        const { status, data } = await getTags();
 
-        const gymId = SelectGymIdByInternalId(state, gymName);
-
-        if (!gymId) {
-            return false;
+        if (status === 200 && data) {
+            dispatch(setTags(data));
         }
-
-        const { status } = await postSendMail(message, gymId);
-
-        return status === 201;
     };
+
+// export const sendEmail =
+//     (gymName: string, message: string) =>
+//     async (_: AppDispatch, getState: GetAppState): Promise<boolean> => {
+//         const state = getState();
+//
+//         const gymId = SelectGymIdByInternalId(state, gymName);
+//
+//         if (!gymId) {
+//             return false;
+//         }
+//
+//         const { status } = await postSendMail(message, gymId);
+//
+//         return status === 201;
+//     };
 
 /*
 export const loadOffers =
@@ -82,7 +100,7 @@ export const loadOffers =
     async (dispatch: AppDispatch): Promise<void> => {
         dispatch(setOffersLoadingState('pending'));
 
-        let data: Gym | undefined;
+        let data: IGym | undefined;
 
         if (gymName === 'easyfitness') {
             data = {
