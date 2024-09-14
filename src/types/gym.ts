@@ -11,6 +11,7 @@ export interface IGym {
     address: string;
     gymImage: string;
     rating: number;
+    hasLoaded?: boolean;
     abonnements: Offer[];
     benefits?: IBenefit[];
     socialMedia?: ISocialMedia[];

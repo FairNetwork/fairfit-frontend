@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { updateCurrentGymId } from '../../redux/gym/slice';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { selectGymLoadingState } from '../../redux/gym/selectors';
+import { selectGymLoadingState, selectHasGymLoaded } from '../../redux/gym/selectors';
 import { getGymFromRoute } from '../../utils/routes';
 import GymHeader from './gym-header/GymHeader';
 import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
@@ -16,6 +16,7 @@ const Gym = () => {
     const dispatch = useAppDispatch();
 
     const loadingState = useAppSelector(selectGymLoadingState);
+    const hasGymLoaded = useAppSelector(selectHasGymLoaded);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -27,8 +28,10 @@ const Gym = () => {
     useEffect(() => {
         dispatch(updateCurrentGymId(getGymFromRoute(location.pathname)));
 
-        void dispatch(loadGym());
-    }, [dispatch, location.pathname]);
+        if (!hasGymLoaded) {
+            void dispatch(loadGym());
+        }
+    }, [dispatch, hasGymLoaded, location.pathname]);
 
     useEffect(() => {
         if (loadingState === 'rejected') {

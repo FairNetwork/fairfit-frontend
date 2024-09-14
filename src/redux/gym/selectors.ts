@@ -52,6 +52,11 @@ export const selectAbonnements = createSelector(
     (currentGym) => currentGym?.abonnements
 );
 
+export const selectHasGymLoaded = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.hasLoaded
+);
+
 export const selectAllGymsLoadingState = (state: RootState) =>
     selectGymState(state).allGymsLoadingState;
 

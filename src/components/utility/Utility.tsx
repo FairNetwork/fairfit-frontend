@@ -1,7 +1,7 @@
 import './utility.scss';
 import Header from '../shared/header/Header';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { selectGymLoadingState } from '../../redux/gym/selectors';
+import { selectGymLoadingState, selectHasGymLoaded } from '../../redux/gym/selectors';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
 import { updateCurrentGymId } from '../../redux/gym/slice';
@@ -17,6 +17,7 @@ const Utility = () => {
     const dispatch = useAppDispatch();
 
     const loadingState = useAppSelector(selectGymLoadingState);
+    const hasGymLoaded = useAppSelector(selectHasGymLoaded);
 
     const navigate = useNavigate();
 
@@ -27,8 +28,10 @@ const Utility = () => {
     useEffect(() => {
         dispatch(updateCurrentGymId(getGymId()));
 
-        void dispatch(loadGym());
-    }, [dispatch]);
+        if (!hasGymLoaded) {
+            void dispatch(loadGym());
+        }
+    }, [dispatch, hasGymLoaded]);
 
     const isGymPage = useMemo(() => {
         return getGymId() !== 'fairfit';
