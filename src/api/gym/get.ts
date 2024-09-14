@@ -1,16 +1,20 @@
 import { ApiFunctionResult } from '../../types/api';
 import { request } from '../../utils/request';
+import { IGym } from '../../types/gym';
+import { ITag } from '../../types/tag';
 
 export interface GetGymResult {
-    id: string;
-    name: string;
-    email: string;
+    id: IGym['id'];
+    name: IGym['name'];
+    address: IGym['address'];
+    gymImage: IGym['gymImage'];
+    rating: IGym['rating'];
 }
 
-export const getGym = async (name: string): Promise<ApiFunctionResult<GetGymResult>> => {
-    const response = await request<GetGymResult>({
+export const getGym = async (id: string): Promise<ApiFunctionResult<IGym>> => {
+    const response = await request<IGym>({
         method: 'GET',
-        route: `tenants/${name}`
+        route: `gyms/${id}`
     });
 
     if (response.status === 200) {
@@ -20,10 +24,13 @@ export const getGym = async (name: string): Promise<ApiFunctionResult<GetGymResu
     return { status: response.status };
 };
 
-export const getAllGyms = async (): Promise<ApiFunctionResult<GetGymResult[]>> => {
+export const getAllGyms = async (
+    searchString: string,
+    tags: ITag['name'][]
+): Promise<ApiFunctionResult<GetGymResult[]>> => {
     const response = await request<GetGymResult[]>({
         method: 'GET',
-        route: `tenants/all`
+        route: `gyms?searchString=${searchString}&tags=${tags.join(',')}`
     });
 
     if (response.status === 200) {

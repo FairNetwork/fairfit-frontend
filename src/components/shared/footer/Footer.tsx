@@ -1,16 +1,18 @@
-import './footer.scss';
 import { ReactElement, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FooterItem } from '../../../types/footer';
-import { Gym } from '../../../types/gym';
+import './footer.scss';
+import { useAppSelector } from '../../../hooks/redux';
+import { selectCurrentGymId } from '../../../redux/gym/selectors';
 
 interface FooterProps {
     items: FooterItem[];
-    gymId?: Gym['internalId'];
 }
 
-const Footer = ({ items, gymId }: FooterProps) => {
+const Footer = ({ items }: FooterProps) => {
     const navigate = useNavigate();
+
+    const gymId = useAppSelector(selectCurrentGymId);
 
     const content = useMemo(() => {
         const renderedItems: ReactElement[] = [];
@@ -21,7 +23,7 @@ const Footer = ({ items, gymId }: FooterProps) => {
                     className="footer__item"
                     key={`footer-item__${id}`}
                     onClick={() => {
-                        navigate(`/${path}${gymId ? `?gymId=${gymId}` : ''}`);
+                        navigate(`/utility/${path}?gymId=${gymId ?? 'fairfit'}`);
                     }}>
                     {name}
                 </div>

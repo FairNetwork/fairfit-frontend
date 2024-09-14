@@ -1,10 +1,8 @@
 import { AnyAction, configureStore, ThunkDispatch } from '@reduxjs/toolkit';
-import { userReducer } from './user/slice';
 import { gymReducer } from './gym/slice';
 
 export const store = configureStore({
     reducer: {
-        user: userReducer,
         gym: gymReducer
     },
     middleware: (getDefaultMiddleware) => {

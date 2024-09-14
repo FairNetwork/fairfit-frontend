@@ -8,10 +8,3 @@ export interface Offer {
     duration?: number;
     priceAfterDuration?: number;
 }
-
-export interface Gym {
-    name: string;
-    offers: Offer[];
-    abonnements: Offer[];
-    agbs: string;
-}

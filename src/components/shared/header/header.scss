@@ -1,31 +1,11 @@
 .header {
-    width: 100vw;
-    position: fixed;
-    overflow: hidden;
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-    background-color: #f0f0f0;
-    z-index: 101;
+    position: relative;
 
-    &__header {
-        position: relative;
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
 
-        &__menu {
-            position: absolute;
-            left: 26px;
-            top: 10px;
-
-            cursor: pointer;
-        }
-
-        &__logo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            height: 80%;
-        }
-    }
-
-    &__children {
+        filter: brightness(70%);
     }
 }
