@@ -72,6 +72,11 @@ export const selectSocialMedia = createSelector(
     (currentGym) => currentGym?.socialMedia
 );
 
+export const selectOpeningTimes = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.openingTimes
+);
+
 export const selectOfferById = createSelector(
     [selectCurrentGym, (_: RootState, offerId: Offer['id']) => offerId],
     (currentGym, offerId) => {
