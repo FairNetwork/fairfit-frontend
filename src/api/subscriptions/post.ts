@@ -1,44 +1,32 @@
 import { ApiFunctionResult } from '../../types/api';
 import { request } from '../../utils/request';
+import { User } from '../../types/user';
+import { IGym } from '../../types/gym';
 
-export interface PostSubscriptionBody {
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    gender?: string;
-    street?: string;
-    number?: number;
-    place?: string;
-    postcode?: string;
-    birthday?: Date;
-    iban?: string;
-    owner?: string;
-    selectedOfferId?: string;
-    selectedOfferName?: string;
+interface PostSubscriptionBody {
+    abonnementName: string;
+    user: User;
 }
 
-export const postSubscription = async (
-    body: PostSubscriptionBody,
-    gymId: string
-): Promise<ApiFunctionResult> => {
+interface PostSubscriptionOptions extends PostSubscriptionBody {
+    internalId: IGym['internalId'];
+}
+
+export const postSubscription = async ({
+    user,
+    abonnementName,
+    internalId
+}: PostSubscriptionOptions): Promise<ApiFunctionResult> => {
+    const body: PostSubscriptionBody = {
+        abonnementName,
+        user
+    };
+
     const response = await request({
         body,
-        shouldSkipJSON: true,
         method: 'POST',
-        route: `tenants/${gymId}/subscriptions`
+        route: `mail/${internalId}`
     });
 
-    return { status: response.status, data: response.data };
-};
-
-export const postSendSubscription = async (
-    subscriptionId: string,
-    gymId: string
-): Promise<ApiFunctionResult> => {
-    const response = await request({
-        method: 'POST',
-        route: `tenants/${gymId}/subscriptions/${subscriptionId}`
-    });
-
-    return { status: response.status, data: response.data };
+    return { status: response.status };
 };

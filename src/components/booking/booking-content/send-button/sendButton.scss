@@ -1,11 +1,10 @@
-.form {
+.send-button {
     display: flex;
     flex-direction: column;
-    gap: 18px;
 
     &__button {
         display: flex;
         justify-content: center;
-        margin-bottom: 20px;
+        margin-top: 16px;
     }
 }
