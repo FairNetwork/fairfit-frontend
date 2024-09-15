@@ -1,12 +1,5 @@
 import './sendButton.scss';
-import {
-    Button,
-    CircularProgress,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle
-} from '@mui/material';
+import { Button, CircularProgress, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import {
     selectIsButtonDisabled,
@@ -15,7 +8,7 @@ import {
 import { sendSubscription } from '../../../../redux/user/actions';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { setSendOrderLoadingState } from '../../../../redux/user/slice';
-import { selectCurrentGymId } from '../../../../redux/gym/selectors';
+import { selectCurrentGymId, selectGymName } from '../../../../redux/gym/selectors';
 import { useNavigate } from 'react-router-dom';
 import DialogTransition from '../../../shared/dialog-transition/DialogTransition';
 
@@ -27,6 +20,7 @@ const SendButton = () => {
     const isButtonDisabled = useAppSelector(selectIsButtonDisabled);
     const sendOrderLoadingState = useAppSelector(selectSendOrderLoadingState);
     const currentGymId = useAppSelector(selectCurrentGymId);
+    const gymName = useAppSelector(selectGymName);
 
     const navigate = useNavigate();
 
@@ -63,39 +57,42 @@ const SendButton = () => {
     const dialogTitle = useMemo(() => {
         switch (sendOrderLoadingState) {
             case 'successful':
-                return <DialogTitle>Deine Bestellung wurde erfolgreich abgegeben</DialogTitle>;
+                return <DialogTitle>Deine Daten wurden an {gymName} weitergeleitet</DialogTitle>;
             case 'rejected':
-                return <DialogTitle>Deine Bestellung konnte nicht abgegeben werden</DialogTitle>;
+                return (
+                    <DialogTitle>
+                        Deine Daten konnten nicht an {gymName} weitergeleitet werden
+                    </DialogTitle>
+                );
             default:
                 return null;
         }
-    }, [sendOrderLoadingState]);
+    }, [gymName, sendOrderLoadingState]);
 
     const dialogContent = useMemo(() => {
-        switch (sendOrderLoadingState) {
-            case 'pending':
-                return (
-                    <DialogContent>
-                        <CircularProgress />
-                    </DialogContent>
-                );
-            default:
-                return (
-                    <DialogActions>
-                        <Button onClick={handleCloseDialog}>OK</Button>
-                    </DialogActions>
-                );
+        if (sendOrderLoadingState === 'pending') {
+            return (
+                <DialogContent>
+                    <CircularProgress />
+                </DialogContent>
+            );
         }
-    }, [handleCloseDialog, sendOrderLoadingState]);
+    }, [sendOrderLoadingState]);
 
     return (
         <div className="send-button">
-            <Button
-                variant="contained"
-                disabled={isButtonDisabled || sendOrderLoadingState === 'pending'}
-                onClick={handleClick}>
-                Abschließen
-            </Button>
+            <i>
+                Deine Anfrage wird direkt an {gymName} weitergeleitet. Die hier angegebenen Daten
+                werden nicht gespeichert.
+            </i>
+            <div className="send-button__button">
+                <Button
+                    variant="contained"
+                    disabled={isButtonDisabled || sendOrderLoadingState === 'pending'}
+                    onClick={handleClick}>
+                    Abschließen
+                </Button>
+            </div>
             <Dialog
                 open={isDialogOpen}
                 keepMounted
