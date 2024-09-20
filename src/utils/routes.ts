@@ -34,3 +34,15 @@ export const getPathFromUrl = () => {
 
     return pathMatch ? pathMatch[1] : 'impressum';
 };
+
+export const extractAccessToken = (): string | null => {
+    const hash = window.location.hash;
+
+    if (hash) {
+        const params = new URLSearchParams(hash.substring(1));
+
+        return params.get('access_token');
+    }
+
+    return null;
+};

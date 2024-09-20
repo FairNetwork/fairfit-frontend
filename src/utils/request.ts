@@ -61,7 +61,7 @@ export const request = async <Data = null, Body = null>({
      */
 
     const requestData: RequestInit = {
-        credentials: 'same-origin',
+        credentials: 'include',
         headers,
         method
     };
