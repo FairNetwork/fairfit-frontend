@@ -5,17 +5,20 @@ interface PostSignUpBody {
     name: string;
     email: string;
     password: string;
+    emailRedirectTo: string;
 }
 
 export const postSignUp = async ({
     password,
     name,
-    email
+    email,
+    emailRedirectTo
 }: PostSignUpBody): Promise<ApiFunctionResult> => {
     const body: PostSignUpBody = {
         email,
         name,
-        password
+        password,
+        emailRedirectTo
     };
 
     const response = await request({

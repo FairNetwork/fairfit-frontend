@@ -4,6 +4,7 @@ import Gym from './gym/Gym';
 import Utility from './utility/Utility';
 import NoContent from './no-content/NoContent';
 import Booking from './booking/Booking';
+import ConfirmRegistration from './confirm-registration/ConfirmRegistration';
 
 const App = () => {
     return (
@@ -12,8 +13,8 @@ const App = () => {
             <Route path="/utility/*" element={<Utility />} />
             <Route path="/:gym" element={<Gym />} />
             <Route path="/:gym/offers" element={<Booking />} />
+            <Route path="/confirm-registration" element={<ConfirmRegistration />} />
             <Route path="/no_content" element={<NoContent />} />
-            <Route path="/confirm-registration" element={<NoContent />} />
         </Routes>
     );
 };

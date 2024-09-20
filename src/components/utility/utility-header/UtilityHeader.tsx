@@ -24,7 +24,7 @@ const UtilityHeader = () => {
             case 'q-and-a':
                 return 'Ihre Fragen, unsere Antworten!';
             case 'register-studio':
-                return 'Melden Sie sich jetzt an und starten Sie durch!';
+                return 'Registrieren Sie sich jetzt und starten Sie durch!';
             case 'revocation':
                 return 'Widerruf leicht gemacht – Ihr Recht auf Rücktritt.';
             case 'terms-conditions':
