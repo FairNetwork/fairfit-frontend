@@ -1,0 +1,29 @@
+.sign-up {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    margin-top: 50px;
+
+    min-height: 50vh;
+
+    &__group {
+        width: 100%;
+
+        &__hint {
+            font-style: italic;
+            color: grey;
+
+            &__requirements {
+                &__invalid {
+                    color: rgb(211, 47, 47);
+                }
+            }
+        }
+    }
+
+    &__button {
+        display: flex;
+        justify-content: center;
+    }
+}

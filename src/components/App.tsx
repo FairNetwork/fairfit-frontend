@@ -13,6 +13,7 @@ const App = () => {
             <Route path="/:gym" element={<Gym />} />
             <Route path="/:gym/offers" element={<Booking />} />
             <Route path="/no_content" element={<NoContent />} />
+            <Route path="/confirm-registration" element={<NoContent />} />
         </Routes>
     );
 };
