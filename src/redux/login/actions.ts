@@ -1,8 +1,10 @@
 import { AppDispatch, GetAppState } from '../store';
-import { postConfirmSignUp, postSignUp } from '../../api/login/post';
+import { postConfirmSignUp, postSignIn, postSignUp } from '../../api/login/post';
 import { IS_PRODUCTION, IS_QA } from '../../constants/environment';
 import { extractAccessToken } from '../../utils/routes';
 import { addGym, setGymLoadingState } from '../gym/slice';
+import { getIsLoggedIn } from '../../api/login/get';
+import { setIsLoggedIn } from './slice';
 
 interface RegisterStudioOptions {
     name: string;
@@ -26,6 +28,29 @@ export const registerStudio =
         return status === 200;
     };
 
+interface LogInStudioOptions {
+    email: string;
+    password: string;
+}
+
+export const logInStudio =
+    ({ password, email }: LogInStudioOptions) =>
+    async (dispatch: AppDispatch, __: GetAppState): Promise<boolean> => {
+        const { status } = await postSignIn({ email, password });
+
+        dispatch(setIsLoggedIn(status === 200));
+
+        return status === 200;
+    };
+
+export const getIsUserLoggedIn =
+    () =>
+    async (dispatch: AppDispatch, __: GetAppState): Promise<void> => {
+        const { status } = await getIsLoggedIn();
+
+        dispatch(setIsLoggedIn(status === 200));
+    };
+
 export const confirmRegistration =
     () =>
     async (dispatch: AppDispatch, __: GetAppState): Promise<void> => {
@@ -38,6 +63,7 @@ export const confirmRegistration =
         const { status, data } = await postConfirmSignUp(token);
 
         if (status === 200 && data) {
+            dispatch(setIsLoggedIn(true));
             dispatch(addGym([data]));
             dispatch(setGymLoadingState('successful'));
 

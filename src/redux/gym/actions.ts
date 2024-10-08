@@ -12,7 +12,7 @@ import { selectCurrentGymId, selectSearchString, selectSelectedTags } from './se
 import { getTags } from '../../api/tags/get';
 
 export const loadGym =
-    () =>
+    (isDashboard?: boolean) =>
     async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
         dispatch(setGymLoadingState('pending'));
 
@@ -24,7 +24,7 @@ export const loadGym =
             return;
         }
 
-        const { status, data } = await getGym(currentGymId);
+        const { status, data } = await getGym(currentGymId, isDashboard);
 
         if (status === 200 && data) {
             dispatch(updateGym(data));

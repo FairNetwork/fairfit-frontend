@@ -6,6 +6,7 @@ import NoContent from './no-content/NoContent';
 import Booking from './booking/Booking';
 import ConfirmRegistration from './confirm-registration/ConfirmRegistration';
 import DashBoard from './dasboard/Dashboard';
+import LogIn from './log-in/LogIn';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
             <Route path="/:gym/offers" element={<Booking />} />
             <Route path="/:gym/dashboard" element={<DashBoard />} />
             <Route path="/confirm-registration" element={<ConfirmRegistration />} />
+            <Route path="/log-in" element={<LogIn />} />
             <Route path="/no_content" element={<NoContent />} />
         </Routes>
     );

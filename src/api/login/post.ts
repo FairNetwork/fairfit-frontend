@@ -31,6 +31,29 @@ export const postSignUp = async ({
     return { status: response.status };
 };
 
+interface PostSignInBody {
+    email: string;
+    password: string;
+}
+
+export const postSignIn = async ({
+    password,
+    email
+}: PostSignInBody): Promise<ApiFunctionResult> => {
+    const body: PostSignInBody = {
+        email,
+        password
+    };
+
+    const response = await request({
+        body,
+        method: 'POST',
+        route: `user/signin`
+    });
+
+    return { status: response.status };
+};
+
 export const postConfirmSignUp = async (
     token: string
 ): Promise<ApiFunctionResult<GetGymResult>> => {

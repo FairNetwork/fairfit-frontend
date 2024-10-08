@@ -1,0 +1,17 @@
+.log-in-content {
+    min-height: 100vh;
+    padding: 0 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    flex: 1;
+
+    text-align: center;
+
+    &__button {
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -11,10 +11,10 @@ export interface GetGymResult {
     rating: IGym['rating'];
 }
 
-export const getGym = async (id: string): Promise<ApiFunctionResult<IGym>> => {
+export const getGym = async (id: string, isDashboard = false): Promise<ApiFunctionResult<IGym>> => {
     const response = await request<IGym>({
         method: 'GET',
-        route: `gyms/${id}`
+        route: `gyms/${id}?isDashboard=${isDashboard}`
     });
 
     if (response.status === 200) {
