@@ -34,18 +34,20 @@ const DashBoard = () => {
 
         if (accessToken) {
             void dispatch(confirmRegistration());
-        } else if (typeof isLoggedIn === 'boolean' && !isLoggedIn) {
-            navigate('/log-in');
-        } else if (!hasGymLoaded) {
-            void dispatch(loadGym(true));
+        } else if (typeof isLoggedIn === 'boolean') {
+            if (!isLoggedIn) {
+                navigate('/log-in');
+            } else {
+                void dispatch(loadGym(true));
+            }
         }
     }, [dispatch, hasGymLoaded, isLoggedIn, location.pathname, navigate]);
 
     useEffect(() => {
-        if (loadingState === 'rejected') {
+        if (loadingState === 'rejected' && typeof isLoggedIn === 'boolean') {
             navigate('/no_content');
         }
-    }, [loadingState, navigate]);
+    }, [isLoggedIn, loadingState, navigate]);
 
     return (
         <div className="gym">
