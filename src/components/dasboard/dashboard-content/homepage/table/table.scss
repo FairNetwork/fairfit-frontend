@@ -1,0 +1,20 @@
+.table {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    text-align: left;
+
+    &__topic {
+        cursor: pointer;
+        color: grey;
+        border-bottom: grey 1px dashed;
+        font-style: italic;
+
+        width: fit-content;
+
+        &--children {
+            margin-left: 30px;
+        }
+    }
+}

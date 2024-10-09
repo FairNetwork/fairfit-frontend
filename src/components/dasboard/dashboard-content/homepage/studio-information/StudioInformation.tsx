@@ -32,7 +32,7 @@ const StudioInformation = () => {
                     control={
                         <Checkbox
                             id={id}
-                            checked={(selectedTags as unknown as string[]).includes(name)}
+                            checked={((selectedTags ?? []) as unknown as string[]).includes(name)}
                         />
                     }
                     label={name}
@@ -45,7 +45,11 @@ const StudioInformation = () => {
 
     return (
         <div className="studio-information">
-            <h2>Studio Informationen</h2>
+            <h2 id="table-studio-information">Studio Informationen</h2>
+            <i>
+                Passe die grundlegenden Details deines Studios an, um eine optimale Darstellung für
+                deine Nutzer zu gewährleisten.
+            </i>
             <div className="studio-information__column">
                 <TextField
                     id="name"
@@ -66,7 +70,11 @@ const StudioInformation = () => {
                     }
                 />
             </div>
-            <h3>Social Media Konten</h3>
+            <h3 id="table-social-media">Social Media Konten</h3>
+            <i>
+                Verbinde dein Studio mit sozialen Netzwerken! Füge Links zu deinen Profilen hinzu,
+                damit Kunden dich leicht finden und folgen können.
+            </i>
             <SocialMediaInput
                 icon="bi bi-instagram"
                 label="Instagram"
@@ -97,8 +105,16 @@ const StudioInformation = () => {
                 value="test"
                 onChange={(value) => handleSocialMediaChange(value, SocialMediaType.TWITTER)}
             />
-            <h3>Öffnungszeiten</h3>
-            <h3>Tags</h3>
+            <h3 id="table-opening-times">Öffnungszeiten</h3>
+            <i>
+                Gib die täglichen Öffnungs- und Schließzeiten deines Studios an, damit Kunden immer
+                wissen, wann sie vorbeikommen können.
+            </i>
+            <h3 id="table-tags">Tags</h3>
+            <i>
+                Wähle aus verschiedenen Eigenschaften deines Studios aus, um es besser zu
+                kategorisieren und auffindbar zu machen.
+            </i>
             <div className="studio-information__tags">{tagContent}</div>
         </div>
     );

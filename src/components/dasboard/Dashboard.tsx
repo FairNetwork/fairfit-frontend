@@ -11,6 +11,8 @@ import './dashboard.scss';
 import DashboardHeader from './dashboard-header/DashboardHeader';
 import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
 import DashboardContent from './dashboard-content/DashboardContent';
+import { GYM_FOOTER_ITEMS } from '../../constants/footer';
+import Footer from '../shared/footer/Footer';
 
 const DashBoard = () => {
     const dispatch = useAppDispatch();
@@ -59,6 +61,7 @@ const DashBoard = () => {
             <ContentWrapper>
                 <DashboardContent />
             </ContentWrapper>
+            <Footer items={GYM_FOOTER_ITEMS} />
         </div>
     );
 };

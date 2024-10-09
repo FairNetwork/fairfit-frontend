@@ -7,6 +7,7 @@ import Icon from '../../icon/Icon';
 interface CardProps extends Offer {
     onClick?: (id: Offer['id']) => void;
     isSelected?: boolean;
+    onEdit?: (id: Offer['id']) => void;
 }
 
 const Card = ({
@@ -17,6 +18,7 @@ const Card = ({
     isSelected,
     color,
     id,
+    onEdit,
     onClick,
     priceAfterDuration,
     duration
@@ -57,8 +59,14 @@ const Card = ({
             className="card"
             onClick={() => typeof onClick === 'function' && onClick(id)}
             style={{
-                backgroundColor
+                backgroundColor,
+                cursor: typeof onEdit === 'function' ? 'default' : 'pointer'
             }}>
+            {typeof onEdit === 'function' && (
+                <div className="card__edit">
+                    <Icon icon="bi bi-three-dots-vertical" onClick={() => onEdit(id)} />
+                </div>
+            )}
             <div className="card__head">
                 <div className="card__head__title">{title}</div>
                 <div className="card__head__type">
