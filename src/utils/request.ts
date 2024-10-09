@@ -27,6 +27,7 @@ interface RequestOptions<Body> {
 
 interface Meta {
     [key: string]: unknown;
+
     body?: BodyInit | null;
     method: string;
     url: string;
@@ -34,6 +35,7 @@ interface Meta {
 
 export interface RequestResult<Data = unknown> {
     [key: string]: unknown;
+
     data?: Data;
     error?: Error;
     meta: Meta;
