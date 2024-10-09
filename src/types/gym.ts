@@ -3,6 +3,7 @@ import { ISocialMedia } from './socialMedia';
 import { IBenefit } from './benefit';
 import { IOpeningTimes } from './openingTimes';
 import { IUtility } from './utility';
+import { ITag } from './tag';
 
 export interface IGym {
     name: string;
@@ -12,6 +13,7 @@ export interface IGym {
     gymImage: string;
     rating: number;
     hasLoaded?: boolean;
+    tags: ITag[];
     abonnements: Offer[];
     benefits?: IBenefit[];
     socialMedia?: ISocialMedia[];

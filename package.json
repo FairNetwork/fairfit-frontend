@@ -5,6 +5,7 @@
     "author": "Michael Gesenhues",
     "dependencies": {
         "@mui/icons-material": "^5.15.18",
+        "@mui/lab": "^6.0.0-beta.10",
         "@mui/material": "^5.15.12",
         "@reduxjs/toolkit": "^2.2.1",
         "bootstrap-icons": "^1.11.3",

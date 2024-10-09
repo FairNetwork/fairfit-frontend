@@ -9,7 +9,17 @@ interface IconProps {
 }
 
 const Icon = ({ icon, color, size, style, onClick }: IconProps) => {
-    return <i className={icon} style={{ ...style, fontSize: size, color }} onClick={onClick}></i>;
+    return (
+        <i
+            className={icon}
+            style={{
+                ...style,
+                fontSize: size,
+                color,
+                cursor: typeof onClick === 'function' ? 'pointer' : 'default'
+            }}
+            onClick={onClick}></i>
+    );
 };
 
 Icon.displayName = 'Icon';

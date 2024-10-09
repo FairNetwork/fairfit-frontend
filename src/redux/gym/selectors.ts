@@ -85,6 +85,8 @@ export const selectSocialMedia = createSelector(
     (currentGym) => currentGym?.socialMedia
 );
 
+export const selectGymTags = createSelector(selectCurrentGym, (currentGym) => currentGym?.tags);
+
 export const selectOpeningTimes = createSelector(
     selectCurrentGym,
     (currentGym) => currentGym?.openingTimes

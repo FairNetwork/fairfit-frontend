@@ -7,6 +7,10 @@ import { selectGymLoadingState, selectHasGymLoaded } from '../../redux/gym/selec
 import { extractAccessToken, getGymFromRoute } from '../../utils/routes';
 import { loadGym } from '../../redux/gym/actions';
 import { selectIsLoggedIn } from '../../redux/login/selectors';
+import './dashboard.scss';
+import DashboardHeader from './dashboard-header/DashboardHeader';
+import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
+import DashboardContent from './dashboard-content/DashboardContent';
 
 const DashBoard = () => {
     const dispatch = useAppDispatch();
@@ -50,13 +54,11 @@ const DashBoard = () => {
     }, [isLoggedIn, loadingState, navigate]);
 
     return (
-        <div className="gym">
-            Dashboard
-            {/*<DashBoardHeader />*/}
-            {/*<ContentWrapper>*/}
-            {/*    <DashBoardContent />*/}
-            {/*</ContentWrapper>*/}
-            {/*<Footer items={GYM_FOOTER_ITEMS} />*/}
+        <div className="dashboard">
+            <DashboardHeader />
+            <ContentWrapper>
+                <DashboardContent />
+            </ContentWrapper>
         </div>
     );
 };

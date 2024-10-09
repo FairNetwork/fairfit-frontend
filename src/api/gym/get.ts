@@ -6,6 +6,7 @@ import { ITag } from '../../types/tag';
 export interface GetGymResult {
     id: IGym['id'];
     name: IGym['name'];
+    tags: IGym['tags'];
     address: IGym['address'];
     gymImage: IGym['gymImage'];
     rating: IGym['rating'];
