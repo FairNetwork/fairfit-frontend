@@ -1,0 +1,16 @@
+.studio-information {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    &__column {
+        display: flex;
+        gap: 12px;
+    }
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+}
