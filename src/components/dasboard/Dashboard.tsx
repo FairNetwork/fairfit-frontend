@@ -1,20 +1,31 @@
-import { confirmRegistration, getIsUserLoggedIn } from '../../redux/login/actions';
-import { useEffect } from 'react';
+import * as React from 'react';
+import { AppProvider, Branding } from '@toolpad/core/AppProvider';
+import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+import { PageContainer } from '@toolpad/core/PageContainer';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { updateCurrentGymId } from '../../redux/gym/slice';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { selectGymLoadingState, selectHasGymLoaded } from '../../redux/gym/selectors';
-import { extractAccessToken, getGymFromRoute } from '../../utils/routes';
-import { loadGym } from '../../redux/gym/actions';
+import {
+    selectGymLoadingState,
+    selectGymName,
+    selectHasGymLoaded
+} from '../../redux/gym/selectors';
+import { DASHBOARD_NAVIGATION, DASHBOARD_THEME } from '../../constants/dashboard';
+import { useDashboardRouter } from '../../hooks/dashboard';
+import { useEffect, useMemo } from 'react';
+import Abonnements from './abonnements/Abonnements';
 import { selectIsLoggedIn } from '../../redux/login/selectors';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { extractAccessToken, getGymFromRoute } from '../../utils/routes';
+import { updateCurrentGymId } from '../../redux/gym/slice';
+import { confirmRegistration, getIsUserLoggedIn } from '../../redux/login/actions';
+import { loadGym } from '../../redux/gym/actions';
+import Studio from './studio/Studio';
+import ComingSoon from '../shared/coming-soon/ComingSoon';
+import Benefits from './benefits/Benefits';
 import './dashboard.scss';
-import DashboardHeader from './dashboard-header/DashboardHeader';
-import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
-import DashboardContent from './dashboard-content/DashboardContent';
 import { GYM_FOOTER_ITEMS } from '../../constants/footer';
 import Footer from '../shared/footer/Footer';
 
-const DashBoard = () => {
+const Dashboard = () => {
     const dispatch = useAppDispatch();
 
     const loadingState = useAppSelector(selectGymLoadingState);
@@ -55,17 +66,50 @@ const DashBoard = () => {
         }
     }, [isLoggedIn, loadingState, navigate]);
 
+    const gymName = useAppSelector(selectGymName);
+
+    const router = useDashboardRouter(`/studio`);
+
+    const branding: Branding = useMemo(() => {
+        return {
+            logo: <div />,
+            title: gymName ?? 'FariFit'
+        };
+    }, [gymName]);
+
+    const content = useMemo(() => {
+        switch (router.pathname) {
+            case '/abonnements':
+                return <Abonnements />;
+            case '/benefits':
+                return <Benefits />;
+            case '/instagram':
+            case '/facebook':
+            case '/social-media':
+            case '/social-media/analytics-instagram':
+            case '/social-media/analytics-facebook':
+            case '/homepage':
+                return <ComingSoon />;
+            case '/studio':
+            default:
+                return <Studio />;
+        }
+    }, [router.pathname]);
+
     return (
-        <div className="dashboard">
-            <DashboardHeader />
-            <ContentWrapper>
-                <DashboardContent />
-            </ContentWrapper>
+        <AppProvider
+            navigation={DASHBOARD_NAVIGATION}
+            router={router}
+            branding={branding}
+            theme={DASHBOARD_THEME}>
+            <DashboardLayout>
+                <PageContainer className="dashboard">{content}</PageContainer>
+            </DashboardLayout>
             <Footer items={GYM_FOOTER_ITEMS} />
-        </div>
+        </AppProvider>
     );
 };
 
-DashBoard.displayName = 'DashBoard';
+Dashboard.displayName = 'Dashboard';
 
-export default DashBoard;
+export default Dashboard;
