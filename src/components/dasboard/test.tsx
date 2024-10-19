@@ -1,164 +1,43 @@
 import * as React from 'react';
-import { extendTheme, styled } from '@mui/material/styles';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import DescriptionIcon from '@mui/icons-material/Description';
-import LayersIcon from '@mui/icons-material/Layers';
-import { AppProvider, Branding, Navigation, Router } from '@toolpad/core/AppProvider';
+import { AppProvider, Branding } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { PageContainer } from '@toolpad/core/PageContainer';
-import Grid from '@mui/material/Grid2';
-import Icon from '../shared/icon/Icon';
 import { useAppSelector } from '../../hooks/redux';
 import { selectGymName } from '../../redux/gym/selectors';
+import { DASHBOARD_NAVIGATION, DASHBOARD_THEME } from '../../constants/dashboard';
+import { useDashboardRouter } from '../../hooks/dashboard';
+import { useMemo } from 'react';
 
-const NAVIGATION: Navigation = [
-    {
-        kind: 'header',
-        title: 'HomePage'
-    },
-    {
-        segment: 'studio',
-        title: 'Studio',
-        icon: <Icon icon="bi bi-house-gear" size={20} />
-    },
-    {
-        segment: 'abonnements',
-        title: 'Abonnements',
-        icon: <Icon icon="bi bi-bag" size={20} />
-    },
-    {
-        segment: 'benefits',
-        title: 'Leistungen',
-        icon: <Icon icon="bi bi-lightning-charge" size={20} />
-    },
-    {
-        kind: 'divider'
-    },
-    {
-        kind: 'header',
-        title: 'Analytics'
-    },
-    {
-        segment: 'reports',
-        title: 'Reports',
-        icon: <BarChartIcon />,
-        children: [
-            {
-                segment: 'sales',
-                title: 'Sales',
-                icon: <DescriptionIcon />
-            },
-            {
-                segment: 'traffic',
-                title: 'Traffic',
-                icon: <DescriptionIcon />
-            }
-        ]
-    },
-    {
-        segment: 'integrations',
-        title: 'Integrations',
-        icon: <LayersIcon />
-    }
-];
-
-const demoTheme = extendTheme({
-    colorSchemes: {
-        dark: {
-            palette: {
-                primary: { main: '#03DAC5' },
-                background: {
-                    default: '#121212',
-                    paper: '#121212'
-                }
-            }
-        }
-    },
-    colorSchemeSelector: 'class',
-    breakpoints: {
-        values: {
-            xs: 0,
-            sm: 600,
-            md: 600,
-            lg: 1200,
-            xl: 1536
-        }
-    }
-});
-
-function useDemoRouter(initialPath: string): Router {
-    const [pathname, setPathname] = React.useState(initialPath);
-
-    const router = React.useMemo(() => {
-        return {
-            pathname,
-            searchParams: new URLSearchParams(),
-            navigate: (path: string | URL) => setPathname(String(path))
-        };
-    }, [pathname]);
-
-    return router;
-}
-
-const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
-    backgroundColor: theme.palette.action.hover,
-    borderRadius: theme.shape.borderRadius,
-    height,
-    content: '" "'
-}));
-
-export default function DashboardLayoutBasic(props: any) {
+export default function DashboardLayoutBasic() {
     const gymName = useAppSelector(selectGymName);
 
-    const router = useDemoRouter('/dashboard');
+    const router = useDashboardRouter(`/studio`);
 
-    const branding: Branding = {
-        logo: <div />,
-        title: gymName ?? 'FariFit'
-    };
+    const branding: Branding = useMemo(() => {
+        return {
+            logo: <div />,
+            title: gymName ?? 'FariFit'
+        };
+    }, [gymName]);
+
+    const content = useMemo(() => {
+        switch (router.pathname) {
+            case '/abonnements':
+                return <div>2</div>;
+            case '/studio':
+            default:
+                return <div>1</div>;
+        }
+    }, [router.pathname]);
 
     return (
-        <AppProvider navigation={NAVIGATION} router={router} branding={branding} theme={demoTheme}>
+        <AppProvider
+            navigation={DASHBOARD_NAVIGATION}
+            router={router}
+            branding={branding}
+            theme={DASHBOARD_THEME}>
             <DashboardLayout>
-                <PageContainer>
-                    <Grid container spacing={1}>
-                        <Grid size={5} />
-                        <Grid size={12}>
-                            <Skeleton height={14} />
-                        </Grid>
-                        <Grid size={12}>
-                            <Skeleton height={14} />
-                        </Grid>
-                        <Grid size={4}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={8}>
-                            <Skeleton height={100} />
-                        </Grid>
-
-                        <Grid size={12}>
-                            <Skeleton height={150} />
-                        </Grid>
-                        <Grid size={12}>
-                            <Skeleton height={14} />
-                        </Grid>
-
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                    </Grid>
-                </PageContainer>
+                <PageContainer>{content}</PageContainer>
             </DashboardLayout>
         </AppProvider>
     );
