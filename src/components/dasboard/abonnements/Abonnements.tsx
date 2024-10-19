@@ -8,7 +8,7 @@ import React, { useMemo } from 'react';
 const Abonnements = () => {
     const abonnements = useAppSelector(selectAbonnements);
 
-    const handleAdd = () => {};
+    // const handleAdd = () => {};
 
     const handleEdit = (id: Offer['id']) => {};
 
