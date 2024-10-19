@@ -80,6 +80,11 @@ export const selectOfferNames = createSelector([selectAbonnements], (abonnements
 
 export const selectGymName = createSelector(selectCurrentGym, (currentGym) => currentGym?.name);
 
+export const selectGymAddress = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.address
+);
+
 export const selectSocialMedia = createSelector(
     selectCurrentGym,
     (currentGym) => currentGym?.socialMedia
