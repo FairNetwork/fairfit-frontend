@@ -14,7 +14,7 @@ const SocialMediaInput = ({ onChange, label, icon, value }: SocialMediaInputProp
     return (
         <div className="social-media-input">
             <Icon icon={icon} size={35} />
-            <FormControl sx={{ m: 1, width: '100%' }} variant="outlined">
+            <FormControl sx={{ m: 1 }} fullWidth variant="outlined">
                 <InputLabel htmlFor={`social-media-input${label}`}>{label}</InputLabel>
                 <OutlinedInput
                     value={value}

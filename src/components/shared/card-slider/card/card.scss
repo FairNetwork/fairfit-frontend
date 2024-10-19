@@ -4,8 +4,11 @@
     cursor: pointer;
     position: relative;
 
-    min-width: 300px;
+    min-width: 280px;
+    max-width: 280px;
+    aspect-ratio: 16/9;
     color: white;
+    background-color: var(--primary-color);
 
     font-family: 'Source Sans Pro', sans-serif;
 

@@ -1,6 +1,6 @@
 import './homepage.scss';
 import StudioInformation from './studio-information/StudioInformation';
-import Abonnements from './abonnements/Abonnements';
+import Abonnements from '../../abonnements/Abonnements';
 import Benefits from './benefits/Benefits';
 import Table from './table/Table';
 
