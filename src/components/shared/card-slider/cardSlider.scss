@@ -15,7 +15,9 @@
         justify-content: center;
         align-items: center;
 
-        min-width: 300px;
+        min-width: 280px;
+        max-width: 280px;
+        aspect-ratio: 16/9;
     }
 
     &::-webkit-scrollbar {

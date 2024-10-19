@@ -59,7 +59,6 @@ const Card = ({
             className="card"
             onClick={() => typeof onClick === 'function' && onClick(id)}
             style={{
-                backgroundColor,
                 cursor: typeof onEdit === 'function' ? 'default' : 'pointer'
             }}>
             {typeof onEdit === 'function' && (

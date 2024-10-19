@@ -1,6 +1,16 @@
 body {
-    background-color: #f0f0f0;
-    color: #222838 !important;
+    --background-color: #121212;
+    --background-color-secondary: #1E1E1E;
+    --primary-color: #03DAC5;
+    --secondary-color: #fff;
+    --text-color: #E0E0E0;
+    --text-color-secondary: #B0B0B0;
+    --box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+
+    background-color: var(--background-color);
+    color: var(--text-color) !important;
+
+
 
     padding: 0;
     margin: 0;
