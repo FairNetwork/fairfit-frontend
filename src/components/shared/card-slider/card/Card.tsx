@@ -15,8 +15,6 @@ const Card = ({
     details,
     price,
     isOffer,
-    isSelected,
-    color,
     id,
     onEdit,
     onClick,

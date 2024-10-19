@@ -76,6 +76,15 @@ export default function DashboardLayoutBasic() {
         switch (router.pathname) {
             case '/abonnements':
                 return <Abonnements />;
+            case '/benefits':
+                return <Abonnements />;
+            case '/instagram':
+            case '/facebook':
+            case '/social-media':
+            case '/social-media/instagram':
+            case '/social-media/facebook':
+            case '/homepage':
+                return <Abonnements />;
             case '/studio':
             default:
                 return <Studio />;
