@@ -48,10 +48,6 @@ const Card = ({
         return items;
     }, [details]);
 
-    const backgroundColor = useMemo(() => {
-        return isOffer ? '#F3A3B1' : '#A3C4F3';
-    }, [isOffer]);
-
     return (
         <div
             className="card"
