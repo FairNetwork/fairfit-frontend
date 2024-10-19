@@ -41,13 +41,7 @@ const Abonnements = () => {
                 Stelle verschiedene Mitgliedschaftsoptionen vor. Füge Beschreibungen und Preise
                 hinzu, um deinen Kunden die Wahl zu erleichtern.
             </i>
-            <div className="abonnements__content">
-                {content}
-                {content}
-                {content}
-                {content}
-                {content}
-            </div>
+            <div className="abonnements__content">{content}</div>
         </div>
     );
 };

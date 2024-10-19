@@ -5,9 +5,8 @@ import Utility from './utility/Utility';
 import NoContent from './no-content/NoContent';
 import Booking from './booking/Booking';
 import ConfirmRegistration from './confirm-registration/ConfirmRegistration';
-import DashBoard from './dasboard/Dashboard';
 import LogIn from './log-in/LogIn';
-import DashboardLayoutBasic from './dasboard/test';
+import DashBoard from './dasboard/Dashboard';
 
 const App = () => {
     return (
@@ -16,7 +15,6 @@ const App = () => {
             <Route path="/utility/*" element={<Utility />} />
             <Route path="/:gym" element={<Gym />} />
             <Route path="/:gym/offers" element={<Booking />} />
-            <Route path="/:gym/test" element={<DashboardLayoutBasic />} />
             <Route path="/:gym/dashboard" element={<DashBoard />} />
             <Route path="/confirm-registration" element={<ConfirmRegistration />} />
             <Route path="/log-in" element={<LogIn />} />

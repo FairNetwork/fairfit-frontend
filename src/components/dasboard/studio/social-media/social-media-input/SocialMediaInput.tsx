@@ -1,7 +1,7 @@
 import './socialMediaInput.scss';
 import { FormControl, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
-import Icon from '../../../../../shared/icon/Icon';
 import { ChangeEvent } from 'react';
+import Icon from '../../../../shared/icon/Icon';
 
 interface SocialMediaInputProps {
     onChange: (value: string) => void;

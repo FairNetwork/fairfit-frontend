@@ -1,10 +1,10 @@
 import './socialMedia.scss';
 import { Box, Grid2 } from '@mui/material';
-import SocialMediaInput from '../../dashboard-content/homepage/studio-information/social-media-input/SocialMediaInput';
 import { ISocialMedia, SocialMediaType } from '../../../../types/socialMedia';
 import { useAppSelector } from '../../../../hooks/redux';
 import { selectSocialMedia } from '../../../../redux/gym/selectors';
 import { useEffect, useState } from 'react';
+import SocialMediaInput from './social-media-input/SocialMediaInput';
 
 const INITIAL_STATE: ISocialMedia[] = [
     {
