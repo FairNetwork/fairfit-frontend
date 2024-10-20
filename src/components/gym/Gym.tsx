@@ -1,5 +1,5 @@
 import './gym.scss';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { updateCurrentGymId } from '../../redux/gym/slice';
 import { useLocation, useNavigate } from 'react-router-dom';

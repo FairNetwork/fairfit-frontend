@@ -1,5 +1,5 @@
 import './home.scss';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Footer from '../shared/footer/Footer';
 import { HOME_FOOTER_ITEMS } from '../../constants/footer';
 import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
