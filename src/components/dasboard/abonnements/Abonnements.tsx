@@ -3,16 +3,12 @@ import { useAppSelector } from '../../../hooks/redux';
 import { selectAbonnements } from '../../../redux/gym/selectors';
 import { Offer } from '../../../types/offer';
 import Card from '../../shared/card-slider/card/Card';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Box } from '@mui/material';
+import React, { useEffect, useMemo } from 'react';
 import { Masonry } from '@mui/lab';
+import { Box } from '@mui/material';
 
 const Abonnements = () => {
     const abonnements = useAppSelector(selectAbonnements);
-
-    const [columns, setColumns] = useState(3);
-
-    const ref = useRef<HTMLDivElement>(null);
 
     // const handleAdd = () => {};
 
@@ -36,7 +32,6 @@ const Abonnements = () => {
                             isOffer={isOffer}
                             priceAfterDuration={priceAfterDuration}
                             duration={duration}
-                            shouldShowDetails={false}
                         />
                     );
                 }
@@ -45,18 +40,18 @@ const Abonnements = () => {
     );
 
     return (
-        <div className="abonnements" ref={ref}>
+        <div className="abonnements">
             <i>
                 Stelle verschiedene Mitgliedschaftsoptionen vor. Füge Beschreibungen und Preise
                 hinzu, um deinen Kunden die Wahl zu erleichtern.
             </i>
-            <div className="abonnements__content">
-                {content}
-                {content}
-                {content}
-                {content}
-                {content}
-            </div>
+            {content && (
+                <Box sx={{ width: '100%', minHeight: 400 }}>
+                    <Masonry columns={{ xs: 2, sm: 3, md: 4, lg: 4 }} spacing={2}>
+                        {content}
+                    </Masonry>
+                </Box>
+            )}
         </div>
     );
 };

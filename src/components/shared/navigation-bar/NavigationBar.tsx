@@ -18,7 +18,7 @@ const NavigationBar = () => {
                     <div className="navigation-bar__content__logo">
                         <h6>{gymName ?? 'FairFit'}&nbsp;</h6>
                         <p>
-                            by <a>{gymName ? 'FairFit' : 'FairNet'}</a>
+                            by<button>{gymName ? 'FairFit' : 'FairNet'}</button>
                         </p>
                     </div>
                     <Icon icon="bi bi-house" size={24} onClick={() => navigate('/')} />

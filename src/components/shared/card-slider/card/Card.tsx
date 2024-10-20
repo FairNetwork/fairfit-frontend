@@ -3,6 +3,7 @@ import './card.scss';
 import { Offer } from '../../../../types/offer';
 import { convertMonth } from '../../../../utils/text';
 import Icon from '../../icon/Icon';
+import { clsx } from 'clsx';
 
 interface CardProps extends Offer {
     onClick?: (id: Offer['id']) => void;
@@ -50,9 +51,13 @@ const Card = ({
         return items;
     }, [details]);
 
+    const cardClassNames = clsx('card', {
+        'card--display': typeof onEdit !== 'function'
+    });
+
     return (
         <div
-            className="card"
+            className={cardClassNames}
             onClick={() => typeof onClick === 'function' && onClick(id)}
             style={{
                 cursor: typeof onEdit === 'function' ? 'default' : 'pointer'
@@ -76,7 +81,7 @@ const Card = ({
                         style={{ left: `calc(50% + ${priceWidth / 2 + 6}px)` }}>
                         {duration && priceAfterDuration
                             ? convertMonth({ priceAfterDuration, duration })
-                            : 'monatlich'}
+                            : 'mtl.'}
                     </div>
                 </div>
             </div>

@@ -5,6 +5,8 @@ import { selectBenefits } from '../../../redux/gym/selectors';
 import { IBenefit } from '../../../types/benefit';
 import Icon from '../../shared/icon/Icon';
 import { selectFiles } from '../../../utils/selectFiles';
+import { Box } from '@mui/material';
+import { Masonry } from '@mui/lab';
 
 const Benefits = () => {
     const benefits = useAppSelector(selectBenefits);
@@ -58,7 +60,13 @@ const Benefits = () => {
                 </div>
             </div>
             <h4>Deine Leistungen</h4>
-            <div className="dashboard-benefits__content">{content}</div>
+            {content && (
+                <Box sx={{ width: '100%', minHeight: 400 }}>
+                    <Masonry columns={{ xs: 2, sm: 3, md: 4, lg: 4 }} spacing={2}>
+                        {content}
+                    </Masonry>
+                </Box>
+            )}
         </div>
     );
 };

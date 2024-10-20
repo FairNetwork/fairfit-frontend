@@ -11,8 +11,7 @@
             align-items: baseline;
 
             h6,
-            p,
-            a {
+            p {
                 margin: 0;
             }
 
@@ -26,8 +25,12 @@
                 font-size: 12px;
             }
 
-            a {
+            button {
                 cursor: pointer;
+                background-color: transparent;
+                color: var(--text-color);
+                border: none;
+                font-size: 12px;
             }
         }
     }
