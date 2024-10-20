@@ -32,17 +32,6 @@
             font-weight: bold;
         }
 
-        &__rating {
-            display: flex;
-            align-items: center;
-            margin-bottom: 6px;
-            gap: 12px;
-
-            &__text {
-                font-size: smaller;
-            }
-        }
-
         &__location {
             display: flex;
             gap: 6px;
