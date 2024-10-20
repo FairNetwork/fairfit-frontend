@@ -23,7 +23,9 @@ const Footer = ({ items }: FooterProps) => {
                     className="footer__item"
                     key={`footer-item__${id}`}
                     onClick={() => {
-                        navigate(`/utility/${path}?gymId=${gymId ?? 'fairfit'}`);
+                        navigate(
+                            `/${path === 'register-studio' ? '' : 'utility/'}${path}?gymId=${gymId ?? 'fairfit'}`
+                        );
                     }}>
                     {name}
                 </div>

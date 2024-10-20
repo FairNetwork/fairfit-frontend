@@ -3,14 +3,22 @@ import { useAppSelector } from '../../../hooks/redux';
 import { selectAbonnements } from '../../../redux/gym/selectors';
 import { Offer } from '../../../types/offer';
 import Card from '../../shared/card-slider/card/Card';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Box } from '@mui/material';
+import { Masonry } from '@mui/lab';
 
 const Abonnements = () => {
     const abonnements = useAppSelector(selectAbonnements);
 
+    const [columns, setColumns] = useState(3);
+
+    const ref = useRef<HTMLDivElement>(null);
+
     // const handleAdd = () => {};
 
     const handleEdit = (id: Offer['id']) => {};
+
+    useEffect(() => {}, []);
 
     const content = useMemo(
         () =>
@@ -28,6 +36,7 @@ const Abonnements = () => {
                             isOffer={isOffer}
                             priceAfterDuration={priceAfterDuration}
                             duration={duration}
+                            shouldShowDetails={false}
                         />
                     );
                 }
@@ -36,12 +45,18 @@ const Abonnements = () => {
     );
 
     return (
-        <div className="abonnements">
+        <div className="abonnements" ref={ref}>
             <i>
                 Stelle verschiedene Mitgliedschaftsoptionen vor. Füge Beschreibungen und Preise
                 hinzu, um deinen Kunden die Wahl zu erleichtern.
             </i>
-            <div className="abonnements__content">{content}</div>
+            <div className="abonnements__content">
+                {content}
+                {content}
+                {content}
+                {content}
+                {content}
+            </div>
         </div>
     );
 };

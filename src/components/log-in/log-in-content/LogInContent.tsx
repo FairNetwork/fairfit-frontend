@@ -36,6 +36,7 @@ const LogInContent = () => {
 
     return (
         <div className="log-in-content">
+            <p>Bitte melde dich an, um auf dein Studio zuzugreifen.</p>
             {error && (
                 <Alert severity="error">Deine E-Mail und Passwort stimmen nicht überein.</Alert>
             )}
@@ -56,6 +57,12 @@ const LogInContent = () => {
                 value={password}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
             />
+            <div className="log-in-content__register">
+                <p>
+                    Noch kein Konto? Registriere dein Studio{' '}
+                    <a onClick={() => navigate('/utility/register-studio?gymId=fairfit')}>hier.</a>
+                </p>
+            </div>
             <div className="log-in-content__button">
                 <Button variant="contained" disabled={isButtonDisabled} onClick={handleClick}>
                     Anmelden

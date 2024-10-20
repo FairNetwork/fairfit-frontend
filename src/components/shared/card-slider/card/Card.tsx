@@ -8,6 +8,7 @@ interface CardProps extends Offer {
     onClick?: (id: Offer['id']) => void;
     isSelected?: boolean;
     onEdit?: (id: Offer['id']) => void;
+    shouldShowDetails?: boolean;
 }
 
 const Card = ({
@@ -19,7 +20,8 @@ const Card = ({
     onEdit,
     onClick,
     priceAfterDuration,
-    duration
+    duration,
+    shouldShowDetails = true
 }: CardProps) => {
     const [priceWidth, setPriceWidth] = useState(0);
 
@@ -78,7 +80,7 @@ const Card = ({
                     </div>
                 </div>
             </div>
-            <div className="card__content">{content}</div>
+            {shouldShowDetails && <div className="card__content">{content}</div>}
         </div>
     );
 };
