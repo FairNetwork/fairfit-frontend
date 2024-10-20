@@ -15,7 +15,7 @@ const SocialMedia = ({ userName, type }: SocialMediaProps) => {
 
     return (
         <div className="social_media">
-            <Icon icon={getIcon(type) ?? ''} size={40} onClick={handleClick} />
+            <Icon icon={getIcon(type) ?? ''} size={20} onClick={handleClick} />
         </div>
     );
 };
