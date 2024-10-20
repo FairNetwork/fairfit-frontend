@@ -59,8 +59,10 @@ const LogInContent = () => {
             />
             <div className="log-in-content__register">
                 <p>
-                    Noch kein Konto? Registriere dein Studio{' '}
-                    <a onClick={() => navigate('/utility/register-studio?gymId=fairfit')}>hier.</a>
+                    Noch kein Konto? Registriere dein Studio
+                    <button onClick={() => navigate('/utility/register-studio?gymId=fairfit')}>
+                        hier.
+                    </button>
                 </p>
             </div>
             <div className="log-in-content__button">

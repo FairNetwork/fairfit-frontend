@@ -13,9 +13,12 @@
         margin: 0;
     }
 
-    a {
+    button {
         cursor: pointer;
+        background-color: transparent;
         color: var(--primary-color);
+        border: none;
+        font-size: 16px;
     }
 
     &__register {
