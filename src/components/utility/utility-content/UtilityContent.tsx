@@ -1,11 +1,11 @@
 import './utilityContent.scss';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { getPathFromUrl } from '../../../utils/routes';
 import { useAppSelector } from '../../../hooks/redux';
 import { selectUtilityByType } from '../../../redux/gym/selectors';
 import { RootState } from '../../../redux/store';
 import { getUtilityType } from '../../../utils/utility';
-import SignUp from '../../shared/sign-up/SignUp';
+import SignUp from '../../sign-up/SignUp';
 
 const UtilityContent = () => {
     const type = getPathFromUrl();
@@ -16,6 +16,12 @@ const UtilityContent = () => {
     );
 
     const html = useAppSelector(htmlSelector) ?? '';
+
+    useEffect(() => {
+        if (typeof html === 'string') {
+            window.scrollTo(0, 0);
+        }
+    }, [html]);
 
     return (
         <div className="utility-content">

@@ -1,11 +1,11 @@
-import { useAppDispatch } from '../../../hooks/redux';
 import { ChangeEvent, useMemo, useState } from 'react';
 import { Button, TextField } from '@mui/material';
-import './signUp.scss';
-import { registerStudio } from '../../../redux/login/actions';
+import './signUpContent.scss';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../hooks/redux';
+import { registerStudio } from '../../../redux/login/actions';
 
-const SignUp = () => {
+const SignUpContent = () => {
     const dispatch = useAppDispatch();
 
     const [name, setName] = useState('');
@@ -14,16 +14,6 @@ const SignUp = () => {
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
     const navigate = useNavigate();
-
-    const isButtonDisabled = useMemo(() => {
-        return (
-            !name ||
-            !email ||
-            !password ||
-            !passwordConfirmation ||
-            password !== passwordConfirmation
-        );
-    }, [email, name, password, passwordConfirmation]);
 
     const passwordCriteria = useMemo(() => {
         return {
@@ -40,6 +30,17 @@ const SignUp = () => {
         return !length || !lowercase || !uppercase || !lowercase || !number || !special;
     }, [passwordCriteria]);
 
+    const isButtonDisabled = useMemo(() => {
+        return (
+            !name ||
+            !email ||
+            !password ||
+            !passwordConfirmation ||
+            password !== passwordConfirmation ||
+            isPasswordInvalid
+        );
+    }, [email, isPasswordInvalid, name, password, passwordConfirmation]);
+
     const handleRegisterStudio = async () => {
         const wasSuccessful = await dispatch(registerStudio({ name, email, password }));
 
@@ -53,7 +54,8 @@ const SignUp = () => {
     };
 
     return (
-        <div className="sign-up">
+        <div className="sign-up-content">
+            <p>Registriere dein Studio</p>
             <TextField
                 id="name"
                 label="Studioname"
@@ -61,8 +63,8 @@ const SignUp = () => {
                 value={name}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => setName(event.target.value)}
             />
-            <div className="sign-up__group">
-                <div className="sign-up__group__hint">
+            <div className="sign-up-content__group">
+                <div className="sign-up-content__group__hint">
                     Die E-Mail sollte sich von der Kontakt-E-Mail unterscheiden
                 </div>
                 <div style={{ marginTop: 10 }} />
@@ -77,15 +79,15 @@ const SignUp = () => {
                     }
                 />
             </div>
-            <div className="sign-up__group">
-                <div className="sign-up__group__hint">
+            <div className="sign-up-content__group">
+                <div className="sign-up-content__group__hint">
                     Dein Passwort muss folgende Kriterien erfüllen:
-                    <ul className="sign-up__group__hint__requirements">
+                    <ul className="sign-up-content__group__hint__requirements">
                         <li
                             className={
                                 passwordCriteria.length
                                     ? 'valid'
-                                    : 'sign-up__group__hint__requirements__invalid'
+                                    : 'sign-up-content__group__hint__requirements__invalid'
                             }>
                             Mindestens 8 Zeichen
                         </li>
@@ -93,7 +95,7 @@ const SignUp = () => {
                             className={
                                 passwordCriteria.uppercase
                                     ? 'valid'
-                                    : 'sign-up__group__hint__requirements__invalid'
+                                    : 'sign-up-content__group__hint__requirements__invalid'
                             }>
                             Mindestens 1 Großbuchstabe
                         </li>
@@ -101,7 +103,7 @@ const SignUp = () => {
                             className={
                                 passwordCriteria.lowercase
                                     ? 'valid'
-                                    : 'sign-up__group__hint__requirements__invalid'
+                                    : 'sign-up-content__group__hint__requirements__invalid'
                             }>
                             Mindestens 1 Kleinbuchstabe
                         </li>
@@ -109,7 +111,7 @@ const SignUp = () => {
                             className={
                                 passwordCriteria.number
                                     ? 'valid'
-                                    : 'sign-up__group__hint__requirements__invalid'
+                                    : 'sign-up-content__group__hint__requirements__invalid'
                             }>
                             Mindestens 1 Zahl
                         </li>
@@ -117,7 +119,7 @@ const SignUp = () => {
                             className={
                                 passwordCriteria.special
                                     ? 'valid'
-                                    : 'sign-up__group__hint__requirements__invalid'
+                                    : 'sign-up-content__group__hint__requirements__invalid'
                             }>
                             Mindestens 1 Sonderzeichen
                         </li>
@@ -147,7 +149,7 @@ const SignUp = () => {
                     setPasswordConfirmation(event.target.value)
                 }
             />
-            <div className="sign-up__button">
+            <div className="sign-up-content__button">
                 <Button variant="contained" disabled={isButtonDisabled} onClick={handleClick}>
                     Registrieren
                 </Button>
@@ -156,6 +158,6 @@ const SignUp = () => {
     );
 };
 
-SignUp.displayName = 'SignUp';
+SignUpContent.displayName = 'SignUpContent';
 
-export default SignUp;
+export default SignUpContent;

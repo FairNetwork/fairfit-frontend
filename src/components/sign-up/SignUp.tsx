@@ -1,22 +1,22 @@
-import './logIn.scss';
+import './signUp.scss';
+import NavigationBar from '../shared/navigation-bar/NavigationBar';
 import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
 import Footer from '../shared/footer/Footer';
 import { HOME_FOOTER_ITEMS } from '../../constants/footer';
-import LogInContent from './log-in-content/LogInContent';
-import NavigationBar from '../shared/navigation-bar/NavigationBar';
+import SignUpContent from './sign-up-content/SignUpContent';
 
-const LogIn = () => {
+const SignUp = () => {
     return (
-        <div className="log-in">
+        <div className="sign-up">
             <NavigationBar />
             <ContentWrapper>
-                <LogInContent />
+                <SignUpContent />
             </ContentWrapper>
             <Footer items={HOME_FOOTER_ITEMS} />
         </div>
     );
 };
 
-LogIn.displayName = 'LogIn';
+SignUp.displayName = 'SignUp';
 
-export default LogIn;
+export default SignUp;

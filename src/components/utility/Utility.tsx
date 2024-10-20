@@ -1,5 +1,4 @@
 import './utility.scss';
-import Header from '../shared/header/Header';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { selectGymLoadingState, selectHasGymLoaded } from '../../redux/gym/selectors';
 import { useNavigate } from 'react-router-dom';
@@ -9,9 +8,9 @@ import { getGymId } from '../../utils/routes';
 import { loadGym } from '../../redux/gym/actions';
 import { GYM_FOOTER_ITEMS, HOME_FOOTER_ITEMS } from '../../constants/footer';
 import Footer from '../shared/footer/Footer';
-import UtilityHeader from './utility-header/UtilityHeader';
 import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
 import UtilityContent from './utility-content/UtilityContent';
+import NavigationBar from '../shared/navigation-bar/NavigationBar';
 
 const Utility = () => {
     const dispatch = useAppDispatch();
@@ -20,10 +19,6 @@ const Utility = () => {
     const hasGymLoaded = useAppSelector(selectHasGymLoaded);
 
     const navigate = useNavigate();
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
 
     useEffect(() => {
         dispatch(updateCurrentGymId(getGymId()));
@@ -45,9 +40,7 @@ const Utility = () => {
 
     return (
         <div className="utility">
-            <Header>
-                <UtilityHeader />
-            </Header>
+            <NavigationBar />
             <ContentWrapper>
                 <UtilityContent />
             </ContentWrapper>

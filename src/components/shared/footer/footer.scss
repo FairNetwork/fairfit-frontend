@@ -8,16 +8,23 @@
     margin-top: 16px;
 
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     gap: 16px;
 
-    &__item {
-        color: var(--footer-text-color);
-        cursor: pointer;
+    &__content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
 
-        &:hover {
-            color: var(--footer-text-hover-color);
+        &__item {
+            color: var(--footer-text-color);
+            cursor: pointer;
+
+            &:hover {
+                color: var(--footer-text-hover-color);
+            }
         }
     }
 }
