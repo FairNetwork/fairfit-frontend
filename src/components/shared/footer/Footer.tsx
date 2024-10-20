@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FooterItem } from '../../../types/footer';
 import './footer.scss';
 import { useAppSelector } from '../../../hooks/redux';
-import { selectCurrentGymId } from '../../../redux/gym/selectors';
+import { selectCurrentGymId, selectSocialMedia } from '../../../redux/gym/selectors';
 import SocialMediaWrapper from '../social-media-wrapper/SocialMediaWrapper';
 
 interface FooterProps {
@@ -14,6 +14,7 @@ const Footer = ({ items }: FooterProps) => {
     const navigate = useNavigate();
 
     const gymId = useAppSelector(selectCurrentGymId);
+    const socialMedia = useAppSelector(selectSocialMedia);
 
     const content = useMemo(() => {
         const renderedItems: ReactElement[] = [];
@@ -38,7 +39,7 @@ const Footer = ({ items }: FooterProps) => {
 
     return (
         <div className="footer">
-            <SocialMediaWrapper />
+            {socialMedia && <SocialMediaWrapper />}
             <div className="footer__content">{content}</div>
         </div>
     );
