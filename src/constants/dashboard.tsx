@@ -3,6 +3,7 @@ import { Navigation } from '@toolpad/core/AppProvider';
 import { extendTheme } from '@mui/material/styles';
 import Icon from '../components/shared/icon/Icon';
 import { Chip } from '@mui/material';
+import { OpeningTimeType } from '../types/openingTimes';
 
 export const DASHBOARD_NAVIGATION: Navigation = [
     {
@@ -99,3 +100,13 @@ export const DASHBOARD_THEME = extendTheme({
         }
     }
 });
+
+export const OPENING_TIMES: OpeningTimeType[] = [
+    OpeningTimeType.MONDAY,
+    OpeningTimeType.TUESDAY,
+    OpeningTimeType.WEDNESDAY,
+    OpeningTimeType.THURSDAY,
+    OpeningTimeType.FRIDAY,
+    OpeningTimeType.SATURDAY,
+    OpeningTimeType.SUNDAY
+];

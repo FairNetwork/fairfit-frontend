@@ -1,7 +1,14 @@
-import './openingTimes.scss';
+import { MultiInputTimeRangeField } from '@mui/x-date-pickers-pro/MultiInputTimeRangeField';
+import 'dayjs/locale/de';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { selectOpeningTimes } from '../../../../redux/gym/selectors';
 import { selectFiles } from '../../../../utils/selectFiles';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import './openingTimes.scss';
+import { useMemo } from 'react';
+import { OpeningTimeType } from '../../../../types/openingTimes';
+import { OPENING_TIMES } from '../../../../constants/dashboard';
 
 const OpeningTimes = () => {
     const dispatch = useAppDispatch();
@@ -20,6 +27,12 @@ const OpeningTimes = () => {
         }
     };
 
+    const content = useMemo(() => {
+        return OPENING_TIMES.map((type) => {
+            return <div>{type}</div>;
+        });
+    }, []);
+
     return (
         <div className="opening-times">
             <h3>Öffnungszeiten</h3>
@@ -27,7 +40,16 @@ const OpeningTimes = () => {
                 Gib die Öffnungszeiten deines Studios an, damit Kunden genau wissen, wann sie dich
                 erreichen können.
             </i>
-            <MobileTimePicker defaultValue={dayjs('2022-04-17T15:30')} />
+            {content}
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
+                <MultiInputTimeRangeField
+                    slotProps={{
+                        textField: ({ position }) => ({
+                            label: position === 'start' ? 'Von' : 'Bis'
+                        })
+                    }}
+                />
+            </LocalizationProvider>
         </div>
     );
 };
