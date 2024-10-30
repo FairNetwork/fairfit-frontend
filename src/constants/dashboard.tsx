@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Navigation } from '@toolpad/core/AppProvider';
 import { extendTheme } from '@mui/material/styles';
 import Icon from '../components/shared/icon/Icon';
+import { Chip } from '@mui/material';
 
 export const DASHBOARD_NAVIGATION: Navigation = [
     {
@@ -33,12 +34,14 @@ export const DASHBOARD_NAVIGATION: Navigation = [
     {
         segment: 'instagram',
         title: 'Instagram',
-        icon: <Icon icon="bi bi-instagram" size={20} />
+        icon: <Icon icon="bi bi-instagram" size={20} />,
+        action: <Chip label="Plus" color="primary" size="small" />
     },
     {
         segment: 'facebook',
         title: 'Facebook',
-        icon: <Icon icon="bi bi-facebook" size={20} />
+        icon: <Icon icon="bi bi-facebook" size={20} />,
+        action: <Chip label="Plus" color="primary" size="small" />
     },
     {
         kind: 'divider'
@@ -51,6 +54,7 @@ export const DASHBOARD_NAVIGATION: Navigation = [
         segment: 'social-media',
         title: 'Social Media',
         icon: <Icon icon="bi bi-diagram-2" size={20} />,
+        action: <Chip label="Pro" color="primary" size="small" />,
         children: [
             {
                 segment: 'analytics-instagram',
@@ -67,7 +71,8 @@ export const DASHBOARD_NAVIGATION: Navigation = [
     {
         segment: 'homepage',
         title: 'Homepage',
-        icon: <Icon icon="bi bi-bar-chart" size={20} />
+        icon: <Icon icon="bi bi-bar-chart" size={20} />,
+        action: <Chip label="Pro" color="primary" size="small" />
     }
 ];
 
