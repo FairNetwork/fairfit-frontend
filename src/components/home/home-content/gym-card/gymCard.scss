@@ -1,6 +1,6 @@
 .gym-card {
     border-radius: 6px;
-    background-color: #52ab98;
+    background-color: #8484840f;
     overflow: hidden;
     aspect-ratio: 16 / 9;
     position: relative;
@@ -27,18 +27,33 @@
         bottom: 0;
         left: 0;
 
+        width: 100%;
+
+        box-sizing: border-box;
+
         &__name {
             font-size: xx-large;
             font-weight: bold;
         }
 
-        &__location {
+        &__row {
             display: flex;
-            gap: 6px;
+            justify-content: space-between;
             align-items: center;
 
-            font-size: small;
-            text-align: end;
+            &__location {
+                display: flex;
+                gap: 6px;
+                align-items: center;
+
+                font-size: small;
+                text-align: end;
+            }
+
+            &__tags {
+                display: flex;
+                gap: 6px;
+            }
         }
     }
 }
