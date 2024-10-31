@@ -62,6 +62,17 @@ const slice = createSlice({
                 ...payload
             };
         },
+        updateGymField(
+            state,
+            { payload }: PayloadAction<{ internalId: IGym['internalId']; data: Partial<IGym> }>
+        ) {
+            const { internalId, data } = payload;
+
+            state.gyms[internalId] = {
+                ...state.gyms[internalId],
+                ...data
+            };
+        },
         addAbonnements(state, { payload }: PayloadAction<AddAbonnementsProps>) {
             const gym = state.gyms[payload.id];
             if (gym) {
@@ -103,6 +114,7 @@ export const {
     setSearchString,
     setTags,
     setSelectedTags,
+    updateGymField,
     setSearchResultIds
 } = slice.actions;
 

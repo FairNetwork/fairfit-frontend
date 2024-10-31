@@ -1,15 +1,20 @@
 import './general.scss';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { Box, Grid2, TextField } from '@mui/material';
-import { useAppSelector } from '../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { selectGymAddress, selectGymName } from '../../../../redux/gym/selectors';
+import { updateGymAction } from '../../../../redux/gym/actions';
 
 const General = () => {
+    const dispatch = useAppDispatch();
+
     const stateName = useAppSelector(selectGymName);
     const stateAddress = useAppSelector(selectGymAddress);
 
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
+
+    const timeoutRef = useRef(0);
 
     useEffect(() => {
         if (typeof stateName === 'string') {
@@ -22,6 +27,28 @@ const General = () => {
             setAddress(stateAddress);
         }
     }, [stateAddress]);
+
+    const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target as HTMLInputElement;
+        window.clearTimeout(timeoutRef.current);
+
+        setName(value);
+
+        timeoutRef.current = window.setTimeout(() => {
+            void dispatch(updateGymAction({ name: value }));
+        }, 1000);
+    };
+
+    const handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target as HTMLInputElement;
+        window.clearTimeout(timeoutRef.current);
+
+        setAddress(value);
+
+        timeoutRef.current = window.setTimeout(() => {
+            void dispatch(updateGymAction({ address: value }));
+        }, 1000);
+    };
 
     return (
         <div className="general">
@@ -40,9 +67,7 @@ const General = () => {
                                 variant="outlined"
                                 value={name}
                                 fullWidth
-                                onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                    setName(event.target.value)
-                                }
+                                onChange={handleNameChange}
                             />
                         </Grid2>
                         <Grid2 size={{ xs: 12, sm: 6 }}>
@@ -52,9 +77,7 @@ const General = () => {
                                 variant="outlined"
                                 value={address}
                                 fullWidth
-                                onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                    setAddress(event.target.value)
-                                }
+                                onChange={handleAddressChange}
                             />
                         </Grid2>
                     </Grid2>
