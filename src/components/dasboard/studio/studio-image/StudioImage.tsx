@@ -1,12 +1,12 @@
 import './studioImage.scss';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { useAppSelector } from '../../../../hooks/redux';
 import { selectImage } from '../../../../redux/gym/selectors';
 import FileInput from '../../../shared/file-input/FileInput';
 import Icon from '../../../shared/icon/Icon';
 import { selectFiles } from '../../../../utils/selectFiles';
 
 const StudioImage = () => {
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
 
     const image = useAppSelector(selectImage);
 

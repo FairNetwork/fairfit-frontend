@@ -1,7 +1,6 @@
 import { MultiInputTimeRangeField } from '@mui/x-date-pickers-pro/MultiInputTimeRangeField';
 import 'dayjs/locale/de';
 import { OpeningTimeType } from '../../../../../types/openingTimes';
-import { useAppDispatch } from '../../../../../hooks/redux';
 import './openingTime.scss';
 import { convertDay } from '../../../../../utils/text';
 
@@ -10,7 +9,7 @@ interface OpeningTimeProps {
 }
 
 const OpeningTime = ({ type }: OpeningTimeProps) => {
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
 
     return (
         <div className="opening-time">
