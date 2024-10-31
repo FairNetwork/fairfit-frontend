@@ -24,6 +24,7 @@ import Benefits from './benefits/Benefits';
 import './dashboard.scss';
 import { GYM_FOOTER_ITEMS } from '../../constants/footer';
 import Footer from '../shared/footer/Footer';
+import { loadRequestStatistics } from '../../redux/statistics/actions';
 
 const Dashboard = () => {
     const dispatch = useAppDispatch();
