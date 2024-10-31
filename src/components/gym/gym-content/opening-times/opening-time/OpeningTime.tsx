@@ -14,7 +14,7 @@ const OpeningTime = ({ startTime, endTime, type }: OpeningTimeProps) => {
     return (
         <div className="opening-time">
             <div className="opening-time__day">{day}</div>
-            <div className="opening-time__time">
+            <div className="opening-time__times">
                 {startTime.substring(0, startTime.length - 3)} -{' '}
                 {endTime.substring(0, endTime.length - 3)}
             </div>
