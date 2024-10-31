@@ -31,7 +31,7 @@ const StudioImage = () => {
             </i>
             {image ? (
                 <div className="studio-image__image">
-                    <img src={image} alt="Studio image" />
+                    <img src={image} alt="Studio" />
                     <div className="studio-image__image__actions">
                         <Icon
                             icon="bi bi-arrow-repeat"

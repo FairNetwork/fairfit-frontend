@@ -24,7 +24,6 @@ import Benefits from './benefits/Benefits';
 import './dashboard.scss';
 import { GYM_FOOTER_ITEMS } from '../../constants/footer';
 import Footer from '../shared/footer/Footer';
-import { loadStatistics } from '../../redux/statistics/actions';
 import HomepageAnalytics from './homepage-analytics/HomepageAnalytics';
 
 const Dashboard = () => {

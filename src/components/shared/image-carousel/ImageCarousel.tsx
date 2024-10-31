@@ -11,7 +11,7 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
         <div className="image-carousel">
             <Carousel autoplay>
                 {images.map(({ imageUrl, id }) => (
-                    <img src={imageUrl} key={`benefit-image--${id}`} alt="benefit image" />
+                    <img src={imageUrl} key={`benefit-image--${id}`} alt="benefit" />
                 ))}
             </Carousel>
         </div>
