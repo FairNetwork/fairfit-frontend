@@ -12,7 +12,7 @@ const HomeContent = () => {
     const content = useMemo(() => {
         const items: ReactElement[] = [];
 
-        gyms?.forEach(({ name, internalId, address, gymImage }) => {
+        gyms?.forEach(({ name, internalId, address, gymImage, tags }) => {
             items.push(
                 <GymCard
                     key={`gym-card__${internalId}`}
@@ -20,6 +20,7 @@ const HomeContent = () => {
                     name={name}
                     address={address}
                     gymImage={gymImage}
+                    tags={tags}
                 />
             );
         });

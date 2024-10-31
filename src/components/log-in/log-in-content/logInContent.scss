@@ -13,16 +13,16 @@
         margin: 0;
     }
 
-    button {
-        cursor: pointer;
-        background-color: transparent;
-        color: var(--primary-color);
-        border: none;
-        font-size: 16px;
-    }
-
     &__register {
         text-align: center;
+
+        button {
+            cursor: pointer;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: none;
+            font-size: 16px;
+        }
     }
 
     &__button {

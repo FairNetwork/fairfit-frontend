@@ -7,6 +7,7 @@ import Icon from '../../shared/icon/Icon';
 import { selectFiles } from '../../../utils/selectFiles';
 import { Box } from '@mui/material';
 import { Masonry } from '@mui/lab';
+import FileInput from '../../shared/file-input/FileInput';
 
 const Benefits = () => {
     const benefits = useAppSelector(selectBenefits);
@@ -49,16 +50,7 @@ const Benefits = () => {
                 Liste besondere Vorteile auf, die dein Studio von anderen abhebt, um potenzielle
                 Mitglieder anzuziehen.
             </i>
-            <div
-                className="dashboard-benefits__upload"
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={(e) => void handleDrop(e)}>
-                <Icon icon="bi bi-upload" size={30} />
-                <div className="dashboard-benefits__upload__text">
-                    Drag your file(s) here or&nbsp;
-                    <span onClick={() => void handleUploadClick()}>browse</span>
-                </div>
-            </div>
+            <FileInput onSelect={handleAdd} />
             <h4>Deine Leistungen</h4>
             {content && (
                 <Box sx={{ width: '100%', minHeight: 400 }}>

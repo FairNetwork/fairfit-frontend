@@ -1,9 +1,7 @@
 import './gymHeader.scss';
 import Header from '../../shared/header/Header';
-import GymMenu from '../../shared/gym-menu/GymMenu';
 import { useAppSelector } from '../../../hooks/redux';
 import { selectGymName } from '../../../redux/gym/selectors';
-import { GYM_MENU_ITEMS } from '../../../constants/menu';
 
 const GymHeader = () => {
     // const hasOffers = useAppSelector(selectHasOffers);
@@ -28,7 +26,6 @@ const GymHeader = () => {
                     {/*)}*/}
                     <div className="gym-header__content">
                         <h1 className="gym-header__content__title">{gymName}</h1>
-                        <GymMenu items={GYM_MENU_ITEMS} />
                     </div>
                 </>
             </Header>

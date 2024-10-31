@@ -59,6 +59,7 @@ const General = () => {
                         </Grid2>
                     </Grid2>
                 </Box>
+                <TextField id="slogan" label="Slogan" multiline fullWidth maxRows={4} />
             </div>
         </div>
     );

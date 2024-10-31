@@ -12,5 +12,6 @@ export enum OpeningTimeType {
     THURSDAY,
     FRIDAY,
     SATURDAY,
-    SUNDAY
+    SUNDAY,
+    HOLIDAY
 }

@@ -3,11 +3,17 @@ import { Divider } from '@mui/material';
 import SocialMedia from './social-media/SocialMedia';
 import Tags from './tags/Tags';
 import General from './general/General';
+import StudioImage from './studio-image/StudioImage';
+import OpeningTimes from './opening-times/OpeningTimes';
 
 const Studio = () => {
     return (
         <div className="studio">
             <General />
+            <Divider variant="middle" />
+            <StudioImage />
+            <Divider variant="middle" />
+            <OpeningTimes />
             <Divider variant="middle" />
             <SocialMedia />
             <Divider variant="middle" />
