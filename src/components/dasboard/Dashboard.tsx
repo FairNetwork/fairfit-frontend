@@ -24,7 +24,8 @@ import Benefits from './benefits/Benefits';
 import './dashboard.scss';
 import { GYM_FOOTER_ITEMS } from '../../constants/footer';
 import Footer from '../shared/footer/Footer';
-import { loadRequestStatistics } from '../../redux/statistics/actions';
+import { loadStatistics } from '../../redux/statistics/actions';
+import HomepageAnalytics from './homepage-analytics/HomepageAnalytics';
 
 const Dashboard = () => {
     const dispatch = useAppDispatch();
@@ -89,8 +90,9 @@ const Dashboard = () => {
             case '/social-media':
             case '/social-media/analytics-instagram':
             case '/social-media/analytics-facebook':
-            case '/homepage':
                 return <ComingSoon />;
+            case '/homepage':
+                return <HomepageAnalytics />;
             case '/studio':
             default:
                 return <Studio />;

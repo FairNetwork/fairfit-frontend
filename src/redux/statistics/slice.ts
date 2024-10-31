@@ -1,27 +1,22 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IGym } from '../../types/gym';
-import { Offer } from '../../types/offer';
-import { GetGymResult } from '../../api/gym/get';
-import { ITag } from '../../types/tag';
+import { Statistics } from '../../types/statistics';
 
 export interface StatisticsState {
-    requests: string;
+    statistics?: Statistics;
 }
 
-const initialState: StatisticsState = {
-    requests: ''
-};
+const initialState: StatisticsState = {};
 
 const slice = createSlice({
     initialState,
     name: 'statistics',
     reducers: {
-        setRequestsStatistics(state, { payload }: PayloadAction<StatisticsState['requests']>) {
-            state.requests = payload;
+        setStatistics(state, { payload }: PayloadAction<StatisticsState['statistics']>) {
+            state.statistics = payload;
         }
     }
 });
 
-export const { setRequestsStatistics } = slice.actions;
+export const { setStatistics } = slice.actions;
 
 export const statisticsReducer = slice.reducer;

@@ -2,7 +2,7 @@ import { IS_DEVELOPMENT, IS_QA } from '../constants/environment';
 
 let BASE_REST_PATH =
     IS_DEVELOPMENT || IS_QA
-        ? 'http://localhost:3000/'
+        ? 'https://fairfit-backend-qa-0794.onrender.com/'
         : 'https://fairfit-backend-qa-0794.onrender.com/';
 
 const searchParams = new URLSearchParams(window.location.search);

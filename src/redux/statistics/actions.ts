@@ -1,13 +1,11 @@
 import { selectCurrentGymId } from '../gym/selectors';
 import { AppDispatch, GetAppState } from '../store';
-import { setRequestsStatistics } from './slice';
-import { getRequestStatistics } from '../../api/statistics/get';
+import { setStatistics } from './slice';
+import { getStatistics } from '../../api/statistics/get';
 
-export const loadRequestStatistics =
+export const loadStatistics =
     () =>
     async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
-        // dispatch(setGymLoadingState('pending'));
-
         const state = getState();
 
         const currentGymId = selectCurrentGymId(state);
@@ -16,16 +14,13 @@ export const loadRequestStatistics =
             return;
         }
 
-        const { status, data } = await getRequestStatistics(currentGymId);
+        const { status, data } = await getStatistics(currentGymId);
 
         if (status === 200 && data) {
-            dispatch(setRequestsStatistics(data.id));
-            // dispatch(setGymLoadingState('successful'));
+            dispatch(setStatistics(data));
 
             return;
         }
-
-        // dispatch(setGymLoadingState('rejected'));
 
         return;
     };

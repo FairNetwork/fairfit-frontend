@@ -4,17 +4,12 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { selectGymTags, selectTags } from '../../../../redux/gym/selectors';
 import { ReactElement, useEffect, useMemo } from 'react';
 import { loadTags } from '../../../../redux/gym/actions';
-import { loadRequestStatistics } from '../../../../redux/statistics/actions';
 
 const Tags = () => {
     const dispatch = useAppDispatch();
 
     const tags = useAppSelector(selectTags);
     const selectedTags = useAppSelector(selectGymTags);
-
-    useEffect(() => {
-        void dispatch(loadRequestStatistics());
-    }, [dispatch]);
 
     useEffect(() => {
         void dispatch(loadTags());

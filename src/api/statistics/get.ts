@@ -1,16 +1,11 @@
 import { ApiFunctionResult } from '../../types/api';
 import { request } from '../../utils/request';
+import { Statistics } from '../../types/statistics';
 
-export interface GetRequestStatisticsResult {
-    id: string;
-}
-
-export const getRequestStatistics = async (
-    id: string
-): Promise<ApiFunctionResult<GetRequestStatisticsResult>> => {
-    const response = await request<GetRequestStatisticsResult>({
+export const getStatistics = async (id: string): Promise<ApiFunctionResult<Statistics>> => {
+    const response = await request<Statistics>({
         method: 'GET',
-        route: `statistics/requests/${id}`
+        route: `statistics/${id}`
     });
 
     if (response.status === 200) {
