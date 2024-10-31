@@ -1,8 +1,9 @@
 import { MultiInputTimeRangeField } from '@mui/x-date-pickers-pro/MultiInputTimeRangeField';
 import 'dayjs/locale/de';
-import './openingTime.scss';
 import { OpeningTimeType } from '../../../../../types/openingTimes';
 import { useAppDispatch } from '../../../../../hooks/redux';
+import './openingTime.scss';
+import { convertDay } from '../../../../../utils/text';
 
 interface OpeningTimeProps {
     type: OpeningTimeType;
@@ -13,14 +14,16 @@ const OpeningTime = ({ type }: OpeningTimeProps) => {
 
     return (
         <div className="opening-time">
-            {content}
-            <MultiInputTimeRangeField
-                slotProps={{
-                    textField: ({ position }) => ({
-                        label: position === 'start' ? 'Von' : 'Bis'
-                    })
-                }}
-            />
+            <p>{convertDay(type)}</p>
+            <div className="opening-time__time">
+                <MultiInputTimeRangeField
+                    slotProps={{
+                        textField: ({ position }) => ({
+                            label: position === 'start' ? 'Von' : 'Bis'
+                        })
+                    }}
+                />
+            </div>
         </div>
     );
 };

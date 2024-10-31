@@ -1,2 +1,9 @@
 .opening-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__time {
+        width: 50%;
+    }
 }

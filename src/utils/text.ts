@@ -26,6 +26,8 @@ export const convertDay = (day: OpeningTimeType) => {
             return 'Samstag';
         case OpeningTimeType.SUNDAY:
             return 'Sonntag';
+        case OpeningTimeType.HOLIDAY:
+            return 'Feiertag';
         default:
             return undefined;
     }

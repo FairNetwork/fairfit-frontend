@@ -108,5 +108,6 @@ export const OPENING_TIMES: OpeningTimeType[] = [
     OpeningTimeType.THURSDAY,
     OpeningTimeType.FRIDAY,
     OpeningTimeType.SATURDAY,
-    OpeningTimeType.SUNDAY
+    OpeningTimeType.SUNDAY,
+    OpeningTimeType.HOLIDAY
 ];

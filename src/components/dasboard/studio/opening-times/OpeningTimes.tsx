@@ -9,6 +9,7 @@ import './openingTimes.scss';
 import { useMemo } from 'react';
 import { OpeningTimeType } from '../../../../types/openingTimes';
 import { OPENING_TIMES } from '../../../../constants/dashboard';
+import OpeningTime from './opening-time/OpeningTime';
 
 const OpeningTimes = () => {
     const dispatch = useAppDispatch();
@@ -29,7 +30,7 @@ const OpeningTimes = () => {
 
     const content = useMemo(() => {
         return OPENING_TIMES.map((type) => {
-            return <div>{type}</div>;
+            return <OpeningTime type={type} key={type} />;
         });
     }, []);
 
@@ -40,15 +41,8 @@ const OpeningTimes = () => {
                 Gib die Öffnungszeiten deines Studios an, damit Kunden genau wissen, wann sie dich
                 erreichen können.
             </i>
-            {content}
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
-                <MultiInputTimeRangeField
-                    slotProps={{
-                        textField: ({ position }) => ({
-                            label: position === 'start' ? 'Von' : 'Bis'
-                        })
-                    }}
-                />
+                {content}
             </LocalizationProvider>
         </div>
     );
