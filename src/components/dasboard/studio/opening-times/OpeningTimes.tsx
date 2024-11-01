@@ -5,12 +5,15 @@ import './openingTimes.scss';
 import { useMemo } from 'react';
 import { OPENING_TIMES } from '../../../../constants/dashboard';
 import OpeningTime from './opening-time/OpeningTime';
+import { Box, Grid } from '@mui/material';
 
 const OpeningTimes = () => {
     const content = useMemo(() => {
-        return OPENING_TIMES.map((type) => {
-            return <OpeningTime type={type} key={type} />;
-        });
+        return OPENING_TIMES.map((type) => (
+            <Grid item xs={12} sm={6} key={type}>
+                <OpeningTime type={type} />
+            </Grid>
+        ));
     }, []);
 
     return (
@@ -21,7 +24,11 @@ const OpeningTimes = () => {
                 erreichen können.
             </i>
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
-                {content}
+                <Box sx={{ flexGrow: 1 }}>
+                    <Grid container spacing={2}>
+                        {content}
+                    </Grid>
+                </Box>
             </LocalizationProvider>
         </div>
     );
