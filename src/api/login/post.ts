@@ -34,15 +34,18 @@ export const postSignUp = async ({
 interface PostSignInBody {
     email: string;
     password: string;
+    remember: boolean;
 }
 
 export const postSignIn = async ({
     password,
-    email
+    email,
+    remember
 }: PostSignInBody): Promise<ApiFunctionResult> => {
     const body: PostSignInBody = {
         email,
-        password
+        password,
+        remember
     };
 
     const response = await request({

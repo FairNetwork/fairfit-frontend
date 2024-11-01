@@ -31,12 +31,13 @@ export const registerStudio =
 interface LogInStudioOptions {
     email: string;
     password: string;
+    remember: boolean;
 }
 
 export const logInStudio =
-    ({ password, email }: LogInStudioOptions) =>
+    ({ password, email, remember }: LogInStudioOptions) =>
     async (dispatch: AppDispatch, __: GetAppState): Promise<boolean> => {
-        const { status } = await postSignIn({ email, password });
+        const { status } = await postSignIn({ email, password, remember });
 
         dispatch(setIsLoggedIn(status === 200));
 
