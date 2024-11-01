@@ -4,6 +4,7 @@ import { Offer } from '../../types/offer';
 import { GetGymResult } from '../../api/gym/get';
 import { ITag } from '../../types/tag';
 import { ISocialMedia } from '../../types/socialMedia';
+import { IOpeningTimes } from '../../types/openingTimes';
 
 type LoadingState = 'none' | 'pending' | 'rejected' | 'successful';
 
@@ -133,6 +134,28 @@ const slice = createSlice({
                 }
             }
         },
+        updateOpeningTime(
+            state,
+            { payload }: PayloadAction<{ internalId: IGym['internalId']; time: IOpeningTimes }>
+        ) {
+            const { internalId, time } = payload;
+
+            if (state.gyms[internalId]) {
+                if (!state.gyms[internalId].openingTimes) {
+                    state.gyms[internalId].openingTimes = [];
+                }
+
+                const existingEntryIndex = state.gyms[internalId].openingTimes?.findIndex(
+                    (media) => media.type === time.type
+                );
+
+                if (existingEntryIndex && existingEntryIndex >= 0) {
+                    state.gyms[internalId].openingTimes![existingEntryIndex] = time;
+                } else {
+                    state.gyms[internalId].openingTimes!.push(time);
+                }
+            }
+        },
         setSearchResultIds(state, { payload }: PayloadAction<GymState['searchResultIds']>) {
             state.searchResultIds = payload;
         }
@@ -149,6 +172,7 @@ export const {
     setAllGymsLoadingState,
     addGym,
     setSearchString,
+    updateOpeningTime,
     setTags,
     setSelectedTags,
     removeSocialMedia,

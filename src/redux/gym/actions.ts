@@ -8,16 +8,19 @@ import {
     setTags,
     updateGym,
     updateGymField,
+    updateOpeningTime,
     updateSocialMedia
 } from './slice';
 import { getAllGyms, getGym } from '../../api/gym/get';
 import { selectCurrentGymId, selectSearchString, selectSelectedTags } from './selectors';
 import { getTags } from '../../api/tags/get';
-import { GymUpdate, IGym } from '../../types/gym';
+import { GymUpdate } from '../../types/gym';
 import { patchGym } from '../../api/gym/patch';
 import { deleteSocialMedia } from '../../api/social-media/delete';
-import { postSocialMedia } from '../../api/social-media/post';
+import { postOpeningTime } from '../../api/social-media/post';
 import { ISocialMedia } from '../../types/socialMedia';
+import { IOpeningTimes } from '../../types/openingTimes';
+import { postSocialMedia } from '../../api/opening-times/post';
 
 export const loadGym =
     (isDashboard?: boolean) =>
@@ -105,6 +108,34 @@ export const updateSocialMediaAction =
 
         if (status === 200 && data) {
             dispatch(updateSocialMedia({ internalId: currentGymId, socialMedia: data }));
+
+            return;
+        }
+
+        return;
+    };
+
+export const updateOpeningTimeAction =
+    ({ type, id, startTime, endTime }: IOpeningTimes) =>
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
+        const state = getState();
+
+        const currentGymId = selectCurrentGymId(state);
+
+        if (!currentGymId) {
+            return;
+        }
+
+        const { status, data } = await postOpeningTime({
+            type,
+            gymId: currentGymId,
+            endTime,
+            startTime,
+            id
+        });
+
+        if (status === 200 && data) {
+            dispatch(updateOpeningTime({ internalId: currentGymId, time: data }));
 
             return;
         }

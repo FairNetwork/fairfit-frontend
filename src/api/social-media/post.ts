@@ -1,31 +1,34 @@
 import { ApiFunctionResult } from '../../types/api';
 import { request } from '../../utils/request';
 import { IGym } from '../../types/gym';
-import { ISocialMedia } from '../../types/socialMedia';
+import { IOpeningTimes } from '../../types/openingTimes';
 
-interface PostSocialMediaOptions {
+interface PostOpeningTimeOptions {
     gymId: IGym['internalId'];
-    type: ISocialMedia['type'];
-    id: ISocialMedia['id'];
-    userName: ISocialMedia['userName'];
+    endTime: IOpeningTimes['endTime'];
+    startTime: IOpeningTimes['startTime'];
+    type: IOpeningTimes['type'];
+    id: IOpeningTimes['id'];
 }
 
-export const postSocialMedia = async ({
+export const postOpeningTime = async ({
     type,
+    endTime,
+    startTime,
     id,
-    userName,
     gymId
-}: PostSocialMediaOptions): Promise<ApiFunctionResult<ISocialMedia>> => {
-    const body: ISocialMedia = {
+}: PostOpeningTimeOptions): Promise<ApiFunctionResult<IOpeningTimes>> => {
+    const body: IOpeningTimes = {
+        endTime,
+        startTime,
         id,
-        userName,
         type
     };
 
-    const response = await request<ISocialMedia, ISocialMedia>({
+    const response = await request<IOpeningTimes, IOpeningTimes>({
         body,
         method: 'POST',
-        route: `socialmedia/${gymId}`
+        route: `openingtimes/${gymId}`
     });
 
     return { status: response.status, data: response.data };
