@@ -2,7 +2,7 @@ import './general.scss';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { Box, Grid2, TextField } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { selectGymAddress, selectGymName } from '../../../../redux/gym/selectors';
+import { selectGymAddress, selectGymName, selectGymSlogan } from '../../../../redux/gym/selectors';
 import { updateGymAction } from '../../../../redux/gym/actions';
 
 const General = () => {
@@ -10,9 +10,11 @@ const General = () => {
 
     const stateName = useAppSelector(selectGymName);
     const stateAddress = useAppSelector(selectGymAddress);
+    const stateSlogan = useAppSelector(selectGymSlogan);
 
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
+    const [slogan, setSlogan] = useState('');
 
     const timeoutRef = useRef(0);
 
@@ -25,6 +27,12 @@ const General = () => {
     useEffect(() => {
         if (typeof stateAddress === 'string') {
             setAddress(stateAddress);
+        }
+    }, [stateAddress]);
+
+    useEffect(() => {
+        if (typeof stateSlogan === 'string') {
+            setSlogan(stateSlogan);
         }
     }, [stateAddress]);
 
@@ -47,6 +55,17 @@ const General = () => {
 
         timeoutRef.current = window.setTimeout(() => {
             void dispatch(updateGymAction({ address: value }));
+        }, 1000);
+    };
+
+    const handleSloganChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target as HTMLInputElement;
+        window.clearTimeout(timeoutRef.current);
+
+        setSlogan(value);
+
+        timeoutRef.current = window.setTimeout(() => {
+            void dispatch(updateGymAction({ slogan: value }));
         }, 1000);
     };
 
@@ -82,7 +101,15 @@ const General = () => {
                         </Grid2>
                     </Grid2>
                 </Box>
-                <TextField id="slogan" label="Slogan" multiline fullWidth maxRows={4} />
+                <TextField
+                    id="slogan"
+                    label="Slogan"
+                    multiline
+                    fullWidth
+                    maxRows={4}
+                    onChange={handleSloganChange}
+                    value={slogan}
+                />
             </div>
         </div>
     );

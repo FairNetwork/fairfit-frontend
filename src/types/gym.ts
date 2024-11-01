@@ -10,6 +10,7 @@ export interface IGym {
     id: string;
     internalId: string;
     address: string;
+    slogan: string;
     gymImage: string;
     rating: number;
     hasLoaded?: boolean;

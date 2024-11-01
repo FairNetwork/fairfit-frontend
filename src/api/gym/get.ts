@@ -10,6 +10,7 @@ export interface GetGymResult {
     address: IGym['address'];
     gymImage: IGym['gymImage'];
     rating: IGym['rating'];
+    slogan: IGym['slogan'];
 }
 
 export const getGym = async (id: string, isDashboard = false): Promise<ApiFunctionResult<IGym>> => {

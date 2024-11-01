@@ -85,6 +85,8 @@ export const selectGymAddress = createSelector(
     (currentGym) => currentGym?.address
 );
 
+export const selectGymSlogan = createSelector(selectCurrentGym, (currentGym) => currentGym?.slogan);
+
 export const selectSocialMedia = createSelector(
     selectCurrentGym,
     (currentGym) => currentGym?.socialMedia
