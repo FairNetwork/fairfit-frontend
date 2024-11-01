@@ -7,7 +7,8 @@ import {
     setSearchResultIds,
     setTags,
     updateGym,
-    updateGymField
+    updateGymField,
+    updateSocialMedia
 } from './slice';
 import { getAllGyms, getGym } from '../../api/gym/get';
 import { selectCurrentGymId, selectSearchString, selectSelectedTags } from './selectors';
@@ -15,6 +16,8 @@ import { getTags } from '../../api/tags/get';
 import { GymUpdate, IGym } from '../../types/gym';
 import { patchGym } from '../../api/gym/patch';
 import { deleteSocialMedia } from '../../api/social-media/delete';
+import { postSocialMedia } from '../../api/social-media/post';
+import { ISocialMedia } from '../../types/socialMedia';
 
 export const loadGym =
     (isDashboard?: boolean) =>
@@ -80,6 +83,28 @@ export const removeSocialMediaAction =
 
         if (status === 200) {
             dispatch(removeSocialMedia({ internalId: currentGymId, id }));
+
+            return;
+        }
+
+        return;
+    };
+
+export const updateSocialMediaAction =
+    ({ id, userName, type }: ISocialMedia) =>
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
+        const state = getState();
+
+        const currentGymId = selectCurrentGymId(state);
+
+        if (!currentGymId) {
+            return;
+        }
+
+        const { status, data } = await postSocialMedia({ type, gymId: currentGymId, userName, id });
+
+        if (status === 200 && data) {
+            dispatch(updateSocialMedia({ internalId: currentGymId, socialMedia: data }));
 
             return;
         }

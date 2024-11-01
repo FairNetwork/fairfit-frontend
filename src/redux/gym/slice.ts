@@ -3,6 +3,7 @@ import { IGym } from '../../types/gym';
 import { Offer } from '../../types/offer';
 import { GetGymResult } from '../../api/gym/get';
 import { ITag } from '../../types/tag';
+import { ISocialMedia } from '../../types/socialMedia';
 
 type LoadingState = 'none' | 'pending' | 'rejected' | 'successful';
 
@@ -104,8 +105,32 @@ const slice = createSlice({
         ) {
             const { internalId, id } = payload;
 
-            if (state.gyms[internalId] && state.gyms[internalId].socialMedia) {
+            if (state.gyms[internalId]) {
                 state.gyms[internalId].socialMedia?.filter((media) => media.id !== id);
+            }
+        },
+        updateSocialMedia(
+            state,
+            {
+                payload
+            }: PayloadAction<{ internalId: IGym['internalId']; socialMedia: ISocialMedia }>
+        ) {
+            const { internalId, socialMedia } = payload;
+
+            if (state.gyms[internalId]) {
+                if (!state.gyms[internalId].socialMedia) {
+                    state.gyms[internalId].socialMedia = [];
+                }
+
+                const existingEntryIndex = state.gyms[internalId].socialMedia?.findIndex(
+                    (media) => media.type === socialMedia.type
+                );
+
+                if (existingEntryIndex && existingEntryIndex >= 0) {
+                    state.gyms[internalId].socialMedia![existingEntryIndex] = socialMedia;
+                } else {
+                    state.gyms[internalId].socialMedia!.push(socialMedia);
+                }
             }
         },
         setSearchResultIds(state, { payload }: PayloadAction<GymState['searchResultIds']>) {
@@ -118,6 +143,7 @@ export const {
     setGymLoadingState,
     setOffersLoadingState,
     updateGym,
+    updateSocialMedia,
     addAbonnements,
     updateCurrentGymId,
     setAllGymsLoadingState,

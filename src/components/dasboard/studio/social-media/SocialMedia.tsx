@@ -3,9 +3,9 @@ import { Box, Grid2 } from '@mui/material';
 import { ISocialMedia, SocialMediaType } from '../../../../types/socialMedia';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { selectSocialMedia } from '../../../../redux/gym/selectors';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import SocialMediaInput from './social-media-input/SocialMediaInput';
-import { removeSocialMediaAction } from '../../../../redux/gym/actions';
+import { removeSocialMediaAction, updateSocialMediaAction } from '../../../../redux/gym/actions';
 
 const INITIAL_STATE: ISocialMedia[] = [
     {
@@ -79,6 +79,8 @@ const SocialMedia = () => {
 
             if (id && id !== 'tmp' && newValue === '') {
                 void dispatch(removeSocialMediaAction(id));
+            } else {
+                void dispatch(updateSocialMediaAction({ type, userName: newValue, id: id ?? '' }));
             }
         }, 1000);
     };
