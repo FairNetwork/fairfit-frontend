@@ -21,3 +21,20 @@ export interface IGym {
     openingTimes?: IOpeningTimes[];
     utilitys?: IUtility[];
 }
+
+export interface GymUpdate {
+    name: string;
+    id: string;
+    internalId: string;
+    address: string;
+    slogan: string;
+    gymImage: string;
+    rating: number;
+    hasLoaded?: boolean;
+    tags: string[];
+    abonnements: Offer[];
+    benefits?: IBenefit[];
+    socialMedia?: ISocialMedia[];
+    openingTimes?: IOpeningTimes[];
+    utilitys?: IUtility[];
+}

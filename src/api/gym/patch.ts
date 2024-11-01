@@ -1,8 +1,11 @@
 import { ApiFunctionResult } from '../../types/api';
 import { request } from '../../utils/request';
-import { IGym } from '../../types/gym';
+import { GymUpdate } from '../../types/gym';
 
-export const patchGym = async (update: Partial<IGym>, id: string): Promise<ApiFunctionResult> => {
+export const patchGym = async (
+    update: Partial<GymUpdate>,
+    id: string
+): Promise<ApiFunctionResult> => {
     const response = await request({
         method: 'PATCH',
         body: update,

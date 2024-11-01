@@ -11,7 +11,7 @@ import {
 import { getAllGyms, getGym } from '../../api/gym/get';
 import { selectCurrentGymId, selectSearchString, selectSelectedTags } from './selectors';
 import { getTags } from '../../api/tags/get';
-import { IGym } from '../../types/gym';
+import { GymUpdate, IGym } from '../../types/gym';
 import { patchGym } from '../../api/gym/patch';
 
 export const loadGym =
@@ -42,7 +42,7 @@ export const loadGym =
     };
 
 export const updateGymAction =
-    (update: Partial<IGym>) =>
+    (update: Partial<GymUpdate>) =>
     async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
         const state = getState();
 
