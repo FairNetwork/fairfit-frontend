@@ -34,7 +34,7 @@ const General = () => {
         if (typeof stateSlogan === 'string') {
             setSlogan(stateSlogan);
         }
-    }, [stateAddress]);
+    }, [stateAddress, stateSlogan]);
 
     const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target as HTMLInputElement;
@@ -43,7 +43,9 @@ const General = () => {
         setName(value);
 
         timeoutRef.current = window.setTimeout(() => {
-            void dispatch(updateGymAction({ name: value }));
+            void dispatch(
+                updateGymAction({ name: value, internalId: value.toLowerCase().replace(' ', '_') })
+            );
         }, 1000);
     };
 
