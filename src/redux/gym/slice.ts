@@ -98,6 +98,16 @@ const slice = createSlice({
         setSelectedTags(state, { payload }: PayloadAction<GymState['selectedTags']>) {
             state.selectedTags = payload;
         },
+        removeSocialMedia(
+            state,
+            { payload }: PayloadAction<{ internalId: IGym['internalId']; id: string }>
+        ) {
+            const { internalId, id } = payload;
+
+            if (state.gyms[internalId] && state.gyms[internalId].socialMedia) {
+                state.gyms[internalId].socialMedia?.filter((media) => media.id !== id);
+            }
+        },
         setSearchResultIds(state, { payload }: PayloadAction<GymState['searchResultIds']>) {
             state.searchResultIds = payload;
         }
@@ -115,6 +125,7 @@ export const {
     setSearchString,
     setTags,
     setSelectedTags,
+    removeSocialMedia,
     updateGymField,
     setSearchResultIds
 } = slice.actions;

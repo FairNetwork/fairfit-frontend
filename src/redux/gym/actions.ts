@@ -1,6 +1,7 @@
 import { AppDispatch, GetAppState } from '../store';
 import {
     addGym,
+    removeSocialMedia,
     setAllGymsLoadingState,
     setGymLoadingState,
     setSearchResultIds,
@@ -13,6 +14,7 @@ import { selectCurrentGymId, selectSearchString, selectSelectedTags } from './se
 import { getTags } from '../../api/tags/get';
 import { GymUpdate, IGym } from '../../types/gym';
 import { patchGym } from '../../api/gym/patch';
+import { deleteSocialMedia } from '../../api/social-media/delete';
 
 export const loadGym =
     (isDashboard?: boolean) =>
@@ -56,6 +58,28 @@ export const updateGymAction =
 
         if (status === 200 && data) {
             dispatch(updateGymField(data));
+
+            return;
+        }
+
+        return;
+    };
+
+export const removeSocialMediaAction =
+    (id: string) =>
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
+        const state = getState();
+
+        const currentGymId = selectCurrentGymId(state);
+
+        if (!currentGymId) {
+            return;
+        }
+
+        const { status } = await deleteSocialMedia(id);
+
+        if (status === 200) {
+            dispatch(removeSocialMedia({ internalId: currentGymId, id }));
 
             return;
         }

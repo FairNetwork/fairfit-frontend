@@ -1,10 +1,11 @@
 import './socialMedia.scss';
 import { Box, Grid2 } from '@mui/material';
 import { ISocialMedia, SocialMediaType } from '../../../../types/socialMedia';
-import { useAppSelector } from '../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { selectSocialMedia } from '../../../../redux/gym/selectors';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SocialMediaInput from './social-media-input/SocialMediaInput';
+import { removeSocialMediaAction } from '../../../../redux/gym/actions';
 
 const INITIAL_STATE: ISocialMedia[] = [
     {
@@ -35,9 +36,13 @@ const INITIAL_STATE: ISocialMedia[] = [
 ];
 
 const SocialMedia = () => {
+    const dispatch = useAppDispatch();
+
     const stateSocialMedia = useAppSelector(selectSocialMedia);
 
     const [socialMedia, setSocialMedia] = useState<ISocialMedia[]>(INITIAL_STATE);
+
+    const timeoutRef = useRef(0);
 
     useEffect(() => {
         if (stateSocialMedia) {
@@ -54,6 +59,8 @@ const SocialMedia = () => {
     }, [stateSocialMedia]);
 
     const handleSocialMediaChange = (newValue: string, type: SocialMediaType) => {
+        window.clearTimeout(timeoutRef.current);
+
         setSocialMedia((prevState) =>
             prevState.map((prev) => {
                 if (prev.type === type) {
@@ -66,6 +73,14 @@ const SocialMedia = () => {
                 return prev;
             })
         );
+
+        timeoutRef.current = window.setTimeout(() => {
+            const id = socialMedia.find((media) => media.type === type)?.id;
+
+            if (id && id !== 'tmp' && newValue === '') {
+                void dispatch(removeSocialMediaAction(id));
+            }
+        }, 1000);
     };
 
     const getValue = (type: SocialMediaType) => {
