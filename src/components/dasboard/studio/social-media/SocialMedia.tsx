@@ -3,7 +3,7 @@ import { Box, Grid2 } from '@mui/material';
 import { ISocialMedia, SocialMediaType } from '../../../../types/socialMedia';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { selectSocialMedia } from '../../../../redux/gym/selectors';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SocialMediaInput from './social-media-input/SocialMediaInput';
 import { removeSocialMediaAction, updateSocialMediaAction } from '../../../../redux/gym/actions';
 
