@@ -116,7 +116,7 @@ export const updateSocialMediaAction =
     };
 
 export const updateOpeningTimeAction =
-    ({ type, id, startTime, endTime }: IOpeningTimes) =>
+    ({ type, id, startTime, endTime, closed }: IOpeningTimes) =>
     async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
         const state = getState();
 
@@ -131,6 +131,7 @@ export const updateOpeningTimeAction =
             gymId: currentGymId,
             endTime,
             startTime,
+            closed,
             id
         });
 

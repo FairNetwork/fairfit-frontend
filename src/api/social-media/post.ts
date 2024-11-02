@@ -9,6 +9,7 @@ interface PostOpeningTimeOptions {
     startTime: IOpeningTimes['startTime'];
     type: IOpeningTimes['type'];
     id: IOpeningTimes['id'];
+    closed: IOpeningTimes['closed'];
 }
 
 export const postOpeningTime = async ({
@@ -16,11 +17,13 @@ export const postOpeningTime = async ({
     endTime,
     startTime,
     id,
-    gymId
+    gymId,
+    closed
 }: PostOpeningTimeOptions): Promise<ApiFunctionResult<IOpeningTimes>> => {
     const body: IOpeningTimes = {
         endTime,
         startTime,
+        closed,
         id,
         type
     };

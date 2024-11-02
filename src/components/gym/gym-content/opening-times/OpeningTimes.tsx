@@ -8,8 +8,14 @@ const OpeningTimes = () => {
     const openingTimes = useAppSelector(selectOpeningTimes);
 
     const content = useMemo(() => {
-        return openingTimes?.map(({ endTime, startTime, id, type }) => (
-            <OpeningTime key={id} endTime={endTime} startTime={startTime} type={type} />
+        return openingTimes?.map(({ endTime, startTime, id, type, closed }) => (
+            <OpeningTime
+                key={id}
+                endTime={endTime}
+                startTime={startTime}
+                type={type}
+                closed={closed}
+            />
         ));
     }, [openingTimes]);
 

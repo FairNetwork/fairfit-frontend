@@ -3,6 +3,12 @@
     flex-direction: column;
     gap: 6px;
 
+    &__day {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     &__time {
     }
 }

@@ -5,6 +5,7 @@ export interface IOpeningTimes {
     type: OpeningTimeType;
     startTime: string;
     endTime: string;
+    closed: boolean;
 }
 
 export interface TmpOpeningTimes {
@@ -12,6 +13,7 @@ export interface TmpOpeningTimes {
     type: OpeningTimeType;
     startTime: Dayjs | null;
     endTime: Dayjs | null;
+    closed: boolean;
 }
 
 export enum OpeningTimeType {
