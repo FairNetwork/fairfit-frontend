@@ -1,5 +1,6 @@
 import { AppDispatch, GetAppState } from '../store';
 import {
+    addAbonnements,
     addGym,
     removeSocialMedia,
     setAllGymsLoadingState,
@@ -24,6 +25,7 @@ import { IOpeningTimes } from '../../types/openingTimes';
 import { postSocialMedia } from '../../api/opening-times/post';
 import { Offer } from '../../types/offer';
 import { patchAbonnement } from '../../api/abonnements/patch';
+import { postAbonnement } from '../../api/abonnements/post';
 
 export const loadGym =
     (isDashboard?: boolean) =>
@@ -192,6 +194,49 @@ export const updateAbonnementAction =
 
         if (status === 200 && data) {
             dispatch(updateAbonnement({ internalId: currentGymId, data }));
+
+            return;
+        }
+
+        return;
+    };
+
+export const postAbonnementAction =
+    ({
+        details,
+        duration,
+        priceAfterDuration,
+        price,
+        isOffer,
+        title,
+        id
+    }: UpdateAbonnementActionOptions) =>
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
+        const state = getState();
+
+        const currentGymId = selectCurrentGymId(state);
+
+        if (!currentGymId) {
+            return;
+        }
+
+        const { status, data } = await postAbonnement({
+            details: details
+                ?.map((detail) =>
+                    detail.id.startsWith('tmp') ? { ...detail, id: undefined } : detail
+                )
+                .filter(({ detail }) => detail.length > 0),
+            duration,
+            priceAfterDuration,
+            price,
+            isOffer,
+            title,
+            id,
+            gymId: currentGymId
+        });
+
+        if (status === 200 && data) {
+            dispatch(addAbonnements({ id: currentGymId, abonnements: [data] }));
 
             return;
         }

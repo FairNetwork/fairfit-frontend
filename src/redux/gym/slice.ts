@@ -78,6 +78,7 @@ const slice = createSlice({
         },
         addAbonnements(state, { payload }: PayloadAction<AddAbonnementsProps>) {
             const gym = state.gyms[payload.id];
+
             if (gym) {
                 gym.abonnements = [...gym.abonnements, ...payload.abonnements];
             }

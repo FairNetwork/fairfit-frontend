@@ -5,7 +5,7 @@ import { Offer } from '../../../types/offer';
 import Card from '../../shared/card-slider/card/Card';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Masonry } from '@mui/lab';
-import { Box, CircularProgress, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { Box, Button, Dialog, DialogContent, DialogTitle, Divider } from '@mui/material';
 import DialogTransition from '../../shared/dialog-transition/DialogTransition';
 import AbonnementDialog from '../../shared/abonnement-dialog/AbonnementDialog';
 
@@ -13,11 +13,13 @@ const Abonnements = () => {
     const abonnements = useAppSelector(selectAbonnements);
 
     const [editId, setEditId] = useState<string | undefined>();
+    const [shouldShowDialog, setShouldShowDialog] = useState(false);
 
     // const handleAdd = () => {};
 
     const handleEdit = (id: Offer['id']) => {
         setEditId(id);
+        setShouldShowDialog(true);
     };
 
     useEffect(() => {}, []);
@@ -45,44 +47,34 @@ const Abonnements = () => {
         [abonnements]
     );
 
-    // const dialogTitle = useMemo(() => {
-    //     switch (sendOrderLoadingState) {
-    //         case 'successful':
-    //             return <DialogTitle>Deine Daten wurden an {gymName} weitergeleitet</DialogTitle>;
-    //         case 'rejected':
-    //             return (
-    //                 <DialogTitle>
-    //                     Deine Daten konnten nicht an {gymName} weitergeleitet werden
-    //                 </DialogTitle>
-    //             );
-    //         default:
-    //             return null;
-    //     }
-    // }, [gymName, sendOrderLoadingState]);
+    const dialogTitle = useMemo(() => {
+        return editId ? (
+            <DialogTitle>Passe die Mitgliedschaft an.</DialogTitle>
+        ) : (
+            <DialogTitle>Erstelle eine neue Mitgliedschaft</DialogTitle>
+        );
+    }, [editId]);
 
     const dialogContent = useMemo(() => {
-        if (typeof editId === 'string') {
-            const abonnement = abonnements?.find(({ id }) => id === editId);
+        const abonnement = abonnements?.find(({ id }) => id === editId);
 
-            if (abonnement) {
-                const { id, details, price, priceAfterDuration, duration, isOffer, title } =
-                    abonnement;
+        const { id, details, price, priceAfterDuration, duration, isOffer, title } =
+            abonnement ?? {};
 
-                return (
-                    <DialogContent>
-                        <AbonnementDialog
-                            id={id}
-                            title={title}
-                            details={details}
-                            duration={duration}
-                            priceAfterDuration={priceAfterDuration}
-                            price={price}
-                            isOffer={isOffer}
-                        />
-                    </DialogContent>
-                );
-            }
-        }
+        return (
+            <DialogContent>
+                <AbonnementDialog
+                    onSave={() => setShouldShowDialog(false)}
+                    id={id}
+                    title={title}
+                    details={details}
+                    duration={duration}
+                    priceAfterDuration={priceAfterDuration}
+                    price={price}
+                    isOffer={isOffer}
+                />
+            </DialogContent>
+        );
     }, [abonnements, editId]);
 
     return (
@@ -91,6 +83,12 @@ const Abonnements = () => {
                 Stelle verschiedene Mitgliedschaftsoptionen vor. Füge Beschreibungen und Preise
                 hinzu, um deinen Kunden die Wahl zu erleichtern.
             </i>
+            <div className="abonnements__button">
+                <Button variant="contained" onClick={() => setShouldShowDialog(true)}>
+                    Abonnement erstellen
+                </Button>
+            </div>
+            <Divider variant="middle" />
             {content && (
                 <Box sx={{ width: '100%', minHeight: 400 }}>
                     <Masonry columns={{ xs: 2, sm: 3, md: 4, lg: 4 }} spacing={2}>
@@ -99,12 +97,15 @@ const Abonnements = () => {
                 </Box>
             )}
             <Dialog
-                open={typeof editId === 'string'}
+                open={shouldShowDialog}
                 keepMounted
                 TransitionComponent={DialogTransition}
-                onClose={() => setEditId(undefined)}
+                onClose={() => {
+                    setEditId(undefined);
+                    setShouldShowDialog(false);
+                }}
                 aria-describedby="alert-dialog-slide-description">
-                {/*{dialogTitle}*/}
+                {dialogTitle}
                 {dialogContent}
             </Dialog>
         </div>

@@ -15,7 +15,7 @@ import { ChangeEvent, useMemo, useState, useCallback } from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
 import { Offer } from '../../../types/offer';
 import Icon from '../icon/Icon';
-import { updateAbonnementAction } from '../../../redux/gym/actions';
+import { postAbonnementAction, updateAbonnementAction } from '../../../redux/gym/actions';
 
 interface AbonnementDialogProps {
     id?: Offer['id'];
@@ -25,6 +25,7 @@ interface AbonnementDialogProps {
     price?: Offer['price'];
     duration?: Offer['duration'];
     priceAfterDuration?: Offer['priceAfterDuration'];
+    onSave: VoidFunction;
 }
 
 const AbonnementDialog = ({
@@ -34,7 +35,8 @@ const AbonnementDialog = ({
     price,
     priceAfterDuration,
     duration,
-    isOffer
+    isOffer,
+    onSave
 }: AbonnementDialogProps) => {
     const dispatch = useAppDispatch();
 
@@ -44,28 +46,60 @@ const AbonnementDialog = ({
     const [tmpPrice, setTmpPrice] = useState(price ?? 0);
     const [tmpPriceAfterDuration, setTmpPriceAfterDuration] = useState(priceAfterDuration ?? 0);
     const [tmpDuration, setTmpDuration] = useState(duration ?? 0);
-    const [tmpIsOffer, setTmpIsOffer] = useState(isOffer);
+    const [tmpIsOffer, setTmpIsOffer] = useState(isOffer ?? false);
     const [tmpDetails, setTmpDetails] = useState<Offer['details']>([
         ...details,
         { id: `tmp-${uuidv4()}`, detail: '' }
     ]);
 
     const isButtonDisabled = useMemo(() => {
-        return false;
-    }, []);
+        if (!shouldUpdate) {
+            return tmpTitle.trim().length === 0 || tmpPrice === 0;
+        }
+
+        const hasChanges =
+            tmpTitle !== title ||
+            tmpPrice !== price ||
+            tmpPriceAfterDuration !== priceAfterDuration ||
+            tmpDuration !== duration ||
+            tmpIsOffer !== isOffer ||
+            JSON.stringify(tmpDetails) !== JSON.stringify(details);
+
+        return !hasChanges;
+    }, [
+        shouldUpdate,
+        tmpTitle,
+        tmpPrice,
+        tmpPriceAfterDuration,
+        tmpDuration,
+        tmpIsOffer,
+        tmpDetails,
+        title,
+        price,
+        priceAfterDuration,
+        duration,
+        isOffer,
+        details
+    ]);
 
     const handleClick = () => {
-        void dispatch(
-            updateAbonnementAction({
-                id,
-                duration: tmpIsOffer ? tmpDuration : null,
-                isOffer: tmpIsOffer,
-                details: tmpDetails,
-                price: tmpPrice,
-                priceAfterDuration: tmpIsOffer ? tmpPriceAfterDuration : null,
-                title: tmpTitle
-            })
-        );
+        const entry = {
+            id,
+            duration: tmpIsOffer ? tmpDuration : null,
+            isOffer: tmpIsOffer,
+            details: tmpDetails,
+            price: tmpPrice,
+            priceAfterDuration: tmpIsOffer ? tmpPriceAfterDuration : null,
+            title: tmpTitle
+        };
+
+        if (shouldUpdate) {
+            void dispatch(updateAbonnementAction(entry));
+        } else {
+            void dispatch(postAbonnementAction(entry));
+        }
+
+        onSave();
     };
 
     const handleCheckboxClick = (event: ChangeEvent<HTMLInputElement>) => {
