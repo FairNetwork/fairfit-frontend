@@ -79,11 +79,14 @@ const Card = ({
                     <div
                         className="card__head__price-wrapper__duration"
                         style={{ left: `calc(50% + ${priceWidth / 2 + 6}px)` }}>
-                        {duration && priceAfterDuration
-                            ? convertMonth({ priceAfterDuration, duration })
-                            : 'mtl.'}
+                        mtl.
                     </div>
                 </div>
+                {duration && priceAfterDuration && (
+                    <div className="card__head__price-wrapper__after-duration">
+                        {convertMonth({ priceAfterDuration, duration })}
+                    </div>
+                )}
             </div>
             {shouldShowDetails && <div className="card__content">{content}</div>}
         </div>

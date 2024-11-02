@@ -8,8 +8,8 @@ interface PatchAbonnementOptions {
     title?: Offer['title'];
     details?: { id?: string; detail: string }[];
     price?: Offer['price'];
-    duration?: Offer['duration'];
-    priceAfterDuration?: Offer['priceAfterDuration'];
+    duration?: Offer['duration'] | null;
+    priceAfterDuration?: Offer['priceAfterDuration'] | null;
 }
 
 export const patchAbonnement = async ({

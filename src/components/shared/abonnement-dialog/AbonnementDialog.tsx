@@ -58,11 +58,11 @@ const AbonnementDialog = ({
         void dispatch(
             updateAbonnementAction({
                 id,
-                duration: tmpDuration,
+                duration: tmpIsOffer ? tmpDuration : null,
                 isOffer: tmpIsOffer,
                 details: tmpDetails,
                 price: tmpPrice,
-                priceAfterDuration: tmpPriceAfterDuration,
+                priceAfterDuration: tmpIsOffer ? tmpPriceAfterDuration : null,
                 title: tmpTitle
             })
         );
@@ -70,6 +70,11 @@ const AbonnementDialog = ({
 
     const handleCheckboxClick = (event: ChangeEvent<HTMLInputElement>) => {
         setTmpIsOffer(event.target.checked);
+
+        if (!event.target.checked) {
+            setTmpDuration(0);
+            setTmpPriceAfterDuration(0);
+        }
     };
 
     const addDetailField = () => {
@@ -158,40 +163,42 @@ const AbonnementDialog = ({
                         />
                     </FormControl>
                 </div>
-                <div className="abonnement-dialog__content__row">
-                    <TextField
-                        id="duration"
-                        label="Laufzeit"
-                        variant="outlined"
-                        value={tmpDuration}
-                        type="number"
-                        style={{ width: '100%' }}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                            setTmpDuration(Number(event.target.value))
-                        }
-                    />
-                    <FormControl fullWidth>
-                        <InputLabel htmlFor="outlined-adornment-priceAfterDuration">
-                            Preis nach Laufzeit
-                        </InputLabel>
-                        <OutlinedInput
-                            id="outlined-adornment-priceAfterDuration"
-                            endAdornment={<InputAdornment position="start">€</InputAdornment>}
-                            label="Preis nach Laufzeit"
-                            type="number"
-                            value={tmpPriceAfterDuration}
-                            onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                setTmpPriceAfterDuration(Number(event.target.value))
-                            }
-                        />
-                    </FormControl>
-                </div>
                 <div>
                     <FormControlLabel
                         control={<Checkbox checked={tmpIsOffer} onChange={handleCheckboxClick} />}
                         label="Angebot"
                     />
                 </div>
+                {tmpIsOffer && (
+                    <div className="abonnement-dialog__content__row">
+                        <TextField
+                            id="duration"
+                            label="Laufzeit"
+                            variant="outlined"
+                            value={tmpDuration}
+                            type="number"
+                            style={{ width: '100%' }}
+                            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                                setTmpDuration(Number(event.target.value))
+                            }
+                        />
+                        <FormControl fullWidth>
+                            <InputLabel htmlFor="outlined-adornment-priceAfterDuration">
+                                Preis nach Laufzeit
+                            </InputLabel>
+                            <OutlinedInput
+                                id="outlined-adornment-priceAfterDuration"
+                                endAdornment={<InputAdornment position="start">€</InputAdornment>}
+                                label="Preis nach Laufzeit"
+                                type="number"
+                                value={tmpPriceAfterDuration}
+                                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                                    setTmpPriceAfterDuration(Number(event.target.value))
+                                }
+                            />
+                        </FormControl>
+                    </div>
+                )}
                 <h3>Details:</h3>
                 <div>{detailsContent}</div>
             </div>

@@ -153,8 +153,8 @@ interface UpdateAbonnementActionOptions {
     title?: Offer['title'];
     details?: Offer['details'];
     price?: Offer['price'];
-    duration?: Offer['duration'];
-    priceAfterDuration?: Offer['priceAfterDuration'];
+    duration?: Offer['duration'] | null;
+    priceAfterDuration?: Offer['priceAfterDuration'] | null;
 }
 
 export const updateAbonnementAction =

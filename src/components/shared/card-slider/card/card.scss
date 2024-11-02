@@ -53,6 +53,11 @@
                 font-weight: lighter;
                 position: absolute;
             }
+
+            &__after-duration {
+                text-align: center;
+                transform: translateY(-16px);
+            }
         }
     }
 
