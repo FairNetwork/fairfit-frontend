@@ -6,6 +6,7 @@ import {
     setGymLoadingState,
     setSearchResultIds,
     setTags,
+    updateAbonnement,
     updateGym,
     updateGymField,
     updateOpeningTime,
@@ -21,6 +22,8 @@ import { postOpeningTime } from '../../api/social-media/post';
 import { ISocialMedia } from '../../types/socialMedia';
 import { IOpeningTimes } from '../../types/openingTimes';
 import { postSocialMedia } from '../../api/opening-times/post';
+import { Offer } from '../../types/offer';
+import { patchAbonnement } from '../../api/abonnements/patch';
 
 export const loadGym =
     (isDashboard?: boolean) =>
@@ -137,6 +140,58 @@ export const updateOpeningTimeAction =
 
         if (status === 200 && data) {
             dispatch(updateOpeningTime({ internalId: currentGymId, time: data }));
+
+            return;
+        }
+
+        return;
+    };
+
+interface UpdateAbonnementActionOptions {
+    id?: Offer['id'];
+    isOffer?: Offer['isOffer'];
+    title?: Offer['title'];
+    details?: Offer['details'];
+    price?: Offer['price'];
+    duration?: Offer['duration'];
+    priceAfterDuration?: Offer['priceAfterDuration'];
+}
+
+export const updateAbonnementAction =
+    ({
+        details,
+        duration,
+        priceAfterDuration,
+        price,
+        isOffer,
+        title,
+        id
+    }: UpdateAbonnementActionOptions) =>
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
+        const state = getState();
+
+        const currentGymId = selectCurrentGymId(state);
+
+        if (!currentGymId) {
+            return;
+        }
+
+        const { status, data } = await patchAbonnement({
+            details: details
+                ?.map((detail) =>
+                    detail.id.startsWith('tmp') ? { ...detail, id: undefined } : detail
+                )
+                .filter(({ detail }) => detail.length > 0),
+            duration,
+            priceAfterDuration,
+            price,
+            isOffer,
+            title,
+            id
+        });
+
+        if (status === 200 && data) {
+            dispatch(updateAbonnement({ internalId: currentGymId, data }));
 
             return;
         }

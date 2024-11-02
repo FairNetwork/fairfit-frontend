@@ -1,6 +1,5 @@
 import './abonnementDialog.scss';
 import {
-    Alert,
     Button,
     Checkbox,
     FormControl,
@@ -9,15 +8,14 @@ import {
     InputLabel,
     OutlinedInput,
     TextField,
-    IconButton,
-    Box,
-    Divider
+    Box
 } from '@mui/material';
-import { ChangeEvent, useMemo, useState, useEffect } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
+import { v4 as uuidv4 } from 'uuid';
+import { ChangeEvent, useMemo, useState, useCallback } from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
 import { Offer } from '../../../types/offer';
 import Icon from '../icon/Icon';
+import { updateAbonnementAction } from '../../../redux/gym/actions';
 
 interface AbonnementDialogProps {
     id?: Offer['id'];
@@ -47,41 +45,62 @@ const AbonnementDialog = ({
     const [tmpPriceAfterDuration, setTmpPriceAfterDuration] = useState(priceAfterDuration ?? 0);
     const [tmpDuration, setTmpDuration] = useState(duration ?? 0);
     const [tmpIsOffer, setTmpIsOffer] = useState(isOffer);
-    const [tmpDetails, setTmpDetails] = useState<string[]>([...details, '']);
+    const [tmpDetails, setTmpDetails] = useState<Offer['details']>([
+        ...details,
+        { id: `tmp-${uuidv4()}`, detail: '' }
+    ]);
 
     const isButtonDisabled = useMemo(() => {
         return false;
     }, []);
 
-    const handleClick = () => {};
+    const handleClick = () => {
+        void dispatch(
+            updateAbonnementAction({
+                id,
+                duration: tmpDuration,
+                isOffer: tmpIsOffer,
+                details: tmpDetails,
+                price: tmpPrice,
+                priceAfterDuration: tmpPriceAfterDuration,
+                title: tmpTitle
+            })
+        );
+    };
 
     const handleCheckboxClick = (event: ChangeEvent<HTMLInputElement>) => {
         setTmpIsOffer(event.target.checked);
     };
 
     const addDetailField = () => {
-        setTmpDetails((prevDetails) => [...prevDetails, '']);
+        setTmpDetails((prevDetails) => [...prevDetails, { id: `tmp-${uuidv4()}`, detail: '' }]);
     };
 
     const removeDetailField = (index: number) => {
         setTmpDetails((prevDetails) => prevDetails.filter((_, i) => i !== index));
     };
 
-    const handleDetailChange = (index: number, value: string) => {
-        const updatedDetails = [...tmpDetails];
-        updatedDetails[index] = value;
-        setTmpDetails(updatedDetails);
+    const handleDetailChange = useCallback(
+        (index: number, value: string) => {
+            const updatedDetails = [...tmpDetails];
+            updatedDetails[index].detail = value;
+            setTmpDetails(updatedDetails);
 
-        if (index === tmpDetails.length - 1 && value) {
-            addDetailField();
-        }
-    };
+            if (index === tmpDetails.length - 1 && value) {
+                addDetailField();
+            }
+        },
+        [tmpDetails]
+    );
 
-    const handleDetailBlur = (index: number, value: string) => {
-        if (value === '' && index !== tmpDetails.length - 1) {
-            removeDetailField(index);
-        }
-    };
+    const handleDetailBlur = useCallback(
+        (index: number, value: string) => {
+            if (value === '' && index !== tmpDetails.length - 1) {
+                removeDetailField(index);
+            }
+        },
+        [tmpDetails.length]
+    );
 
     const detailsContent = useMemo(() => {
         return tmpDetails.map((detail, index) => (
@@ -90,7 +109,7 @@ const AbonnementDialog = ({
                     <InputLabel
                         htmlFor={`social-media-input${index}`}>{`${index + 1}. Detail`}</InputLabel>
                     <OutlinedInput
-                        value={detail}
+                        value={detail.detail}
                         onChange={(e) => handleDetailChange(index, e.target.value)}
                         onBlur={(e) => handleDetailBlur(index, e.target.value)}
                         id={`social-media-input${index}`}

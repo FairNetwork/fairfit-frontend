@@ -37,9 +37,9 @@ const Card = ({
     const content = useMemo(() => {
         const items: ReactElement[] = [];
 
-        details.forEach((detail) => {
+        details.forEach(({ detail, id }) => {
             items.push(
-                <div className="card__content__wrapper" key={`detail__${detail}`}>
+                <div className="card__content__wrapper" key={`detail__${id}`}>
                     <div className="card__content__wrapper__icon">
                         <Icon icon="bi-check2" />
                     </div>

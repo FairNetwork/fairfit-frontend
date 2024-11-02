@@ -134,6 +134,28 @@ const slice = createSlice({
                 }
             }
         },
+        updateAbonnement(
+            state,
+            { payload }: PayloadAction<{ internalId: IGym['internalId']; data: Offer }>
+        ) {
+            const { internalId, data } = payload;
+
+            if (state.gyms[internalId]) {
+                if (!state.gyms[internalId].abonnements) {
+                    state.gyms[internalId].abonnements = [];
+                }
+
+                const existingEntryIndex = state.gyms[internalId].abonnements?.findIndex(
+                    ({ id }) => id === data.id
+                );
+
+                if (existingEntryIndex && existingEntryIndex >= 0) {
+                    state.gyms[internalId].abonnements![existingEntryIndex] = data;
+                } else {
+                    state.gyms[internalId].abonnements!.push(data);
+                }
+            }
+        },
         updateOpeningTime(
             state,
             { payload }: PayloadAction<{ internalId: IGym['internalId']; time: IOpeningTimes }>
@@ -175,6 +197,7 @@ export const {
     updateOpeningTime,
     setTags,
     setSelectedTags,
+    updateAbonnement,
     removeSocialMedia,
     updateGymField,
     setSearchResultIds
