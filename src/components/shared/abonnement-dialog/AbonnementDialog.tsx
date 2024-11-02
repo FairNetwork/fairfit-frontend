@@ -238,7 +238,7 @@ const AbonnementDialog = ({
             </div>
             <div className="abonnement-dialog__button">
                 <Button variant="contained" disabled={isButtonDisabled} onClick={handleClick}>
-                    Speichern
+                    {shouldUpdate ? 'Speichern' : 'Erstellen'}
                 </Button>
             </div>
         </div>
