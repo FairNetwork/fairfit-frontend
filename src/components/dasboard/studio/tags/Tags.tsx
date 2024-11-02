@@ -2,18 +2,47 @@ import './tags.scss';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { selectGymTags, selectTags } from '../../../../redux/gym/selectors';
-import { ReactElement, useEffect, useMemo } from 'react';
-import { loadTags } from '../../../../redux/gym/actions';
+import { ReactElement, useEffect, useMemo, useCallback, ChangeEvent, useState } from 'react';
+import { loadTags, updateGymAction } from '../../../../redux/gym/actions';
 
 const Tags = () => {
     const dispatch = useAppDispatch();
+
+    const [newTags, setNewTags] = useState<string[]>([]);
 
     const tags = useAppSelector(selectTags);
     const selectedTags = useAppSelector(selectGymTags);
 
     useEffect(() => {
-        void dispatch(loadTags());
-    }, [dispatch]);
+        if (selectedTags) {
+            setNewTags(selectedTags as unknown as string[]);
+        }
+    }, [selectedTags]);
+
+    useEffect(() => {
+        if (tags.length === 0) {
+            void dispatch(loadTags());
+        }
+    }, [dispatch, tags.length]);
+
+    const handleChange = useCallback(
+        (event: ChangeEvent<HTMLInputElement>, name: string) => {
+            setNewTags((prevState) => {
+                let updatedTags: string[];
+
+                if (event.target.checked) {
+                    updatedTags = [...prevState, name];
+                } else {
+                    updatedTags = prevState.filter((prevName) => prevName !== name);
+                }
+
+                void dispatch(updateGymAction({ tags: updatedTags }));
+
+                return updatedTags;
+            });
+        },
+        [dispatch]
+    );
 
     const content = useMemo(() => {
         const items: ReactElement[] = [];
@@ -25,7 +54,8 @@ const Tags = () => {
                     control={
                         <Checkbox
                             id={id}
-                            checked={((selectedTags ?? []) as unknown as string[]).includes(name)}
+                            checked={newTags.includes(name)}
+                            onChange={(event) => handleChange(event, name)}
                         />
                     }
                     label={name}
@@ -34,7 +64,7 @@ const Tags = () => {
         });
 
         return items;
-    }, [selectedTags, tags]);
+    }, [handleChange, newTags, tags]);
 
     return (
         <div className="tags">

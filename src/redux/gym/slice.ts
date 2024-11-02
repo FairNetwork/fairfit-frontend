@@ -3,6 +3,8 @@ import { IGym } from '../../types/gym';
 import { Offer } from '../../types/offer';
 import { GetGymResult } from '../../api/gym/get';
 import { ITag } from '../../types/tag';
+import { ISocialMedia } from '../../types/socialMedia';
+import { IOpeningTimes } from '../../types/openingTimes';
 
 type LoadingState = 'none' | 'pending' | 'rejected' | 'successful';
 
@@ -37,7 +39,7 @@ const slice = createSlice({
             state.currentGymId = payload;
         },
         addGym(state, { payload }: PayloadAction<GetGymResult[]>) {
-            payload.forEach(({ id, name, address, gymImage, rating, tags }) => {
+            payload.forEach(({ id, name, address, gymImage, slogan, rating, tags }) => {
                 const internalId = name.toLowerCase().replaceAll(' ', '_');
 
                 if (!state.gyms[internalId]) {
@@ -46,6 +48,7 @@ const slice = createSlice({
                         internalId,
                         name,
                         address,
+                        slogan,
                         tags,
                         gymImage,
                         abonnements: [],
@@ -62,8 +65,20 @@ const slice = createSlice({
                 ...payload
             };
         },
+        updateGymField(
+            state,
+            { payload }: PayloadAction<{ internalId: IGym['internalId']; data: Partial<IGym> }>
+        ) {
+            const { internalId, data } = payload;
+
+            state.gyms[internalId] = {
+                ...state.gyms[internalId],
+                ...data
+            };
+        },
         addAbonnements(state, { payload }: PayloadAction<AddAbonnementsProps>) {
             const gym = state.gyms[payload.id];
+
             if (gym) {
                 gym.abonnements = [...gym.abonnements, ...payload.abonnements];
             }
@@ -86,6 +101,84 @@ const slice = createSlice({
         setSelectedTags(state, { payload }: PayloadAction<GymState['selectedTags']>) {
             state.selectedTags = payload;
         },
+        removeSocialMedia(
+            state,
+            { payload }: PayloadAction<{ internalId: IGym['internalId']; id: string }>
+        ) {
+            const { internalId, id } = payload;
+
+            if (state.gyms[internalId]) {
+                state.gyms[internalId].socialMedia?.filter((media) => media.id !== id);
+            }
+        },
+        updateSocialMedia(
+            state,
+            {
+                payload
+            }: PayloadAction<{ internalId: IGym['internalId']; socialMedia: ISocialMedia }>
+        ) {
+            const { internalId, socialMedia } = payload;
+
+            if (state.gyms[internalId]) {
+                if (!state.gyms[internalId].socialMedia) {
+                    state.gyms[internalId].socialMedia = [];
+                }
+
+                const existingEntryIndex = state.gyms[internalId].socialMedia?.findIndex(
+                    (media) => media.type === socialMedia.type
+                );
+
+                if (existingEntryIndex && existingEntryIndex >= 0) {
+                    state.gyms[internalId].socialMedia![existingEntryIndex] = socialMedia;
+                } else {
+                    state.gyms[internalId].socialMedia!.push(socialMedia);
+                }
+            }
+        },
+        updateAbonnement(
+            state,
+            { payload }: PayloadAction<{ internalId: IGym['internalId']; data: Offer }>
+        ) {
+            const { internalId, data } = payload;
+
+            if (state.gyms[internalId]) {
+                if (!state.gyms[internalId].abonnements) {
+                    state.gyms[internalId].abonnements = [];
+                }
+
+                const existingEntryIndex = state.gyms[internalId].abonnements?.findIndex(
+                    ({ id }) => id === data.id
+                );
+
+                if (existingEntryIndex && existingEntryIndex >= 0) {
+                    state.gyms[internalId].abonnements![existingEntryIndex] = data;
+                } else {
+                    state.gyms[internalId].abonnements!.push(data);
+                }
+            }
+        },
+        updateOpeningTime(
+            state,
+            { payload }: PayloadAction<{ internalId: IGym['internalId']; time: IOpeningTimes }>
+        ) {
+            const { internalId, time } = payload;
+
+            if (state.gyms[internalId]) {
+                if (!state.gyms[internalId].openingTimes) {
+                    state.gyms[internalId].openingTimes = [];
+                }
+
+                const existingEntryIndex = state.gyms[internalId].openingTimes?.findIndex(
+                    (media) => media.type === time.type
+                );
+
+                if (existingEntryIndex && existingEntryIndex >= 0) {
+                    state.gyms[internalId].openingTimes![existingEntryIndex] = time;
+                } else {
+                    state.gyms[internalId].openingTimes!.push(time);
+                }
+            }
+        },
         setSearchResultIds(state, { payload }: PayloadAction<GymState['searchResultIds']>) {
             state.searchResultIds = payload;
         }
@@ -96,13 +189,18 @@ export const {
     setGymLoadingState,
     setOffersLoadingState,
     updateGym,
+    updateSocialMedia,
     addAbonnements,
     updateCurrentGymId,
     setAllGymsLoadingState,
     addGym,
     setSearchString,
+    updateOpeningTime,
     setTags,
     setSelectedTags,
+    updateAbonnement,
+    removeSocialMedia,
+    updateGymField,
     setSearchResultIds
 } = slice.actions;
 

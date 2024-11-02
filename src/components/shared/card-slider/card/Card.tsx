@@ -37,9 +37,9 @@ const Card = ({
     const content = useMemo(() => {
         const items: ReactElement[] = [];
 
-        details.forEach((detail) => {
+        details.forEach(({ detail, id }) => {
             items.push(
-                <div className="card__content__wrapper" key={`detail__${detail}`}>
+                <div className="card__content__wrapper" key={`detail__${id}`}>
                     <div className="card__content__wrapper__icon">
                         <Icon icon="bi-check2" />
                     </div>
@@ -79,11 +79,14 @@ const Card = ({
                     <div
                         className="card__head__price-wrapper__duration"
                         style={{ left: `calc(50% + ${priceWidth / 2 + 6}px)` }}>
-                        {duration && priceAfterDuration
-                            ? convertMonth({ priceAfterDuration, duration })
-                            : 'mtl.'}
+                        mtl.
                     </div>
                 </div>
+                {duration && priceAfterDuration && (
+                    <div className="card__head__price-wrapper__after-duration">
+                        {convertMonth({ priceAfterDuration, duration })}
+                    </div>
+                )}
             </div>
             {shouldShowDetails && <div className="card__content">{content}</div>}
         </div>

@@ -1,5 +1,5 @@
 import './logInContent.scss';
-import { Alert, Button, TextField } from '@mui/material';
+import { Alert, Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
 import { ChangeEvent, useMemo, useState } from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ const LogInContent = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
+    const [remember, setRemember] = useState(false);
 
     const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ const LogInContent = () => {
     const handleLogInStudio = async () => {
         setError(false);
 
-        const wasSuccessful = await dispatch(logInStudio({ email, password }));
+        const wasSuccessful = await dispatch(logInStudio({ email, password, remember }));
 
         if (wasSuccessful) {
             navigate(-1);
@@ -32,6 +33,10 @@ const LogInContent = () => {
 
     const handleClick = () => {
         void handleLogInStudio();
+    };
+
+    const handleCheckboxClick = (event: ChangeEvent<HTMLInputElement>) => {
+        setRemember(event.target.checked);
     };
 
     return (
@@ -57,6 +62,12 @@ const LogInContent = () => {
                 value={password}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
             />
+            <div>
+                <FormControlLabel
+                    control={<Checkbox checked={remember} onChange={handleCheckboxClick} />}
+                    label="Angemeldet bleiben"
+                />
+            </div>
             <div className="log-in-content__register">
                 <p>
                     Noch kein Konto? Registriere dein Studio
