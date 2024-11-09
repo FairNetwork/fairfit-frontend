@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import './benefits.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { selectBenefits } from '../../../redux/gym/selectors';
@@ -7,7 +7,7 @@ import Icon from '../../shared/icon/Icon';
 import { Box } from '@mui/material';
 import { Masonry } from '@mui/lab';
 import FileInput from '../../shared/file-input/FileInput';
-import { postBenefitAction } from '../../../redux/gym/actions';
+import { deleteBenefitAction, postBenefitAction } from '../../../redux/gym/actions';
 
 const Benefits = () => {
     const dispatch = useAppDispatch();
@@ -20,7 +20,12 @@ const Benefits = () => {
         void dispatch(postBenefitAction(file));
     };
 
-    const handleRemove = (id: IBenefit['id']) => {};
+    const handleRemove = useCallback(
+        (id: IBenefit['id']) => {
+            void dispatch(deleteBenefitAction(id));
+        },
+        [dispatch]
+    );
 
     const content = useMemo(() => {
         return benefits?.map(({ id, imageUrl }) => (
@@ -31,7 +36,7 @@ const Benefits = () => {
                 </div>
             </div>
         ));
-    }, [benefits]);
+    }, [benefits, handleRemove]);
 
     return (
         <div className="dashboard-benefits">

@@ -95,6 +95,15 @@ const slice = createSlice({
                 }
             }
         },
+        removeBenefit(state, { payload }: PayloadAction<{ internalId: string; id: string }>) {
+            const gym = state.gyms[payload.internalId];
+
+            if (gym) {
+                if (gym.benefits) {
+                    gym.benefits = gym.benefits.filter((benefit) => benefit.id !== payload.id);
+                }
+            }
+        },
         setGymLoadingState(state, { payload }: PayloadAction<GymState['gymLoadingState']>) {
             state.gymLoadingState = payload;
         },
@@ -210,6 +219,7 @@ export const {
     updateOpeningTime,
     setTags,
     addBenefit,
+    removeBenefit,
     setSelectedTags,
     updateAbonnement,
     removeSocialMedia,
