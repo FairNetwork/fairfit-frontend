@@ -44,6 +44,18 @@ export interface RequestResult<Data = unknown> {
     status?: number;
 }
 
+interface RequestOptions<Body> {
+    accessToken?: string;
+    auth?: boolean;
+    backendVersion?: string;
+    body?: Body;
+    contentType?: string | null;
+    method: 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
+    route?: string;
+    url?: string;
+    shouldSkipJSON?: boolean;
+}
+
 export const request = async <Data = null, Body = null>({
     backendVersion,
     body,
@@ -61,19 +73,15 @@ export const request = async <Data = null, Body = null>({
         method
     };
 
-    console.log(headers);
-
     if (method !== 'GET') {
-        if (typeof contentType === 'string' && !(body instanceof FormData)) {
-            headers['Content-Type'] = contentType;
-        }
-
         if (body) {
             requestData.body = body instanceof FormData ? body : JSON.stringify(body);
         }
-    }
 
-    console.log(headers);
+        if (typeof contentType === 'string' && !(body instanceof FormData)) {
+            headers['Content-Type'] = contentType;
+        }
+    }
 
     const result: RequestResult<Data> = {
         meta: {
