@@ -25,7 +25,6 @@ import './dashboard.scss';
 import { GYM_FOOTER_ITEMS } from '../../constants/footer';
 import Footer from '../shared/footer/Footer';
 import HomepageAnalytics from './homepage-analytics/HomepageAnalytics';
-import useWindowDimensions from '../../hooks/windowDimensions';
 
 const Dashboard = () => {
     const dispatch = useAppDispatch();
@@ -36,8 +35,6 @@ const Dashboard = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
-
-    const { width } = useWindowDimensions();
 
     useEffect(() => {
         window.scrollTo(0, 0);
