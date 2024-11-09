@@ -1,18 +1,23 @@
 import React, { useMemo } from 'react';
 import './benefits.scss';
-import { useAppSelector } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { selectBenefits } from '../../../redux/gym/selectors';
 import { IBenefit } from '../../../types/benefit';
 import Icon from '../../shared/icon/Icon';
 import { Box } from '@mui/material';
 import { Masonry } from '@mui/lab';
 import FileInput from '../../shared/file-input/FileInput';
+import { postBenefitAction } from '../../../redux/gym/actions';
 
 const Benefits = () => {
+    const dispatch = useAppDispatch();
+
     const benefits = useAppSelector(selectBenefits);
 
     const handleAdd = (files: File[]) => {
-        console.log(files);
+        const file = files[0];
+
+        void dispatch(postBenefitAction(file));
     };
 
     const handleRemove = (id: IBenefit['id']) => {};

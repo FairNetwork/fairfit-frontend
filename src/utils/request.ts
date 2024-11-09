@@ -2,7 +2,7 @@ import { IS_DEVELOPMENT, IS_QA } from '../constants/environment';
 
 let BASE_REST_PATH =
     IS_DEVELOPMENT || IS_QA
-        ? 'https://fairfit-backend-qa-0794.onrender.com/'
+        ? 'http://localhost:3000/'
         : 'https://fairfit-backend-qa-0794.onrender.com/';
 
 const searchParams = new URLSearchParams(window.location.search);
@@ -55,21 +55,16 @@ export const request = async <Data = null, Body = null>({
 }: RequestOptions<Body>): Promise<RequestResult<Data>> => {
     const headers: HeadersInit = {};
 
-    /*
-    if (isAuthenticated && auth) {
-        headers.Authorization = `bearer ${accessToken || tobitAccessToken}`;
-    }
-
-     */
-
     const requestData: RequestInit = {
         credentials: 'include',
         headers,
         method
     };
 
+    console.log(headers);
+
     if (method !== 'GET') {
-        if (typeof contentType === 'string') {
+        if (typeof contentType === 'string' && !(body instanceof FormData)) {
             headers['Content-Type'] = contentType;
         }
 
@@ -77,6 +72,8 @@ export const request = async <Data = null, Body = null>({
             requestData.body = body instanceof FormData ? body : JSON.stringify(body);
         }
     }
+
+    console.log(headers);
 
     const result: RequestResult<Data> = {
         meta: {
