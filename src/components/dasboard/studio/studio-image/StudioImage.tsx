@@ -17,7 +17,9 @@ const StudioImage = () => {
         void dispatch(updateGymAction({}, file));
     };
 
-    const handleRemoveImage = () => {};
+    const handleRemoveImage = () => {
+        void dispatch(updateGymAction({ gymImage: undefined }));
+    };
 
     const handleChangeImage = async () => {
         const files = await selectFiles({ multiple: true, type: 'image/*' });
