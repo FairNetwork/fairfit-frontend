@@ -1,28 +1,62 @@
 import './abonnements.scss';
-import { useAppSelector } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { selectAbonnements } from '../../../redux/gym/selectors';
-import { Offer } from '../../../types/offer';
 import Card from '../../shared/card-slider/card/Card';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState, MouseEvent } from 'react';
 import { Masonry } from '@mui/lab';
-import { Box, Button, Dialog, DialogContent, DialogTitle, Divider } from '@mui/material';
+import {
+    Box,
+    Button,
+    Dialog,
+    DialogContent,
+    DialogTitle,
+    Divider,
+    Menu,
+    MenuItem
+} from '@mui/material';
 import DialogTransition from '../../shared/dialog-transition/DialogTransition';
 import AbonnementDialog from '../../shared/abonnement-dialog/AbonnementDialog';
+import { removeAbonnementAction } from '../../../redux/gym/actions';
 
 const Abonnements = () => {
+    const dispatch = useAppDispatch();
+
     const abonnements = useAppSelector(selectAbonnements);
 
     const [editId, setEditId] = useState<string | undefined>();
     const [shouldShowDialog, setShouldShowDialog] = useState(false);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-    // const handleAdd = () => {};
+    const open = Boolean(anchorEl);
 
-    const handleEdit = (id: Offer['id']) => {
+    const handleClick = (event: MouseEvent<HTMLElement>, id: string) => {
+        setAnchorEl(event.currentTarget);
+
         setEditId(id);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+        setEditId(undefined);
+    };
+
+    const handleAdd = () => {
+        setEditId(undefined);
         setShouldShowDialog(true);
     };
 
-    useEffect(() => {}, []);
+    const handleEdit = () => {
+        setShouldShowDialog(true);
+        setAnchorEl(null);
+    };
+
+    const handleRemove = () => {
+        setAnchorEl(null);
+
+        if (editId) {
+            void dispatch(removeAbonnementAction(editId));
+        }
+    };
 
     const content = useMemo(
         () =>
@@ -30,7 +64,7 @@ const Abonnements = () => {
                 ({ id, details, title, price, priceAfterDuration, duration, isOffer }) => {
                     return (
                         <Card
-                            onEdit={handleEdit}
+                            onEdit={handleClick}
                             isSelected={false}
                             key={id}
                             id={id}
@@ -64,6 +98,7 @@ const Abonnements = () => {
         return (
             <DialogContent>
                 <AbonnementDialog
+                    key={id ?? 'tmp-dialog'}
                     onSave={() => setShouldShowDialog(false)}
                     id={id}
                     title={title}
@@ -84,7 +119,7 @@ const Abonnements = () => {
                 hinzu, um deinen Kunden die Wahl zu erleichtern.
             </i>
             <div className="abonnements__button">
-                <Button variant="contained" onClick={() => setShouldShowDialog(true)}>
+                <Button variant="contained" onClick={handleAdd}>
                     Abonnement erstellen
                 </Button>
             </div>
@@ -96,6 +131,17 @@ const Abonnements = () => {
                     </Masonry>
                 </Box>
             )}
+            <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                    'aria-labelledby': 'basic-button'
+                }}>
+                <MenuItem onClick={handleEdit}>Bearbeiten</MenuItem>
+                <MenuItem onClick={handleRemove}>Löschen</MenuItem>
+            </Menu>
             <Dialog
                 open={shouldShowDialog}
                 keepMounted

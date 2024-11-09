@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useMemo, useRef, useState } from 'react';
+import React, { MouseEvent, ReactElement, useEffect, useMemo, useRef, useState } from 'react';
 import './card.scss';
 import { Offer } from '../../../../types/offer';
 import { convertMonth } from '../../../../utils/text';
@@ -8,7 +8,7 @@ import { clsx } from 'clsx';
 interface CardProps extends Offer {
     onClick?: (id: Offer['id']) => void;
     isSelected?: boolean;
-    onEdit?: (id: Offer['id']) => void;
+    onEdit?: (event: MouseEvent<HTMLElement>, id: Offer['id']) => void;
     shouldShowDetails?: boolean;
 }
 
@@ -64,7 +64,7 @@ const Card = ({
             }}>
             {typeof onEdit === 'function' && (
                 <div className="card__edit">
-                    <Icon icon="bi bi-three-dots-vertical" onClick={() => onEdit(id)} />
+                    <Icon icon="bi bi-three-dots-vertical" onClick={(event) => onEdit(event, id)} />
                 </div>
             )}
             <div className="card__head">

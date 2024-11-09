@@ -3,6 +3,7 @@ import {
     addAbonnements,
     addBenefit,
     addGym,
+    removeAbonnement,
     removeBenefit,
     removeSocialMedia,
     setAllGymsLoadingState,
@@ -30,6 +31,7 @@ import { patchAbonnement } from '../../api/abonnements/patch';
 import { postAbonnement } from '../../api/abonnements/post';
 import { postBenefit } from '../../api/benefit/post';
 import { deleteBenefit } from '../../api/benefit/delete';
+import { deleteAbonnement } from '../../api/abonnements/delete';
 
 export const loadGym =
     (isDashboard?: boolean) =>
@@ -241,6 +243,28 @@ export const postAbonnementAction =
 
         if (status === 200 && data) {
             dispatch(addAbonnements({ id: currentGymId, abonnements: [data] }));
+
+            return;
+        }
+
+        return;
+    };
+
+export const removeAbonnementAction =
+    (id: string) =>
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
+        const state = getState();
+
+        const currentGymId = selectCurrentGymId(state);
+
+        if (!currentGymId) {
+            return;
+        }
+
+        const { status } = await deleteAbonnement(id);
+
+        if (status === 200) {
+            dispatch(removeAbonnement({ internalId: currentGymId, id }));
 
             return;
         }
