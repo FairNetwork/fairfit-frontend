@@ -1,0 +1,21 @@
+.file-input {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
+    background-color: var(--background-color-secondary);
+    border: 1px dashed var(--text-color-secondary);
+    padding: 24px;
+    border-radius: 6px;
+    width: 70%;
+
+    &__text {
+        display: flex;
+        justify-content: center;
+
+        span {
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+    }
+}

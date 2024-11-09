@@ -1,0 +1,59 @@
+.gym-card {
+    border-radius: 6px;
+    background-color: #8484840f;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    position: relative;
+
+    cursor: pointer;
+
+    box-shadow: var(--box-shadow);
+
+    &__picture {
+        img {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+
+            filter: brightness(50%);
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        padding: 6px 12px;
+        color: white;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        &__name {
+            font-size: xx-large;
+            font-weight: bold;
+        }
+
+        &__row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &__location {
+                display: flex;
+                gap: 6px;
+                align-items: center;
+
+                font-size: small;
+                text-align: end;
+            }
+
+            &__tags {
+                display: flex;
+                gap: 6px;
+            }
+        }
+    }
+}

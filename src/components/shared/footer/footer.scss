@@ -1,8 +1,30 @@
 .footer {
-    background-color: grey;
-    width: 100%;
-    height: fit-content;
+    --footer-background-color: #1e1e1e;
+    --footer-text-color: #e0e0e0;
+    --footer-text-hover-color: #e0e0e0d0;
+
+    background-color: var(--footer-background-color);
     padding: 20px;
     margin-top: 16px;
-    transform: translateX(-16px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+
+    &__content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+
+        &__item {
+            color: var(--footer-text-color);
+            cursor: pointer;
+
+            &:hover {
+                color: var(--footer-text-hover-color);
+            }
+        }
+    }
 }

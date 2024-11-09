@@ -1,50 +1,27 @@
 import { Route, Routes } from 'react-router-dom';
-import HomeView from './home-view/HomeView';
-import LoginView from './login-view/LoginView';
-import GymView from './gym-view/GymView';
-import OrderOverview from './gym-view/gym-home-view/order-overview/OrderOverview';
-import NotAvailable from './shared/not-available/NotAvailable';
-import { createContext, useCallback, useMemo, useState } from 'react';
-import { Gym } from '../types/gym';
-
-interface IGymContext {
-    gymId: Gym['id'];
-    updateGymId?: (id: Gym['id']) => void;
-}
-
-export const GymContext = createContext<IGymContext>({
-    gymId: '',
-    updateGymId: undefined
-});
-
-GymContext.displayName = 'GymContext';
+import Home from './home/Home';
+import Gym from './gym/Gym';
+import Utility from './utility/Utility';
+import NoContent from './no-content/NoContent';
+import Booking from './booking/Booking';
+import ConfirmRegistration from './confirm-registration/ConfirmRegistration';
+import LogIn from './log-in/LogIn';
+import DashBoard from './dasboard/Dashboard';
+import SignUp from './sign-up/SignUp';
 
 const App = () => {
-    const [gymId, setGymId] = useState<IGymContext['gymId']>('');
-
-    const updateGymId = useCallback<(id: Gym['id']) => void>((id) => {
-        setGymId(id);
-    }, []);
-
-    const providerValue = useMemo<IGymContext>(
-        () => ({
-            updateGymId,
-            gymId
-        }),
-        [gymId, updateGymId]
-    );
-
     return (
-        <GymContext.Provider value={providerValue}>
-            <Routes>
-                <Route path="/" element={<HomeView />} />
-                <Route path="/:gym" element={<GymView />} />
-                <Route path="/:gym/offers" element={<OrderOverview />} />
-                <Route path="/:gym/*" element={<NotAvailable />} />
-                <Route path="/:gym/dashboard" element={<div>Dashboard</div>} />
-                <Route path="/login" element={<LoginView />} />
-            </Routes>
-        </GymContext.Provider>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/utility/*" element={<Utility />} />
+            <Route path="/:gym" element={<Gym />} />
+            <Route path="/:gym/offers" element={<Booking />} />
+            <Route path="/:gym/dashboard" element={<DashBoard />} />
+            <Route path="/confirm-registration" element={<ConfirmRegistration />} />
+            <Route path="/log-in" element={<LogIn />} />
+            <Route path="/register-studio" element={<SignUp />} />
+            <Route path="/no_content" element={<NoContent />} />
+        </Routes>
     );
 };
 

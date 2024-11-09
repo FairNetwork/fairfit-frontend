@@ -1,8 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import './accordion.scss';
+import Icon from '../../../components/shared/icon/Icon';
 
 interface AccordionProps {
     children: ReactElement;
@@ -37,15 +36,13 @@ const Accordion = ({
                     setExpanded
                         ? setExpanded(isOpen ? false : id)
                         : setIsOpen((prevState) => !prevState)
-                }
-            >
+                }>
                 <div className="accordion__head__title">{title}</div>
                 <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     initial={{ rotate: isDefaultOpen ? 180 : 0 }}
-                    transition={{ type: 'tween' }}
-                >
-                    <FontAwesomeIcon icon={faChevronDown} size="xl" />
+                    transition={{ type: 'tween' }}>
+                    <Icon icon="bi-caret-down-fill" />
                 </motion.div>
             </div>
             <AnimatePresence initial={false}>
@@ -59,8 +56,7 @@ const Accordion = ({
                             open: { opacity: 1, height: 'auto' },
                             collapsed: { opacity: 0, height: 0 }
                         }}
-                        transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
-                    >
+                        transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}>
                         <div className="accordion__content">{children}</div>
                     </motion.div>
                 )}

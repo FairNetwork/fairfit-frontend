@@ -1,35 +1,40 @@
 import { Offer } from './offer';
+import { ISocialMedia } from './socialMedia';
+import { IBenefit } from './benefit';
+import { IOpeningTimes } from './openingTimes';
+import { IUtility } from './utility';
+import { ITag } from './tag';
 
-export interface Gym {
+export interface IGym {
     name: string;
     id: string;
-    logo: string;
-    agbs?: string;
-    offers: Offer[];
-    abonnements: Offer[];
-    contact?: Contact;
-    location?: Location;
-    openingTimes?: OpeningTime[];
-}
-
-export interface Contact {
-    phone: string;
-    email: string;
-    socialMedia: ISocialMedia;
-}
-
-export interface ISocialMedia {
-    [key: string]: string;
-}
-
-export interface Location {
+    internalId: string;
     address: string;
-    coordinates: [number, number];
+    slogan: string;
+    gymImage: string;
+    rating: number;
+    hasLoaded?: boolean;
+    tags: ITag[];
+    abonnements: Offer[];
+    benefits?: IBenefit[];
+    socialMedia?: ISocialMedia[];
+    openingTimes?: IOpeningTimes[];
+    utilitys?: IUtility[];
 }
 
-export interface OpeningTime {
-    [key: string]: {
-        start: Date;
-        end: Date;
-    };
+export interface GymUpdate {
+    name: string;
+    id: string;
+    internalId: string;
+    address: string;
+    slogan: string;
+    gymImage: string;
+    rating: number;
+    hasLoaded?: boolean;
+    tags: string[];
+    abonnements: Offer[];
+    benefits?: IBenefit[];
+    socialMedia?: ISocialMedia[];
+    openingTimes?: IOpeningTimes[];
+    utilitys?: IUtility[];
 }

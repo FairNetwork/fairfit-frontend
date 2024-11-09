@@ -1,0 +1,11 @@
+.social-media-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    &__content {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

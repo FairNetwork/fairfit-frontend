@@ -1,0 +1,11 @@
+.image-carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 10px;
+
+    div {
+        aspect-ratio: 16/9;
+    }
+}

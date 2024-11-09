@@ -1,0 +1,18 @@
+.abonnements {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    &__button {
+        text-align: center;
+    }
+
+    &__content {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+
+        box-sizing: unset;
+    }
+}

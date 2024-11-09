@@ -1,19 +1,14 @@
 export interface Offer {
     id: string;
-    color: string;
+    isOffer: boolean;
     title: string;
-    duration: number;
-    details: string;
+    details: Detail[];
     price: number;
-    additionalPrices?: {
-        startUp?: number;
-        trainer?: number;
-    };
+    duration?: number;
+    priceAfterDuration?: number;
 }
 
-export interface Gym {
-    name: string;
-    offers: Offer[];
-    abonnements: Offer[];
-    agbs: string;
+export interface Detail {
+    id: string;
+    detail: string;
 }
