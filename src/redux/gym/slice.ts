@@ -5,6 +5,7 @@ import { GetGymResult } from '../../api/gym/get';
 import { ITag } from '../../types/tag';
 import { ISocialMedia } from '../../types/socialMedia';
 import { IOpeningTimes } from '../../types/openingTimes';
+import { IBenefit } from '../../types/benefit';
 
 type LoadingState = 'none' | 'pending' | 'rejected' | 'successful';
 
@@ -81,6 +82,37 @@ const slice = createSlice({
 
             if (gym) {
                 gym.abonnements = [...gym.abonnements, ...payload.abonnements];
+            }
+        },
+        addBenefit(state, { payload }: PayloadAction<AddBenefitProps>) {
+            const gym = state.gyms[payload.id];
+
+            if (gym) {
+                if (gym.benefits) {
+                    gym.benefits = [...gym.benefits, ...payload.benefit];
+                } else {
+                    gym.benefits = payload.benefit;
+                }
+            }
+        },
+        removeBenefit(state, { payload }: PayloadAction<{ internalId: string; id: string }>) {
+            const gym = state.gyms[payload.internalId];
+
+            if (gym) {
+                if (gym.benefits) {
+                    gym.benefits = gym.benefits.filter((benefit) => benefit.id !== payload.id);
+                }
+            }
+        },
+        removeAbonnement(state, { payload }: PayloadAction<{ internalId: string; id: string }>) {
+            const gym = state.gyms[payload.internalId];
+
+            if (gym) {
+                if (gym.abonnements) {
+                    gym.abonnements = gym.abonnements.filter(
+                        (abonnement) => abonnement.id !== payload.id
+                    );
+                }
             }
         },
         setGymLoadingState(state, { payload }: PayloadAction<GymState['gymLoadingState']>) {
@@ -196,7 +228,10 @@ export const {
     addGym,
     setSearchString,
     updateOpeningTime,
+    removeAbonnement,
     setTags,
+    addBenefit,
+    removeBenefit,
     setSelectedTags,
     updateAbonnement,
     removeSocialMedia,
@@ -209,4 +244,9 @@ export const gymReducer = slice.reducer;
 interface AddAbonnementsProps {
     id: IGym['internalId'];
     abonnements: Offer[];
+}
+
+interface AddBenefitProps {
+    id: IGym['internalId'];
+    benefit: IBenefit[];
 }

@@ -1,7 +1,10 @@
 import { AppDispatch, GetAppState } from '../store';
 import {
     addAbonnements,
+    addBenefit,
     addGym,
+    removeAbonnement,
+    removeBenefit,
     removeSocialMedia,
     setAllGymsLoadingState,
     setGymLoadingState,
@@ -26,6 +29,9 @@ import { postSocialMedia } from '../../api/opening-times/post';
 import { Offer } from '../../types/offer';
 import { patchAbonnement } from '../../api/abonnements/patch';
 import { postAbonnement } from '../../api/abonnements/post';
+import { postBenefit } from '../../api/benefit/post';
+import { deleteBenefit } from '../../api/benefit/delete';
+import { deleteAbonnement } from '../../api/abonnements/delete';
 
 export const loadGym =
     (isDashboard?: boolean) =>
@@ -55,7 +61,7 @@ export const loadGym =
     };
 
 export const updateGymAction =
-    (update: Partial<GymUpdate>) =>
+    (update: Partial<GymUpdate>, file?: File) =>
     async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
         const state = getState();
 
@@ -65,10 +71,10 @@ export const updateGymAction =
             return;
         }
 
-        const { status, data } = await patchGym(update, currentGymId);
+        const { status, data } = await patchGym(update, currentGymId, file);
 
         if (status === 200 && data) {
-            dispatch(updateGymField(data));
+            dispatch(updateGymField({ internalId: currentGymId, data }));
 
             return;
         }
@@ -237,6 +243,72 @@ export const postAbonnementAction =
 
         if (status === 200 && data) {
             dispatch(addAbonnements({ id: currentGymId, abonnements: [data] }));
+
+            return;
+        }
+
+        return;
+    };
+
+export const removeAbonnementAction =
+    (id: string) =>
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
+        const state = getState();
+
+        const currentGymId = selectCurrentGymId(state);
+
+        if (!currentGymId) {
+            return;
+        }
+
+        const { status } = await deleteAbonnement(id);
+
+        if (status === 200) {
+            dispatch(removeAbonnement({ internalId: currentGymId, id }));
+
+            return;
+        }
+
+        return;
+    };
+
+export const postBenefitAction =
+    (file: File) =>
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
+        const state = getState();
+
+        const currentGymId = selectCurrentGymId(state);
+
+        if (!currentGymId) {
+            return;
+        }
+
+        const { status, data } = await postBenefit(currentGymId, file);
+
+        if (status === 200 && data) {
+            dispatch(addBenefit({ id: currentGymId, benefit: [data] }));
+
+            return;
+        }
+
+        return;
+    };
+
+export const deleteBenefitAction =
+    (id: string) =>
+    async (dispatch: AppDispatch, getState: GetAppState): Promise<void> => {
+        const state = getState();
+
+        const currentGymId = selectCurrentGymId(state);
+
+        if (!currentGymId) {
+            return;
+        }
+
+        const { status } = await deleteBenefit(id);
+
+        if (status === 200) {
+            dispatch(removeBenefit({ internalId: currentGymId, id }));
 
             return;
         }

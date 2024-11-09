@@ -3,7 +3,7 @@ import { IS_DEVELOPMENT, IS_QA } from '../constants/environment';
 let BASE_REST_PATH =
     IS_DEVELOPMENT || IS_QA
         ? 'https://fairfit-backend-qa-0794.onrender.com/'
-        : 'https://fairfit-backend-qa-0794.onrender.com/';
+        : 'https://fairfit-backend.onrender.com/';
 
 const searchParams = new URLSearchParams(window.location.search);
 
@@ -44,6 +44,18 @@ export interface RequestResult<Data = unknown> {
     status?: number;
 }
 
+interface RequestOptions<Body> {
+    accessToken?: string;
+    auth?: boolean;
+    backendVersion?: string;
+    body?: Body;
+    contentType?: string | null;
+    method: 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
+    route?: string;
+    url?: string;
+    shouldSkipJSON?: boolean;
+}
+
 export const request = async <Data = null, Body = null>({
     backendVersion,
     body,
@@ -55,13 +67,6 @@ export const request = async <Data = null, Body = null>({
 }: RequestOptions<Body>): Promise<RequestResult<Data>> => {
     const headers: HeadersInit = {};
 
-    /*
-    if (isAuthenticated && auth) {
-        headers.Authorization = `bearer ${accessToken || tobitAccessToken}`;
-    }
-
-     */
-
     const requestData: RequestInit = {
         credentials: 'include',
         headers,
@@ -69,12 +74,12 @@ export const request = async <Data = null, Body = null>({
     };
 
     if (method !== 'GET') {
-        if (typeof contentType === 'string') {
-            headers['Content-Type'] = contentType;
-        }
-
         if (body) {
             requestData.body = body instanceof FormData ? body : JSON.stringify(body);
+        }
+
+        if (typeof contentType === 'string' && !(body instanceof FormData)) {
+            headers['Content-Type'] = contentType;
         }
     }
 

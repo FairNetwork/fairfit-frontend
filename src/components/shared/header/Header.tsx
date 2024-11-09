@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import useWindowDimensions from '../../../hooks/windowDimensions';
+import { getWindowDimensions } from '../../../hooks/windowDimensions';
 import headImage from '../../../assets/fairfit-head-image.jpg';
 import './header.scss';
 import { useAppSelector } from '../../../hooks/redux';
@@ -10,7 +10,7 @@ interface HeaderProps {
 }
 
 const Header = ({ children }: HeaderProps) => {
-    const { height } = useWindowDimensions();
+    const { height } = getWindowDimensions();
 
     const image = useAppSelector(selectImage) ?? headImage;
 
