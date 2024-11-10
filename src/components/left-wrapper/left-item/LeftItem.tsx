@@ -26,7 +26,7 @@ const LeftItem: FC<LeftItemProps> = ({ icon, route, text }) => {
         <div className={classes} onClick={handleClick}>
             {icon && (
                 <div className="left-item__icon">
-                    <Icon color="white" icon={icon} size={21} style={{ cursor: 'pointer' }} />
+                    <Icon color="white" icon={icon} size={21} onClick={() => {}} />
                 </div>
             )}
             <div
