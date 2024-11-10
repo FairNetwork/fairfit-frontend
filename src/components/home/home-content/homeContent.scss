@@ -1,12 +1,8 @@
 .home-content {
-    min-height: 100vh;
-    padding: 0 16px;
-
     display: flex;
     flex-direction: column;
     gap: 16px;
-
-    flex: 1;
+    height: 100%;
 
     &__error-message {
         text-align: center;

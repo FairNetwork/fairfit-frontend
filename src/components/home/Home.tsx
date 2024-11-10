@@ -1,13 +1,10 @@
 import './home.scss';
 import React, { useEffect } from 'react';
-import Footer from '../shared/footer/Footer';
-import { HOME_FOOTER_ITEMS } from '../../constants/footer';
-import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
 import HomeContent from './home-content/HomeContent';
-import HomeHeader from './home-header/HomeHeader';
 import { useAppDispatch } from '../../hooks/redux';
 import { loadAllGyms, loadTags } from '../../redux/gym/actions';
 import { updateCurrentGymId } from '../../redux/gym/slice';
+import HomeHeader from './home-header/HomeHeader';
 
 const Home = () => {
     const dispatch = useAppDispatch();
@@ -28,10 +25,7 @@ const Home = () => {
     return (
         <div className="home">
             <HomeHeader />
-            <ContentWrapper>
-                <HomeContent />
-            </ContentWrapper>
-            <Footer items={HOME_FOOTER_ITEMS} />
+            <HomeContent />
         </div>
     );
 };

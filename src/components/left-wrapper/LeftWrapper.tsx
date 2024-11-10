@@ -17,7 +17,7 @@ const LeftWrapper = () => {
             <div className="left-wrapper__headline">Verlauf</div>
             <div className="left-wrapper__gyms">
                 {loadedGyms.map(({ name, internalId }) => (
-                    <LeftItem route={`/${internalId}`} text={name} />
+                    <LeftItem route={`/${internalId}`} text={name} icon="bi bi-archive" />
                 ))}
             </div>
             <div className="left-wrapper__divider" />

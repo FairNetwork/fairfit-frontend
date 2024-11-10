@@ -16,7 +16,6 @@ export const GYM_FOOTER_ITEMS: FooterItem[] = [
 ];
 
 export const UTILS: IUtil[] = [
-    { route: '/utility/data-protection', text: 'Datenschutz' },
-    { route: '/utility/impressum', text: 'Impressum' },
-    { route: '/utility/general', text: 'Allgemein' }
+    { route: '/utility/data-protection', text: 'Datenschutz', icon: 'bi bi-shield-lock' },
+    { route: '/utility/impressum', text: 'Impressum', icon: 'bi bi-chat-square-text' }
 ];
