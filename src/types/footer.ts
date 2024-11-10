@@ -3,3 +3,9 @@ export interface FooterItem {
     name: string;
     path: string;
 }
+
+export interface IUtil {
+    text: string;
+    route: string;
+    icon?: string;
+}

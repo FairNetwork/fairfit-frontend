@@ -6,11 +6,7 @@ import { useEffect, useMemo } from 'react';
 import { updateCurrentGymId } from '../../redux/gym/slice';
 import { getGymId } from '../../utils/routes';
 import { loadGym } from '../../redux/gym/actions';
-import { GYM_FOOTER_ITEMS, HOME_FOOTER_ITEMS } from '../../constants/footer';
-import Footer from '../shared/footer/Footer';
-import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
 import UtilityContent from './utility-content/UtilityContent';
-import NavigationBar from '../shared/navigation-bar/NavigationBar';
 
 const Utility = () => {
     const dispatch = useAppDispatch();
@@ -40,11 +36,7 @@ const Utility = () => {
 
     return (
         <div className="utility">
-            <NavigationBar />
-            <ContentWrapper>
-                <UtilityContent />
-            </ContentWrapper>
-            <Footer items={isGymPage ? GYM_FOOTER_ITEMS : HOME_FOOTER_ITEMS} />
+            <UtilityContent />
         </div>
     );
 };

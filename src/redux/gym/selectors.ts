@@ -53,6 +53,14 @@ export const selectFilteredGyms = createSelector(
     }
 );
 
+export const selectLoadedGyms = createSelector([selectGyms], (gyms) => {
+    const loadedGyms = Object.fromEntries(
+        Object.entries(gyms).filter(([_, gym]) => gym.hasLoaded === true)
+    );
+
+    return Object.values(loadedGyms);
+});
+
 export const selectGymId = createSelector(selectCurrentGym, (currentGym) => currentGym?.id);
 
 export const selectAbonnements = createSelector(

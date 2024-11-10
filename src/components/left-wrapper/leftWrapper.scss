@@ -1,0 +1,36 @@
+.left-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__home {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__divider {
+        border-bottom: 2px solid var(--text-color);
+        margin: 6px 0;
+    }
+
+    &__headline {
+        color: var(--text-color);
+        font-size: 85%;
+        margin-bottom: 4px;
+    }
+
+    &__gyms {
+        display: flex;
+        flex-direction: column;
+
+        flex-grow: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    &__utils {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+}
