@@ -5,10 +5,6 @@ import { updateCurrentGymId } from '../../redux/gym/slice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { selectGymLoadingState, selectHasGymLoaded } from '../../redux/gym/selectors';
 import { getGymFromRoute } from '../../utils/routes';
-import GymHeader from './gym-header/GymHeader';
-import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
-import Footer from '../shared/footer/Footer';
-import { GYM_FOOTER_ITEMS } from '../../constants/footer';
 import GymContent from './gym-content/GymContent';
 import { loadGym } from '../../redux/gym/actions';
 
@@ -41,11 +37,7 @@ const Gym = () => {
 
     return (
         <div className="gym">
-            <GymHeader />
-            <ContentWrapper>
-                <GymContent />
-            </ContentWrapper>
-            <Footer items={GYM_FOOTER_ITEMS} />
+            <GymContent />
         </div>
     );
 };

@@ -1,9 +1,11 @@
 import './homeContent.scss';
-import { ReactElement, useMemo } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import GymCard from './gym-card/GymCard';
 import { useAppSelector } from '../../../hooks/redux';
 import { selectAllGymsLoadingState, selectFilteredGyms } from '../../../redux/gym/selectors';
 import WaitCursor from '../../shared/wait-cursor/WaitCursor';
+import { Masonry } from '@mui/lab';
+import { Box } from '@mui/material';
 
 const HomeContent = () => {
     const gyms = useAppSelector(selectFilteredGyms);
@@ -31,7 +33,11 @@ const HomeContent = () => {
     return (
         <div className="home-content">
             <h3>Deine Ergebnisse</h3>
-            {content}
+            <Box sx={{ width: '100%', minHeight: 400 }}>
+                <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4 }} spacing={2}>
+                    {content}
+                </Masonry>
+            </Box>
             {!gyms && (
                 <div className="home-content__error-message">
                     Es konnten keine Ergebnisse geladen werden.

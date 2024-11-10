@@ -29,7 +29,11 @@ const LeftItem: FC<LeftItemProps> = ({ icon, route, text }) => {
                     <Icon color="white" icon={icon} size={21} style={{ cursor: 'pointer' }} />
                 </div>
             )}
-            <div className="left-item__text ellipsis">{text}</div>
+            <div
+                className="left-item__text ellipsis"
+                style={{ marginLeft: icon ? undefined : '10px' }}>
+                {text}
+            </div>
         </div>
     );
 };

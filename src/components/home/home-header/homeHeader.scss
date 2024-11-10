@@ -1,8 +1,10 @@
 .home-header {
     margin: 12px auto;
-    width: 60%;
 
     gap: 12px;
+
+    max-width: 600px;
+    width: 100%;
 
     display: flex;
     flex-direction: column;

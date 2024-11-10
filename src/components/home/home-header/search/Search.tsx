@@ -25,13 +25,13 @@ const Search = () => {
         <div className="search">
             <TextField
                 id="search"
-                label="Stadt oder PLZ"
+                label="Suche"
                 style={{ width: '100%' }}
                 onChange={handleSearchChange}
                 value={searchString}
                 InputProps={{
                     disableUnderline: true,
-                    style: { backgroundColor: 'white', borderRadius: 100 }
+                    style: { borderRadius: 100 }
                 }}
                 variant="filled"
             />
