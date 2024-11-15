@@ -1,15 +1,6 @@
 import * as React from 'react';
-import { AppProvider, Branding } from '@toolpad/core/AppProvider';
-import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import { PageContainer } from '@toolpad/core/PageContainer';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import {
-    selectGymLoadingState,
-    selectGymName,
-    selectHasGymLoaded
-} from '../../redux/gym/selectors';
-import { DASHBOARD_NAVIGATION, DASHBOARD_THEME } from '../../constants/dashboard';
-import { useDashboardRouter } from '../../hooks/dashboard';
+import { selectGymLoadingState, selectHasGymLoaded } from '../../redux/gym/selectors';
 import { useEffect, useMemo } from 'react';
 import Abonnements from './abonnements/Abonnements';
 import { selectIsLoggedIn } from '../../redux/login/selectors';
@@ -22,8 +13,6 @@ import Studio from './studio/Studio';
 import ComingSoon from '../shared/coming-soon/ComingSoon';
 import Benefits from './benefits/Benefits';
 import './dashboard.scss';
-import { GYM_FOOTER_ITEMS } from '../../constants/footer';
-import Footer from '../shared/footer/Footer';
 import HomepageAnalytics from './homepage-analytics/HomepageAnalytics';
 
 const Dashboard = () => {
@@ -67,49 +56,27 @@ const Dashboard = () => {
         }
     }, [isLoggedIn, loadingState, navigate]);
 
-    const gymName = useAppSelector(selectGymName);
-
-    const router = useDashboardRouter(`/studio`);
-
-    const branding: Branding = useMemo(() => {
-        return {
-            logo: <div />,
-            title: gymName ?? 'FariFit'
-        };
-    }, [gymName]);
-
     const content = useMemo(() => {
-        switch (router.pathname) {
-            case '/abonnements':
+        switch (true) {
+            case location.pathname.includes('/dashboard/abonnements'):
                 return <Abonnements />;
-            case '/benefits':
+            case location.pathname.includes('/dashboard/benefits'):
                 return <Benefits />;
-            case '/instagram':
-            case '/facebook':
-            case '/social-media':
-            case '/social-media/analytics-instagram':
-            case '/social-media/analytics-facebook':
+            case location.pathname.includes('/dashboard/social-media'):
+            case location.pathname.includes('/dashboard/social-media/instagram'):
+            case location.pathname.includes('/dashboard/social-media/facebook'):
+            case location.pathname.includes('/dashboard/analytics'):
+            case location.pathname.includes('/dashboard/analytics/social-media'):
                 return <ComingSoon />;
-            case '/homepage':
+            case location.pathname.includes('/dashboard/analytics/homepage'):
                 return <HomepageAnalytics />;
-            case '/studio':
+            case location.pathname.includes('/dashboard/gym'):
             default:
                 return <Studio />;
         }
-    }, [router.pathname]);
+    }, [location.pathname]);
 
-    return (
-        <AppProvider
-            navigation={DASHBOARD_NAVIGATION}
-            router={router}
-            branding={branding}
-            theme={DASHBOARD_THEME}>
-            <DashboardLayout>
-                <PageContainer className="dashboard">{content}</PageContainer>
-            </DashboardLayout>
-            <Footer items={GYM_FOOTER_ITEMS} />
-        </AppProvider>
-    );
+    return <div className="dashboard">{content}</div>;
 };
 
 Dashboard.displayName = 'Dashboard';

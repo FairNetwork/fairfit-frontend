@@ -4,10 +4,13 @@ import { selectCurrentGymId, selectLoadedGyms } from '../../redux/gym/selectors'
 import LeftItem from './left-item/LeftItem';
 import './leftWrapper.scss';
 import { UTILS } from '../../constants/footer';
+import { DASHBOARD } from '../../constants/dashboard';
+import { selectIsLoggedIn } from '../../redux/login/selectors';
 
 const LeftWrapper = () => {
     const loadedGyms = useAppSelector(selectLoadedGyms);
     const gymId = useAppSelector(selectCurrentGymId);
+    const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
     return (
         <div className="left-wrapper">
@@ -21,6 +24,21 @@ const LeftWrapper = () => {
                     <LeftItem route={`/${internalId}`} text={name} />
                 ))}
             </div>
+            {isLoggedIn && (
+                <>
+                    <div className="left-wrapper__divider" />
+                    <div className="left-wrapper__dashboard">
+                        {DASHBOARD.map(({ text, icon, route, children }) => (
+                            <LeftItem
+                                route={route.replace(':gym', gymId ?? '')}
+                                text={text}
+                                icon={icon}
+                                children={children}
+                            />
+                        ))}
+                    </div>
+                </>
+            )}
             <div className="left-wrapper__divider" />
             <div className="left-wrapper__utils">
                 {UTILS.map(({ text, icon, route }) => (

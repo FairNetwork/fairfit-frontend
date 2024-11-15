@@ -13,6 +13,7 @@ import SignUp from './sign-up/SignUp';
 import Booking from './booking/Booking';
 import Gym from './gym/Gym';
 import Header from './header/Header';
+import Dashboard from './dasboard/Dashboard';
 
 const App = () => {
     const allotmentRef = useRef<AllotmentHandle>(null);
@@ -54,7 +55,7 @@ const App = () => {
         if (path === '/register-studio') return <SignUp />;
 
         if (/^\/[^/]+\/offers$/.test(path)) return <Booking />;
-        // if (/^\/[^/]+\/dashboard$/.test(path)) return <DashBoard />;
+        if (/^\/[^/]+\/dashboard\/.+/.test(path)) return <Dashboard />;
         if (/^\/[^/]+$/.test(path)) return <Gym />;
 
         return <Home />;
@@ -77,7 +78,7 @@ const App = () => {
                         onDragEnd={handleAllotmentDragEnd}
                         ref={allotmentRef}
                         proportionalLayout={true}>
-                        <Allotment.Pane minSize={62} maxSize={300} preferredSize={snapAnchor + 50}>
+                        <Allotment.Pane minSize={80} maxSize={300} preferredSize={snapAnchor + 50}>
                             <div className="app__content__left-wrapper">
                                 <LeftWrapper />
                             </div>

@@ -10,4 +10,15 @@
         height: 30px;
         width: 30px;
     }
+
+    &__popover {
+        &__item {
+            margin: 6px 0;
+            cursor: pointer;
+
+            &__logout {
+                color: red;
+            }
+        }
+    }
 }

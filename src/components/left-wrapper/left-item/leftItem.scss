@@ -7,6 +7,10 @@
     margin-bottom: 2px;
     transition: background-color 0.3s ease;
 
+    &__children {
+        margin-left: 16px;
+    }
+
     &--active {
         background-color: rgba(30, 30, 30, 0.3);
     }
