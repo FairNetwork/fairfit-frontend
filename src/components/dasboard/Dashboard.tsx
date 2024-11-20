@@ -65,10 +65,9 @@ const Dashboard = () => {
             case location.pathname.includes('/dashboard/social-media'):
             case location.pathname.includes('/dashboard/social-media/instagram'):
             case location.pathname.includes('/dashboard/social-media/facebook'):
-            case location.pathname.includes('/dashboard/analytics'):
             case location.pathname.includes('/dashboard/analytics/social-media'):
                 return <ComingSoon />;
-            case location.pathname.includes('/dashboard/analytics/homepage'):
+            case location.pathname.includes('/dashboard/analytics'):
                 return <HomepageAnalytics />;
             case location.pathname.includes('/dashboard/gym'):
             default:

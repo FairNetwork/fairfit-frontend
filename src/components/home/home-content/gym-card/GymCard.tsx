@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { useMemo } from 'react';
 import Icon from '../../../shared/icon/Icon';
 import { Chip } from '@mui/material';
+import defaultImage from '../../../../assets/default_gym_image.png';
 
 interface GymCardProps {
     gymImage: IGym['gymImage'];
@@ -29,7 +30,7 @@ const GymCard = ({ name, internalId, gymImage, address, tags }: GymCardProps) =>
     return (
         <div className="gym-card" onClick={handleClick}>
             <div className="gym-card__picture">
-                <img src={gymImage} alt={name} />
+                <img src={gymImage ?? defaultImage} alt={name} />
             </div>
             <div className="gym-card__info">
                 <div className="gym-card__info__name">{name}</div>
