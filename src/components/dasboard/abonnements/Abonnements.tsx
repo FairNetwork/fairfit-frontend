@@ -11,12 +11,14 @@ import {
     DialogContent,
     DialogTitle,
     Divider,
+    Fab,
     Menu,
     MenuItem
 } from '@mui/material';
 import DialogTransition from '../../shared/dialog-transition/DialogTransition';
 import AbonnementDialog from '../../shared/abonnement-dialog/AbonnementDialog';
 import { removeAbonnementAction } from '../../../redux/gym/actions';
+import Icon from '../../shared/icon/Icon';
 
 const Abonnements = () => {
     const dispatch = useAppDispatch();
@@ -119,11 +121,10 @@ const Abonnements = () => {
                 hinzu, um deinen Kunden die Wahl zu erleichtern.
             </i>
             <div className="abonnements__button">
-                <Button variant="contained" onClick={handleAdd}>
-                    Abonnement erstellen
-                </Button>
+                <Fab color="primary" aria-label="add" onClick={handleAdd}>
+                    <Icon icon="bi bi-plus" color="white" size={30} onClick={() => {}} />
+                </Fab>
             </div>
-            <Divider variant="middle" />
             {content && (
                 <Box sx={{ width: '100%', minHeight: 400 }}>
                     <Masonry columns={{ xs: 2, sm: 3, md: 4, lg: 4 }} spacing={2}>

@@ -48,7 +48,7 @@ const Benefits = () => {
             <h4>Deine Leistungen</h4>
             {content && (
                 <Box sx={{ width: '100%', minHeight: 400 }}>
-                    <Masonry columns={{ xs: 2, sm: 3, md: 4, lg: 4 }} spacing={2}>
+                    <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 3 }} spacing={2}>
                         {content}
                     </Masonry>
                 </Box>
