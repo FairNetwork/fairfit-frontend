@@ -42,11 +42,7 @@ const LeftWrapper = () => {
             <div className="left-wrapper__divider" />
             <div className="left-wrapper__utils">
                 {UTILS.map(({ text, icon, route }) => (
-                    <LeftItem
-                        route={`${route}?gymId=${gymId ?? 'fairfit'}`}
-                        text={text}
-                        icon={icon}
-                    />
+                    <LeftItem route={route} text={text} icon={icon} />
                 ))}
             </div>
         </div>

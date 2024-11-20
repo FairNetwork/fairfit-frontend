@@ -5,6 +5,7 @@ import { Popover } from 'antd';
 import { useAppSelector } from '../../hooks/redux';
 import { selectIsLoggedIn } from '../../redux/login/selectors';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/fairfit_logo.png';
 
 const Header = () => {
     const isLoggedIn = useAppSelector(selectIsLoggedIn);
@@ -35,7 +36,10 @@ const Header = () => {
 
     return (
         <div className="header">
-            <div className="header__logo">LoGo</div>
+            <div className="header__logo" onClick={() => navigate('/')}>
+                <img src={logo} alt="logo" />
+                <p>FairFit</p>
+            </div>
             <div className="header__profile">
                 <Popover trigger="click" content={content}>
                     <Avatar

@@ -112,10 +112,7 @@ export const selectOpeningTimeByType = (state: RootState, type: OpeningTimeType)
     return selectOpeningTimes(state)?.find(({ type: openingType }) => type === openingType);
 };
 
-export const selectUtilitys = createSelector(
-    selectCurrentGym,
-    (currentGym) => currentGym?.utilitys
-);
+export const selectUtilitys = (state: RootState) => selectGymState(state).utilities;
 
 export const selectUtilityByType = (state: RootState, type?: UtilityType) => {
     return selectUtilitys(state)?.find(({ type: utilityType }) => type === utilityType)?.html;

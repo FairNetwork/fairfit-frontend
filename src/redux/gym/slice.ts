@@ -6,6 +6,7 @@ import { ITag } from '../../types/tag';
 import { ISocialMedia } from '../../types/socialMedia';
 import { IOpeningTimes } from '../../types/openingTimes';
 import { IBenefit } from '../../types/benefit';
+import { IUtility } from '../../types/utility';
 
 type LoadingState = 'none' | 'pending' | 'rejected' | 'successful';
 
@@ -19,6 +20,7 @@ export interface GymState {
     searchResultIds: string[];
     tags: ITag[];
     selectedTags: ITag['id'][];
+    utilities: IUtility[];
 }
 
 const initialState: GymState = {
@@ -29,7 +31,19 @@ const initialState: GymState = {
     searchString: '',
     searchResultIds: [],
     tags: [],
-    selectedTags: []
+    selectedTags: [],
+    utilities: [
+        {
+            id: '85c6e6ff-5be7-413a-8741-303affc3b4d9',
+            type: 0,
+            html: '<p><strong>Angaben gemäß § 5 TMG:</strong></p>\n  <p>Max Mustermann<br>Mustermannstraße 1<br>12345 Musterstadt<br>Deutschland</p>\n\n  <p><strong>Vertreten durch:</strong> Max Mustermann</p>\n\n  <p><strong>Kontakt:</strong><br>\n  Telefon: +49 123 4567890<br>\n  E-Mail: max@mustermann.de</p>\n\n  <p><strong>Umsatzsteuer-ID:</strong><br>\n  Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz: DE123456789</p>\n\n  <p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>\n  Max Mustermann<br>Mustermannstraße 1<br>12345 Musterstadt</p>\n\n  <p><strong>Haftung für Inhalte:</strong> Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>'
+        },
+        {
+            id: 'dc59a96a-4fb2-442e-a1b9-3f0e9f2a6563',
+            type: 1,
+            html: '<h1>Datenschutzerklärung</h1>\r\n  <p>Wir freuen uns sehr über Ihr Interesse an unserem Unternehmen. Datenschutz hat einen besonders hohen Stellenwert für die Geschäftsleitung der Musterfirma. Eine Nutzung der Internetseiten der Musterfirma ist grundsätzlich ohne jede Angabe personenbezogener Daten möglich. Sofern eine betroffene Person besondere Services unseres Unternehmens über unsere Internetseite in Anspruch nehmen möchte, könnte jedoch eine Verarbeitung personenbezogener Daten erforderlich werden.</p>\r\n\r\n  <h2>Verantwortliche Stelle</h2>\r\n  <p>Verantwortliche Stelle im Sinne der Datenschutzgesetze ist:<br>\r\n  Max Mustermann<br>Mustermannstraße 1<br>12345 Musterstadt<br>Deutschland<br>E-Mail: datenschutz@mustermann.de</p>\r\n\r\n  <h2>Erhebung und Speicherung personenbezogener Daten</h2>\r\n  <p>Wir erheben und speichern folgende personenbezogene Daten: Name, Adresse, E-Mail-Adresse, Telefonnummer.</p>\r\n\r\n  <h2>Rechte der betroffenen Person</h2>\r\n  <p>Sie haben das Recht auf Auskunft über die von uns verarbeiteten personenbezogenen Daten, Berichtigung unrichtiger Daten sowie auf Löschung oder Einschränkung der Verarbeitung.</p>'
+        }
+    ]
 };
 
 const slice = createSlice({

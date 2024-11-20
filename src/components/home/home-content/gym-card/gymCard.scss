@@ -47,12 +47,13 @@
                 align-items: center;
 
                 font-size: small;
-                text-align: end;
             }
 
             &__tags {
                 display: flex;
                 gap: 6px;
+                flex-wrap: wrap;
+                justify-content: end;
             }
         }
     }

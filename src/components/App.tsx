@@ -63,7 +63,7 @@ const App = () => {
 
     // Right pane class based on device type
     const rightElementClasses = clsx('app__content__right-wrapper', {
-        'app__content__right-wrapper--mobile': isMobile
+        'app__content__right-wrapper--mobile': false
     });
 
     return useMemo(
@@ -78,7 +78,7 @@ const App = () => {
                         onDragEnd={handleAllotmentDragEnd}
                         ref={allotmentRef}
                         proportionalLayout={true}>
-                        <Allotment.Pane minSize={80} maxSize={300} preferredSize={snapAnchor + 50}>
+                        <Allotment.Pane minSize={62} maxSize={300} preferredSize={snapAnchor + 50}>
                             <div className="app__content__left-wrapper">
                                 <LeftWrapper />
                             </div>

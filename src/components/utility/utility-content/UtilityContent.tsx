@@ -5,7 +5,6 @@ import { useAppSelector } from '../../../hooks/redux';
 import { selectUtilityByType } from '../../../redux/gym/selectors';
 import { RootState } from '../../../redux/store';
 import { getUtilityType } from '../../../utils/utility';
-import SignUp from '../../sign-up/SignUp';
 
 const UtilityContent = () => {
     const type = getPathFromUrl();
@@ -25,11 +24,7 @@ const UtilityContent = () => {
 
     return (
         <div className="utility-content">
-            {type === 'register-studio' ? (
-                <SignUp />
-            ) : (
-                <div dangerouslySetInnerHTML={{ __html: html }} />
-            )}
+            <div dangerouslySetInnerHTML={{ __html: html }} />
         </div>
     );
 };
