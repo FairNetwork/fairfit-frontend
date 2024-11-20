@@ -6,6 +6,7 @@ import './leftWrapper.scss';
 import { UTILS } from '../../constants/footer';
 import { DASHBOARD } from '../../constants/dashboard';
 import { selectIsLoggedIn } from '../../redux/login/selectors';
+import { AnimatePresence } from 'framer-motion';
 
 const LeftWrapper = () => {
     const loadedGyms = useAppSelector(selectLoadedGyms);
@@ -18,9 +19,11 @@ const LeftWrapper = () => {
             </div>
             <div className="left-wrapper__divider" />
             <div className="left-wrapper__gyms">
-                {loadedGyms.map(({ name, internalId }) => (
-                    <LeftItem route={`/${internalId}`} text={name} icon="las la-dumbbell" />
-                ))}
+                <AnimatePresence>
+                    {loadedGyms.map(({ name, internalId }) => (
+                        <LeftItem route={`/${internalId}`} text={name} icon="las la-dumbbell" />
+                    ))}
+                </AnimatePresence>
             </div>
             {isLoggedIn && (
                 <>

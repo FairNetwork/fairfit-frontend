@@ -5,6 +5,7 @@ import Icon from '../../shared/icon/Icon';
 import { useAppSelector } from '../../../hooks/redux';
 import { selectCurrentGymId } from '../../../redux/gym/selectors';
 import { selectLoggedInGym } from '../../../redux/login/selectors';
+import { motion } from 'framer-motion';
 
 interface LeftItemProps {
     icon?: string;
@@ -32,22 +33,24 @@ const LeftItem: FC<LeftItemProps> = ({ icon, route, text }) => {
     }, [gymId, isDashboardRoute, location.pathname, loggedInGymId, route]);
 
     return (
-        <>
-            <div
-                className={`left-item ${isActive ? 'left-item--active' : ''}`}
-                onClick={() => handleClick(route)}>
-                {icon && (
-                    <div className="left-item__icon">
-                        <Icon color="white" icon={icon} size={21} onClick={() => {}} />
-                    </div>
-                )}
-                <div
-                    className="left-item__text ellipsis"
-                    style={{ marginLeft: icon ? undefined : '10px' }}>
-                    {text}
+        <motion.div
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            layout="position"
+            className={`left-item ${isActive ? 'left-item--active' : ''}`}
+            onClick={() => handleClick(route)}>
+            {icon && (
+                <div className="left-item__icon">
+                    <Icon color="white" icon={icon} size={21} onClick={() => {}} />
                 </div>
+            )}
+            <div
+                className="left-item__text ellipsis"
+                style={{ marginLeft: icon ? undefined : '10px' }}>
+                {text}
             </div>
-        </>
+        </motion.div>
     );
 };
 
