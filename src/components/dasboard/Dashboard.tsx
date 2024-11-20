@@ -44,7 +44,7 @@ const Dashboard = () => {
         } else if (typeof isLoggedIn === 'boolean') {
             if (!isLoggedIn) {
                 navigate('/log-in');
-            } else {
+            } else if (!hasGymLoaded) {
                 void dispatch(loadGym(true));
             }
         }

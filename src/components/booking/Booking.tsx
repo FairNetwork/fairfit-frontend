@@ -2,9 +2,6 @@ import './booking.scss';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
-import Footer from '../shared/footer/Footer';
-import { GYM_FOOTER_ITEMS } from '../../constants/footer';
 import {
     selectAbonnements,
     selectGymLoadingState,
@@ -51,10 +48,7 @@ const Booking = () => {
 
     return (
         <div className="gym">
-            <ContentWrapper>
-                <BookingContent />
-            </ContentWrapper>
-            <Footer items={GYM_FOOTER_ITEMS} />
+            <BookingContent />
         </div>
     );
 };

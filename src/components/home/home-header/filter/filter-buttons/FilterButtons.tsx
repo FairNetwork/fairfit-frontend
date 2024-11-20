@@ -1,10 +1,10 @@
 import './filterButtons.scss';
 import { ReactElement, useCallback, useMemo } from 'react';
 import FilterButton from './filter-button/FilterButton';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { selectSelectedTagIds, selectTags } from '../../../../redux/gym/selectors';
-import { loadAllGyms } from '../../../../redux/gym/actions';
-import { setSelectedTags } from '../../../../redux/gym/slice';
+import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
+import { selectSelectedTagIds, selectTags } from '../../../../../redux/gym/selectors';
+import { loadAllGyms } from '../../../../../redux/gym/actions';
+import { setSelectedTags } from '../../../../../redux/gym/slice';
 
 const FilterButtons = () => {
     const dispatch = useAppDispatch();
@@ -58,15 +58,14 @@ const FilterButtons = () => {
 
     return (
         <div className="filter-buttons">
+            <div className="filter-buttons__content">{buttons}</div>
             <div className="filter-buttons__headline">
-                <div className="filter-buttons__headline__left">Filter</div>
                 <div
                     className="filter-buttons__headline__right"
                     onClick={() => handleSelect('all')}>
                     zurücksetzen
                 </div>
             </div>
-            <div className="filter-buttons__content">{buttons}</div>
         </div>
     );
 };

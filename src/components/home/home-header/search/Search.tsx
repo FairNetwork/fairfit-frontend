@@ -5,6 +5,9 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { setSearchString } from '../../../../redux/gym/slice';
 import { selectSearchString } from '../../../../redux/gym/selectors';
 import { loadAllGyms } from '../../../../redux/gym/actions';
+import Icon from '../../../shared/icon/Icon';
+import { Popover } from 'antd';
+import Filter from '../filter/Filter';
 
 const Search = () => {
     const dispatch = useAppDispatch();
@@ -35,6 +38,9 @@ const Search = () => {
                 }}
                 variant="filled"
             />
+            <Popover trigger="click" content={<Filter />}>
+                <Icon icon="bi bi-filter" size={30} onClick={() => {}} />
+            </Popover>
         </div>
     );
 };

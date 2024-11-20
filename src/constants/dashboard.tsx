@@ -118,7 +118,7 @@ export const DASHBOARD: IDashboard[] = [
     { icon: 'bi bi-bag', route: '/&gym/dashboard/abonnements', text: 'Abonnements' },
     { icon: 'bi bi-lightning-charge', route: '/&gym/dashboard/benefits', text: 'Leistungen' },
     {
-        icon: 'bi bi-phone',
+        icon: 'bi bi-collection',
         route: '/&gym/dashboard/social-media',
         text: 'Social-Media',
         children: [
@@ -135,7 +135,7 @@ export const DASHBOARD: IDashboard[] = [
         ]
     },
     {
-        icon: 'bi bi-diagram-2',
+        icon: 'bi bi-graph-up',
         route: '/&gym/dashboard/analytics',
         text: 'Analytics',
         children: [

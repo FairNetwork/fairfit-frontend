@@ -1,5 +1,5 @@
 import './filterButton.scss';
-import { IFilterButton } from '../../../../../types/filterButton';
+import { IFilterButton } from '../../../../../../types/filterButton';
 import { useMemo, useState } from 'react';
 
 interface FilterButtonProps extends IFilterButton {
