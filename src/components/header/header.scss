@@ -27,12 +27,29 @@
 
     &__popover {
         &__item {
-            margin: 6px 0;
             cursor: pointer;
+            padding: 2px 12px;
 
             &__logout {
                 color: red;
             }
+
+            &:not(:last-child) {
+                border-bottom: 1px #776f6f59 solid;
+            }
         }
     }
+}
+
+.ant-popover-arrow::before {
+    background-color: var(--background-color-secondary) !important;
+}
+
+.ant-popover-inner {
+    background-color: var(--background-color-secondary) !important;
+    padding: 12px 0 !important;
+}
+
+.ant-popover-inner-content {
+    color: var(--text-color) !important;
 }

@@ -31,13 +31,34 @@
             border-top: 1px solid rgba(0, 0, 0, 0.15);
             border-top-left-radius: 8px;
             box-shadow: rgba(0, 0, 0, 0.2) 0 0 20px 16px;
-            height: 100%;
+            height: calc(100% - 26px);
             overflow-y: auto;
             overflow-x: hidden;
             padding: 12px;
 
             &--mobile {
                 border-radius: 0;
+            }
+
+            &::-webkit-scrollbar {
+                width: 10px;
+                height: 10px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+
+            &::-webkit-scrollbar-button {
+                background-color: transparent;
+                height: 5px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: grey;
+                border-radius: 20px;
+                background-clip: padding-box;
+                border: solid 3px transparent;
             }
         }
     }

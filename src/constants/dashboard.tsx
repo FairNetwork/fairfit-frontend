@@ -114,39 +114,39 @@ export const OPENING_TIMES: OpeningTimeType[] = [
 ];
 
 export const DASHBOARD: IDashboard[] = [
-    { icon: 'bi bi-house-gear', route: '/:gym/dashboard/gym', text: 'Studio' },
-    { icon: 'bi bi-bag', route: '/:gym/dashboard/abonnements', text: 'Abonnements' },
-    { icon: 'bi bi-lightning-charge', route: '/:gym/dashboard/benefits', text: 'Leistungen' },
+    { icon: 'bi bi-house-gear', route: '/&gym/dashboard/gym', text: 'Studio' },
+    { icon: 'bi bi-bag', route: '/&gym/dashboard/abonnements', text: 'Abonnements' },
+    { icon: 'bi bi-lightning-charge', route: '/&gym/dashboard/benefits', text: 'Leistungen' },
     {
         icon: 'bi bi-phone',
-        route: '/:gym/dashboard/social-media',
+        route: '/&gym/dashboard/social-media',
         text: 'Social-Media',
         children: [
             {
                 icon: 'bi bi-instagram',
-                route: '/:gym/dashboard/social-media/instagram',
+                route: '/&gym/dashboard/social-media/instagram',
                 text: 'Instagram'
             },
             {
                 icon: 'bi bi-facebook',
-                route: '/:gym/dashboard/social-media/facebook',
+                route: '/&gym/dashboard/social-media/facebook',
                 text: 'Facebook'
             }
         ]
     },
     {
         icon: 'bi bi-diagram-2',
-        route: '/:gym/dashboard/analytics',
+        route: '/&gym/dashboard/analytics',
         text: 'Analytics',
         children: [
             {
                 icon: 'bi bi-phone',
-                route: '/:gym/dashboard/analytics/social-media',
+                route: '/&gym/dashboard/analytics/social-media',
                 text: 'Social-Media'
             },
             {
                 icon: 'bi bi-bar-chart',
-                route: '/:gym/dashboard/analytics/homepage',
+                route: '/&gym/dashboard/analytics/homepage',
                 text: 'Homepage'
             }
         ]

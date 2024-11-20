@@ -2,6 +2,7 @@ import './utility.scss';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import UtilityContent from './utility-content/UtilityContent';
+import { motion } from 'framer-motion';
 
 const Utility = () => {
     const navigate = useNavigate();
@@ -13,9 +14,13 @@ const Utility = () => {
     }, [navigate]);
 
     return (
-        <div className="utility">
+        <motion.div
+            className="utility"
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}>
             <UtilityContent />
-        </div>
+        </motion.div>
     );
 };
 

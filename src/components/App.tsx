@@ -14,8 +14,13 @@ import Booking from './booking/Booking';
 import Gym from './gym/Gym';
 import Header from './header/Header';
 import Dashboard from './dasboard/Dashboard';
+import { getIsUserLoggedIn } from '../redux/login/actions';
+import { useAppDispatch } from '../hooks/redux';
+import { AnimatePresence } from 'framer-motion';
 
 const App = () => {
+    const dispatch = useAppDispatch();
+
     const allotmentRef = useRef<AllotmentHandle>(null);
 
     const [snapAnchor, setSnapAnchor] = useState(0);
@@ -36,6 +41,10 @@ const App = () => {
         },
         [snapAnchor]
     );
+
+    useEffect(() => {
+        void dispatch(getIsUserLoggedIn());
+    }, [dispatch]);
 
     // Calculate snap anchor on mount based on text width
     useEffect(() => {
@@ -84,7 +93,9 @@ const App = () => {
                             </div>
                         </Allotment.Pane>
                         <Allotment.Pane>
-                            <div className={rightElementClasses}>{rightElement}</div>
+                            <AnimatePresence initial={false}>
+                                <div className={rightElementClasses}>{rightElement}</div>
+                            </AnimatePresence>
                         </Allotment.Pane>
                     </Allotment>
                 </main>

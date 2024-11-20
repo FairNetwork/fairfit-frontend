@@ -1,14 +1,19 @@
 import './logIn.scss';
 import ContentWrapper from '../shared/content-wrapper/ContentWrapper';
 import LogInContent from './log-in-content/LogInContent';
+import { motion } from 'framer-motion';
 
 const LogIn = () => {
     return (
-        <div className="log-in">
+        <motion.div
+            className="log-in"
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}>
             <ContentWrapper>
                 <LogInContent />
             </ContentWrapper>
-        </div>
+        </motion.div>
     );
 };
 

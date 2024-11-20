@@ -7,6 +7,7 @@ import { selectGymLoadingState, selectHasGymLoaded } from '../../redux/gym/selec
 import { getGymFromRoute } from '../../utils/routes';
 import GymContent from './gym-content/GymContent';
 import { loadGym } from '../../redux/gym/actions';
+import { motion } from 'framer-motion';
 
 const Gym = () => {
     const dispatch = useAppDispatch();
@@ -36,9 +37,13 @@ const Gym = () => {
     }, [loadingState, navigate]);
 
     return (
-        <div className="gym">
+        <motion.div
+            className="gym"
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}>
             <GymContent />
-        </div>
+        </motion.div>
     );
 };
 

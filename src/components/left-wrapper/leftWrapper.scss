@@ -27,6 +27,27 @@
         flex-grow: 1;
         overflow-y: auto;
         overflow-x: hidden;
+
+        &::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-button {
+            background-color: transparent;
+            height: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: grey;
+            border-radius: 20px;
+            background-clip: padding-box;
+            border: solid 3px transparent;
+        }
     }
 
     &__utils {

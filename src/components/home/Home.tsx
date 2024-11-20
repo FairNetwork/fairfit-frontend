@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import { loadAllGyms, loadTags } from '../../redux/gym/actions';
 import { updateCurrentGymId } from '../../redux/gym/slice';
 import HomeHeader from './home-header/HomeHeader';
+import { motion } from 'framer-motion';
 
 const Home = () => {
     const dispatch = useAppDispatch();
@@ -23,10 +24,14 @@ const Home = () => {
     }, [dispatch]);
 
     return (
-        <div className="home">
+        <motion.div
+            className="home"
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}>
             <HomeHeader />
             <HomeContent />
-        </div>
+        </motion.div>
     );
 };
 

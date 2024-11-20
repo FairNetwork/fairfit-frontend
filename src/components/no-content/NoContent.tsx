@@ -1,20 +1,25 @@
 import './noContent.scss';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../shared/icon/Icon';
+import { motion } from 'framer-motion';
 
 const NoContent = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="no-content">
+        <motion.div
+            className="no-content"
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}>
             <div className="no-content__icon">
-                <Icon icon="bi-heartbreak" size={200} />
+                <Icon icon="bi bi-sign-dead-end" size={200} />
             </div>
             <div className="no-content__text">Diese Page ist nicht verfügbar</div>
             <div className="no-content__link" onClick={() => navigate('/')}>
                 Zur HomePage
             </div>
-        </div>
+        </motion.div>
     );
 };
 
