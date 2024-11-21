@@ -20,9 +20,14 @@
         }
     }
 
-    &__profile {
-        height: 30px;
-        width: 30px;
+    &__left {
+        display: flex;
+        gap: 12px;
+
+        &__profile {
+            height: 30px;
+            width: 30px;
+        }
     }
 
     &__popover {

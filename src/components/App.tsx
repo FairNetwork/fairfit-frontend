@@ -18,6 +18,9 @@ import { getIsUserLoggedIn } from '../redux/login/actions';
 import { useAppDispatch } from '../hooks/redux';
 import { AnimatePresence } from 'framer-motion';
 import SplashScreen from './shared/splash-screen/SplashScreen';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { DARK_MODE_STORAGE_KEY } from '../constants/storage';
+import { setCSSVariable } from '../utils/theme';
 
 const App = () => {
     const dispatch = useAppDispatch();
@@ -26,6 +29,9 @@ const App = () => {
 
     const [snapAnchor, setSnapAnchor] = useState(0);
     const [shouldShowSplashScreen, setShouldShowSplashScreen] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState<string>(
+        () => localStorage.getItem(DARK_MODE_STORAGE_KEY) || 'true'
+    );
 
     const location = useLocation();
 
@@ -43,6 +49,21 @@ const App = () => {
         },
         [snapAnchor]
     );
+
+    useEffect(() => {
+        setCSSVariable(isDarkMode === 'false' ? 'light' : 'dark');
+    }, [isDarkMode]);
+
+    useEffect(() => {
+        const handleStorageChange = (event: StorageEvent) => {
+            if (event.key === DARK_MODE_STORAGE_KEY) {
+                setIsDarkMode(event.newValue || '');
+            }
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+        return () => window.removeEventListener('storage', handleStorageChange);
+    }, []);
 
     useEffect(() => {
         void dispatch(getIsUserLoggedIn());
@@ -81,41 +102,54 @@ const App = () => {
         'app__content__right-wrapper--mobile': false
     });
 
+    const theme = createTheme({
+        palette: {
+            primary: { main: '#03DAC5' },
+            mode: isDarkMode === 'false' ? 'light' : 'dark'
+        }
+    });
+
     return useMemo(
         () => (
-            <div className="app">
-                <AnimatePresence initial={false}>
-                    {shouldShowSplashScreen && <SplashScreen />}
-                </AnimatePresence>
-                <header className="app__header">
-                    <Header />
-                </header>
-                <main className="app__content">
-                    <Allotment
-                        separator={false}
-                        onDragEnd={handleAllotmentDragEnd}
-                        ref={allotmentRef}
-                        proportionalLayout={true}>
-                        <Allotment.Pane minSize={62} maxSize={300} preferredSize={snapAnchor + 50}>
-                            <div className="app__content__left-wrapper">
-                                <LeftWrapper />
-                            </div>
-                        </Allotment.Pane>
-                        <Allotment.Pane>
-                            <AnimatePresence initial={false}>
-                                <div className={rightElementClasses}>{rightElement}</div>
-                            </AnimatePresence>
-                        </Allotment.Pane>
-                    </Allotment>
-                </main>
-            </div>
+            <ThemeProvider theme={theme}>
+                <div className="app">
+                    <AnimatePresence initial={false}>
+                        {shouldShowSplashScreen && <SplashScreen />}
+                    </AnimatePresence>
+                    <header className="app__header">
+                        <Header />
+                    </header>
+                    <main className="app__content">
+                        <Allotment
+                            separator={false}
+                            onDragEnd={handleAllotmentDragEnd}
+                            ref={allotmentRef}
+                            proportionalLayout={true}>
+                            <Allotment.Pane
+                                minSize={62}
+                                maxSize={300}
+                                preferredSize={snapAnchor + 50}>
+                                <div className="app__content__left-wrapper">
+                                    <LeftWrapper />
+                                </div>
+                            </Allotment.Pane>
+                            <Allotment.Pane>
+                                <AnimatePresence initial={false}>
+                                    <div className={rightElementClasses}>{rightElement}</div>
+                                </AnimatePresence>
+                            </Allotment.Pane>
+                        </Allotment>
+                    </main>
+                </div>
+            </ThemeProvider>
         ),
         [
             handleAllotmentDragEnd,
             rightElement,
             rightElementClasses,
             shouldShowSplashScreen,
-            snapAnchor
+            snapAnchor,
+            theme
         ]
     );
 };
