@@ -1,6 +1,7 @@
 import ImageCarousel from '../../../shared/image-carousel/ImageCarousel';
 import { selectBenefits } from '../../../../redux/gym/selectors';
 import { useAppSelector } from '../../../../hooks/redux';
+import './benefits.scss';
 
 const Benefits = () => {
     const benefits = useAppSelector(selectBenefits);
