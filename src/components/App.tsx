@@ -17,6 +17,7 @@ import Dashboard from './dasboard/Dashboard';
 import { getIsUserLoggedIn } from '../redux/login/actions';
 import { useAppDispatch } from '../hooks/redux';
 import { AnimatePresence } from 'framer-motion';
+import SplashScreen from './shared/splash-screen/SplashScreen';
 
 const App = () => {
     const dispatch = useAppDispatch();
@@ -24,6 +25,7 @@ const App = () => {
     const allotmentRef = useRef<AllotmentHandle>(null);
 
     const [snapAnchor, setSnapAnchor] = useState(0);
+    const [shouldShowSplashScreen, setShouldShowSplashScreen] = useState(true);
 
     const location = useLocation();
 
@@ -44,6 +46,10 @@ const App = () => {
 
     useEffect(() => {
         void dispatch(getIsUserLoggedIn());
+
+        window.setTimeout(() => {
+            setShouldShowSplashScreen(false);
+        }, 3000);
     }, [dispatch]);
 
     // Calculate snap anchor on mount based on text width
@@ -78,6 +84,9 @@ const App = () => {
     return useMemo(
         () => (
             <div className="app">
+                <AnimatePresence initial={false}>
+                    {shouldShowSplashScreen && <SplashScreen />}
+                </AnimatePresence>
                 <header className="app__header">
                     <Header />
                 </header>
@@ -101,7 +110,13 @@ const App = () => {
                 </main>
             </div>
         ),
-        [handleAllotmentDragEnd, rightElement, rightElementClasses, snapAnchor]
+        [
+            handleAllotmentDragEnd,
+            rightElement,
+            rightElementClasses,
+            shouldShowSplashScreen,
+            snapAnchor
+        ]
     );
 };
 

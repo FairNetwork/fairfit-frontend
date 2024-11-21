@@ -8,7 +8,7 @@ import {
 } from '../../../redux/gym/selectors';
 import { useMemo } from 'react';
 import { getCurrentOpeningTimeType } from '../../../utils/openingTimes';
-import { getIcon, getProfileUrl, getSocialMediaImage } from '../../../utils/socialMedia';
+import { getIcon, getProfileUrl } from '../../../utils/socialMedia';
 import Icon from '../../shared/icon/Icon';
 
 const GymHeader = () => {
