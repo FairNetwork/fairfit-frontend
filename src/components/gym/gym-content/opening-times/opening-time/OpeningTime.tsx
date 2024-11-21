@@ -19,8 +19,8 @@ const OpeningTime = ({ startTime, endTime, type, closed }: OpeningTimeProps) => 
                 'Geschlossen'
             ) : (
                 <div className="opening-time-gym__times">
-                    {startTime.substring(0, startTime.length - 3)} -{' '}
-                    {endTime.substring(0, endTime.length - 3)}
+                    {startTime.substring(0, startTime.length - 3)} Uhr -{' '}
+                    {endTime.substring(0, endTime.length - 3)} Uhr
                 </div>
             )}
         </div>

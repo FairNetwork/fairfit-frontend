@@ -10,7 +10,7 @@ const Benefits = () => {
         <div className="benefits">
             {benefits && (
                 <>
-                    <h2>Unsere Leistungen</h2>
+                    <h3>Unsere Leistungen</h3>
                     <div className="benefits__content">
                         <ImageCarousel images={benefits} />
                     </div>

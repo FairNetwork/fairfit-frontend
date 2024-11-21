@@ -8,6 +8,7 @@ import { getGymFromRoute } from '../../utils/routes';
 import GymContent from './gym-content/GymContent';
 import { loadGym } from '../../redux/gym/actions';
 import { motion } from 'framer-motion';
+import GymHeader from './gym-header/GymHeader';
 
 const Gym = () => {
     const dispatch = useAppDispatch();
@@ -42,6 +43,7 @@ const Gym = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}>
+            <GymHeader />
             <GymContent />
         </motion.div>
     );

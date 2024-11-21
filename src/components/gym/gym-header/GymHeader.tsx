@@ -1,34 +1,58 @@
 import './gymHeader.scss';
-import Header from '../../shared/header/Header';
 import { useAppSelector } from '../../../hooks/redux';
-import { selectGymName } from '../../../redux/gym/selectors';
+import {
+    selectGymName,
+    selectGymSlogan,
+    selectOpeningTimeByType,
+    selectSocialMedia
+} from '../../../redux/gym/selectors';
+import { useMemo } from 'react';
+import { getCurrentOpeningTimeType } from '../../../utils/openingTimes';
+import { getIcon, getProfileUrl, getSocialMediaImage } from '../../../utils/socialMedia';
+import Icon from '../../shared/icon/Icon';
 
 const GymHeader = () => {
-    // const hasOffers = useAppSelector(selectHasOffers);
-    // const gymInternalId = useAppSelector(selectCurrentGymId);
     const gymName = useAppSelector(selectGymName);
+    const gymSlogan = useAppSelector(selectGymSlogan);
+    const socialMedia = useAppSelector(selectSocialMedia);
 
-    // const navigate = useNavigate();
+    const type = getCurrentOpeningTimeType();
+
+    const currentOpeningTime = useAppSelector((state) => selectOpeningTimeByType(state, type));
+
+    const openingTime = useMemo(() => {
+        if (!currentOpeningTime) {
+            return undefined;
+        }
+
+        if (currentOpeningTime.closed) {
+            return 'Heute geschlossen.';
+        }
+
+        const { startTime, endTime } = currentOpeningTime;
+
+        return `Heute von ${startTime.substring(0, startTime.length - 3)} Uhr bis ${endTime.substring(0, endTime.length - 3)} Uhr geöffnet.`;
+    }, [currentOpeningTime]);
+
+    const socialMediaContent = useMemo(() => {
+        return socialMedia?.map(({ type, id, userName }) => (
+            <Icon
+                icon={getIcon(type) ?? ''}
+                onClick={() => window.open(getProfileUrl(type, userName), '_blank')}
+                key={`social-media-${id}`}
+                size={24}
+            />
+        ));
+    }, [socialMedia]);
 
     return (
         <div className="gym-header">
-            <Header>
-                <>
-                    {/*{hasOffers && (*/}
-                    {/*    <div className="gym-header__offer-slider">*/}
-                    {/*        <InfiniteLooper*/}
-                    {/*            direction="left"*/}
-                    {/*            speed={1}*/}
-                    {/*            onClick={() => navigate(`/${gymInternalId}/offers`)}>*/}
-                    {/*            <OfferSlider />*/}
-                    {/*        </InfiniteLooper>*/}
-                    {/*    </div>*/}
-                    {/*)}*/}
-                    <div className="gym-header__content">
-                        <h1 className="gym-header__content__title">{gymName}</h1>
-                    </div>
-                </>
-            </Header>
+            <h1>{gymName}</h1>
+            <b>{gymSlogan}</b>
+            {openingTime && <p>{openingTime}</p>}
+            {socialMediaContent && (
+                <div className="gym-header__social-media">{socialMediaContent}</div>
+            )}
         </div>
     );
 };

@@ -10,7 +10,7 @@ const Offers = () => {
         <div className="offers">
             {(abonnements ?? []).length > 0 && (
                 <>
-                    <h2>Abonnements | Angebote</h2>
+                    <h3>Abonnements | Angebote</h3>
                     <div className="offers__content">
                         <CardSlider items={abonnements} />
                     </div>

@@ -1,8 +1,9 @@
 import './openingTimes.scss';
 import { useAppSelector } from '../../../../hooks/redux';
 import { selectOpeningTimes } from '../../../../redux/gym/selectors';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import OpeningTime from './opening-time/OpeningTime';
+import { Masonry } from '@mui/lab';
 
 const OpeningTimes = () => {
     const openingTimes = useAppSelector(selectOpeningTimes);
@@ -21,10 +22,14 @@ const OpeningTimes = () => {
 
     return (
         <div className="opening-times">
-            {openingTimes && (
+            {openingTimes && content && (
                 <>
-                    <h2>Öffnungszeiten</h2>
-                    <div className="opening-times__content">{content}</div>
+                    <h3>Öffnungszeiten</h3>
+                    <div className="opening-times__content">
+                        <Masonry columns={{ xs: 1, sm: 2, md: 2, lg: 3 }} spacing={2}>
+                            {content}
+                        </Masonry>
+                    </div>
                 </>
             )}
         </div>
