@@ -32,7 +32,7 @@ const Search = () => {
                 placeholder="Suche"
             />
             <Popover trigger="click" content={<Filter />}>
-                <Icon icon="bi bi-filter" size={30} onClick={() => {}} />
+                <Icon icon="bi bi-filter" size={20} onClick={() => {}} />
             </Popover>
         </div>
     );
