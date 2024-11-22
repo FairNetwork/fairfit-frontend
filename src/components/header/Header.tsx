@@ -6,6 +6,7 @@ import { useAppSelector } from '../../hooks/redux';
 import { selectIsLoggedIn } from '../../redux/login/selectors';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/fairfit_logo.png';
+import avatar from '../../assets/avatar_placeholder.png';
 import DarkModeSwitch from './dark-mode-switch/DarkModeSwitch';
 import { DARK_MODE_STORAGE_KEY } from '../../constants/storage';
 
@@ -72,10 +73,7 @@ const Header = () => {
                 <DarkModeSwitch checked={isChecked} onChange={handleChange} />
                 <div className="header__left__profile">
                     <Popover trigger="click" content={content}>
-                        <Avatar
-                            src="/broken-image.jpg"
-                            style={{ height: 30, width: 30, cursor: 'pointer' }}
-                        />
+                        <Avatar src={avatar} style={{ height: 30, width: 30, cursor: 'pointer' }} />
                     </Popover>
                 </div>
             </div>

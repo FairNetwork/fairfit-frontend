@@ -3,6 +3,19 @@
     gap: 12px;
     align-items: center;
     width: 100%;
+
+    input {
+        border: none;
+        background-color: var(--background-color-secondary);
+        color: var(--text-color);
+        border-radius: 100px;
+        padding: 14px;
+        width: 100%;
+    }
+
+    input:focus-visible {
+        outline: none;
+    }
 }
 
 .ant-popover-arrow::before {

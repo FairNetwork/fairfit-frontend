@@ -1,4 +1,3 @@
-import { TextField } from '@mui/material';
 import './search.scss';
 import React, { ChangeEvent, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
@@ -26,17 +25,11 @@ const Search = () => {
 
     return (
         <div className="search">
-            <TextField
-                id="search"
-                label="Suche"
-                style={{ width: '100%' }}
-                onChange={handleSearchChange}
+            <input
+                type="text"
                 value={searchString}
-                InputProps={{
-                    disableUnderline: true,
-                    style: { borderRadius: 100 }
-                }}
-                variant="filled"
+                onChange={handleSearchChange}
+                placeholder="Suche"
             />
             <Popover trigger="click" content={<Filter />}>
                 <Icon icon="bi bi-filter" size={30} onClick={() => {}} />

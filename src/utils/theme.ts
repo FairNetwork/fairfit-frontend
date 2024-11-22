@@ -18,7 +18,7 @@ const theme: { [mode: string]: { name: string; value: string }[] } = {
         { name: '--secondary-color', value: '#6200EE' },
         { name: '--text-color', value: '#000000' },
         { name: '--text-color-secondary', value: '#555555' },
-        { name: '--box-shadow', value: '0 2px 6px rgba(0, 0, 0, 0.1)' }
+        { name: '--box-shadow', value: '0 2px 6px rgba(0, 0, 0, 0.3)' }
     ]
 };
 
