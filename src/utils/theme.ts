@@ -12,13 +12,13 @@ const theme: { [mode: string]: { name: string; value: string }[] } = {
         { name: '--box-shadow', value: '0 2px 6px 0 rgba(0, 0, 0, 0.3)' }
     ],
     light: [
-        { name: '--background-color', value: '#F9F9F9' }, // Off-White Hintergrund
-        { name: '--background-color-secondary', value: '#E5E5E5' }, // Helleres Grau für sekundären Hintergrund
-        { name: '--primary-color', value: '#6200EE' }, // Primäre Akzentfarbe (z. B. Blau)
-        { name: '--secondary-color', value: '#6200EE' }, // Sekundäre Akzentfarbe
-        { name: '--text-color', value: '#000000' }, // Haupttextfarbe (schwarz)
-        { name: '--text-color-secondary', value: '#555555' }, // Sekundäre Textfarbe (dunkles Grau)
-        { name: '--box-shadow', value: '0 2px 6px rgba(0, 0, 0, 0.1)' } // Dezenter Schatten für Tiefe
+        { name: '--background-color', value: '#F9F9F9' },
+        { name: '--background-color-secondary', value: '#E5E5E5' },
+        { name: '--primary-color', value: '#03DAC5' },
+        { name: '--secondary-color', value: '#6200EE' },
+        { name: '--text-color', value: '#000000' },
+        { name: '--text-color-secondary', value: '#555555' },
+        { name: '--box-shadow', value: '0 2px 6px rgba(0, 0, 0, 0.1)' }
     ]
 };
 

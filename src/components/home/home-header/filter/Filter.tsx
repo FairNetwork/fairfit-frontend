@@ -5,7 +5,7 @@ import FilterButtons from './filter-buttons/FilterButtons';
 const Filter = () => {
     return (
         <div className="filter">
-            <h1>Filter</h1>
+            <h3>Kategorien</h3>
             <FilterButtons />
         </div>
     );

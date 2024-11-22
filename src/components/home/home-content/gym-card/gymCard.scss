@@ -54,6 +54,11 @@
                 gap: 6px;
                 flex-wrap: wrap;
                 justify-content: end;
+
+                div {
+                    color: white !important;
+                    background-color: rgba(255, 255, 255, 0.16) !important;
+                }
             }
         }
     }
