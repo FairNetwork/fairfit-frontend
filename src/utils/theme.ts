@@ -2,7 +2,7 @@ const theme: { [mode: string]: { name: string; value: string }[] } = {
     dark: [
         { name: '--background-color', value: '#121212' },
         { name: '--background-color-secondary', value: '#1E1E1E' },
-        { name: '--primary-color', value: '#03DAC5' },
+        { name: '--primary-color', value: '#698A9C' },
         { name: '--secondary-color', value: '' },
         {
             name: '--text-color',
@@ -14,7 +14,7 @@ const theme: { [mode: string]: { name: string; value: string }[] } = {
     light: [
         { name: '--background-color', value: '#F9F9F9' },
         { name: '--background-color-secondary', value: '#E5E5E5' },
-        { name: '--primary-color', value: '#03DAC5' },
+        { name: '--primary-color', value: '#698A9C' },
         { name: '--secondary-color', value: '#6200EE' },
         { name: '--text-color', value: '#000000' },
         { name: '--text-color-secondary', value: '#555555' },
