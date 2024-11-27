@@ -2,8 +2,8 @@ const theme: { [mode: string]: { name: string; value: string }[] } = {
     dark: [
         { name: '--background-color', value: '#121212' },
         { name: '--background-color-secondary', value: '#1E1E1E' },
-        { name: '--primary-color', value: '#698A9C' },
-        { name: '--secondary-color', value: '' },
+        { name: '--primary-color', value: '#008c94' },
+        { name: '--secondary-color', value: '#698A9C' },
         {
             name: '--text-color',
             value: '#E0E0E0'
@@ -14,8 +14,8 @@ const theme: { [mode: string]: { name: string; value: string }[] } = {
     light: [
         { name: '--background-color', value: '#F9F9F9' },
         { name: '--background-color-secondary', value: '#E5E5E5' },
-        { name: '--primary-color', value: '#698A9C' },
-        { name: '--secondary-color', value: '#6200EE' },
+        { name: '--primary-color', value: '#008c94' },
+        { name: '--secondary-color', value: '#698A9C' },
         { name: '--text-color', value: '#000000' },
         { name: '--text-color-secondary', value: '#555555' },
         { name: '--box-shadow', value: '0 2px 6px rgba(0, 0, 0, 0.3)' }

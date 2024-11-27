@@ -6,8 +6,15 @@
     border-radius: 100px;
     background-color: var(--background-color-secondary);
 
-    i {
-        margin-right: 14px;
+    &__icon {
+        background-color: var(--secondary-color);
+        border-radius: 100px;
+        height: 35px;
+        display: flex;
+        aspect-ratio: 1;
+        margin-right: 6px;
+        justify-content: center;
+        align-items: center;
     }
 
     input {
