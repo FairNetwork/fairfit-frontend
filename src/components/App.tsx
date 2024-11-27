@@ -104,7 +104,7 @@ const App = () => {
 
     const theme = createTheme({
         palette: {
-            primary: { main: '#03DAC5' },
+            primary: { main: '#008c94' },
             mode: isDarkMode === 'false' ? 'light' : 'dark'
         }
     });

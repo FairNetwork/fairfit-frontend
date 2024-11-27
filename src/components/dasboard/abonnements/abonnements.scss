@@ -7,6 +7,10 @@
         position: absolute;
         bottom: 20px;
         right: 20px;
+
+        button {
+            background-color: var(--secondary-color);
+        }
     }
 
     &__content {
