@@ -1,0 +1,17 @@
+.sidebar-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  margin-right: 12px;
+  cursor: pointer;
+
+  transition: background-color 0.2s;
+
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+
+  &:hover {
+    background-color: var(--secondary-color);
+  }
+}

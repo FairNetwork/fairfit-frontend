@@ -1,5 +1,5 @@
 import { FC, ReactNode, useRef } from 'react';
-import { useVisibility } from '../../../../constants/visibility';
+import { useVisibility } from '../../../../hooks/visibility';
 import './card.scss';
 
 export type CardProps = {
