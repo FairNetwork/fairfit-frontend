@@ -1,16 +1,8 @@
 .card-slider {
   display: flex;
   gap: 16px;
+  padding: 0 12px;
   overflow-x: scroll;
-
-
-  &:first-child {
-    margin-left: 12px;
-  }
-
-  &:last-child {
-    margin-right: 12px;
-  }
 
   &::-webkit-scrollbar {
     width: 10px;

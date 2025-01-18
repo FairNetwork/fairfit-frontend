@@ -66,8 +66,8 @@ const ColorSchemeProvider: FC<ColorSchemeProviderProps> = ({
                 style={{
                     ...style,
                     ...theme,
-                    color: theme['primaryTextColor'],
-                    backgroundColor: theme['primaryBackgroundColor']
+                    color: 'var(--primary-text-color)',
+                    backgroundColor: 'var(--primary-background-color)'
                 }}>
                 {children}
             </div>

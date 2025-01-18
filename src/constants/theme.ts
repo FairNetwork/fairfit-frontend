@@ -12,8 +12,8 @@ export const THEME: ColorScheme = {
     light: {
         primaryColor: '#008c94',
         secondaryColor: '#698A9C',
-        primaryBackgroundColor: '#FFFFFF',
-        secondaryBackgroundColor: '#F5F5F5',
+        primaryBackgroundColor: '#f2f2f6',
+        secondaryBackgroundColor: '#ffffff',
         primaryTextColor: '#000000',
         secondaryTextColor: '#4A4A4A'
     }

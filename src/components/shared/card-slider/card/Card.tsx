@@ -1,5 +1,6 @@
+import { FC, ReactNode, useRef } from 'react';
+import { useVisibility } from '../../../../constants/visibility';
 import './card.scss';
-import { FC, ReactNode, useEffect, useRef, useState } from 'react';
 
 export type CardProps = {
     /**
@@ -31,31 +32,9 @@ const Card: FC<CardProps> = ({
     badgeText,
     width = '200px'
 }) => {
-    const [isVisible, setIsVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
-    const checkVisibility = () => {
-        if (ref.current) {
-            const rect = ref.current.getBoundingClientRect();
-            const inViewport =
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth);
-            setIsVisible(inViewport);
-        }
-    };
-
-    useEffect(() => {
-        checkVisibility();
-        window.addEventListener('scroll', checkVisibility);
-        window.addEventListener('resize', checkVisibility);
-
-        return () => {
-            window.removeEventListener('scroll', checkVisibility);
-            window.removeEventListener('resize', checkVisibility);
-        };
-    }, []);
+    const isVisible = useVisibility('card-slider', ref);
 
     return (
         <div className="card" style={{ width, opacity: isVisible ? 1 : 0.6 }} ref={ref}>
