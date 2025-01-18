@@ -17,5 +17,7 @@ export const useContent = () => {
         // if (/^\/[^/]+$/.test(path)) return <Gym />;
         //
         // return <Home />;
+
+        return path;
     }, [location.pathname]);
 };
