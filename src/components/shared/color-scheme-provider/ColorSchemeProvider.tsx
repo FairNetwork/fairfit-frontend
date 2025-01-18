@@ -46,7 +46,7 @@ const ColorSchemeProvider: FC<ColorSchemeProviderProps> = ({
 
     const theme: Theme = useMemo(() => {
         return Object.keys(color).reduce((acc, key) => {
-            const cssVariableName = `--${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`; // Konvertiere camelCase zu kebab-case
+            const cssVariableName = `--${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
             acc[cssVariableName] = color[key as keyof ColorSettings];
             return acc;
         }, {} as Theme);

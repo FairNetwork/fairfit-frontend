@@ -5,7 +5,19 @@ import Card from '../../../components/shared/card-slider/card/Card';
 
 const GymAbonnements = () => {
     const content = useMemo(() => {
-        return <Card>TEST</Card>;
+        return (
+            <>
+                <Card badgeText="Angebot" buttonText="Auswählen">
+                    TEST
+                </Card>
+                <Card badgeText="Angebot" buttonText="Auswählen">
+                    TEST
+                </Card>
+                <Card buttonText="Auswählen">TEST</Card>
+                <Card buttonText="Auswählen">TEST</Card>
+                <Card buttonText="Auswählen">TEST</Card>
+            </>
+        );
     }, []);
 
     return (

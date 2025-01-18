@@ -9,13 +9,13 @@ export type SubHeadingProps = {
     /**
      * The headline of the group.
      */
-    heading: string;
+    heading?: string;
 };
 
 const SubHeading: FC<SubHeadingProps> = ({ children, heading }) => {
     return (
         <div className="sub-heading">
-            <div className="sub-heading__heading">{heading}</div>
+            {heading && <div className="sub-heading__heading">{heading}</div>}
             {children}
         </div>
     );

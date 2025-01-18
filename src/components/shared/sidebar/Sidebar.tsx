@@ -10,12 +10,12 @@ const Sidebar = () => {
             <Logo src={logo}>
                 <div className="sidebar__logo">FairFit</div>
             </Logo>
-            <SubHeading heading="Home">
+            <SubHeading>
                 <SidebarItem text="Home" icon="bi bi-house" route="/" />
-                <SidebarItem text="Home" icon="bi bi-house" route="/test" />
             </SubHeading>
-            <SubHeading heading="History">Test</SubHeading>
-            <SubHeading heading="Dashboard">Test</SubHeading>
+            <SubHeading heading="History">
+                <SidebarItem text="Home" route="/easyfitness" />
+            </SubHeading>
         </div>
     );
 };
