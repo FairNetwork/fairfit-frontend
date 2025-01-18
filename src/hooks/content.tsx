@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useMemo } from 'react';
+import Gym from '../view/gym/Gym';
 
 export const useContent = () => {
     const location = useLocation();
@@ -14,7 +15,7 @@ export const useContent = () => {
         // if (path === '/register-studio') return <SignUp />;
         // if (/^\/[^/]+\/offers$/.test(path)) return <Booking />;
         // if (/^\/[^/]+\/dashboard\/.+/.test(path)) return <Dashboard />;
-        // if (/^\/[^/]+$/.test(path)) return <Gym />;
+        if (/^\/[^/]+$/.test(path)) return <Gym />;
         //
         // return <Home />;
 

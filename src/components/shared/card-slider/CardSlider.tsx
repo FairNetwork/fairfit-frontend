@@ -1,25 +1,17 @@
-import Card from './card/Card';
 import './cardSlider.scss';
+import { FC, ReactNode } from 'react';
 
-const CardSlider = () => {
+interface CardSliderProps {
+    /**
+     * The content of the slider.
+     */
+    children: ReactNode;
+}
+
+const CardSlider: FC<CardSliderProps> = ({ children }) => {
     return (
         <div className="card-slider" id="card-slider">
-            <Card buttonText="Auswählen" badgeText="Angebot">
-                Test
-            </Card>
-            <Card buttonText="Auswählen">Test</Card>
-            <Card buttonText="Auswählen" badgeText="Angebot">
-                Test
-            </Card>
-            <Card buttonText="Auswählen">Test</Card>
-            <Card buttonText="Auswählen">Test</Card>
-            <Card buttonText="Auswählen">Test</Card>
-            <Card buttonText="Auswählen">Test</Card>
-            <Card buttonText="Auswählen">Test</Card>
-            <Card buttonText="Auswählen">Test</Card>
-            <Card buttonText="Auswählen" badgeText="Angebot">
-                Test
-            </Card>
+            {children}
         </div>
     );
 };

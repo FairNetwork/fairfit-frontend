@@ -5,8 +5,6 @@ import { useColorMode } from '../hooks/color';
 import Sidebar from './shared/sidebar/Sidebar';
 import Header from './shared/header/Header';
 import './app.scss';
-import CardSlider from './shared/card-slider/CardSlider';
-import Section from './shared/section/Section';
 
 const App = () => {
     const content = useContent();
@@ -18,16 +16,7 @@ const App = () => {
                 <Sidebar />
                 <div className="app__wrapper">
                     <Header />
-                    <div className="app__wrapper__content">
-                        {content}
-                        <CardSlider />
-                        <Section backgroundColor="#000" textColor="#fff">
-                            Test
-                        </Section>
-                        <Section backgroundColor="#007fff" textColor="#fff">
-                            Test
-                        </Section>
-                    </div>
+                    <div className="app__wrapper__content">{content}</div>
                 </div>
             </div>
         </ColorSchemeProvider>
