@@ -5,7 +5,7 @@ import SocialMediaWrapper from '../../../components/shared/social-media-wrapper/
 const GymContact = () => {
     return (
         <Section backgroundColor="#000" textColor="#FFF">
-            <div className="gym-contact">
+            <div className="gym-contact" id="scroll-contact">
                 <div className="gym-contact__headline">Du möchtest mit uns in Kontakt treten?</div>
                 <div className="gym-contact__text">Besuche uns auf Social Media</div>
                 <SocialMediaWrapper />

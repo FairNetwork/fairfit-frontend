@@ -1,12 +1,11 @@
 import './header.scss';
 import Search from './search/Search';
+import { useHeaderContent } from '../../../hooks/header';
 
 const Header = () => {
-    return (
-        <div className="header">
-            <Search />
-        </div>
-    );
+    const content = useHeaderContent();
+
+    return <div className="header">{content}</div>;
 };
 
 Header.displayName = 'Header';

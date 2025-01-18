@@ -1,8 +1,10 @@
 .sidebar{
   width: 270px;
   height: 100%;
-  border-right: 1px solid grey;
+  border-right: 1px solid rgb(242, 242, 247);
   flex-shrink: 0;
+
+  background-color: var(--secondary-background-color);
 
   display: flex;
   flex-direction: column;

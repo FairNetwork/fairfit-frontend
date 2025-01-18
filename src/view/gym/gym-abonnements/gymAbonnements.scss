@@ -1,3 +1,11 @@
 .gym-abonnements {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 
+  &__headline{
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+  }
 }

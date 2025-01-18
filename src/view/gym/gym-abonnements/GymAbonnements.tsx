@@ -9,7 +9,11 @@ const GymAbonnements = () => {
     }, []);
 
     return (
-        <div className="gym-abonnements">
+        <div className="gym-abonnements" id="scroll-offers">
+            <div className="gym-abonnements__headline">
+                Entdecke unser vielfältiges Angebot und finde das perfekte Training für deine
+                Fitnessziele!
+            </div>
             <CardSlider>{content}</CardSlider>
         </div>
     );
