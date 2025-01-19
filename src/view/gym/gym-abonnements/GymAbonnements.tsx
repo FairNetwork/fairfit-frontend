@@ -7,15 +7,29 @@ const GymAbonnements = () => {
     const content = useMemo(() => {
         return (
             <>
-                <Card badgeText="Angebot" buttonText="Auswählen">
+                <Card
+                    badgeText="Angebot"
+                    buttonText="Auswählen"
+                    containerId="card-slider"
+                    aspectRatio={9 / 16}>
                     TEST
                 </Card>
-                <Card badgeText="Angebot" buttonText="Auswählen">
+                <Card
+                    badgeText="Angebot"
+                    buttonText="Auswählen"
+                    containerId="card-slider"
+                    aspectRatio={9 / 16}>
                     TEST
                 </Card>
-                <Card buttonText="Auswählen">TEST</Card>
-                <Card buttonText="Auswählen">TEST</Card>
-                <Card buttonText="Auswählen">TEST</Card>
+                <Card buttonText="Auswählen" containerId="card-slider" aspectRatio={9 / 16}>
+                    TEST
+                </Card>
+                <Card buttonText="Auswählen" containerId="card-slider" aspectRatio={9 / 16}>
+                    TEST
+                </Card>
+                <Card buttonText="Auswählen" containerId="card-slider" aspectRatio={9 / 16}>
+                    TEST
+                </Card>
             </>
         );
     }, []);

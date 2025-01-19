@@ -1,22 +1,12 @@
-.card{
+.card {
   position: relative;
   margin-top: 20px;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
   flex-shrink: 0;
-
-  background-color: var(--secondary-background-color);
-
-  padding: 12px;
-  aspect-ratio: 9/16;
-  border-radius: 12px;
 
   transition: opacity 0.3s;
 
-  &__badge{
+  &__badge {
     position: absolute;
     border-color: var(--thin-border-color);
     border-style: solid;
@@ -32,21 +22,37 @@
     padding: 6px 12px;
   }
 
-  &__content{}
+  &__wrapper {
+    overflow: hidden;
+    height: 100%;
 
-  &__button{
-    background-color: var(--primary-color);
-    border-radius: 100px;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    color: #fff;
-    text-align: center;
+    background-color: var(--secondary-background-color);
 
-    transition: opacity 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-    &:hover {
-      opacity: 0.8;
+    border-radius: 12px;
+
+    &__content {
+    }
+
+    &__button {
+      background-color: var(--primary-color);
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      margin: 12px;
+      color: #fff;
+      text-align: center;
+
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
+
 }

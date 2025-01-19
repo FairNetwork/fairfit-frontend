@@ -1,0 +1,13 @@
+export enum GymType {
+    GYM,
+    FOOTBALL,
+    VOLLEYBALL,
+    BASEBALL,
+    TABLE_TENNIS,
+    AMERICAN_FOOTBALL,
+    BASKETBALL,
+    GOLF,
+    BOWLING,
+    SWIMMING,
+    HOCKEY
+}

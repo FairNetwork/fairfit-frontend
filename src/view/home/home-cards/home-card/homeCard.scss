@@ -1,0 +1,26 @@
+.home-card{
+  img{
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+
+  &__content{
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    &__name{
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    &__location{
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+  }
+}

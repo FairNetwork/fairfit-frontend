@@ -4,6 +4,10 @@ import './card.scss';
 
 export type CardProps = {
     /**
+     * The aspect ratio.
+     */
+    aspectRatio?: number;
+    /**
      * The text of the badge.
      */
     badgeText?: string;
@@ -15,6 +19,10 @@ export type CardProps = {
      * The content of the card.
      */
     children: ReactNode;
+    /**
+     * The id of the container.
+     */
+    containerId: string;
     /**
      * Function to be executed when the button is clicked.
      */
@@ -28,23 +36,30 @@ export type CardProps = {
 const Card: FC<CardProps> = ({
     children,
     buttonText,
+    aspectRatio,
+    containerId,
     onButtonClick,
     badgeText,
     width = '200px'
 }) => {
     const ref = useRef<HTMLDivElement>(null);
 
-    const isVisible = useVisibility('card-slider', ref);
+    const isVisible = useVisibility(containerId, ref);
 
     return (
-        <div className="card" style={{ width, opacity: isVisible ? 1 : 0.6 }} ref={ref}>
+        <div
+            className="card"
+            style={{ width, opacity: isVisible ? 1 : 0.6, aspectRatio }}
+            ref={ref}>
             {badgeText && <div className="card__badge">{badgeText}</div>}
-            <div className="card__content">{children}</div>
-            {buttonText && (
-                <div className="card__button" onClick={onButtonClick}>
-                    {buttonText}
-                </div>
-            )}
+            <div className="card__wrapper">
+                <div className="card__wrapper__content">{children}</div>
+                {buttonText && (
+                    <div className="card__wrapper__button" onClick={onButtonClick}>
+                        {buttonText}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
