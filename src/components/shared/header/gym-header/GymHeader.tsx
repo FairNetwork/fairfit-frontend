@@ -11,22 +11,22 @@ const GymHeader = () => {
             <div className="gym-header__name">{gymName}</div>
             <div className="gym-header__actions">
                 <div
-                    className="gym-header__actions_action"
+                    className="gym-header__actions__action"
                     onClick={() => scrollToElement('scroll-offers')}>
                     Angebote
                 </div>
                 <div
-                    className="gym-header__actions_action"
+                    className="gym-header__actions__action"
                     onClick={() => scrollToElement('scroll-benefits')}>
                     Leistungen
                 </div>
                 <div
-                    className="gym-header__actions_action"
+                    className="gym-header__actions__action"
                     onClick={() => scrollToElement('scroll-openingtimes')}>
                     Öffnungszeiten
                 </div>
                 <div
-                    className="gym-header__actions_action"
+                    className="gym-header__actions__action"
                     onClick={() => scrollToElement('scroll-contact')}>
                     Kontakt
                 </div>

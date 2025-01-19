@@ -1,20 +1,26 @@
-.gym-header{
+.gym-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 
-  &__name{
+  &__name {
     font-weight: bold;
     font-size: 20px;
   }
 
-  &__actions{
+  &__actions {
     display: flex;
     align-items: center;
     gap: 16px;
     cursor: pointer;
 
     color: var(--secondary-text-color);
+
+    &__action {
+      &:hover {
+        opacity: .8;
+      }
+    }
   }
 }
