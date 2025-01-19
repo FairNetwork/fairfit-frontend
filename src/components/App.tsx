@@ -4,6 +4,7 @@ import { THEME } from '../constants/theme';
 import { useColorMode } from '../hooks/color';
 import Sidebar from './shared/sidebar/Sidebar';
 import Header from './shared/header/Header';
+import Footer from './shared/footer/Footer';
 import './app.scss';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
                 <div className="app__wrapper">
                     <Header />
                     <div className="app__wrapper__content">{content}</div>
+                    <Footer />
                 </div>
             </div>
         </ColorSchemeProvider>

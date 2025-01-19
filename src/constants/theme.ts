@@ -13,7 +13,9 @@ export const THEME: ColorScheme = {
         sectionTextColor: '#FFF',
         sidebarTextColor: '#000',
         sidebarActiveColor: 'rgba(0, 140, 148, 0.6)',
-        sidebarHoverColor: 'rgba(105, 138, 156, 0.6)'
+        sidebarHoverColor: 'rgba(105, 138, 156, 0.6)',
+        footerBackgroundColor: 'rgb(242, 242, 247)',
+        footerTextColor: 'rgb(99, 99, 102)'
     },
     light: {
         primaryColor: '#008c94',
@@ -27,6 +29,8 @@ export const THEME: ColorScheme = {
         sectionTextColor: '#FFF',
         sidebarTextColor: '#000',
         sidebarActiveColor: 'rgba(0, 140, 148, 0.6)',
-        sidebarHoverColor: 'rgba(105, 138, 156, 0.6)'
+        sidebarHoverColor: 'rgba(105, 138, 156, 0.6)',
+        footerBackgroundColor: 'rgb(242, 242, 247)',
+        footerTextColor: 'rgb(99, 99, 102)'
     }
 };

@@ -21,4 +21,6 @@ export interface ColorSettings {
     sidebarTextColor: string;
     sidebarActiveColor: string;
     sidebarHoverColor: string;
+    footerBackgroundColor: string;
+    footerTextColor: string;
 }

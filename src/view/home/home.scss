@@ -1,0 +1,12 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 24px 0;
+
+  &__headline {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+}
