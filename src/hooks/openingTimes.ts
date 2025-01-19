@@ -1,0 +1,83 @@
+import { IOpeningTimes, OpeningTimeType } from '../types/openingTimes';
+import { useMemo } from 'react';
+
+export const useGroupedOpeningTimes = (openingTimes: IOpeningTimes[]) => {
+    return useMemo(() => {
+        const dayNames = ['Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.', 'So.', 'Feiertag'];
+
+        const defaultTimes = Object.values(OpeningTimeType).reduce<IOpeningTimes[]>((acc, type) => {
+            if (typeof type === 'number') {
+                acc.push({
+                    id: type.toString(),
+                    type,
+                    startTime: '',
+                    endTime: '',
+                    closed: true
+                });
+            }
+            return acc;
+        }, []);
+
+        const completeTimes = [...defaultTimes, ...openingTimes].reduce<
+            Record<number, IOpeningTimes>
+        >((acc, time) => {
+            acc[time.type] = time;
+            return acc;
+        }, {});
+
+        // Gruppierung nach Zeitangaben
+        const timeGroups = Object.values(completeTimes).reduce<Record<string, number[]>>(
+            (acc, time) => {
+                const key = time.closed ? 'closed' : `${time.startTime}-${time.endTime}`;
+                acc[key] = acc[key] || [];
+                acc[key].push(time.type);
+                return acc;
+            },
+            {}
+        );
+
+        return Object.entries(timeGroups).map(([timeRange, days]) => {
+            const dayLabels = days.map((day) => dayNames[day]);
+            const holidays = days.includes(OpeningTimeType.HOLIDAY);
+
+            // Feiertage immer separat anzeigen, wenn sie nicht geschlossen sind
+            if (holidays && !timeRange.includes('closed')) {
+                const nonHolidayDays = days.filter((day) => day !== OpeningTimeType.HOLIDAY);
+                const nonHolidayLabels = nonHolidayDays.map((day) => dayNames[day]);
+                const nonHolidayString =
+                    nonHolidayLabels.length > 1
+                        ? `${nonHolidayLabels[0]} - ${nonHolidayLabels[nonHolidayLabels.length - 1]}`
+                        : nonHolidayLabels[0];
+
+                return {
+                    days: nonHolidayString ? `${nonHolidayString} & Feiertag` : 'Feiertag',
+                    startTime: timeRange === 'closed' ? null : timeRange.split('-')[0],
+                    endTime: timeRange === 'closed' ? null : timeRange.split('-')[1],
+                    closed: timeRange === 'closed'
+                };
+            }
+
+            const daysString =
+                dayLabels.length > 1
+                    ? `${dayLabels[0]} - ${dayLabels[dayLabels.length - 1]}`
+                    : dayLabels[0];
+
+            if (timeRange === 'closed') {
+                return {
+                    days: daysString,
+                    startTime: null,
+                    endTime: null,
+                    closed: true
+                };
+            }
+
+            const [startTime, endTime] = timeRange.split('-');
+            return {
+                days: daysString,
+                startTime: startTime || null,
+                endTime: endTime || null,
+                closed: false
+            };
+        });
+    }, [openingTimes]);
+};
