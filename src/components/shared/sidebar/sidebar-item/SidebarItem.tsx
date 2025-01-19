@@ -29,7 +29,9 @@ const SidebarItem: FC<SidebarItemProps> = ({ icon, text, route }) => {
         <div
             className="sidebar-item"
             onClick={() => navigate(route)}
-            style={{ backgroundColor: isActive ? colorScheme?.color.primaryColor : undefined }}>
+            style={{
+                backgroundColor: isActive ? colorScheme?.color.sidebarActiveColor : undefined
+            }}>
             {icon && <Icon icon={icon} />}
             {text}
         </div>

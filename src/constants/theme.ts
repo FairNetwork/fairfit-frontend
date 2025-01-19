@@ -7,7 +7,13 @@ export const THEME: ColorScheme = {
         primaryBackgroundColor: '#121212',
         secondaryBackgroundColor: '#000000',
         primaryTextColor: '#E0E0E0',
-        secondaryTextColor: '#B0B0B0'
+        secondaryTextColor: '#B0B0B0',
+        thinBorderColor: 'rgb(242, 242, 247)',
+        sectionBackgroundColor: '#000',
+        sectionTextColor: '#FFF',
+        sidebarTextColor: '#000',
+        sidebarActiveColor: 'rgba(0, 140, 148, 0.6)',
+        sidebarHoverColor: 'rgba(105, 138, 156, 0.6)'
     },
     light: {
         primaryColor: '#008c94',
@@ -15,6 +21,12 @@ export const THEME: ColorScheme = {
         primaryBackgroundColor: '#fafafc',
         secondaryBackgroundColor: '#FFFFFF',
         primaryTextColor: '#000000',
-        secondaryTextColor: '#4A4A4A'
+        secondaryTextColor: '#4A4A4A',
+        thinBorderColor: 'rgb(242, 242, 247)',
+        sectionBackgroundColor: '#000',
+        sectionTextColor: '#FFF',
+        sidebarTextColor: '#000',
+        sidebarActiveColor: 'rgba(0, 140, 148, 0.6)',
+        sidebarHoverColor: 'rgba(105, 138, 156, 0.6)'
     }
 };

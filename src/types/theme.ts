@@ -15,4 +15,10 @@ export interface ColorSettings {
     secondaryBackgroundColor: string;
     primaryTextColor: string;
     secondaryTextColor: string;
+    thinBorderColor: string;
+    sectionBackgroundColor: string;
+    sectionTextColor: string;
+    sidebarTextColor: string;
+    sidebarActiveColor: string;
+    sidebarHoverColor: string;
 }

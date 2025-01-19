@@ -10,8 +10,9 @@
 
   border-bottom-right-radius: 100px;
   border-top-right-radius: 100px;
+  color: var(--sidebar-text-color);
 
   &:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--sidebar-hover-color);
   }
 }
