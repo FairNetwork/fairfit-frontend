@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { useMemo } from 'react';
 import Gym from '../view/gym/Gym';
 import Home from '../view/home/Home';
+import Utility from '../view/utility/Utility';
 
 export const useContent = () => {
     const location = useLocation();
@@ -10,7 +11,7 @@ export const useContent = () => {
         const path = location.pathname;
 
         // if (path === '/no_content') return <NoContent />;
-        // if (/^\/utility\/[^/]+$/.test(path)) return <Utility />;
+        if (/^\/utility\/[^/]+$/.test(path)) return <Utility />;
         // if (path === '/confirm-registration') return <ConfirmRegistration />;
         // if (path === '/log-in') return <LogIn />;
         // if (path === '/register-studio') return <SignUp />;
