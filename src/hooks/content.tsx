@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import Gym from '../view/gym/Gym';
 import Home from '../view/home/Home';
 import Utility from '../view/utility/Utility';
+import NoContent from '../view/no-content/NoContent';
 
 export const useContent = () => {
     const location = useLocation();
@@ -10,7 +11,7 @@ export const useContent = () => {
     return useMemo(() => {
         const path = location.pathname;
 
-        // if (path === '/no_content') return <NoContent />;
+        if (path === '/no_content') return <NoContent />;
         if (/^\/utility\/[^/]+$/.test(path)) return <Utility />;
         // if (path === '/confirm-registration') return <ConfirmRegistration />;
         // if (path === '/log-in') return <LogIn />;

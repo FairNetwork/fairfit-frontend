@@ -1,5 +1,4 @@
 import './header.scss';
-import Search from './search/Search';
 import { useHeaderContent } from '../../../hooks/header';
 
 const Header = () => {

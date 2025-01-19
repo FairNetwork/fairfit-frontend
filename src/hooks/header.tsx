@@ -7,6 +7,11 @@ export const useHeaderContent = () => {
 
     if (location.pathname === '/') {
         return <Search />;
+    } else if (
+        location.pathname.startsWith('/utility') ||
+        location.pathname.startsWith('/no_content')
+    ) {
+        return <></>;
     } else {
         return <GymHeader />;
     }
