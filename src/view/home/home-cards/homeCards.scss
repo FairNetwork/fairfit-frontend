@@ -1,1 +1,7 @@
-.home-cards{}
+.home-cards {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
