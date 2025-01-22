@@ -9,6 +9,7 @@ export const useHeaderContent = () => {
         return <Search />;
     } else if (
         location.pathname.startsWith('/utility') ||
+        location.pathname.includes('/dashboard') ||
         location.pathname.startsWith('/no_content')
     ) {
         return <></>;

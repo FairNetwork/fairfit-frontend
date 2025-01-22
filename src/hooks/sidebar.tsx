@@ -3,6 +3,7 @@ import SidebarItem from '../components/shared/sidebar/sidebar-item/SidebarItem';
 
 export const useSidebarDashboardContent = () => {
     const isLoggedIn = true;
+    const gymId = 'easyfitness';
 
     if (!isLoggedIn) {
         return undefined;
@@ -10,12 +11,29 @@ export const useSidebarDashboardContent = () => {
 
     return (
         <SubHeading heading="Dashboard">
-            <SidebarItem route="" text="Einstellungen" icon="fas fa-gear" />
-            <SidebarItem route="" text="Abonnements" icon="fas fa-boxes-stacked" />
-            <SidebarItem route="" text="Leistungen" icon="fas fa-bolt" />
-            <SidebarItem route="" text="SocialMedia" icon="fas fa-hashtag" isDisabled />
             <SidebarItem
-                route="/easyfitness/dashboard/statistics"
+                route={`/${gymId}/dashboard/settings`}
+                text="Einstellungen"
+                icon="fas fa-gear"
+            />
+            <SidebarItem
+                route={`/${gymId}/dashboard/abonnements`}
+                text="Abonnements"
+                icon="fas fa-boxes-stacked"
+            />
+            <SidebarItem
+                route={`/${gymId}/dashboard/benefits`}
+                text="Leistungen"
+                icon="fas fa-bolt"
+            />
+            <SidebarItem
+                route={`/${gymId}/dashboard/socialmedia`}
+                text="SocialMedia"
+                icon="fas fa-hashtag"
+                isDisabled
+            />
+            <SidebarItem
+                route={`/${gymId}/dashboard/statistics`}
                 text="Statistiken"
                 icon="fas fa-chart-simple"
             />

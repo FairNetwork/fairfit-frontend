@@ -35,7 +35,7 @@ const SidebarItem: FC<SidebarItemProps> = ({ icon, isDisabled, badgeText, text, 
 
     const backgroundColor = useMemo(() => {
         if (isDisabled) {
-            return 'var(--primary-background-color) !important';
+            return 'var(--secondary-background-color) !important';
         }
 
         return isActive ? colorScheme?.color.sidebarActiveColor : undefined;
