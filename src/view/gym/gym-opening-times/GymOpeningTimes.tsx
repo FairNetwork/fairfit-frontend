@@ -1,13 +1,10 @@
-import './gymOpeningTimes.scss';
 import { useGroupedOpeningTimes } from '../../../hooks/openingTimes';
 import { OpeningTimeType } from '../../../types/openingTimes';
 import Section from '../../../components/shared/section/Section';
 import { useMemo } from 'react';
-import { useColorScheme } from '../../../components/shared/color-scheme-provider/ColorSchemeProvider';
+import './gymOpeningTimes.scss';
 
 const GymOpeningTimes = () => {
-    const colorScheme = useColorScheme();
-
     const openingTimes = [
         {
             id: '1',
@@ -38,9 +35,7 @@ const GymOpeningTimes = () => {
     }, []);
 
     return (
-        <Section
-            textColor={colorScheme?.color.sectionTextColor ?? '#FFF'}
-            backgroundColor={colorScheme?.color.sectionBackgroundColor ?? '#000'}>
+        <Section textColor="#FFF" backgroundColor="#658147">
             <div className="gym-opening-times" id="scroll-openingtimes">
                 <div className="gym-opening-times__headline">
                     Du möchtest persönlich mit uns reden oder ein Probetraining vereinbaren?

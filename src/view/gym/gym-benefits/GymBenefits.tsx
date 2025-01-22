@@ -43,7 +43,11 @@ const GymBenefits = () => {
     }, []);
 
     return (
-        <div className="gym-benefits">
+        <div className="gym-benefits" id="scroll-benefits">
+            <div className="gym-benefits__headline">
+                Profitiere von zahlreichen Vorteilen und genieße exklusive Extras, die dein Training
+                noch effektiver und angenehmer machen!
+            </div>
             <Box sx={{ width: '100%', minHeight: 400 }}>
                 <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 3 }} spacing={2}>
                     {content}
