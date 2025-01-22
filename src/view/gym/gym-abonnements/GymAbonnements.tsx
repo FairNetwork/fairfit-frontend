@@ -2,6 +2,7 @@ import './gymAbonnements.scss';
 import CardSlider from '../../../components/shared/card-slider/CardSlider';
 import { useMemo } from 'react';
 import Card from '../../../components/shared/card-slider/card/Card';
+import GymCard from './gym-card/GymCard';
 
 const GymAbonnements = () => {
     const content = useMemo(() => {
@@ -12,23 +13,23 @@ const GymAbonnements = () => {
                     buttonText="Auswählen"
                     containerId="card-slider"
                     aspectRatio={9 / 16}>
-                    TEST
+                    <GymCard />
                 </Card>
                 <Card
                     badgeText="Angebot"
                     buttonText="Auswählen"
                     containerId="card-slider"
                     aspectRatio={9 / 16}>
-                    TEST
+                    <GymCard />
                 </Card>
                 <Card buttonText="Auswählen" containerId="card-slider" aspectRatio={9 / 16}>
-                    TEST
+                    <GymCard />
                 </Card>
                 <Card buttonText="Auswählen" containerId="card-slider" aspectRatio={9 / 16}>
-                    TEST
+                    <GymCard />
                 </Card>
                 <Card buttonText="Auswählen" containerId="card-slider" aspectRatio={9 / 16}>
-                    TEST
+                    <GymCard />
                 </Card>
             </>
         );
