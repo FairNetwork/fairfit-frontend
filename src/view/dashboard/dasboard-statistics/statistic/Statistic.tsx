@@ -3,16 +3,18 @@ import { LineChart } from '@mui/x-charts';
 import { convertStatisticsTimeline } from '../../../../utils/statistic';
 import { useStatistic } from '../../../../hooks/statistic';
 import { FC } from 'react';
+import { StatisticType } from '../../../../types/statistic';
 
 interface StatisticProps {
     text: string;
+    type: StatisticType;
 }
 
 const Statistic: FC<StatisticProps> = ({ text }) => {
     const data = useStatistic();
 
-    const current = data[data.length - 1]?.totalRequests;
-    const prev = data[data.length - 2]?.totalRequests;
+    const current = data[data.length - 1]?.total;
+    const prev = data[data.length - 2]?.total;
     const difference = current - prev;
 
     return (
@@ -31,7 +33,7 @@ const Statistic: FC<StatisticProps> = ({ text }) => {
                             scaleType: 'point'
                         }
                     ]}
-                    series={[{ data: data.map(({ totalRequests }) => totalRequests) }]}
+                    series={[{ data: data.map(({ total }) => total) }]}
                     height={300}
                     margin={{ top: 10, bottom: 20 }}
                 />
