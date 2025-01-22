@@ -1,5 +1,6 @@
 import { FC, ReactNode, useRef } from 'react';
 import { useVisibility } from '../../../../hooks/visibility';
+import Button from '../../button/Button';
 import './card.scss';
 
 export type CardProps = {
@@ -55,8 +56,10 @@ const Card: FC<CardProps> = ({
             <div className="card__wrapper">
                 <div className="card__wrapper__content">{children}</div>
                 {buttonText && (
-                    <div className="card__wrapper__button" onClick={onButtonClick}>
-                        {buttonText}
+                    <div className="card__button">
+                        <Button onClick={onButtonClick} style={{ width: '100%' }}>
+                            {buttonText}
+                        </Button>
                     </div>
                 )}
             </div>

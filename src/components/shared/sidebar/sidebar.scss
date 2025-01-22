@@ -1,8 +1,9 @@
 .sidebar{
   width: 270px;
   height: 100%;
-  border-right: 1px solid rgb(242, 242, 247);
+  border-right: 1px solid var(--thin-border-color);
   flex-shrink: 0;
+  position: relative;
 
   background-color: var(--secondary-background-color);
 

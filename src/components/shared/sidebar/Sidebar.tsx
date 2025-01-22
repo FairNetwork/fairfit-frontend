@@ -5,6 +5,7 @@ import Logo from './logo/Logo';
 import logo from '../../../assets/fairfit_logo.png';
 import { useGymTypeIcons } from '../../../hooks/gym';
 import { GymType } from '../../../types/gym';
+import User from './user/User';
 
 const Sidebar = () => {
     const { getIconForGymType } = useGymTypeIcons();
@@ -29,6 +30,7 @@ const Sidebar = () => {
                     icon={getIconForGymType(GymType.FOOTBALL)}
                 />
             </SubHeading>
+            <User />
         </div>
     );
 };
