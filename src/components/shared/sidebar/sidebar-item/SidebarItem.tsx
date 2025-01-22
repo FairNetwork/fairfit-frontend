@@ -1,15 +1,23 @@
 import './sidebarItem.scss';
 import Icon from '../../icon/Icon';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { useColorScheme } from '../../color-scheme-provider/ColorSchemeProvider';
 import { useNavigate } from 'react-router-dom';
 import { useIsCurrentRoute } from '../../../../hooks/route';
 
 interface SidebarItemProps {
     /**
+     * The text that should be displayed inside a badge.
+     */
+    badgeText?: string;
+    /**
      * The icon of the item.
      */
     icon?: string;
+    /**
+     * Whether the item is disabled.
+     */
+    isDisabled?: boolean;
     /**
      * The redirect route.
      */
@@ -20,20 +28,33 @@ interface SidebarItemProps {
     text: string;
 }
 
-const SidebarItem: FC<SidebarItemProps> = ({ icon, text, route }) => {
+const SidebarItem: FC<SidebarItemProps> = ({ icon, isDisabled, badgeText, text, route }) => {
     const colorScheme = useColorScheme();
     const navigate = useNavigate();
     const isActive = useIsCurrentRoute(route);
 
+    const backgroundColor = useMemo(() => {
+        if (isDisabled) {
+            return 'var(--primary-background-color) !important';
+        }
+
+        return isActive ? colorScheme?.color.sidebarActiveColor : undefined;
+    }, [isDisabled, isActive, colorScheme?.color.sidebarActiveColor]);
+
     return (
         <div
             className="sidebar-item"
-            onClick={() => navigate(route)}
+            onClick={() => (isDisabled ? undefined : navigate(route))}
             style={{
-                backgroundColor: isActive ? colorScheme?.color.sidebarActiveColor : undefined
+                backgroundColor,
+                cursor: isDisabled ? 'default' : 'pointer',
+                opacity: isDisabled ? 0.5 : 1
             }}>
-            {icon && <Icon icon={icon} />}
-            {text}
+            <div className="sidebar-item__wrapper">
+                {icon && <Icon icon={icon} />}
+                {text}
+            </div>
+            {badgeText && <div className="sidebar-item__badge">{badgeText}</div>}
         </div>
     );
 };

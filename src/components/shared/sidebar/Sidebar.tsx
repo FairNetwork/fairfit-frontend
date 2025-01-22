@@ -1,5 +1,4 @@
 import SubHeading from './sub-heading/SubHeading';
-import './sidebar.scss';
 import SidebarItem from './sidebar-item/SidebarItem';
 import Logo from './logo/Logo';
 import logo from '../../../assets/fairfit_logo.png';
@@ -7,8 +6,11 @@ import { useGymTypeIcons } from '../../../hooks/gym';
 import { GymType } from '../../../types/gym';
 import User from './user/User';
 import ScrollContainer from './scroll-container/ScrollContainer';
+import { useSidebarDashboardContent } from '../../../hooks/sidebar';
+import './sidebar.scss';
 
 const Sidebar = () => {
+    const dashboardContent = useSidebarDashboardContent();
     const { getIconForGymType } = useGymTypeIcons();
 
     return (
@@ -33,6 +35,7 @@ const Sidebar = () => {
                     />
                 </ScrollContainer>
             </SubHeading>
+            {dashboardContent}
             <User />
         </div>
     );
