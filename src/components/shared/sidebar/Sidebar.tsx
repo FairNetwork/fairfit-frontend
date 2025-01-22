@@ -6,6 +6,7 @@ import logo from '../../../assets/fairfit_logo.png';
 import { useGymTypeIcons } from '../../../hooks/gym';
 import { GymType } from '../../../types/gym';
 import User from './user/User';
+import ScrollContainer from './scroll-container/ScrollContainer';
 
 const Sidebar = () => {
     const { getIconForGymType } = useGymTypeIcons();
@@ -19,16 +20,18 @@ const Sidebar = () => {
                 <SidebarItem text="Home" icon="fas fa-house" route="/" />
             </SubHeading>
             <SubHeading heading="Verlauf">
-                <SidebarItem
-                    text="EasyFitness"
-                    route="/easyfitness"
-                    icon={getIconForGymType(GymType.GYM)}
-                />
-                <SidebarItem
-                    text="Eintracht Ahaus"
-                    route="/eintracht_ahaus"
-                    icon={getIconForGymType(GymType.FOOTBALL)}
-                />
+                <ScrollContainer>
+                    <SidebarItem
+                        text="EasyFitness"
+                        route="/easyfitness"
+                        icon={getIconForGymType(GymType.GYM)}
+                    />
+                    <SidebarItem
+                        text="Eintracht Ahaus"
+                        route="/eintracht_ahaus"
+                        icon={getIconForGymType(GymType.FOOTBALL)}
+                    />
+                </ScrollContainer>
             </SubHeading>
             <User />
         </div>
