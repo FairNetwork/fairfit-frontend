@@ -4,6 +4,7 @@ import Gym from '../view/gym/Gym';
 import Home from '../view/home/Home';
 import Utility from '../view/utility/Utility';
 import NoContent from '../view/no-content/NoContent';
+import Dashboard from '../view/dashboard/Dashboard';
 
 export const useContent = () => {
     const location = useLocation();
@@ -17,7 +18,7 @@ export const useContent = () => {
         // if (path === '/log-in') return <LogIn />;
         // if (path === '/register-studio') return <SignUp />;
         // if (/^\/[^/]+\/offers$/.test(path)) return <Booking />;
-        // if (/^\/[^/]+\/dashboard\/.+/.test(path)) return <Dashboard />;
+        if (/^\/[^/]+\/dashboard\/.+/.test(path)) return <Dashboard />;
         if (/^\/[^/]+$/.test(path)) return <Gym />;
 
         return <Home />;

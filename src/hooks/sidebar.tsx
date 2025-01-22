@@ -14,7 +14,11 @@ export const useSidebarDashboardContent = () => {
             <SidebarItem route="" text="Abonnements" icon="fas fa-boxes-stacked" />
             <SidebarItem route="" text="Leistungen" icon="fas fa-bolt" />
             <SidebarItem route="" text="SocialMedia" icon="fas fa-hashtag" isDisabled />
-            <SidebarItem route="" text="Statistiken" icon="fas fa-chart-simple" />
+            <SidebarItem
+                route="/easyfitness/dashboard/statistics"
+                text="Statistiken"
+                icon="fas fa-chart-simple"
+            />
         </SubHeading>
     );
 };
