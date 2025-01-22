@@ -51,7 +51,11 @@ const SidebarItem: FC<SidebarItemProps> = ({ icon, isDisabled, badgeText, text, 
                 opacity: isDisabled ? 0.5 : 1
             }}>
             <div className="sidebar-item__wrapper">
-                {icon && <Icon icon={icon} />}
+                {icon && (
+                    <div className="sidebar-item__wrapper__icon">
+                        <Icon icon={icon} />
+                    </div>
+                )}
                 {text}
             </div>
             {badgeText && <div className="sidebar-item__badge">{badgeText}</div>}
