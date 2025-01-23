@@ -1,0 +1,39 @@
+.opening-time-input {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  &__name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--secondary-text-color);
+    margin: 0 12px
+  }
+
+  &__inputs {
+    display: flex;
+    gap: 6px;
+    border-radius: 100px;
+    border: 1px solid var(--thin-border-color);
+
+    align-items: center;
+    padding: 12px;
+    background-color: var(--secondary-background-color);
+
+    p {
+      margin: 0;
+    }
+
+    input {
+      border: none;
+      background-color: transparent;
+      width: 100%;
+    }
+
+    input:focus-visible {
+      outline: none;
+    }
+  }
+}

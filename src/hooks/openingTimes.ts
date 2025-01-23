@@ -1,5 +1,9 @@
 import { IOpeningTimes, OpeningTimeType } from '../types/openingTimes';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { ISocialMedia } from '../types/socialMedia';
+import { useSocialMedia } from './socialMedia';
+import { SOCIAL_MEDIA_DATA } from '../constants/socialMedia';
+import { OPENING_TIMES_DATA } from '../constants/openingTimes';
 
 export const useGroupedOpeningTimes = (openingTimes: IOpeningTimes[]) => {
     return useMemo(() => {
@@ -80,4 +84,40 @@ export const useGroupedOpeningTimes = (openingTimes: IOpeningTimes[]) => {
             };
         });
     }, [openingTimes]);
+};
+
+export const useOpeningTimeInput = (type: OpeningTimeType) => {
+    const [openingTime, setOpeningTime] = useState<IOpeningTimes>({
+        closed: true,
+        id: 'tmp',
+        type,
+        startTime: '',
+        endTime: ''
+    });
+
+    const { name } = useMemo(() => {
+        return OPENING_TIMES_DATA[type] || {};
+    }, [type]);
+
+    // ToDo get data from state and update state
+
+    const updateOpeningTime = ({
+        startTime,
+        endTime,
+        closed
+    }: {
+        startTime?: string;
+        endTime?: string;
+        closed?: boolean;
+    }) => {
+        // ToDo dispatch new time
+        setOpeningTime((prev) => ({
+            ...prev,
+            startTime: startTime ?? prev.startTime,
+            endTime: endTime ?? prev.endTime,
+            closed: typeof closed === 'boolean' ? closed : prev.closed
+        }));
+    };
+
+    return { openingTime, updateOpeningTime, name };
 };
