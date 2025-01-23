@@ -1,11 +1,14 @@
 import Button from '../../button/Button';
 import './user.scss';
+import { useNavigate } from 'react-router-dom';
 
 const User = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="user">
             <div className="user__login-button">
-                <Button>Anmelden</Button>
+                <Button onClick={() => navigate('/log-in')}>Anmelden</Button>
             </div>
         </div>
     );

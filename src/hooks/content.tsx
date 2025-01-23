@@ -5,6 +5,7 @@ import Home from '../view/home/Home';
 import Utility from '../view/utility/Utility';
 import NoContent from '../view/no-content/NoContent';
 import Dashboard from '../view/dashboard/Dashboard';
+import LogIn from '../view/log-in/LogIn';
 
 export const useContent = () => {
     const location = useLocation();
@@ -15,7 +16,7 @@ export const useContent = () => {
         if (path === '/no_content') return <NoContent />;
         if (/^\/utility\/[^/]+$/.test(path)) return <Utility />;
         // if (path === '/confirm-registration') return <ConfirmRegistration />;
-        // if (path === '/log-in') return <LogIn />;
+        if (path === '/log-in') return <LogIn />;
         // if (path === '/register-studio') return <SignUp />;
         // if (/^\/[^/]+\/offers$/.test(path)) return <Booking />;
         if (/^\/[^/]+\/dashboard\/.+/.test(path)) return <Dashboard />;
