@@ -20,10 +20,15 @@ const HomeCard: FC<HomeCardProps> = ({ name, tags, type, location, image }) => {
             <img src={image} alt={`${name} image`} />
             <div className="home-card__content">
                 <div className="home-card__content__name">
-                    <Icon icon={getIconForGymType(type)} /> {name}
+                    <Icon
+                        icon={getIconForGymType(type)}
+                        style={{ width: '20px', textAlign: 'center' }}
+                    />{' '}
+                    {name}
                 </div>
                 <div className="home-card__content__location">
-                    <Icon icon="fas fa-map-pin" /> {location}
+                    <Icon icon="fas fa-map-pin" style={{ width: '20px', textAlign: 'center' }} />{' '}
+                    {location}
                 </div>
             </div>
         </div>
