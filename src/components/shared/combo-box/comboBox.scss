@@ -1,6 +1,7 @@
 .combo-box{
   position: relative;
   font-size: 14px;
+  user-select: none;
 
   &__head{
     background-color: var(--secondary-background-color);
