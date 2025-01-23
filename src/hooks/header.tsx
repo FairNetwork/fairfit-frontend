@@ -19,6 +19,7 @@ export const useHeaderContent = () => {
         location.pathname.startsWith('/utility') ||
         location.pathname.startsWith('/no_content') ||
         location.pathname.startsWith('/log-in') ||
+        location.pathname.startsWith('/secret') ||
         location.pathname.startsWith('/sign-up')
     ) {
         return <EmptyHeader />;

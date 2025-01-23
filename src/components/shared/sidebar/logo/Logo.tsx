@@ -1,5 +1,6 @@
 import './logo.scss';
 import { FC, ReactNode, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface LogoProps {
     /**
@@ -13,6 +14,8 @@ interface LogoProps {
 }
 
 const Logo: FC<LogoProps> = ({ src, children }) => {
+    const navigate = useNavigate();
+
     const clickCountRef = useRef(0);
     const timeoutRef = useRef<number>(undefined);
 
@@ -26,7 +29,7 @@ const Logo: FC<LogoProps> = ({ src, children }) => {
         }, 300);
 
         if (clickCountRef.current === 10) {
-            alert('Ich liebe meinen Vater♥️');
+            navigate('/secret');
         }
     };
 
