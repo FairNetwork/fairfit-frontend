@@ -7,6 +7,10 @@
   overflow-x: hidden;
   overflow-y: scroll;
 
+  > div{
+    margin-right: 2px !important;
+  }
+
   &::-webkit-scrollbar {
     width: 10px;
     height: 10px;
