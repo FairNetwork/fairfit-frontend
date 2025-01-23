@@ -9,15 +9,18 @@ const GeneralSettings = () => {
 
     return (
         <div className="general-settings">
-            <Input placeholder="Name" value="" />
-            <Input placeholder="Adresse" value="" />
-            <Input placeholder="Kontakt E-Mail" value="" />
-            <ComboBox
-                placeholder="TEst"
-                onSelect={(id) => setSelectedGymTypeId(id)}
-                selectedItemId={selectedGymTypeId}
-                items={GYM_TYPES}
-            />
+            <div className="general-settings__headline">Grundlegende Einstellungen</div>
+            <div className="general-settings__wrapper">
+                <Input placeholder="Name" value="" />
+                <Input placeholder="Adresse" value="" />
+                <Input placeholder="Kontakt E-Mail" value="" />
+                <ComboBox
+                    placeholder="Sportart"
+                    onSelect={(id) => setSelectedGymTypeId(id)}
+                    selectedItemId={selectedGymTypeId}
+                    items={GYM_TYPES}
+                />
+            </div>
         </div>
     );
 };
