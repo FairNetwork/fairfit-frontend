@@ -8,6 +8,7 @@ interface InputProps {
     value: string;
     onChange?: ChangeEventHandler<HTMLInputElement>;
     type?: HTMLInputTypeAttribute;
+    isInvalid?: boolean;
 }
 
 const Input: FC<InputProps> = ({
@@ -16,10 +17,13 @@ const Input: FC<InputProps> = ({
     leftElement,
     rightElement,
     value,
-    placeholder
+    placeholder,
+    isInvalid
 }) => {
     return (
-        <div className="input">
+        <div
+            className="input"
+            style={{ borderColor: isInvalid ? 'var(--invalid-border-color)' : undefined }}>
             {leftElement && leftElement}
             <input type={type} value={value} onChange={onChange} placeholder={placeholder} />
             {rightElement && rightElement}
