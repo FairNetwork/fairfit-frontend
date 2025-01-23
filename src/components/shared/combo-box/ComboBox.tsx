@@ -34,13 +34,17 @@ const ComboBox: FC<ComboBoxProps> = ({ selectedItemId, placeholder, items, onSel
                 <div
                     className="combo-box__body__item"
                     key={`combo-box-item--${id}`}
+                    style={{
+                        backgroundColor:
+                            id === selectedItemId ? 'var(--sidebar-active-color' : undefined
+                    }}
                     onClick={() => (typeof onSelect === 'function' ? onSelect(id) : undefined)}>
                     {icon && <Icon icon={icon} style={{ width: '20px', textAlign: 'center' }} />}
                     {text}
                 </div>
             );
         });
-    }, [items]);
+    }, [items, selectedItemId]);
 
     const handleShow = () => {
         setIsOpen(true);
