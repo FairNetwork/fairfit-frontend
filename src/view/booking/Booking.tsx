@@ -1,20 +1,26 @@
 import './booking.scss';
-import { useState } from 'react';
 import Input from '../../components/shared/input/Input';
 import ComboBox from '../../components/shared/combo-box/ComboBox';
 import { GENDER_COMBOBOX_ITEMS } from '../../constants/gym';
-import { Gender } from '../../types/gym';
+import Button from '../../components/shared/button/Button';
+import { useBookingData } from '../../hooks/booking';
 
 const Booking = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [mail, setMail] = useState('');
-    const [birthday, setBrithday] = useState('');
-    const [gender, setGender] = useState<Gender>();
-    const [postcode, setPostcode] = useState('');
-    const [number, setNumber] = useState('');
-    const [city, setCity] = useState('');
-    const [street, setStreet] = useState('');
+    const { setField, formData, isFormValid } = useBookingData();
+
+    const {
+        city,
+        gender,
+        iban,
+        firstName,
+        lastName,
+        mail,
+        number,
+        owner,
+        street,
+        postcode,
+        birthday
+    } = formData;
 
     return (
         <div className="booking">
@@ -24,52 +30,64 @@ const Booking = () => {
                 <Input
                     placeholder="Vorname"
                     value={firstName}
-                    onChange={(event) => setFirstName(event.target.value)}
+                    onChange={(event) => setField('firstName', event.target.value)}
                 />
                 <Input
                     placeholder="Nachname"
                     value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
+                    onChange={(event) => setField('lastName', event.target.value)}
                 />
                 <Input
                     placeholder="E-Mail"
                     type="email"
                     value={mail}
-                    onChange={(event) => setMail(event.target.value)}
+                    onChange={(event) => setField('mail', event.target.value)}
                 />
                 <Input
                     placeholder="Geburtstag"
                     value={birthday}
                     type="date"
-                    onChange={(event) => setBrithday(event.target.value)}
+                    onChange={(event) => setField('birthday', event.target.value)}
                 />
                 <ComboBox
                     placeholder="Geschlecht"
                     items={GENDER_COMBOBOX_ITEMS}
                     selectedItemId={String(gender)}
-                    onSelect={(id) => setGender(Number(id))}
+                    onSelect={(id) => setField('gender', Number(id))}
                 />
                 <div className="booking__content__text">Anschrift</div>
                 <Input
                     placeholder="Straße"
                     value={street}
-                    onChange={(event) => setStreet(event.target.value)}
+                    onChange={(event) => setField('street', event.target.value)}
                 />
                 <Input
                     placeholder="Hausnummer"
                     value={number}
-                    onChange={(event) => setNumber(event.target.value)}
+                    onChange={(event) => setField('number', event.target.value)}
                 />
                 <Input
                     placeholder="Stadt"
                     value={city}
-                    onChange={(event) => setCity(event.target.value)}
+                    onChange={(event) => setField('city', event.target.value)}
                 />
                 <Input
                     placeholder="PLZ"
                     value={postcode}
-                    onChange={(event) => setPostcode(event.target.value)}
+                    onChange={(event) => setField('postcode', event.target.value)}
                 />
+                <div className="booking__content__text">Bezahlung</div>
+                <Input
+                    placeholder="Konto Inhaber"
+                    value={owner}
+                    onChange={(event) => setField('owner', event.target.value)}
+                />
+                <Input
+                    placeholder="IBAN"
+                    value={iban}
+                    onChange={(event) => setField('iban', event.target.value)}
+                />
+                <Button isDisabled={!isFormValid}>Absenden</Button>
             </div>
         </div>
     );
