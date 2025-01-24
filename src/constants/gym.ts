@@ -1,5 +1,5 @@
 import { ComboBoxItem } from '../components/shared/combo-box/ComboBox';
-import { GymType } from '../types/gym';
+import { Gender, GymType } from '../types/gym';
 
 export const GYM_TYPES: ComboBoxItem[] = [
     { id: String(GymType.GYM), icon: 'fas fa-dumbbell', text: 'Fitness Studio' },
@@ -17,4 +17,10 @@ export const GYM_TYPES: ComboBoxItem[] = [
         text: 'Tischtennis'
     },
     { id: String(GymType.SWIMMING), icon: 'fas fa-person-swimming', text: 'Schwimmen' }
+];
+
+export const GENDER_COMBOBOX_ITEMS: ComboBoxItem[] = [
+    { id: String(Gender.MALE), text: 'Männlich' },
+    { id: String(Gender.FEMALE), text: 'Weiblich' },
+    { id: String(Gender.DIVERS), text: 'Divers' }
 ];

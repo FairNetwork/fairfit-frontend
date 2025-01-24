@@ -11,3 +11,9 @@ export enum GymType {
     SWIMMING,
     HOCKEY
 }
+
+export enum Gender {
+    MALE,
+    FEMALE,
+    DIVERS
+}

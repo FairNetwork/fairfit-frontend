@@ -3,8 +3,14 @@ import CardSlider from '../../../components/shared/card-slider/CardSlider';
 import { useMemo } from 'react';
 import Card from '../../../components/shared/card-slider/card/Card';
 import GymCard from './gym-card/GymCard';
+import { useNavigate } from 'react-router-dom';
 
 const GymAbonnements = () => {
+    const navigate = useNavigate();
+
+    const id = 'Test';
+    const gymInternalId = 'easyfitness';
+
     const content = useMemo(() => {
         return (
             <>
@@ -12,6 +18,7 @@ const GymAbonnements = () => {
                     badgeText="Angebot"
                     buttonText="Auswählen"
                     containerId="card-slider"
+                    onButtonClick={() => navigate(`/${gymInternalId}/offers?id=${id}`)}
                     aspectRatio={9 / 16}>
                     <GymCard />
                 </Card>

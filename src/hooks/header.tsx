@@ -11,7 +11,7 @@ export const useHeaderContent = () => {
         return <Search />;
     }
 
-    if (location.pathname.includes('/dashboard')) {
+    if (location.pathname.includes('/dashboard') || location.pathname.includes('/offers')) {
         return <DashboardHeader />;
     }
 

@@ -8,6 +8,7 @@ import Dashboard from '../view/dashboard/Dashboard';
 import LogIn from '../view/log-in/LogIn';
 import SignUp from '../view/sign-up/SignUp';
 import Secret from '../view/secret/Secret';
+import Booking from '../view/booking/Booking';
 
 export const useContent = () => {
     const location = useLocation();
@@ -21,7 +22,7 @@ export const useContent = () => {
         if (path === '/log-in') return <LogIn />;
         if (path === '/sign-up') return <SignUp />;
         if (path === '/secret') return <Secret />;
-        // if (/^\/[^/]+\/offers$/.test(path)) return <Booking />;
+        if (/^\/[^/]+\/offers$/.test(path)) return <Booking />;
         if (/^\/[^/]+\/dashboard\/.+/.test(path)) return <Dashboard />;
         if (/^\/[^/]+$/.test(path)) return <Gym />;
 
