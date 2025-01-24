@@ -1,43 +1,41 @@
 import './homeCards.scss';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import Card from '../../../components/shared/card-slider/card/Card';
 import HomeCard from './home-card/HomeCard';
-import { GymType } from '../../../types/gym';
+import { Gym } from '../../../types/gym';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { addHistoryEntry } from '../../../redux/gym/slice';
+import { selectFilteredGyms } from '../../../redux/gym/selectors';
 
 const HomeCards = () => {
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
+    const gyms = useAppSelector(selectFilteredGyms);
+
+    const handleButtonClick = useCallback(
+        (id: Gym['id']) => {
+            dispatch(addHistoryEntry(id));
+
+            navigate(`/${id}`);
+        },
+        [dispatch, navigate]
+    );
+
     const content = useMemo(() => {
-        return (
-            <>
+        return gyms.map(({ id, name, type, image, address }) => {
+            return (
                 <Card
                     buttonText="Besuchen"
                     width="400px"
                     containerId="home"
-                    onButtonClick={() => navigate('/easyfitness')}>
-                    <HomeCard
-                        name="EasyFitness"
-                        type={GymType.GYM}
-                        location="Ahaus"
-                        image="https://images.stockcake.com/public/8/3/5/835142df-b7a9-455a-a755-36b59d68c1c2_large/intense-gym-workout-stockcake.jpg"
-                    />
+                    onButtonClick={() => handleButtonClick(id)}>
+                    <HomeCard name={name} type={type} location={address} image={image} />
                 </Card>
-                <Card
-                    buttonText="Besuchen"
-                    width="400px"
-                    containerId="home"
-                    onButtonClick={() => navigate('/eintracht_ahaus')}>
-                    <HomeCard
-                        name="Eintracht Ahaus"
-                        type={GymType.FOOTBALL}
-                        location="Ahaus"
-                        image="https://cdn.pixabay.com/photo/2016/05/16/21/07/football-1396740_1280.jpg"
-                    />
-                </Card>
-            </>
-        );
-    }, []);
+            );
+        });
+    }, [gyms, handleButtonClick]);
 
     return <div className="home-cards">{content}</div>;
 };

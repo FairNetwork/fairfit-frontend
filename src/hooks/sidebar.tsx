@@ -1,5 +1,10 @@
 import SubHeading from '../components/shared/sidebar/sub-heading/SubHeading';
 import SidebarItem from '../components/shared/sidebar/sidebar-item/SidebarItem';
+import { useMemo } from 'react';
+import { GymType } from '../types/gym';
+import { useGymTypeIcons } from './gym';
+import { useAppSelector } from './redux';
+import { selectGymsFromHistory } from '../redux/gym/selectors';
 
 export const useSidebarDashboardContent = () => {
     const isLoggedIn = true;
@@ -39,4 +44,23 @@ export const useSidebarDashboardContent = () => {
             />
         </SubHeading>
     );
+};
+
+export const useSidebarHistoryContent = () => {
+    const { getIconForGymType } = useGymTypeIcons();
+
+    const gyms = useAppSelector(selectGymsFromHistory);
+
+    return useMemo(() => {
+        return gyms.map(({ id, name, type }) => {
+            return (
+                <SidebarItem
+                    key={`sidebar-item--${id}`}
+                    text={name}
+                    route={`/${id}`}
+                    icon={getIconForGymType(type)}
+                />
+            );
+        });
+    }, [gyms]);
 };
