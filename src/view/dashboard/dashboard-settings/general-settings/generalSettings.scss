@@ -1,0 +1,15 @@
+.general-settings {
+  display: flex;
+  flex-direction: column;
+
+  &__headline {
+    font-weight: bold;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 16px;
+    padding: 16px 0;
+  }
+}

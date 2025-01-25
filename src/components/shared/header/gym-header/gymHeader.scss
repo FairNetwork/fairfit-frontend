@@ -1,0 +1,35 @@
+.gym-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  &__wrapper{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+
+    &__name {
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    flex-shrink: 1;
+    overflow: hidden;
+
+    color: var(--secondary-text-color);
+
+    &__action {
+      &:hover {
+        opacity: .8;
+      }
+    }
+  }
+}

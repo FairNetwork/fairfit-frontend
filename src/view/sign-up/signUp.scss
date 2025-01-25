@@ -1,0 +1,40 @@
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 200px;
+  max-width: 400px;
+  margin: 10% auto 0 auto;
+
+  &__headline {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  &__info {
+    text-align: center;
+  }
+
+  a {
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+
+  ul {
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  li.valid i {
+    color: #03DAC5;
+  }
+
+  li.invalid i {
+    color: #FF5252;
+  }
+}

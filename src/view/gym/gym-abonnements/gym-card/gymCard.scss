@@ -1,0 +1,25 @@
+.gym-card {
+  padding: 20px 12px 12px 12px;
+  display: flex;
+  flex-direction: column;
+
+  &__name {
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+  }
+
+  &__price {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+
+    &__monthly {
+      font-size: small;
+    }
+  }
+
+  &__list {
+    padding-left: 12px;
+  }
+}

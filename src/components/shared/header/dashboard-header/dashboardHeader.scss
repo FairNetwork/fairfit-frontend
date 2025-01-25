@@ -1,0 +1,11 @@
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+
+  &__name {
+    font-weight: bold;
+    font-size: 20px;
+  }
+}

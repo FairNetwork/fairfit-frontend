@@ -1,0 +1,26 @@
+.dashboard-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 86px;
+  margin: 24px 12px;
+
+  &__image {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: fit-content;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &__icon {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+
+      color: #FFF;
+    }
+  }
+}
