@@ -5,7 +5,7 @@ import { useSocialMedia } from './socialMedia';
 import { SOCIAL_MEDIA_DATA } from '../constants/socialMedia';
 import { OPENING_TIMES_DATA } from '../constants/openingTimes';
 
-export const useGroupedOpeningTimes = (openingTimes: IOpeningTimes[]) => {
+export const useGroupedOpeningTimes = (openingTimes?: IOpeningTimes[]) => {
     return useMemo(() => {
         const dayNames = ['Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.', 'So.', 'Feiertag'];
 
@@ -22,7 +22,7 @@ export const useGroupedOpeningTimes = (openingTimes: IOpeningTimes[]) => {
             return acc;
         }, []);
 
-        const completeTimes = [...defaultTimes, ...openingTimes].reduce<
+        const completeTimes = [...defaultTimes, ...(openingTimes ?? [])].reduce<
             Record<number, IOpeningTimes>
         >((acc, time) => {
             acc[time.type] = time;

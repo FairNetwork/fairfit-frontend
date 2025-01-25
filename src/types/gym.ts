@@ -1,3 +1,8 @@
+import { Abonnement } from './abonnement';
+import { IBenefit } from './benefit';
+import { ISocialMedia } from './socialMedia';
+import { IOpeningTimes } from './openingTimes';
+
 export enum GymType {
     GYM,
     FOOTBALL,
@@ -25,10 +30,10 @@ export interface Gym {
     mail?: string;
     type: GymType;
     image: string;
-    abonnements?: null;
-    benefits?: null;
-    socialMedia?: null;
-    openingTimes?: null;
+    abonnements?: Abonnement[];
+    benefits?: IBenefit[];
+    socialMedia?: ISocialMedia[];
+    openingTimes?: IOpeningTimes[];
 }
 
 export interface GymHistory {

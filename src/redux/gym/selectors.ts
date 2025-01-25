@@ -30,3 +30,32 @@ export const selectGymsFromHistory = createSelector(
         return historyGyms;
     }
 );
+
+export const selectCurrentGymId = (state: RootState): string | undefined => {
+    return selectGymState(state).currentId;
+};
+
+export const selectCurrentGym = createSelector(
+    [selectGyms, selectCurrentGymId],
+    (gyms, currentGymId) => (currentGymId ? gyms[currentGymId] : undefined)
+);
+
+export const selectAbonnements = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.abonnements
+);
+
+export const selectBenefits = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.benefits
+);
+
+export const selectSocialMedia = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.socialMedia
+);
+
+export const selectOpeningTimes = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.openingTimes
+);
