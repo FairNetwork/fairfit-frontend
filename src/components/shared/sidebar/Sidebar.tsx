@@ -21,7 +21,6 @@ const Sidebar = () => {
 
     const handleWindowClick = (event: MouseEvent) => {
         const toggleButton = document.getElementById('sidebar-toggle');
-        console.log('TEST', event, toggleButton);
 
         if (
             ref.current &&
@@ -35,7 +34,6 @@ const Sidebar = () => {
     };
 
     useEffect(() => {
-        console.log('TEST', isMobile, isOpen);
         if (!isMobile || !isOpen) {
             return () => {
                 document.removeEventListener('click', handleWindowClick);
