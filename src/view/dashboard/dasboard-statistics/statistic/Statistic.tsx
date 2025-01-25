@@ -2,7 +2,7 @@ import './statistic.scss';
 import { LineChart } from '@mui/x-charts';
 import { convertStatisticsTimeline } from '../../../../utils/statistic';
 import { useStatistic } from '../../../../hooks/statistic';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { StatisticType } from '../../../../types/statistic';
 
 interface StatisticProps {
@@ -10,12 +10,24 @@ interface StatisticProps {
     type: StatisticType;
 }
 
-const Statistic: FC<StatisticProps> = ({ text }) => {
-    const data = useStatistic();
+const Statistic: FC<StatisticProps> = ({ text, type }) => {
+    const data = useStatistic(type);
 
-    const current = data[data.length - 1]?.total;
-    const prev = data[data.length - 2]?.total;
-    const difference = current - prev;
+    const { current, difference } = useMemo(() => {
+        if (!data) {
+            return { current: 0, difference: 0 };
+        }
+
+        const current = data[data.length - 1]?.total;
+        const prev = data[data.length - 2]?.total;
+        const difference = current - prev;
+
+        return { current, difference };
+    }, [data]);
+
+    if (!data) {
+        return undefined;
+    }
 
     return (
         <div className="statistic">

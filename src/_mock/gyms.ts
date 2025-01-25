@@ -1,6 +1,7 @@
 import { Gym, GymType } from '../types/gym';
 import { SocialMediaType } from '../types/socialMedia';
 import { OpeningTimeType } from '../types/openingTimes';
+import { StatisticType } from '../types/statistic';
 
 export const GYM_MOCK_DATA: { [key: Gym['id']]: Gym } = {
     easyfitness: {
@@ -33,6 +34,44 @@ export const GYM_MOCK_DATA: { [key: Gym['id']]: Gym } = {
         socialMedia: [
             { id: 'sfsf', type: SocialMediaType.INSTAGRAM, userName: 'Test' },
             { id: 'fd', type: SocialMediaType.TIKTOK, userName: 'Test' }
+        ],
+        statistics: [
+            {
+                id: '2fdsf',
+                type: StatisticType.ABONNEMENTS,
+                entries: [
+                    { month: '1/2025', total: 120 },
+                    { month: '2/2025', total: 95 },
+                    { month: '3/2025', total: 110 },
+                    { month: '4/2025', total: 150 },
+                    { month: '5/2025', total: 175 },
+                    { month: '6/2025', total: 200 },
+                    { month: '7/2025', total: 180 },
+                    { month: '8/2025', total: 190 },
+                    { month: '9/2025', total: 160 },
+                    { month: '10/2025', total: 210 },
+                    { month: '11/2025', total: 220 },
+                    { month: '12/2025', total: 250 }
+                ]
+            },
+            {
+                id: 'sdfds',
+                type: StatisticType.REQUESTS,
+                entries: [
+                    { month: '1/2025', total: 120 },
+                    { month: '2/2025', total: 95 },
+                    { month: '3/2025', total: 110 },
+                    { month: '4/2025', total: 150 },
+                    { month: '5/2025', total: 175 },
+                    { month: '6/2025', total: 200 },
+                    { month: '7/2025', total: 180 },
+                    { month: '8/2025', total: 190 },
+                    { month: '9/2025', total: 160 },
+                    { month: '10/2025', total: 210 },
+                    { month: '11/2025', total: 220 },
+                    { month: '12/2025', total: 250 }
+                ]
+            }
         ]
     },
     bodyfit: {

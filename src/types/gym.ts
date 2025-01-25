@@ -2,6 +2,7 @@ import { Abonnement } from './abonnement';
 import { IBenefit } from './benefit';
 import { ISocialMedia } from './socialMedia';
 import { IOpeningTimes } from './openingTimes';
+import { Statistic } from './statistic';
 
 export enum GymType {
     GYM,
@@ -34,6 +35,7 @@ export interface Gym {
     benefits?: IBenefit[];
     socialMedia?: ISocialMedia[];
     openingTimes?: IOpeningTimes[];
+    statistics?: Statistic[];
 }
 
 export interface GymHistory {
