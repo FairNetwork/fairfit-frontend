@@ -32,7 +32,9 @@ const App = () => {
                 {shouldShowSplashScreen && <SplashScreen />}
             </AnimatePresence>
             <div className="app">
-                <Sidebar />
+                <AnimatePresence initial={false}>
+                    <Sidebar />
+                </AnimatePresence>
                 <div
                     className="app__wrapper"
                     style={{ width: isMobile ? '100vw' : `calc(100vw - 1px - ${width})` }}>

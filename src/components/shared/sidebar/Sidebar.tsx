@@ -9,6 +9,7 @@ import './sidebar.scss';
 import { useSidebarProvider } from './SidebarProvider';
 import { CSSProperties, useEffect, useMemo, useRef } from 'react';
 import { useIsMobile } from '../../../hooks/environment';
+import { motion } from 'framer-motion';
 
 const Sidebar = () => {
     const dashboardContent = useSidebarDashboardContent();
@@ -55,25 +56,40 @@ const Sidebar = () => {
 
         return {
             position: 'absolute',
-            left: isOpen ? '0' : `-${width}`,
             zIndex: 100
         };
-    }, [isMobile, isOpen, width]);
+    }, [isMobile]);
 
     return (
-        <div className="sidebar" ref={ref} style={styles}>
-            <Logo src={logo}>
-                <div className="sidebar__logo">FairFit</div>
-            </Logo>
-            <SubHeading>
-                <SidebarItem text="Home" icon="fas fa-house" route="/" />
-            </SubHeading>
-            <SubHeading heading="Verlauf">
-                <ScrollContainer>{historyContent}</ScrollContainer>
-            </SubHeading>
-            {dashboardContent}
-            <User />
-        </div>
+        <>
+            <motion.div
+                className="sidebar"
+                ref={ref}
+                style={styles}
+                initial={isMobile ? { left: `-${width}` } : {}}
+                exit={isMobile ? { left: `-${width}` } : {}}
+                animate={isMobile ? { left: isOpen ? '0' : `-${width}` } : {}}>
+                <Logo src={logo}>
+                    <div className="sidebar__logo">FairFit</div>
+                </Logo>
+                <SubHeading>
+                    <SidebarItem text="Home" icon="fas fa-house" route="/" />
+                </SubHeading>
+                <SubHeading heading="Verlauf">
+                    <ScrollContainer>{historyContent}</ScrollContainer>
+                </SubHeading>
+                {dashboardContent}
+                <User />
+            </motion.div>
+            {isMobile && isOpen && (
+                <motion.div
+                    className="blur"
+                    initial={{ opacity: 0 }}
+                    exit={{ opacity: 0 }}
+                    animate={{ opacity: 0.5 }}
+                />
+            )}
+        </>
     );
 };
 
