@@ -23,7 +23,7 @@ export type CardProps = {
     /**
      * The id of the container.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * Function to be executed when the button is clicked.
      */
@@ -45,7 +45,7 @@ const Card: FC<CardProps> = ({
 }) => {
     const ref = useRef<HTMLDivElement>(null);
 
-    const isVisible = useVisibility(containerId, ref);
+    const isVisible = useVisibility({ elementRef: ref, containerId });
 
     return (
         <div
