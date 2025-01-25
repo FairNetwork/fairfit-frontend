@@ -59,3 +59,20 @@ export const selectOpeningTimes = createSelector(
     selectCurrentGym,
     (currentGym) => currentGym?.openingTimes
 );
+
+export const selectGymName = createSelector(selectCurrentGym, (currentGym) => currentGym?.name);
+
+export const selectGymSettings = createSelector(selectCurrentGym, (currentGym) => {
+    if (!currentGym) {
+        return undefined;
+    }
+
+    const { name, address, type, mail } = currentGym;
+
+    return {
+        name,
+        address,
+        type,
+        mail
+    };
+});

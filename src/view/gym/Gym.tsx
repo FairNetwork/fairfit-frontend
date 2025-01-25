@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import { useEffect } from 'react';
 import { setCurrentId } from '../../redux/gym/slice';
 import { useGymRoute } from '../../hooks/gym';
+import { loadGym } from '../../redux/gym/actions';
 
 const Gym = () => {
     const dispatch = useAppDispatch();
@@ -15,6 +16,8 @@ const Gym = () => {
 
     useEffect(() => {
         dispatch(setCurrentId(gymId));
+
+        void dispatch(loadGym());
     }, [gymId]);
 
     return (

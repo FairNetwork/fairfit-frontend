@@ -3,13 +3,15 @@ import { useScrollToElement } from '../../../../hooks/scroll';
 import { useIsMobile } from '../../../../hooks/environment';
 import { useSidebarProvider } from '../../sidebar/SidebarProvider';
 import Icon from '../../icon/Icon';
+import { useAppSelector } from '../../../../hooks/redux';
+import { selectGymName } from '../../../../redux/gym/selectors';
 
 const GymHeader = () => {
     const scrollToElement = useScrollToElement();
     const isMobile = useIsMobile();
     const { updateIsOpen } = useSidebarProvider();
 
-    const gymName = 'EasyFitness';
+    const gymName = useAppSelector(selectGymName);
 
     return (
         <div className="gym-header">

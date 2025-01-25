@@ -1,9 +1,11 @@
 import { IOpeningTimes, OpeningTimeType } from '../types/openingTimes';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ISocialMedia } from '../types/socialMedia';
 import { useSocialMedia } from './socialMedia';
 import { SOCIAL_MEDIA_DATA } from '../constants/socialMedia';
 import { OPENING_TIMES_DATA } from '../constants/openingTimes';
+import { useAppSelector } from './redux';
+import { selectOpeningTimes } from '../redux/gym/selectors';
 
 export const useGroupedOpeningTimes = (openingTimes?: IOpeningTimes[]) => {
     return useMemo(() => {
@@ -99,7 +101,15 @@ export const useOpeningTimeInput = (type: OpeningTimeType) => {
         return OPENING_TIMES_DATA[type] || {};
     }, [type]);
 
-    // ToDo get data from state and update state
+    const openingTimes = useAppSelector(selectOpeningTimes);
+
+    useEffect(() => {
+        const time = openingTimes?.find((openingTime) => openingTime.type === type);
+
+        if (time) {
+            setOpeningTime(time);
+        }
+    }, [openingTimes]);
 
     const updateOpeningTime = ({
         startTime,
