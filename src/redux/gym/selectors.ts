@@ -60,6 +60,15 @@ export const selectOpeningTimes = createSelector(
     (currentGym) => currentGym?.openingTimes
 );
 
+export const selectGymHeaderActions = createSelector(selectCurrentGym, (currentGym) => {
+    return {
+        hasAbonnements: !!currentGym?.abonnements,
+        hasBenefits: !!currentGym?.benefits,
+        hasOpeningTimes: !!currentGym?.openingTimes,
+        hasSocialMedia: !!currentGym?.socialMedia
+    };
+});
+
 export const selectGymName = createSelector(selectCurrentGym, (currentGym) => currentGym?.name);
 
 export const selectGymSettings = createSelector(selectCurrentGym, (currentGym) => {

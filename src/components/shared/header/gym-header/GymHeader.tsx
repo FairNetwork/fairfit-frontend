@@ -4,7 +4,7 @@ import { useIsMobile } from '../../../../hooks/environment';
 import { useSidebarProvider } from '../../sidebar/SidebarProvider';
 import Icon from '../../icon/Icon';
 import { useAppSelector } from '../../../../hooks/redux';
-import { selectGymName } from '../../../../redux/gym/selectors';
+import { selectGymHeaderActions, selectGymName } from '../../../../redux/gym/selectors';
 
 const GymHeader = () => {
     const scrollToElement = useScrollToElement();
@@ -12,6 +12,8 @@ const GymHeader = () => {
     const { updateIsOpen } = useSidebarProvider();
 
     const gymName = useAppSelector(selectGymName);
+    const { hasAbonnements, hasOpeningTimes, hasSocialMedia, hasBenefits } =
+        useAppSelector(selectGymHeaderActions);
 
     return (
         <div className="gym-header">
@@ -30,26 +32,34 @@ const GymHeader = () => {
             </div>
             {!isMobile && (
                 <div className="gym-header__actions">
-                    <div
-                        className="gym-header__actions__action"
-                        onClick={() => scrollToElement('scroll-offers')}>
-                        Angebote
-                    </div>
-                    <div
-                        className="gym-header__actions__action"
-                        onClick={() => scrollToElement('scroll-benefits')}>
-                        Leistungen
-                    </div>
-                    <div
-                        className="gym-header__actions__action"
-                        onClick={() => scrollToElement('scroll-openingtimes')}>
-                        Öffnungszeiten
-                    </div>
-                    <div
-                        className="gym-header__actions__action"
-                        onClick={() => scrollToElement('scroll-contact')}>
-                        Kontakt
-                    </div>
+                    {hasAbonnements && (
+                        <div
+                            className="gym-header__actions__action"
+                            onClick={() => scrollToElement('scroll-offers')}>
+                            Angebote
+                        </div>
+                    )}
+                    {hasBenefits && (
+                        <div
+                            className="gym-header__actions__action"
+                            onClick={() => scrollToElement('scroll-benefits')}>
+                            Leistungen
+                        </div>
+                    )}
+                    {hasOpeningTimes && (
+                        <div
+                            className="gym-header__actions__action"
+                            onClick={() => scrollToElement('scroll-openingtimes')}>
+                            Öffnungszeiten
+                        </div>
+                    )}
+                    {hasSocialMedia && (
+                        <div
+                            className="gym-header__actions__action"
+                            onClick={() => scrollToElement('scroll-contact')}>
+                            Kontakt
+                        </div>
+                    )}
                 </div>
             )}
         </div>
