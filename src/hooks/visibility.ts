@@ -1,11 +1,19 @@
 import { useEffect, useState, useCallback, RefObject } from 'react';
 
-export const useVisibility = (
-    containerId: string,
-    elementRef: RefObject<HTMLElement | null>,
-    threshold: number = 0.5
-): boolean => {
+export const useVisibility = ({
+    elementRef,
+    threshold = 0.5,
+    containerId
+}: {
+    elementRef: RefObject<HTMLElement | null>;
+    threshold?: number;
+    containerId?: string;
+}): boolean => {
     const [isVisible, setIsVisible] = useState(false);
+
+    if (!containerId) {
+        return true;
+    }
 
     const checkVisibility = useCallback(() => {
         const container = document.getElementById(containerId);

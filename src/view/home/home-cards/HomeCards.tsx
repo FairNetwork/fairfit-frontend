@@ -29,7 +29,6 @@ const HomeCards = () => {
                 <Card
                     buttonText="Besuchen"
                     width="350px"
-                    containerId="home"
                     onButtonClick={() => handleButtonClick(id)}>
                     <HomeCard name={name} type={type} location={address} image={image} />
                 </Card>
