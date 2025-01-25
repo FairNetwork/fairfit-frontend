@@ -13,9 +13,9 @@ const OpeningTimesSettings = () => {
     }, []);
 
     return (
-        <div className="general-settings">
-            <div className="general-settings__headline">Öffnungszeiten</div>
-            <div className="general-settings__wrapper">{content}</div>
+        <div className="opening-times-settings">
+            <div className="opening-times-settings__headline">Öffnungszeiten</div>
+            <div className="opening-times-settings__wrapper">{content}</div>
         </div>
     );
 };

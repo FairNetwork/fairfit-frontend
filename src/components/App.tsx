@@ -9,10 +9,14 @@ import './app.scss';
 import { useLayoutEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import SplashScreen from './shared/splash-screen/SplashScreen';
+import { useSidebarProvider } from './shared/sidebar/SidebarProvider';
+import { useIsMobile } from '../hooks/environment';
 
 const App = () => {
     const content = useContent();
     const colorMode = useColorMode();
+    const isMobile = useIsMobile();
+    const { width, isOpen } = useSidebarProvider();
 
     const [shouldShowSplashScreen, setShouldShowSplashScreen] = useState(true);
 
@@ -29,7 +33,9 @@ const App = () => {
             </AnimatePresence>
             <div className="app">
                 <Sidebar />
-                <div className="app__wrapper">
+                <div
+                    className="app__wrapper"
+                    style={{ width: isMobile ? '100vw' : `calc(100vw - 1px - ${width})` }}>
                     <Header />
                     <div className="app__wrapper__content">{content}</div>
                     <Footer />

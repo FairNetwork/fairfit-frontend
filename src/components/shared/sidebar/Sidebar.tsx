@@ -6,13 +6,62 @@ import User from './user/User';
 import ScrollContainer from './scroll-container/ScrollContainer';
 import { useSidebarDashboardContent, useSidebarHistoryContent } from '../../../hooks/sidebar';
 import './sidebar.scss';
+import { useSidebarProvider } from './SidebarProvider';
+import { CSSProperties, useEffect, useMemo, useRef } from 'react';
+import { useIsMobile } from '../../../hooks/environment';
 
 const Sidebar = () => {
     const dashboardContent = useSidebarDashboardContent();
     const historyContent = useSidebarHistoryContent();
+    const { isOpen, updateIsOpen, width } = useSidebarProvider();
+    const isMobile = useIsMobile();
+
+    const ref = useRef<HTMLDivElement>(null);
+
+    const handleWindowClick = (event: MouseEvent) => {
+        const toggleButton = document.getElementById('sidebar-toggle');
+        console.log('TEST', event, toggleButton);
+
+        if (
+            ref.current &&
+            !ref.current.contains(event.target as Node) &&
+            toggleButton &&
+            !toggleButton.contains(event.target as Node) &&
+            typeof updateIsOpen === 'function'
+        ) {
+            updateIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        console.log('TEST', isMobile, isOpen);
+        if (!isMobile || !isOpen) {
+            return () => {
+                document.removeEventListener('click', handleWindowClick);
+            };
+        }
+
+        document.addEventListener('click', handleWindowClick);
+
+        return () => {
+            document.removeEventListener('click', handleWindowClick);
+        };
+    }, [handleWindowClick, isMobile, isOpen]);
+
+    const styles: CSSProperties | undefined = useMemo(() => {
+        if (!isMobile) {
+            return undefined;
+        }
+
+        return {
+            position: 'absolute',
+            left: isOpen ? '0' : `-${width}`,
+            zIndex: 100
+        };
+    }, [isMobile, isOpen, width]);
 
     return (
-        <div className="sidebar">
+        <div className="sidebar" ref={ref} style={styles}>
             <Logo src={logo}>
                 <div className="sidebar__logo">FairFit</div>
             </Logo>

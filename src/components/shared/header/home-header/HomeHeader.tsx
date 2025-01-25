@@ -1,16 +1,15 @@
-import './dashboardHeader.scss';
-import Icon from '../../icon/Icon';
+import './homeHeader.scss';
 import { useIsMobile } from '../../../../hooks/environment';
+import Search from './search/Search';
+import Icon from '../../icon/Icon';
 import { useSidebarProvider } from '../../sidebar/SidebarProvider';
 
-const DashboardHeader = () => {
+const HomeHeader = () => {
     const isMobile = useIsMobile();
     const { updateIsOpen } = useSidebarProvider();
 
-    const gymName = 'EasyFitness';
-
     return (
-        <div className="dashboard-header">
+        <div className="home-header">
             {isMobile && (
                 <div id="sidebar-toggle">
                     <Icon
@@ -21,11 +20,11 @@ const DashboardHeader = () => {
                     />
                 </div>
             )}
-            <div className="dashboard-header__name">{gymName}</div>
+            <Search />
         </div>
     );
 };
 
-DashboardHeader.displayName = 'DashboardHeader';
+HomeHeader.displayName = 'HomeHeader';
 
-export default DashboardHeader;
+export default HomeHeader;

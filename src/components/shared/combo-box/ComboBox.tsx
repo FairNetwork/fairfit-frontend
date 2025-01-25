@@ -70,7 +70,7 @@ const ComboBox: FC<ComboBoxProps> = ({ selectedItemId, placeholder, items, onSel
         return () => {
             document.removeEventListener('click', handleWindowClick);
         };
-    }, [handleClick]);
+    }, [handleWindowClick]);
 
     return (
         <div className="combo-box" ref={comboBoxRef}>

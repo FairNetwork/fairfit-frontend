@@ -1,5 +1,5 @@
 import './search.scss';
-import Icon from '../../icon/Icon';
+import Icon from '../../../icon/Icon';
 
 const Search = () => {
     return (
