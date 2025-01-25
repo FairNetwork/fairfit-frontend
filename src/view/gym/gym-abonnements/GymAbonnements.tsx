@@ -16,6 +16,7 @@ const GymAbonnements = () => {
             <>
                 <Card
                     badgeText="Angebot"
+                    width="200px"
                     buttonText="Auswählen"
                     containerId="card-slider"
                     onButtonClick={() => navigate(`/${gymInternalId}/offers?id=${id}`)}
@@ -24,18 +25,31 @@ const GymAbonnements = () => {
                 </Card>
                 <Card
                     badgeText="Angebot"
+                    width="200px"
                     buttonText="Auswählen"
                     containerId="card-slider"
                     aspectRatio={9 / 16}>
                     <GymCard />
                 </Card>
-                <Card buttonText="Auswählen" containerId="card-slider" aspectRatio={9 / 16}>
+                <Card
+                    buttonText="Auswählen"
+                    containerId="card-slider"
+                    width="200px"
+                    aspectRatio={9 / 16}>
                     <GymCard />
                 </Card>
-                <Card buttonText="Auswählen" containerId="card-slider" aspectRatio={9 / 16}>
+                <Card
+                    buttonText="Auswählen"
+                    containerId="card-slider"
+                    width="200px"
+                    aspectRatio={9 / 16}>
                     <GymCard />
                 </Card>
-                <Card buttonText="Auswählen" containerId="card-slider" aspectRatio={9 / 16}>
+                <Card
+                    buttonText="Auswählen"
+                    containerId="card-slider"
+                    width="200px"
+                    aspectRatio={9 / 16}>
                     <GymCard />
                 </Card>
             </>
