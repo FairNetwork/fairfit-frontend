@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { GymType } from '../types/gym';
+import { useLocation } from 'react-router-dom';
 
 export const useGymTypeIcons = () => {
     const gymTypeIcons = useMemo<Record<GymType, string>>(
@@ -24,4 +25,19 @@ export const useGymTypeIcons = () => {
     };
 
     return { getIconForGymType };
+};
+
+export const useGymRoute = () => {
+    const location = useLocation();
+
+    const route = location.pathname;
+
+    const startIndex = route.indexOf('/') + 1;
+    const endIndex = route.indexOf('/', startIndex);
+
+    if (endIndex === -1) {
+        return route.substring(startIndex).toLowerCase();
+    } else {
+        return route.substring(startIndex, endIndex).toLowerCase();
+    }
 };

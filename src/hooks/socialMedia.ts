@@ -1,6 +1,8 @@
 import { ISocialMedia, SocialMediaType } from '../types/socialMedia';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { SOCIAL_MEDIA_DATA } from '../constants/socialMedia';
+import { useAppSelector } from './redux';
+import { selectSocialMedia } from '../redux/gym/selectors';
 
 export const useSocialMedia = (type: SocialMediaType, userName?: string) => {
     const { icon, baseUrl, name } = useMemo(() => {
@@ -17,7 +19,15 @@ export const useSocialMediaInput = (type: SocialMediaType) => {
 
     const { icon, name } = useSocialMedia(type);
 
-    // ToDo get data from state and update state
+    const socialMedias = useAppSelector(selectSocialMedia);
+
+    useEffect(() => {
+        const media = socialMedias?.find((mediaItem) => mediaItem.type === type);
+
+        if (media) {
+            setSocialMedia(media);
+        }
+    }, [socialMedias]);
 
     const updateSocialMedia = (newUsername: string) => {
         // ToDo dispatch new userName

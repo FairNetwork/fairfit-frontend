@@ -30,3 +30,63 @@ export const selectGymsFromHistory = createSelector(
         return historyGyms;
     }
 );
+
+export const selectCurrentGymId = (state: RootState): string | undefined => {
+    return selectGymState(state).currentId;
+};
+
+export const selectCurrentGym = createSelector(
+    [selectGyms, selectCurrentGymId],
+    (gyms, currentGymId) => (currentGymId ? gyms[currentGymId] : undefined)
+);
+
+export const selectAbonnements = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.abonnements
+);
+
+export const selectBenefits = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.benefits
+);
+
+export const selectSocialMedia = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.socialMedia
+);
+
+export const selectOpeningTimes = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.openingTimes
+);
+
+export const selectGymHeaderActions = createSelector(selectCurrentGym, (currentGym) => {
+    return {
+        hasAbonnements: !!currentGym?.abonnements,
+        hasBenefits: !!currentGym?.benefits,
+        hasOpeningTimes: !!currentGym?.openingTimes,
+        hasSocialMedia: !!currentGym?.socialMedia
+    };
+});
+
+export const selectGymName = createSelector(selectCurrentGym, (currentGym) => currentGym?.name);
+
+export const selectStatistics = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.statistics
+);
+
+export const selectGymSettings = createSelector(selectCurrentGym, (currentGym) => {
+    if (!currentGym) {
+        return undefined;
+    }
+
+    const { name, address, type, mail } = currentGym;
+
+    return {
+        name,
+        address,
+        type,
+        mail
+    };
+});

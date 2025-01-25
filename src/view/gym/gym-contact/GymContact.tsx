@@ -1,8 +1,16 @@
 import Section from '../../../components/shared/section/Section';
 import SocialMediaWrapper from '../../../components/shared/social-media-wrapper/SocialMediaWrapper';
 import './gymContact.scss';
+import { useAppSelector } from '../../../hooks/redux';
+import { selectSocialMedia } from '../../../redux/gym/selectors';
 
 const GymContact = () => {
+    const socialMedia = useAppSelector(selectSocialMedia);
+
+    if (!socialMedia) {
+        return undefined;
+    }
+
     return (
         <Section textColor="#FFF" backgroundColor="#C96868">
             <div className="gym-contact" id="scroll-contact">

@@ -41,7 +41,7 @@ const Card: FC<CardProps> = ({
     containerId,
     onButtonClick,
     badgeText,
-    width = '200px'
+    width
 }) => {
     const ref = useRef<HTMLDivElement>(null);
 

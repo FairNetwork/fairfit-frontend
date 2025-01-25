@@ -1,26 +1,12 @@
 import { useGroupedOpeningTimes } from '../../../hooks/openingTimes';
-import { OpeningTimeType } from '../../../types/openingTimes';
 import Section from '../../../components/shared/section/Section';
 import { useMemo } from 'react';
 import './gymOpeningTimes.scss';
+import { useAppSelector } from '../../../hooks/redux';
+import { selectOpeningTimes } from '../../../redux/gym/selectors';
 
 const GymOpeningTimes = () => {
-    const openingTimes = [
-        {
-            id: '1',
-            type: OpeningTimeType.MONDAY,
-            startTime: '12:00',
-            endTime: '16:00',
-            closed: false
-        },
-        {
-            id: '2',
-            type: OpeningTimeType.FRIDAY,
-            startTime: '12:00',
-            endTime: '16:00',
-            closed: false
-        }
-    ];
+    const openingTimes = useAppSelector(selectOpeningTimes);
 
     const times = useGroupedOpeningTimes(openingTimes);
 
@@ -33,6 +19,10 @@ const GymOpeningTimes = () => {
             );
         });
     }, []);
+
+    if (!openingTimes) {
+        return undefined;
+    }
 
     return (
         <Section textColor="#FFF" backgroundColor="#658147">
