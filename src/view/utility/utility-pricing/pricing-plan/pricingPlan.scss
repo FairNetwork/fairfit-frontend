@@ -8,8 +8,23 @@
   display: flex;
   flex-direction: column;
 
+  position: relative;
+
+  overflow: hidden;
+
   h2 {
     margin: 0;
+  }
+
+  &__badge{
+    background-color: var(--primary-color);
+    border-radius: 6px;
+    padding: 2px 30px;
+    width: fit-content;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: rotate(45deg) translateX(30px) translateY(-10px);
   }
 
   &__name {

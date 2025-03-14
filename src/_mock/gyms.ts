@@ -17,6 +17,13 @@ export const GYM_MOCK_DATA: { [key: Gym['id']]: Gym } = {
                 isOffer: true,
                 price: 29.99,
                 details: [{ id: 'detail1', detail: 'Zugang zu allen Trainingsbereichen' }]
+            },
+            {
+                id: 'abonnement2',
+                title: 'Standard-Mitgliedschaft',
+                isOffer: true,
+                price: 29.99,
+                details: [{ id: 'detail1', detail: 'Zugang zu allen Trainingsbereichen' }]
             }
         ],
         benefits: [

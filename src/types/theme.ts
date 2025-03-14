@@ -24,4 +24,6 @@ export interface ColorSettings {
     footerBackgroundColor: string;
     footerTextColor: string;
     invalidBorderColor: string;
+    invalid: string;
+    warning: string;
 }

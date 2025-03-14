@@ -12,7 +12,7 @@ const GymContact = () => {
     }
 
     return (
-        <Section textColor="#FFF" backgroundColor="#C96868">
+        <Section textColor="#FFF" backgroundColor="#7B2E2F">
             <div className="gym-contact" id="scroll-contact">
                 <div className="gym-contact__headline">Du möchtest mit uns in Kontakt treten?</div>
                 <div className="gym-contact__text">Besuche uns auf Social Media</div>

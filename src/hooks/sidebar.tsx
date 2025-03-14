@@ -4,15 +4,29 @@ import { useMemo } from 'react';
 import { GymType } from '../types/gym';
 import { useGymTypeIcons } from './gym';
 import { useAppSelector } from './redux';
-import { selectGymsFromHistory } from '../redux/gym/selectors';
+import {
+    selectAbonnementCount,
+    selectBenefitCount,
+    selectGymsFromHistory
+} from '../redux/gym/selectors';
+import ScrollContainer from '../components/shared/sidebar/scroll-container/ScrollContainer';
+import { getSidebarBadge } from '../utils/sidebar';
 
 export const useSidebarDashboardContent = () => {
+    const benefitCount = useAppSelector(selectBenefitCount);
+    const abonnementCount = useAppSelector(selectAbonnementCount);
+
+    const isDefaultPlan = true;
+
     const isLoggedIn = true;
     const gymId = 'easyfitness';
 
     if (!isLoggedIn) {
         return undefined;
     }
+
+    const benefitBadge = getSidebarBadge(benefitCount, isDefaultPlan);
+    const abonnementBadge = getSidebarBadge(abonnementCount, isDefaultPlan);
 
     return (
         <SubHeading heading="Dashboard">
@@ -25,22 +39,29 @@ export const useSidebarDashboardContent = () => {
                 route={`/${gymId}/dashboard/abonnements`}
                 text="Abonnements"
                 icon="fas fa-boxes-stacked"
+                badgeText={abonnementBadge.text}
+                badgeColor={abonnementBadge.color}
             />
             <SidebarItem
                 route={`/${gymId}/dashboard/benefits`}
                 text="Leistungen"
                 icon="fas fa-bolt"
+                badgeText={benefitBadge.text}
+                badgeColor={benefitBadge.color}
             />
             <SidebarItem
                 route={`/${gymId}/dashboard/socialmedia`}
                 text="SocialMedia"
                 icon="fas fa-hashtag"
-                isDisabled
+                badgeText="Legend"
+                badgeIcon="fas fa-crown"
             />
             <SidebarItem
                 route={`/${gymId}/dashboard/statistics`}
                 text="Statistiken"
                 icon="fas fa-chart-simple"
+                badgeText="Champion"
+                badgeIcon="fas fa-crown"
             />
         </SubHeading>
     );
@@ -52,7 +73,11 @@ export const useSidebarHistoryContent = () => {
     const gyms = useAppSelector(selectGymsFromHistory);
 
     return useMemo(() => {
-        return gyms.map(({ id, name, type }) => {
+        if (!gyms || !gyms.length) {
+            return undefined;
+        }
+
+        const items = gyms.map(({ id, name, type }) => {
             return (
                 <SidebarItem
                     key={`sidebar-item--${id}`}
@@ -62,5 +87,11 @@ export const useSidebarHistoryContent = () => {
                 />
             );
         });
+
+        return (
+            <SubHeading heading="Verlauf">
+                <ScrollContainer>{items}</ScrollContainer>
+            </SubHeading>
+        );
     }, [gyms]);
 };
