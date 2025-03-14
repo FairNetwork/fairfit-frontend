@@ -11,12 +11,14 @@ import { AnimatePresence } from 'framer-motion';
 import SplashScreen from './shared/splash-screen/SplashScreen';
 import { useSidebarProvider } from './shared/sidebar/SidebarProvider';
 import { useIsMobile } from '../hooks/environment';
+import { useScrollToTop } from '../hooks/scroll';
 
 const App = () => {
     const content = useContent();
     const colorMode = useColorMode();
     const isMobile = useIsMobile();
     const { width, isOpen } = useSidebarProvider();
+    useScrollToTop('app-content');
 
     const [shouldShowSplashScreen, setShouldShowSplashScreen] = useState(true);
 
@@ -39,7 +41,9 @@ const App = () => {
                     className="app__wrapper"
                     style={{ width: isMobile ? '100vw' : `calc(100vw - 1px - ${width})` }}>
                     <Header />
-                    <div className="app__wrapper__content">{content}</div>
+                    <div className="app__wrapper__content" id="app-content">
+                        {content}
+                    </div>
                     <Footer />
                 </div>
             </div>
