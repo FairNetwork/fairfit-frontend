@@ -16,7 +16,9 @@ export const THEME: ColorScheme = {
         sidebarHoverColor: 'rgba(105, 138, 156, 0.6)',
         footerBackgroundColor: 'rgb(242, 242, 247)',
         footerTextColor: 'rgb(99, 99, 102)',
-        invalidBorderColor: '#ff0000'
+        invalidBorderColor: '#ff0000',
+        invalid: '#D32F2F',
+        warning: '#FF9800'
     },
     light: {
         primaryColor: '#008c94',
@@ -33,6 +35,8 @@ export const THEME: ColorScheme = {
         sidebarHoverColor: 'rgba(105, 138, 156, 0.6)',
         footerBackgroundColor: 'rgb(242, 242, 247)',
         footerTextColor: 'rgb(99, 99, 102)',
-        invalidBorderColor: '#ff0000'
+        invalidBorderColor: '#ff0000',
+        invalid: '#D32F2F',
+        warning: '#FF9800'
     }
 };

@@ -7,6 +7,10 @@ import { useIsCurrentRoute } from '../../../../hooks/route';
 
 interface SidebarItemProps {
     /**
+     * The color of the badge.
+     */
+    badgeColor?: string;
+    /**
      * The icon that should be displayed inside a badge.
      */
     badgeIcon?: string;
@@ -34,6 +38,7 @@ interface SidebarItemProps {
 
 const SidebarItem: FC<SidebarItemProps> = ({
     icon,
+    badgeColor = 'var(--primary-color)',
     isDisabled,
     badgeText,
     text,
@@ -70,7 +75,7 @@ const SidebarItem: FC<SidebarItemProps> = ({
                 {text}
             </div>
             {(badgeText || badgeIcon) && (
-                <div className="sidebar-item__badge">
+                <div className="sidebar-item__badge" style={{ backgroundColor: badgeColor }}>
                     {badgeIcon && <Icon icon={badgeIcon} />}
                     {badgeText}
                 </div>

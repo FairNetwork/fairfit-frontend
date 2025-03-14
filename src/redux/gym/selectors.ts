@@ -71,6 +71,16 @@ export const selectGymHeaderActions = createSelector(selectCurrentGym, (currentG
 
 export const selectGymName = createSelector(selectCurrentGym, (currentGym) => currentGym?.name);
 
+export const selectBenefitCount = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.benefits?.length ?? 0
+);
+
+export const selectAbonnementCount = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.abonnements?.length ?? 0
+);
+
 export const selectGymAddress = createSelector(
     selectCurrentGym,
     (currentGym) => currentGym?.address

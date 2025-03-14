@@ -29,13 +29,14 @@
   &__badge {
     font-size: small;
     border-radius: 100px;
-    background-color: var(--primary-color);
     padding: 3px 5px;
     color: #FFFFFF;
 
     display: flex;
     align-items: center;
     gap: 6px;
+    justify-content: center;
+    min-width: 13px;
   }
 
   &:hover {

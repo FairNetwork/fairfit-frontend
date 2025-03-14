@@ -4,16 +4,29 @@ import { useMemo } from 'react';
 import { GymType } from '../types/gym';
 import { useGymTypeIcons } from './gym';
 import { useAppSelector } from './redux';
-import { selectGymsFromHistory } from '../redux/gym/selectors';
+import {
+    selectAbonnementCount,
+    selectBenefitCount,
+    selectGymsFromHistory
+} from '../redux/gym/selectors';
 import ScrollContainer from '../components/shared/sidebar/scroll-container/ScrollContainer';
+import { getSidebarBadge } from '../utils/sidebar';
 
 export const useSidebarDashboardContent = () => {
+    const benefitCount = useAppSelector(selectBenefitCount);
+    const abonnementCount = useAppSelector(selectAbonnementCount);
+
+    const isDefaultPlan = true;
+
     const isLoggedIn = true;
     const gymId = 'easyfitness';
 
     if (!isLoggedIn) {
         return undefined;
     }
+
+    const benefitBadge = getSidebarBadge(benefitCount, isDefaultPlan);
+    const abonnementBadge = getSidebarBadge(abonnementCount, isDefaultPlan);
 
     return (
         <SubHeading heading="Dashboard">
@@ -26,11 +39,15 @@ export const useSidebarDashboardContent = () => {
                 route={`/${gymId}/dashboard/abonnements`}
                 text="Abonnements"
                 icon="fas fa-boxes-stacked"
+                badgeText={abonnementBadge.text}
+                badgeColor={abonnementBadge.color}
             />
             <SidebarItem
                 route={`/${gymId}/dashboard/benefits`}
                 text="Leistungen"
                 icon="fas fa-bolt"
+                badgeText={benefitBadge.text}
+                badgeColor={benefitBadge.color}
             />
             <SidebarItem
                 route={`/${gymId}/dashboard/socialmedia`}
