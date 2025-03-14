@@ -10,6 +10,8 @@ export const usePricing = (pricingType: PricingType) => {
         name: pricingDetails?.name ?? '',
         description: pricingDetails?.description ?? '',
         price: { integerPart, decimalPart },
-        benefits: PRICING_BENEFITS
+        isDisabled: pricingDetails?.isDisabled ?? false,
+        badgeText: pricingDetails?.badgeText ?? '',
+        benefits: PRICING_BENEFITS[pricingType]
     };
 };
