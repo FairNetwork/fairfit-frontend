@@ -17,7 +17,7 @@ import { PricingType } from '../types/pricing';
 export const useSidebarDashboardContent = () => {
     const benefitCount = useAppSelector(selectBenefitCount);
     const abonnementCount = useAppSelector(selectAbonnementCount);
-    const isDefaultPlan = useAppSelector(selectSubscriptionType) === PricingType.ATHLETE;
+    const subscriptionType = useAppSelector(selectSubscriptionType);
 
     const isLoggedIn = true;
     const gymId = 'easyfitness';
@@ -25,6 +25,10 @@ export const useSidebarDashboardContent = () => {
     if (!isLoggedIn) {
         return undefined;
     }
+
+    const isDefaultPlan = [PricingType.ATHLETE].includes(subscriptionType);
+    const middleAccess = [PricingType.LEGEND, PricingType.CHAMPION].includes(subscriptionType);
+    const fullAccess = [PricingType.LEGEND].includes(subscriptionType);
 
     const benefitBadge = getSidebarBadge(benefitCount, isDefaultPlan);
     const abonnementBadge = getSidebarBadge(abonnementCount, isDefaultPlan);
@@ -54,15 +58,15 @@ export const useSidebarDashboardContent = () => {
                 route={`/${gymId}/dashboard/socialmedia`}
                 text="SocialMedia"
                 icon="fas fa-hashtag"
-                badgeText="Legend"
-                badgeIcon="fas fa-crown"
+                badgeText={fullAccess ? undefined : 'Legend'}
+                badgeIcon={fullAccess ? undefined : 'fas fa-crown'}
             />
             <SidebarItem
                 route={`/${gymId}/dashboard/statistics`}
                 text="Statistiken"
                 icon="fas fa-chart-simple"
-                badgeText="Champion"
-                badgeIcon="fas fa-crown"
+                badgeText={middleAccess ? undefined : 'Champion'}
+                badgeIcon={middleAccess ? undefined : 'fas fa-crown'}
             />
         </SubHeading>
     );
