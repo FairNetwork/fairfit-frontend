@@ -4,6 +4,7 @@ import Button from '../../components/shared/button/Button';
 import { useNavigate } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 import Icon from '../../components/shared/icon/Icon';
+import { useSignUpType } from '../../hooks/route';
 
 interface PasswordCriteria {
     text: string;
@@ -12,6 +13,7 @@ interface PasswordCriteria {
 
 const SignUp = () => {
     const navigate = useNavigate();
+    useSignUpType();
 
     const [shouldShowPassword, setShouldShowPassword] = useState(false);
     const [name, setName] = useState('');
