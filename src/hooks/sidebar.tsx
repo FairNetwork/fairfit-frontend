@@ -7,16 +7,17 @@ import { useAppSelector } from './redux';
 import {
     selectAbonnementCount,
     selectBenefitCount,
-    selectGymsFromHistory
+    selectGymsFromHistory,
+    selectSubscriptionType
 } from '../redux/gym/selectors';
 import ScrollContainer from '../components/shared/sidebar/scroll-container/ScrollContainer';
 import { getSidebarBadge } from '../utils/sidebar';
+import { PricingType } from '../types/pricing';
 
 export const useSidebarDashboardContent = () => {
     const benefitCount = useAppSelector(selectBenefitCount);
     const abonnementCount = useAppSelector(selectAbonnementCount);
-
-    const isDefaultPlan = true;
+    const isDefaultPlan = useAppSelector(selectSubscriptionType) === PricingType.ATHLETE;
 
     const isLoggedIn = true;
     const gymId = 'easyfitness';

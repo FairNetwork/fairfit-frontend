@@ -60,6 +60,11 @@ export const selectOpeningTimes = createSelector(
     (currentGym) => currentGym?.openingTimes
 );
 
+export const selectSubscriptionType = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.subscriptionType
+);
+
 export const selectGymHeaderActions = createSelector(selectCurrentGym, (currentGym) => {
     return {
         hasAbonnements: !!currentGym?.abonnements,

@@ -3,6 +3,7 @@ import { IBenefit } from './benefit';
 import { ISocialMedia } from './socialMedia';
 import { IOpeningTimes } from './openingTimes';
 import { Statistic } from './statistic';
+import { PricingType } from './pricing';
 
 export enum GymType {
     GYM,
@@ -30,6 +31,7 @@ export interface Gym {
     address: string;
     mail?: string;
     type: GymType;
+    subscriptionType: PricingType;
     image: string;
     abonnements?: Abonnement[];
     benefits?: IBenefit[];
