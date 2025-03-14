@@ -2,6 +2,7 @@ import { Gym, GymType } from '../types/gym';
 import { SocialMediaType } from '../types/socialMedia';
 import { OpeningTimeType } from '../types/openingTimes';
 import { StatisticType } from '../types/statistic';
+import { PricingType } from '../types/pricing';
 
 export const GYM_MOCK_DATA: { [key: Gym['id']]: Gym } = {
     easyfitness: {
@@ -9,6 +10,7 @@ export const GYM_MOCK_DATA: { [key: Gym['id']]: Gym } = {
         id: 'easyfitness',
         type: GymType.GYM,
         address: 'Von-Braun-Straße 54, 48683 Ahaus',
+        subscriptionType: PricingType.ATHLETE,
         image: 'https://easyfitness.club/wp-content/uploads/2018/12/EASYFITNESS-Social-Bild.jpg',
         abonnements: [
             {
@@ -155,6 +157,7 @@ export const GYM_MOCK_DATA: { [key: Gym['id']]: Gym } = {
         name: 'BodyFit',
         id: 'bodyfit',
         type: GymType.GYM,
+        subscriptionType: PricingType.CHAMPION,
         address: 'Wüllener Str. 13, 48683 Ahaus',
         image: 'https://dein-bodyfit.de/site/assets/files/1015/bdf_lg.jpg',
         abonnements: [
@@ -253,6 +256,7 @@ export const GYM_MOCK_DATA: { [key: Gym['id']]: Gym } = {
         name: 'Clever Fit Ahaus',
         id: 'clever-fit',
         type: GymType.GYM,
+        subscriptionType: PricingType.CHAMPION,
         address: 'Von-Braun-Straße 54, 48683 Ahaus',
         image: 'https://www.clever-fit.com/app/uploads/2022/10/IMG_7153-2-1-scaled.jpeg',
         abonnements: [
@@ -368,6 +372,7 @@ export const GYM_MOCK_DATA: { [key: Gym['id']]: Gym } = {
         name: 'Shield Gym',
         id: 'shield',
         type: GymType.GYM,
+        subscriptionType: PricingType.CHAMPION,
         address: 'Schillerstraße 25, 48683 Ahaus',
         image: 'https://cdns3.fitfit.fitness/de/media/items/540x280/13371-Shield-Das-Zentrum-CRnvl.jpg',
         abonnements: [
@@ -448,6 +453,7 @@ export const GYM_MOCK_DATA: { [key: Gym['id']]: Gym } = {
         name: 'AquAHAUS',
         id: 'aquahaus',
         type: GymType.SWIMMING,
+        subscriptionType: PricingType.CHAMPION,
         address: 'Unterortwick 32, 48683 Ahaus',
         image: 'https://dtf-ingenieure.com/fileadmin/DTF/Bilder/Sport_und_Freizeitbaeder/Ahaus/_MG_5281_1_2_adjust.jpg',
         abonnements: [

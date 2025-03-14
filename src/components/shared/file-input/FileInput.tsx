@@ -5,10 +5,19 @@ import './fileInput.scss';
 
 interface FileInputProps {
     onSelect: (files: File[]) => void;
+    disabledAction?: () => void;
 }
 
-const FileInput = ({ onSelect }: FileInputProps) => {
+const FileInput = ({ onSelect, disabledAction }: FileInputProps) => {
+    const isDisabled = typeof disabledAction === 'function';
+
     const handleUploadClick = async () => {
+        if (isDisabled) {
+            disabledAction();
+
+            return;
+        }
+
         const files = await selectFiles({ multiple: true, type: 'image/*' });
 
         if (typeof onSelect === 'function' && files) {
@@ -18,6 +27,13 @@ const FileInput = ({ onSelect }: FileInputProps) => {
 
     const handleDrop = (e: DragEvent<HTMLDivElement>) => {
         e.preventDefault();
+
+        if (isDisabled) {
+            disabledAction();
+
+            return;
+        }
+
         const draggedFiles = Array.from(e.dataTransfer.files) as File[];
 
         if (typeof onSelect === 'function') {

@@ -1,0 +1,17 @@
+.subscription-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &__headline {
+    margin: 0
+  }
+
+  &__content {
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+  }
+}

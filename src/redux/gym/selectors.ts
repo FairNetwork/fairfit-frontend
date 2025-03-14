@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { GymHistory } from '../../types/gym';
+import { PricingType } from '../../types/pricing';
 
 const selectGymState = (state: RootState) => state.gym;
 
@@ -58,6 +59,11 @@ export const selectSocialMedia = createSelector(
 export const selectOpeningTimes = createSelector(
     selectCurrentGym,
     (currentGym) => currentGym?.openingTimes
+);
+
+export const selectSubscriptionType = createSelector(
+    selectCurrentGym,
+    (currentGym) => currentGym?.subscriptionType ?? PricingType.ATHLETE
 );
 
 export const selectGymHeaderActions = createSelector(selectCurrentGym, (currentGym) => {
