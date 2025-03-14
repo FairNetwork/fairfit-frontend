@@ -6,12 +6,13 @@ import Sidebar from './shared/sidebar/Sidebar';
 import Header from './shared/header/Header';
 import Footer from './shared/footer/Footer';
 import './app.scss';
-import { useLayoutEffect, useState } from 'react';
+import { ReactNode, useEffect, useLayoutEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import SplashScreen from './shared/splash-screen/SplashScreen';
 import { useSidebarProvider } from './shared/sidebar/SidebarProvider';
 import { useIsMobile } from '../hooks/environment';
 import { useScrollToTop } from '../hooks/scroll';
+import Dialog from './shared/dialog/Dialog';
 
 const App = () => {
     const content = useContent();
@@ -21,6 +22,7 @@ const App = () => {
     useScrollToTop('app-content');
 
     const [shouldShowSplashScreen, setShouldShowSplashScreen] = useState(true);
+    const [dialogContent, setDialogContent] = useState<ReactNode>();
 
     useLayoutEffect(() => {
         window.setTimeout(() => {
@@ -28,8 +30,21 @@ const App = () => {
         }, 3000);
     }, []);
 
+    useEffect(() => {
+        window.openDialog = (content: ReactNode) => {
+            setDialogContent(content);
+        };
+
+        window.closeDialog = () => {
+            setDialogContent(undefined);
+        };
+    }, []);
+
     return (
         <ColorSchemeProvider colors={THEME} colorMode={colorMode}>
+            <AnimatePresence initial={false}>
+                {dialogContent && <Dialog>{dialogContent}</Dialog>}
+            </AnimatePresence>
             <AnimatePresence initial={false}>
                 {shouldShowSplashScreen && <SplashScreen />}
             </AnimatePresence>

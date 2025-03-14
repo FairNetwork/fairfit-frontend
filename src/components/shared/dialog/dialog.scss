@@ -1,0 +1,27 @@
+.dialog{
+    &__background{
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      opacity: 0.4;
+      z-index: 199;
+    }
+
+  &__content{
+    position: absolute;
+    background-color: var(--primary-background-color);
+    z-index: 200;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    padding: 12px;
+
+    border-radius: 6px;
+
+    max-width: 600px;
+    margin: 12px;
+  }
+}
