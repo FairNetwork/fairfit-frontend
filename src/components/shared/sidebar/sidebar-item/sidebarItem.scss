@@ -12,12 +12,12 @@
   border-top-right-radius: 100px;
   color: var(--sidebar-text-color);
 
-  &__wrapper{
+  &__wrapper {
     display: flex;
     gap: 12px;
     align-items: center;
 
-    &__icon{
+    &__icon {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -26,11 +26,16 @@
     }
   }
 
-  &__badge{
-    font-size: x-small;
+  &__badge {
+    font-size: small;
     border-radius: 100px;
     background-color: var(--primary-color);
     padding: 3px 5px;
+    color: #FFFFFF;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
   &:hover {

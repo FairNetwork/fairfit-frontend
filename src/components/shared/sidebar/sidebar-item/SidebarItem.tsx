@@ -7,6 +7,10 @@ import { useIsCurrentRoute } from '../../../../hooks/route';
 
 interface SidebarItemProps {
     /**
+     * The icon that should be displayed inside a badge.
+     */
+    badgeIcon?: string;
+    /**
      * The text that should be displayed inside a badge.
      */
     badgeText?: string;
@@ -28,7 +32,14 @@ interface SidebarItemProps {
     text: string;
 }
 
-const SidebarItem: FC<SidebarItemProps> = ({ icon, isDisabled, badgeText, text, route }) => {
+const SidebarItem: FC<SidebarItemProps> = ({
+    icon,
+    isDisabled,
+    badgeText,
+    text,
+    route,
+    badgeIcon
+}) => {
     const colorScheme = useColorScheme();
     const navigate = useNavigate();
     const isActive = useIsCurrentRoute(route);
@@ -58,7 +69,12 @@ const SidebarItem: FC<SidebarItemProps> = ({ icon, isDisabled, badgeText, text, 
                 )}
                 {text}
             </div>
-            {badgeText && <div className="sidebar-item__badge">{badgeText}</div>}
+            {(badgeText || badgeIcon) && (
+                <div className="sidebar-item__badge">
+                    {badgeIcon && <Icon icon={badgeIcon} />}
+                    {badgeText}
+                </div>
+            )}
         </div>
     );
 };

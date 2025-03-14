@@ -5,6 +5,7 @@ import { GymType } from '../types/gym';
 import { useGymTypeIcons } from './gym';
 import { useAppSelector } from './redux';
 import { selectGymsFromHistory } from '../redux/gym/selectors';
+import ScrollContainer from '../components/shared/sidebar/scroll-container/ScrollContainer';
 
 export const useSidebarDashboardContent = () => {
     const isLoggedIn = true;
@@ -35,12 +36,15 @@ export const useSidebarDashboardContent = () => {
                 route={`/${gymId}/dashboard/socialmedia`}
                 text="SocialMedia"
                 icon="fas fa-hashtag"
-                isDisabled
+                badgeText="Legend"
+                badgeIcon="fas fa-crown"
             />
             <SidebarItem
                 route={`/${gymId}/dashboard/statistics`}
                 text="Statistiken"
                 icon="fas fa-chart-simple"
+                badgeText="Champion"
+                badgeIcon="fas fa-crown"
             />
         </SubHeading>
     );
@@ -52,7 +56,11 @@ export const useSidebarHistoryContent = () => {
     const gyms = useAppSelector(selectGymsFromHistory);
 
     return useMemo(() => {
-        return gyms.map(({ id, name, type }) => {
+        if (!gyms || !gyms.length) {
+            return undefined;
+        }
+
+        const items = gyms.map(({ id, name, type }) => {
             return (
                 <SidebarItem
                     key={`sidebar-item--${id}`}
@@ -62,5 +70,11 @@ export const useSidebarHistoryContent = () => {
                 />
             );
         });
+
+        return (
+            <SubHeading heading="Verlauf">
+                <ScrollContainer>{items}</ScrollContainer>
+            </SubHeading>
+        );
     }, [gyms]);
 };

@@ -3,7 +3,6 @@ import SidebarItem from './sidebar-item/SidebarItem';
 import Logo from './logo/Logo';
 import logo from '../../../assets/fairfit_logo.png';
 import User from './user/User';
-import ScrollContainer from './scroll-container/ScrollContainer';
 import { useSidebarDashboardContent, useSidebarHistoryContent } from '../../../hooks/sidebar';
 import './sidebar.scss';
 import { useSidebarProvider } from './SidebarProvider';
@@ -73,9 +72,7 @@ const Sidebar = () => {
                 <SubHeading>
                     <SidebarItem text="Home" icon="fas fa-house" route="/" />
                 </SubHeading>
-                <SubHeading heading="Verlauf">
-                    <ScrollContainer>{historyContent}</ScrollContainer>
-                </SubHeading>
+                {historyContent}
                 {dashboardContent}
                 <User />
             </motion.div>
