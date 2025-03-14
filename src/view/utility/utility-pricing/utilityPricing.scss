@@ -1,0 +1,7 @@
+.utility-pricing{
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+}

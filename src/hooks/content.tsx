@@ -20,7 +20,7 @@ export const useContent = () => {
         if (/^\/utility\/[^/]+$/.test(path)) return <Utility />;
         // if (path === '/confirm-registration') return <ConfirmRegistration />;
         if (path === '/log-in') return <LogIn />;
-        if (path === '/sign-up') return <SignUp />;
+        if (path.includes('/sign-up')) return <SignUp />;
         if (path === '/secret') return <Secret />;
         if (/^\/[^/]+\/offers$/.test(path)) return <Booking />;
         if (/^\/[^/]+\/dashboard\/.+/.test(path)) return <Dashboard />;
