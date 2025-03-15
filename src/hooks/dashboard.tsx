@@ -12,12 +12,18 @@ export const useDashboardContent = () => {
 
     const subscriptionType = useAppSelector(selectSubscriptionType);
 
+    const routing = (route: string) => {
+        window.setTimeout(() => {
+            navigate(route);
+        }, 1);
+    };
+
     if (location.pathname.includes('statistics')) {
         if ([PricingType.LEGEND, PricingType.CHAMPION].includes(subscriptionType)) {
             return <DashboardStatistics />;
         }
 
-        navigate('/utility/pricing');
+        routing('/utility/pricing');
 
         return undefined;
     }
@@ -27,7 +33,7 @@ export const useDashboardContent = () => {
             return undefined;
         }
 
-        navigate('/utility/pricing');
+        routing('/utility/pricing');
 
         return undefined;
     }
@@ -40,7 +46,7 @@ export const useDashboardContent = () => {
         return <DashboardSettings />;
     }
 
-    navigate('/no_content');
+    routing('/no_content');
 
     return undefined;
 };
