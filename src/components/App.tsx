@@ -13,6 +13,7 @@ import { useSidebarProvider } from './shared/sidebar/SidebarProvider';
 import { useIsMobile } from '../hooks/environment';
 import { useScrollToTop } from '../hooks/scroll';
 import Dialog from './shared/dialog/Dialog';
+import Navigation from './shared/navigation/Navigation';
 
 const App = () => {
     const content = useContent();
@@ -42,25 +43,8 @@ const App = () => {
 
     return (
         <ColorSchemeProvider colors={THEME} colorMode={colorMode}>
-            <AnimatePresence initial={false}>
-                {dialogContent && <Dialog>{dialogContent}</Dialog>}
-            </AnimatePresence>
-            <AnimatePresence initial={false}>
-                {shouldShowSplashScreen && <SplashScreen />}
-            </AnimatePresence>
             <div className="app">
-                <AnimatePresence initial={false}>
-                    <Sidebar />
-                </AnimatePresence>
-                <div
-                    className="app__wrapper"
-                    style={{ width: isMobile ? '100vw' : `calc(100vw - 1px - ${width})` }}>
-                    <Header />
-                    <div className="app__wrapper__content" id="app-content">
-                        {content}
-                    </div>
-                    <Footer />
-                </div>
+                <Navigation />
             </div>
         </ColorSchemeProvider>
     );

@@ -1,0 +1,15 @@
+.logo{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px;
+
+  user-select: none;
+
+  img{
+    cursor: pointer;
+
+    height: 40px;
+  }
+}

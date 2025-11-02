@@ -1,28 +1,24 @@
-import React, { FC, ReactNode } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
 import './section.scss';
 
 export type SectionProps = {
-    /**
-     * The background color of the section.
-     */
-    backgroundColor: string;
-    /**
-     * The content that should be displayed inside the section.
-     */
-    children?: ReactNode;
-    /**
-     * The text color of the section.
-     */
-    textColor: string;
+    className?: string;
+    children: ReactNode;
+    disableHover?: boolean;
 };
 
-const Section: FC<SectionProps> = ({ children, textColor, backgroundColor }) => {
-    return (
-        <div className="section" style={{ color: textColor, backgroundColor }}>
-            {children}
-        </div>
-    );
-};
+// forwardRef erlaubt Zugriff auf das DOM-Element
+const Section = forwardRef<HTMLDivElement, SectionProps>(
+    ({ children, className = '', disableHover = false }, ref) => {
+        return (
+            <div
+                ref={ref}
+                className={`section ${disableHover ? 'section--no-hover' : ''} ${className}`}>
+                {children}
+            </div>
+        );
+    }
+);
 
 Section.displayName = 'Section';
 

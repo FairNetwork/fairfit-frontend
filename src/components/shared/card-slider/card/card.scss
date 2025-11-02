@@ -23,16 +23,24 @@
   }
 
   &__wrapper {
-    overflow: hidden;
-    height: 100%;
+      background: rgba(255, 255, 255, 0.7); /* halbtransparentes Weiß */
+      backdrop-filter: blur(10px); /* Glas-Effekt */
+      -webkit-backdrop-filter: blur(10px); /* Safari-Kompatibilität */
+      border: 1px solid rgba(255, 255, 255, 0.3); /* feine, helle Border */
+      border-radius: 16px;
+      box-shadow:
+              0 4px 10px rgba(0, 0, 0, 0.1), /* weicher Schatten unten */
+              inset 0 1px 0 rgba(255, 255, 255, 0.3); /* dezente Lichtkante oben */
+      padding: 1.5rem;
+      margin: 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-    background-color: var(--secondary-background-color);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    border-radius: 12px;
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow:
+              0 8px 20px rgba(0, 0, 0, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
 
   }
 
