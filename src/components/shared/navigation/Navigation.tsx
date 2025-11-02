@@ -4,7 +4,7 @@ import './navigation.scss';
 import Section from '../section/Section';
 import Logo from '../logo/Logo';
 import logo from '../../../assets/fairfit_logo.png';
-import Icon from '../icon/Icon';
+import User from './user/User';
 
 const NAV_ITEMS = ['Dashboard', 'Socials', 'Einstellungen'];
 
@@ -88,9 +88,7 @@ const Navigation: React.FC<NavigationProps> = ({ onSelect }) => {
             </Section>
 
             <div className="navigation__right">
-                <Section className="navigation__right__section" disableHover>
-                    <Icon icon="fas fa-user" />
-                </Section>
+                <User />
             </div>
         </div>
     );
