@@ -25,11 +25,7 @@ const HomeCards = () => {
 
     const content = useMemo(() => {
         return gyms.map(({ id, name, type, image, address }) => {
-            return (
-                <Card buttonText="Besuchen" onButtonClick={() => handleButtonClick(id)}>
-                    <HomeCard name={name} type={type} location={address} image={image} />
-                </Card>
-            );
+            return <HomeCard key={id} name={name} type={type} location={address} image={image} />;
         });
     }, [gyms, handleButtonClick]);
 

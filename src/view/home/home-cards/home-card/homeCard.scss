@@ -1,26 +1,35 @@
 .home-card{
+  padding: 12px;
+  cursor: pointer;
+
   img{
     width: 100%;
     aspect-ratio: 16/9;
     object-fit: cover;
+
+    border-radius: 12px;
   }
 
   &__content{
-    padding: 12px;
+    padding: 12px 12px 0 12px;
     display: flex;
     flex-direction: column;
     gap: 6px;
 
     &__name{
-      display: flex;
-      gap: 6px;
-      align-items: center;
+      font-size: x-large;
+
+      font-weight: bold;
+    }
+
+    &__tags{
+
     }
 
     &__location{
-      display: flex;
-      gap: 6px;
-      align-items: center;
+      text-align: center;
+      font-size: small;
+      opacity: .7;
     }
   }
 }

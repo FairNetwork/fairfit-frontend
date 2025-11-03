@@ -3,6 +3,7 @@ import { FC } from 'react';
 import Icon from '../../../../components/shared/icon/Icon';
 import { useGymTypeIcons } from '../../../../hooks/gym';
 import { GymType } from '../../../../types/gym';
+import Section from '../../../../components/shared/section/Section';
 
 interface HomeCardProps {
     image: string;
@@ -16,22 +17,13 @@ const HomeCard: FC<HomeCardProps> = ({ name, tags, type, location, image }) => {
     const { getIconForGymType } = useGymTypeIcons();
 
     return (
-        <div className="home-card">
+        <Section className="home-card">
             <img src={image} alt={`${name} image`} />
             <div className="home-card__content">
-                <div className="home-card__content__name">
-                    <Icon
-                        icon={getIconForGymType(type)}
-                        style={{ width: '20px', textAlign: 'center' }}
-                    />{' '}
-                    {name}
-                </div>
-                <div className="home-card__content__location">
-                    <Icon icon="fas fa-map-pin" style={{ width: '20px', textAlign: 'center' }} />{' '}
-                    {location}
-                </div>
+                <div className="home-card__content__name">{name}</div>
+                <div className="home-card__content__location">{location}</div>
             </div>
-        </div>
+        </Section>
     );
 };
 

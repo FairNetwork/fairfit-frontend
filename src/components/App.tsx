@@ -45,6 +45,9 @@ const App = () => {
         <ColorSchemeProvider colors={THEME} colorMode={colorMode}>
             <div className="app">
                 <Navigation />
+                <div className="app__content" id="app-content">
+                    {content}
+                </div>
             </div>
         </ColorSchemeProvider>
     );
