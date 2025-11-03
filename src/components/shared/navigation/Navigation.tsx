@@ -5,6 +5,7 @@ import Section from '../section/Section';
 import Logo from '../logo/Logo';
 import logo from '../../../assets/fairfit_logo.png';
 import User from './user/User';
+import Icon from '../icon/Icon';
 
 const NAV_ITEMS = ['Dashboard', 'Socials', 'Einstellungen'];
 
@@ -57,36 +58,57 @@ const Navigation: React.FC<NavigationProps> = ({ onSelect }) => {
             <div className="navigation__left">
                 <Logo src={logo} />
             </div>
+            <div className="navigation__center">
+                <Section className="navigation__center__section" ref={containerRef} disableHover>
+                    {NAV_ITEMS.map((item, index) => (
+                        <div
+                            key={item}
+                            ref={(el) => setItemRef(el, index)}
+                            className={`navigation__center__section__item ${index === activeIndex ? 'active' : ''}`}
+                            onClick={() => handleSelect(index)}>
+                            {item}
+                        </div>
+                    ))}
 
-            <Section className="navigation__center" ref={containerRef} disableHover>
-                {NAV_ITEMS.map((item, index) => (
-                    <div
-                        key={item}
-                        ref={(el) => setItemRef(el, index)}
-                        className={`navigation__center__item ${index === activeIndex ? 'active' : ''}`}
-                        onClick={() => handleSelect(index)}>
-                        {item}
+                    {positions[activeIndex] && (
+                        <motion.div
+                            className="navigation__center__section__active"
+                            layout
+                            drag="x"
+                            style={{ x, y: '-50%' }}
+                            dragConstraints={containerRef}
+                            dragElastic={0.2}
+                            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                            onDragEnd={handleDragEnd}
+                            animate={{
+                                left: positions[activeIndex].left,
+                                width: positions[activeIndex].width
+                            }}
+                        />
+                    )}
+                </Section>
+                <Section className="navigation__center__section" disableHover>
+                    <div className="navigation__center__section__icon">
+                        <Icon icon="fas fa-phone" />
                     </div>
-                ))}
-
-                {positions[activeIndex] && (
-                    <motion.div
-                        className="navigation__center__active"
-                        layout
-                        drag="x"
-                        style={{ x, y: '-50%' }}
-                        dragConstraints={containerRef}
-                        dragElastic={0.2}
-                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                        onDragEnd={handleDragEnd}
-                        animate={{
-                            left: positions[activeIndex].left,
-                            width: positions[activeIndex].width
-                        }}
-                    />
-                )}
-            </Section>
-
+                    <div className="navigation__center__section__icon">
+                        <Icon icon="fas fa-envelope" />
+                    </div>
+                    <div className="navigation__center__section__icon">
+                        <Icon icon="fas fa-link" />
+                    </div>
+                </Section>
+                <Section className="navigation__center__section" disableHover>
+                    <div className="navigation__center__section__icon">
+                        <Icon icon="fas fa-magnifying-glass" />
+                    </div>
+                </Section>
+                <Section className="navigation__center__section" disableHover>
+                    <div className="navigation__center__section__icon">
+                        <Icon icon="fas fa-filter" />
+                    </div>
+                </Section>
+            </div>
             <div className="navigation__right">
                 <User />
             </div>
